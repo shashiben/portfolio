@@ -1,0 +1,44 @@
+name: portfolio
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #Icons Packages
+  cupertino_icons: ^1.0.0
+  flutter_icons: ^1.1.0
+
+  #Architecture
+  stacked: ^1.7.6
+  stacked_services: ^0.5.4+5
+
+  #Utilities and Services
+  url_launcher: ^5.7.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/illustrations/
+    - assets/images/
+    - assets/icons
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
