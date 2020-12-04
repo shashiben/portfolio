@@ -19,6 +19,7 @@ dependencies:
   #Architecture
   stacked: ^1.7.6
   stacked_services: ^0.5.4+5
+  responsive_builder: ^0.3.0
 
   #Utilities and Services
   url_launcher: ^5.7.10
@@ -31,7 +32,7 @@ flutter:
   assets:
     - assets/illustrations/
     - assets/images/
-    - assets/icons
+    - assets/icons/
 
   fonts:
     - family: Inter
