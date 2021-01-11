@@ -1,6 +1,6 @@
+import 'app/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/theme.dart';
-import 'package:portfolio/ui/views/main/main_view.dart';
+import 'ui/views/main/main_view.dart';
 
 void main() {
   runApp(MyApp());

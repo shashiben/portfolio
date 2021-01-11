@@ -3,7 +3,6 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/strings.dart';
 import 'package:portfolio/core/utils/scaling.dart';
 
-
 class UIHelpers {
   double width;
   double height;
@@ -38,27 +37,27 @@ class UIHelpers {
 
     headline = TextStyle(
         fontWeight: FontWeight.bold,
-        color: textPrimary,
-        fontSize: scalingHelper.size(24),
+        color: textPrimaryColor,
+        fontSize: 24,
         decoration: TextDecoration.none,
         fontFamily: fontName);
 
     title = TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: scalingHelper.size(18),
-        color: textPrimary,
+        fontSize: 18,
+        color: textPrimaryColor,
         decoration: TextDecoration.none,
         fontFamily: fontName);
     buttonStyle = TextStyle(
         fontFamily: fontName,
         decoration: TextDecoration.none,
         fontWeight: FontWeight.bold,
-        fontSize: scalingHelper.size(14));
+        fontSize: 14);
 
     body = TextStyle(
-        color: textSecondary,
+        color: textSecondaryColor,
         fontWeight: FontWeight.w400,
-        fontSize: scalingHelper.size(14),
+        fontSize: 14,
         decoration: TextDecoration.none,
         fontFamily: fontName);
 
@@ -76,7 +75,7 @@ class UIHelpers {
     );
 
     horizontalSpaceLow = SizedBox(
-      width: blockSizeHorizontal * 3,
+      width: blockSizeHorizontal * 1.5,
     );
     horizontalSpaceMedium = SizedBox(
       width: blockSizeHorizontal * 7,

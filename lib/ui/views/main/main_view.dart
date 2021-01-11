@@ -1,55 +1,88 @@
+import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:flutter/material.dart';
-
-import 'package:portfolio/core/utils/architecture_view.dart';
-import 'package:portfolio/ui/views/main/main_view_desktop.dart';
-import 'package:portfolio/ui/views/main/main_view_mobile.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
-import 'main_view_model.dart';
+import 'package:portfolio/app/icons.dart';
+import 'package:portfolio/ui/views/about%20me/about_view.dart';
+import 'package:portfolio/ui/views/contact%20me/contact_view.dart';
+import 'package:portfolio/ui/views/experience/experience_view.dart';
+import 'package:portfolio/ui/views/home/home_view.dart';
+import 'package:portfolio/ui/views/projects/project_view.dart';
 
 class MainView extends StatefulWidget {
   @override
   _MainViewState createState() => _MainViewState();
 }
 
-class _MainViewState extends State<MainView>
-    with SingleTickerProviderStateMixin {
-  TabController _tabController;
-  PageController _pageController;
+class _MainViewState extends State<MainView> {
+  int index = 0;
+  List<CollapsibleItem> collapsibleItem = [];
+  final views = [
+    HomeView(),
+    AboutView(),
+    ProjectView(),
+    ExperienceView(),
+    ContactView(),
+  ];
+  Widget child;
+
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
-    _tabController = TabController(initialIndex: 0, vsync: this, length: 5);
+    collapsibleItem = _generateItems;
+    child = views.first;
     super.initState();
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
-    _tabController.dispose();
     super.dispose();
+  }
+
+  changeIndex(int newIndex) {
+    print(newIndex);
+    if (newIndex != index) {
+      setState(() {
+        newIndex = index;
+      });
+    }
+  }
+
+  List<CollapsibleItem> get _generateItems {
+    return [
+      CollapsibleItem(
+          text: 'Home',
+          icon: homeIcon,
+          onPressed: () => setState(() => child = views[0]),
+          isSelected: true),
+      CollapsibleItem(
+        text: 'About',
+        icon: aboutIcon,
+        onPressed: () => setState(() => child = views[1]),
+      ),
+      CollapsibleItem(
+        text: 'Projects',
+        icon: projectIcon,
+        onPressed: () => setState(() => child = views[2]),
+      ),
+      CollapsibleItem(
+        text: 'Experience',
+        icon: experienceIcon,
+        onPressed: () => setState(() => child = views[3]),
+      ),
+      CollapsibleItem(
+        text: 'Contact',
+        icon: contactIcon,
+        onPressed: () => setState(() => child = views[4]),
+      )
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return ScreenBuilder<MainViewModel>(
-      viewModel: MainViewModel(),
-      onModelReady: (m) => m.init(context),
-      builder: (context, uiHelpers, model) => Scaffold(
-          body: ScreenTypeLayout(
-        desktop: MainViewDesktop(
-          uiHelpers: uiHelpers,
-          model: model,
-          tabController: _tabController,
-          pageController: _pageController,
-        ),
-        mobile: MainViewMobile(
-          uiHelpers: uiHelpers,
-          model: model,
-          tabController: _tabController,
-          pageController: _pageController,
-        ),
-      )),
+    return Scaffold(
+      body: CollapsibleSidebar(
+          topPadding: 50,
+          body: child,
+          title: "Shashi Kumar",
+          items: collapsibleItem),
     );
   }
 }

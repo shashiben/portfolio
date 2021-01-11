@@ -16,12 +16,12 @@ class ChipWidget extends StatelessWidget {
                 decoration: TextDecoration.none,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: textPrimary)
+                color: textPrimaryColor)
             : TextStyle(
                 decoration: TextDecoration.none,
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
-                color: textPrimary),
+                color: textPrimaryColor),
       ),
     );
   }
