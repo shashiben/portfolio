@@ -3,6 +3,7 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/strings.dart';
 
 final lightTheme = (BuildContext context) => ThemeData(
+  cardColor: Color(0xFF1C3146),
     primaryColor: primaryColor,
     scaffoldBackgroundColor: backgroundColor,
     fontFamily: fontName,

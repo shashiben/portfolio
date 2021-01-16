@@ -12,7 +12,7 @@ class ProjectView extends StatelessWidget {
       onModelReady: (m) => m.init(),
       builder: (context, uiHelpers, model) => Scaffold(
         body: Container(
-          padding: const EdgeInsets.only(top: 30, left: 40),
+          padding: const EdgeInsets.only(top: 30, left: 40, right: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -22,11 +22,13 @@ class ProjectView extends StatelessWidget {
                 child: GridView.builder(
                     itemCount: 10,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3),
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return ProjectWidget();
                     }),
-              )
+              ),
             ],
           ),
         ),
