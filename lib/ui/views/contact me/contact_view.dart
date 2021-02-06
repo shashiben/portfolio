@@ -25,7 +25,13 @@ class ContactView extends StatelessWidget {
                     style: uiHelpers.headline,
                   ),
                   uiHelpers.verticalSpaceMedium,
-                  TextFormField()
+                  TextFormField(
+                    decoration: InputDecoration(
+                      
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                    ),
+                  )
                 ],
               ),
             ),
