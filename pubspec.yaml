@@ -9,30 +9,30 @@ dependencies:
     sdk: flutter
 
   #*Icons
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.2
   flutter_icons: ^1.1.0
 
   #*Architecture
-  stacked: ^1.7.1+1
-  stacked_services: ^0.4.4+3
-  responsive_builder: ^0.1.4
-  get_it: ^3.0.3
-  injectable: ^0.4.0+1
+  stacked: ^1.7.7
+  stacked_services: ^0.6.6
+  responsive_builder: 0.3.0
+  get_it: 5.0.6
+  injectable: 
 
   #*Services
-  url_launcher: ^5.7.10
+  url_launcher: 5.7.10
 
   #*Utilities 
   collapsible_sidebar: ^1.0.7+2
-  animated_text_kit: ^2.5.4
+  animated_text_kit: ^3.1.0
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  injectable_generator: null
-  auto_route_generator: null
-  build_runner: null
+  injectable_generator: 1.0.7
+  auto_route_generator: 0.6.10
+  build_runner: 1.11.1
 flutter:
   uses-material-design: true
   assets:

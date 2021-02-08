@@ -16,6 +16,7 @@ class HomeView extends StatelessWidget {
         },
         builder: (context, uiHelpers, model) {
           return ScreenTypeLayout(
+            tablet: HomeDesktopView(model: model, uiHelpers: uiHelpers),
             mobile: HomeMobileView(model: model, uiHelpers: uiHelpers),
             desktop: HomeDesktopView(model: model, uiHelpers: uiHelpers),
           );

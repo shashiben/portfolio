@@ -15,62 +15,63 @@ class HomeDesktopView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        alignment: Alignment.center,
         width: double.infinity,
         height: double.infinity,
         padding: const EdgeInsets.only(right: 120),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(radius: 60),
+            Text(
+              "Hello, this is",
+              style: uiHelpers.buttonStyle.copyWith(
+                  color: primaryColor,
+                  fontWeight: FontWeight.w300,
+                  letterSpacing: 1),
+            ),
+            SizedBox(height: 10),
+            TypewriterAnimatedTextKit(
+              text: ["Shashi Kumar."],
+              speed: Duration(milliseconds: 100),
+              textStyle: uiHelpers.title
+                  .copyWith(fontSize: 60, color: Color(0xFFc6D6F6)),
+              totalRepeatCount: 1,
+              onFinished: () => model.changeIntroToCompleted(),
+              repeatForever: false,
+            ),
+            Text(
+              "I love build things for the web or mobile.",
+              style: uiHelpers.headline
+                  .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
+            ),
             uiHelpers.verticalSpaceLow,
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TypewriterAnimatedTextKit(
-                  text: ["Hello,This is Shashi Kumar.I\'m a "],
-                  speed: Duration(milliseconds: 100),
-                  textStyle: uiHelpers.title,
-                  totalRepeatCount: 1,
-                  onFinished: () => model.changeIntroToCompleted(),
-                ),
-                !model.isIntroCompleted
-                    ? SizedBox()
-                    : ScaleAnimatedTextKit(
-                        duration: Duration(seconds: 2),
-                        text: [
-                          "Flutter Developer",
-                          "Mean Stack Developer",
-                          "FReMP Stack",
-                          "Java Developer",
-                          "Full Stack Developer",
-                          "React Developer",
-                          "Python Developer"
-                        ],
-                        textStyle: uiHelpers.title,
-                        textAlign: TextAlign.center),
-              ],
+            Text(
+              "",
+              style: uiHelpers.body,
             ),
             uiHelpers.verticalSpaceMedium,
             MaterialButton(
               hoverElevation: 100,
               elevation: 10,
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.green),
+                  side: BorderSide(color: primaryColor),
                   borderRadius: BorderRadius.circular(8)),
               onPressed: () {},
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Explore My Projects",
-                    style: uiHelpers.title.copyWith(color: textPrimaryColor),
+                    "Get In touch",
+                    style: uiHelpers.title.copyWith(
+                        letterSpacing: 1,
+                        color: primaryColor,
+                        fontWeight: FontWeight.w200),
                   ),
                   SizedBox(width: 10),
-                  Icon(Icons.arrow_forward_ios, color: textPrimaryColor)
+                  Icon(Icons.arrow_forward_ios, color: primaryColor, size: 25)
                 ],
               ),
             )
