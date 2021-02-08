@@ -3,7 +3,7 @@ description: A new Flutter project.
 publish_to: none
 version: 1.0.0+1
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: ">=2.7.0 <3.0.0"
 dependencies:
   flutter:
     sdk: flutter
@@ -17,15 +17,14 @@ dependencies:
   stacked_services: ^0.6.6
   responsive_builder: 0.3.0
   get_it: 5.0.6
-  injectable: 
+  injectable:
 
   #*Services
   url_launcher: 5.7.10
 
-  #*Utilities 
+  #*Utilities
   collapsible_sidebar: ^1.0.7+2
   animated_text_kit: ^3.1.0
-  
 
 dev_dependencies:
   flutter_test:

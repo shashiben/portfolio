@@ -1,4 +1,6 @@
 # Miscellaneous
+.env
+
 *.class
 *.log
 *.pyc
@@ -8,6 +10,7 @@
 .buildlog/
 .history
 .svn/
+.env
 
 # IntelliJ related
 *.iml

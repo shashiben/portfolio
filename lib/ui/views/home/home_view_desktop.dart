@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
+import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUtils.dart';
 
 import 'home_view_model.dart';
@@ -33,7 +34,7 @@ class HomeDesktopView extends StatelessWidget {
             ),
             SizedBox(height: 10),
             TypewriterAnimatedTextKit(
-              text: ["Shashi Kumar."],
+              text: ["${PersonalDetails.userName}."],
               speed: Duration(milliseconds: 100),
               textStyle: uiHelpers.title
                   .copyWith(fontSize: 60, color: Color(0xFFc6D6F6)),

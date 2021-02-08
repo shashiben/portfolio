@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/core/utils/ScreenUtils.dart';
 import 'package:portfolio/ui/views/projects/project_view_model.dart';
+import 'package:portfolio/ui/widgets/grid_view_widget.dart';
+import 'package:portfolio/ui/widgets/projectWidget.dart';
 
 class ProjectMobileView extends StatelessWidget {
   final UIHelpers uiHelpers;
@@ -10,6 +13,55 @@ class ProjectMobileView extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                uiHelpers.verticalSpaceHigh,
+                Text(
+                  "Some Things I’ve Built",
+                  style: uiHelpers.headline.copyWith(fontSize: 24),
+                ),
+                Container(
+                  width: uiHelpers.width * 0.45,
+                  child: Divider(
+                    color: dividerColor,
+                    thickness: 2.5,
+                  ),
+                ),
+                uiHelpers.verticalSpaceLow,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10),
+                            child: ResponsiveGridRow(
+                              children: [
+                                for (int i = 0; i < 10; i++)
+                                  ResponsiveGridCol(
+                                    child: ProjectWidget(),
+                                    xl: 4,
+                                  )
+                              ],
+                            )),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

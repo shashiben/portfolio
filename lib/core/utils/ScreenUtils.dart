@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
-import 'package:portfolio/app/strings.dart';
+import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/scaling.dart';
 
 class UIHelpers {
@@ -40,16 +40,16 @@ class UIHelpers {
         color: textPrimaryColor,
         fontSize: 24,
         decoration: TextDecoration.none,
-        fontFamily: fontName);
+        fontFamily: SystemProperties.fontName);
 
     title = TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: 18,
         color: textPrimaryColor,
         decoration: TextDecoration.none,
-        fontFamily: fontName);
+        fontFamily: SystemProperties.fontName);
     buttonStyle = TextStyle(
-        fontFamily: fontName,
+        fontFamily: SystemProperties.fontName,
         decoration: TextDecoration.none,
         fontWeight: FontWeight.bold,
         fontSize: 14);
@@ -59,7 +59,7 @@ class UIHelpers {
         fontWeight: FontWeight.w400,
         fontSize: 14,
         decoration: TextDecoration.none,
-        fontFamily: fontName);
+        fontFamily: SystemProperties.fontName);
 
     blockSizeHorizontal = screenWidth / 100;
     blockSizeVertical = screenHeight / 100;
