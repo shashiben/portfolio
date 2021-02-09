@@ -6,21 +6,25 @@ import 'package:portfolio/core/utils/ScreenUtils.dart';
 
 import 'home_view_model.dart';
 
-class HomeMobileView extends StatelessWidget {
+class HomeTabletView extends StatelessWidget {
   final UIHelpers uiHelpers;
   final HomeViewModel model;
 
-  const HomeMobileView({Key key, this.uiHelpers, this.model}) : super(key: key);
+  const HomeTabletView({Key key, this.uiHelpers, this.model})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: double.infinity,
+        padding: const EdgeInsets.only(right: 120),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            uiHelpers.verticalSpaceMedium,
             Text(
               "Hello, this is",
               style: uiHelpers.buttonStyle.copyWith(
@@ -33,7 +37,7 @@ class HomeMobileView extends StatelessWidget {
               text: ["${PersonalDetails.userName}."],
               speed: Duration(milliseconds: 100),
               textStyle: uiHelpers.title
-                  .copyWith(fontSize: 24, color: Color(0xFFc6D6F6)),
+                  .copyWith(fontSize: 60, color: Color(0xFFc6D6F6)),
               totalRepeatCount: 1,
               onFinished: () => model.changeIntroToCompleted(),
               repeatForever: false,
@@ -41,7 +45,7 @@ class HomeMobileView extends StatelessWidget {
             Text(
               "I love build things for the web or mobile.",
               style: uiHelpers.headline
-                  .copyWith(color: Color(0xFFc6D6F6), fontSize: 20),
+                  .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
             ),
             uiHelpers.verticalSpaceLow,
             Text(
@@ -52,7 +56,7 @@ class HomeMobileView extends StatelessWidget {
             MaterialButton(
               hoverElevation: 100,
               elevation: 10,
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               shape: RoundedRectangleBorder(
                   side: BorderSide(color: primaryColor),
                   borderRadius: BorderRadius.circular(8)),
@@ -68,7 +72,7 @@ class HomeMobileView extends StatelessWidget {
                         fontWeight: FontWeight.w200),
                   ),
                   SizedBox(width: 10),
-                  Icon(Icons.arrow_forward_ios, color: primaryColor, size: 20)
+                  Icon(Icons.arrow_forward_ios, color: primaryColor, size: 25)
                 ],
               ),
             )

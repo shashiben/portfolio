@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
+import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUtils.dart';
 import 'package:portfolio/ui/views/about%20me/about_view_model.dart';
-import 'package:portfolio/ui/widgets/linear_percent_indicator.dart';
+import 'package:portfolio/ui/widgets/featured_skill_widget.dart';
+import 'package:portfolio/ui/widgets/skill_widget.dart';
 import 'package:portfolio/ui/widgets/timeline_widget.dart';
 
 class AboutMobileView extends StatelessWidget {
@@ -43,8 +45,7 @@ class AboutMobileView extends StatelessWidget {
                     ),
                     uiHelpers.verticalSpaceLow,
                     Container(
-                      child: Text(
-                          'A Full stack developer from Andhra Pradesh,India. Intrested in building mobile applications and web applications with flutter . Recently started developing web apps with react. And had a little knowledge in Opencv.',
+                      child: Text(PersonalDetails.intro,
                           style: uiHelpers.body.copyWith(
                               color: textSecondaryColor.withOpacity(0.4))),
                     ),
@@ -61,54 +62,20 @@ class AboutMobileView extends StatelessWidget {
                       ),
                     ),
                     uiHelpers.verticalSpaceLow,
-                    Container(
-                      width: uiHelpers.width * 0.8,
-                      child: LinearPercentIndicator(
-                        progressColor: primaryColor,
-                        title: "Flutter",
-                        percent: 0.96,
-                      ),
+                    SkillWidget(),
+                    uiHelpers.verticalSpaceMedium,
+                    Text(
+                      "Featured Skills",
+                      style: uiHelpers.title.copyWith(fontSize: 24),
                     ),
                     Container(
-                      width: uiHelpers.width * 0.8,
-                      child: LinearPercentIndicator(
-                        progressColor: primaryColor,
-                        title: "MERN Stack",
-                        percent: 0.9,
+                      width: uiHelpers.width * 0.4,
+                      child: Divider(
+                        color: Colors.white60,
+                        thickness: 2.5,
                       ),
                     ),
-                    Container(
-                      width: uiHelpers.width * 0.8,
-                      child: LinearPercentIndicator(
-                        progressColor: primaryColor,
-                        title: "Python",
-                        percent: 0.94,
-                      ),
-                    ),
-                    Container(
-                      width: uiHelpers.width * 0.8,
-                      child: LinearPercentIndicator(
-                        progressColor: primaryColor,
-                        title: "Java",
-                        percent: 0.84,
-                      ),
-                    ),
-                    Container(
-                      width: uiHelpers.width * 0.8,
-                      child: LinearPercentIndicator(
-                        progressColor: primaryColor,
-                        title: "React JS",
-                        percent: 0.84,
-                      ),
-                    ),
-                    Container(
-                      width: uiHelpers.width * 0.8,
-                      child: LinearPercentIndicator(
-                        progressColor: primaryColor,
-                        title: "Open CV",
-                        percent: 0.8,
-                      ),
-                    ),
+                    FeaturedSkillWidget()
                   ],
                 ),
               ),
@@ -137,14 +104,14 @@ class AboutMobileView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "B.Tech (CSE)",
+                            EducationDetails.universityStream,
                             style: uiHelpers.title,
                           ),
                           SizedBox(height: 8),
-                          Text("Sri Venkateswara University",
+                          Text(EducationDetails.universityName,
                               style: uiHelpers.body),
                           Text(
-                            "2017 - 2021",
+                            EducationDetails.universityTimeline,
                             style: uiHelpers.body,
                           )
                         ],
@@ -156,14 +123,14 @@ class AboutMobileView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Intermediate (MPC)",
+                            EducationDetails.collegeStream,
                             style: uiHelpers.title,
                           ),
                           SizedBox(height: 8),
-                          Text("Sri Chaitanya Jr College",
+                          Text(EducationDetails.collegeName,
                               style: uiHelpers.body),
                           Text(
-                            "2015 - 2017",
+                            EducationDetails.collegeTimeline,
                             style: uiHelpers.body,
                           )
                         ],
@@ -175,14 +142,14 @@ class AboutMobileView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "SSC ",
+                            EducationDetails.schoolStream,
                             style: uiHelpers.title,
                           ),
                           SizedBox(height: 8),
-                          Text("Cattamanchi Ramalinga Reddy High School",
+                          Text(EducationDetails.schoolName,
                               style: uiHelpers.body),
                           Text(
-                            "2014 - 2015",
+                            EducationDetails.schoolTimeline,
                             style: uiHelpers.body,
                           )
                         ],

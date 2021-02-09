@@ -77,12 +77,14 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CollapsibleSidebar(
-          topPadding: 50,
-          body: child,
-          title: "Shashi Kumar",
-          items: collapsibleItem),
+    return SafeArea(
+      child: Scaffold(
+        body: CollapsibleSidebar(
+            topPadding: 50,
+            body: child,
+            title: "Shashi Kumar",
+            items: collapsibleItem),
+      ),
     );
   }
 }

@@ -1,126 +1,111 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:portfolio/app/colors.dart';
+import 'package:portfolio/app/configs.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-class SkillLevel extends StatelessWidget {
-  SkillLevel({
-    @required this.skillLevel,
-    @required this.skillName,
-    this.width,
-    this.circleWidth = 50,
-    this.circleHeight = 50,
-    this.textStyle,
-    this.skillNameTextStyle,
-    this.duration = const Duration(milliseconds: 500),
-  });
-
-  final double skillLevel;
-  final String skillName;
-  final double width;
-  final double circleWidth;
-  final double circleHeight;
+class SkillWidget extends StatelessWidget {
   final TextStyle textStyle;
-  final TextStyle skillNameTextStyle;
-  final Duration duration;
+
+  const SkillWidget({Key key, this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var actualSkillLevel = skillLevel / 10;
-    ThemeData theme = Theme.of(context);
-    return Container(
-      width: width,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          TweenAnimationBuilder(
-            tween: Tween<double>(begin: 0, end: skillLevel),
-            duration: duration,
-            child: Container(
-              width: circleWidth,
-              height: circleHeight,
-              child: Center(
-                child: Text(
-                  actualSkillLevel.toString(),
-                  style: textStyle ??
-                      theme.textTheme.subtitle1.copyWith(
-                        color: Color(0xFF000000),
-                      ),
-                ),
+    return ScreenTypeLayout(
+      mobile: ListView.builder(
+        primary: false,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: PersonalDetails.skillsList.length,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                FlutterIcons.play_mco,
+                color: primaryColor,
+                size: 20,
               ),
-            ),
-            builder: (
-              BuildContext context,
-              double value,
-              Widget child,
-            ) {
-              return CustomPaint(
-                foregroundPainter: SkillProgressPainter(
-                  currentProgress: value,
-                  circleColor: Color(0xFFC7C9CA),
-                  progressArcColor: Color(0xFF0E1319),
-                ),
-                child: AnimatedOpacity(
-                  opacity: value / 100,
-                  duration: duration,
-                  child: child,
-                ),
-              );
-            },
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                PersonalDetails.skillsList[index],
+                style: textStyle ??
+                    TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+              )
+            ],
           ),
-          Expanded(
-            child: Text(
-              skillName,
-              style: skillNameTextStyle ??
-                  theme.textTheme.subtitle1.copyWith(color: Color(0xFF000000)),
-            ),
+        ),
+      ),
+      tablet: GridView.builder(
+        itemCount: PersonalDetails.skillsList.length,
+        primary: false,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 6, crossAxisCount: 2),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                FlutterIcons.play_mco,
+                color: primaryColor,
+                size: 20,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                PersonalDetails.skillsList[index],
+                style: textStyle ??
+                    TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+              )
+            ],
           ),
-        ],
+        ),
+      ),
+      desktop: GridView.builder(
+        itemCount: PersonalDetails.skillsList.length,
+        primary: false,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 8, crossAxisCount: 2),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                FlutterIcons.play_mco,
+                color: primaryColor,
+                size: 20,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                PersonalDetails.skillsList[index],
+                style: textStyle ??
+                    TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+              )
+            ],
+          ),
+        ),
       ),
     );
-  }
-}
-
-class SkillProgressPainter extends CustomPainter {
-  SkillProgressPainter({
-    @required this.currentProgress,
-    this.circleStrokeWidth = 5,
-    this.progressArcStrokeWidth = 5,
-    this.circleColor = const Color(0xFFB5B8BC),
-    this.progressArcColor = const Color(0xFF303E48),
-  });
-
-  final double currentProgress;
-  final double circleStrokeWidth;
-  final Color circleColor;
-  final double progressArcStrokeWidth;
-  final Color progressArcColor;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint innerCircle = Paint()
-      ..strokeWidth = circleStrokeWidth
-      ..color = circleColor
-      ..style = PaintingStyle.stroke;
-
-    Paint completeArc = Paint()
-      ..strokeWidth = progressArcStrokeWidth
-      ..color = progressArcColor
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    Offset center = Offset(size.width / 2, size.height / 2);
-    double radius = min(size.width / 2, size.height / 2) - 10;
-
-    canvas.drawCircle(center, radius, innerCircle);
-
-    double angle = 2 * pi * (currentProgress / 100);
-
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), -pi / 2,
-        angle, false, completeArc);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return true;
   }
 }
