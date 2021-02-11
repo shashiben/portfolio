@@ -24,3 +24,7 @@ mixin ContactIcons {
 mixin FormIcon {
   static IconData nameIcon = FlutterIcons.user_fea;
 }
+mixin ExperienceIcon {
+  static IconData arrowIcon = FlutterIcons.play_arrow_mdi;
+  static IconData timeIcon = FlutterIcons.clock_sli;
+}
