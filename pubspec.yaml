@@ -35,6 +35,7 @@ dev_dependencies:
   injectable_generator: 1.0.7
   auto_route_generator: 0.6.10
   build_runner: 1.11.1
+  change_app_package_name:
 flutter:
   uses-material-design: true
   assets:
