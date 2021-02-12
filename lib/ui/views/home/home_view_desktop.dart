@@ -25,15 +25,12 @@ class HomeDesktopView extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FadeAnimation(
-              delay: 2,
-              child: Text(
-                "Hello, this is",
-                style: uiHelpers.buttonStyle.copyWith(
-                    color: primaryColor,
-                    fontWeight: FontWeight.w300,
-                    letterSpacing: 1),
-              ),
+            Text(
+              "Hello, this is",
+              style: uiHelpers.buttonStyle.copyWith(
+                  color: primaryColor,
+                  fontWeight: FontWeight.w300,
+                  letterSpacing: 1),
             ),
             SizedBox(height: 10),
             FadeAnimation(
@@ -45,7 +42,7 @@ class HomeDesktopView extends StatelessWidget {
               ),
             ),
             FadeAnimation(
-              delay: 1.25,
+              delay: 2,
               child: Text(
                 "I love build things for the web or mobile.",
                 style: uiHelpers.headline
@@ -54,7 +51,7 @@ class HomeDesktopView extends StatelessWidget {
             ),
             uiHelpers.verticalSpaceMedium,
             FadeAnimation(
-              delay: 1.5,
+              delay: 2.5,
               child: MaterialButton(
                 hoverElevation: 100,
                 elevation: 10,

@@ -121,7 +121,15 @@ class ContactTabletView extends StatelessWidget {
                                 SizedBox(
                                   height: 4,
                                 ),
-                                TextField(
+                                TextFormField(
+                                  controller: model.nameController,
+                                  validator: (String value) {
+                                    if (value.trim().isEmpty) {
+                                      return "Please Enter Name";
+                                    }
+
+                                    return null;
+                                  },
                                   focusNode: model.focusNodeMap["name"],
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
@@ -153,7 +161,19 @@ class ContactTabletView extends StatelessWidget {
                                 SizedBox(
                                   height: 4,
                                 ),
-                                TextField(
+                                TextFormField(
+                                  controller: model.emailController,
+                                  validator: (String value) {
+                                    if (value.trim().isEmpty) {
+                                      return "Please Enter Email";
+                                    } else if (!RegExp(
+                                            r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                                        .hasMatch(value)) {
+                                      return "Please enter valid email";
+                                    }
+
+                                    return null;
+                                  },
                                   focusNode: model.focusNodeMap["email"],
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
@@ -185,7 +205,14 @@ class ContactTabletView extends StatelessWidget {
                                 SizedBox(
                                   height: 4,
                                 ),
-                                TextField(
+                                TextFormField(
+                                  controller: model.subjectController,
+                                  validator: (String value) {
+                                    if (value.trim().isEmpty) {
+                                      return "Please Enter Subject";
+                                    }
+                                    return null;
+                                  },
                                   focusNode: model.focusNodeMap["subject"],
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
@@ -225,6 +252,14 @@ class ContactTabletView extends StatelessWidget {
                                       height: 4,
                                     ),
                                     TextFormField(
+                                      controller: model.bodyController,
+                                      validator: (String value) {
+                                        if (value.trim().isEmpty) {
+                                          return "Please Enter Message";
+                                        }
+
+                                        return null;
+                                      },
                                       maxLines: 10,
                                       keyboardType: TextInputType.name,
                                       decoration: InputDecoration(
@@ -258,7 +293,7 @@ class ContactTabletView extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(6)),
                               color: primaryColor,
-                              onPressed: () {},
+                              onPressed: () => model.openMail(),
                               child: Text(
                                 "Send Message",
                                 style: uiHelpers.buttonStyle.copyWith(
