@@ -21,17 +21,15 @@ class ContactDesktopView extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              FadeAnimation(xDistance:50,
-                delay: 1.25,
-                child: Text(
-                  "Get In Touch!",
-                  style: uiHelpers.headline.copyWith(fontSize: 45),
-                ),
+              Text(
+                "Get In Touch!",
+                style: uiHelpers.headline.copyWith(fontSize: 45),
               ),
               SizedBox(
                 height: 8,
               ),
-              FadeAnimation(xDistance:50,
+              FadeAnimation(
+                xDistance: 50,
                 delay: 1.5,
                 child: Text(
                   "Contact me for hiring,or help me to join your team",
@@ -43,7 +41,8 @@ class ContactDesktopView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  FadeAnimation(xDistance:50,
+                  FadeAnimation(
+                    xDistance: 50,
                     delay: 2,
                     child: MouseRegion(
                       onEnter: (event) => model.changeSelected(true, "Github"),
@@ -57,8 +56,9 @@ class ContactDesktopView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  FadeAnimation(xDistance:50,
-                    delay: 2.6,
+                  FadeAnimation(
+                    xDistance: 50,
+                    delay: 2.4,
                     child: MouseRegion(
                       onEnter: (event) => model.changeSelected(true, "Twitter"),
                       onExit: (event) => model.changeSelected(false, "Twitter"),
@@ -71,7 +71,8 @@ class ContactDesktopView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  FadeAnimation(xDistance:50,
+                  FadeAnimation(
+                    xDistance: 50,
                     delay: 2.6,
                     child: MouseRegion(
                       onEnter: (event) =>
@@ -90,7 +91,8 @@ class ContactDesktopView extends StatelessWidget {
                 ],
               ),
               uiHelpers.verticalSpaceMedium,
-              FadeAnimation(xDistance:50,
+              FadeAnimation(
+                xDistance: 50,
                 delay: 2.8,
                 child: Card(
                   shape: RoundedRectangleBorder(
