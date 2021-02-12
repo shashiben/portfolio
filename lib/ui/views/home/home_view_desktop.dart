@@ -1,8 +1,8 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/ui/widgets/fadeAnimation.dart';
 
 import 'home_view_model.dart';
 
@@ -25,55 +25,59 @@ class HomeDesktopView extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Hello, this is",
-              style: uiHelpers.buttonStyle.copyWith(
-                  color: primaryColor,
-                  fontWeight: FontWeight.w300,
-                  letterSpacing: 1),
+            FadeAnimation(
+              delay: 2,
+              child: Text(
+                "Hello, this is",
+                style: uiHelpers.buttonStyle.copyWith(
+                    color: primaryColor,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 1),
+              ),
             ),
             SizedBox(height: 10),
-            TypewriterAnimatedTextKit(
-              text: ["${PersonalDetails.userName}."],
-              speed: Duration(milliseconds: 100),
-              textStyle: uiHelpers.title
-                  .copyWith(fontSize: 60, color: Color(0xFFc6D6F6)),
-              totalRepeatCount: 1,
-              onFinished: () => model.changeIntroToCompleted(),
-              repeatForever: false,
+            FadeAnimation(
+              delay: 1,
+              child: Text(
+                "${PersonalDetails.userName}.",
+                style: uiHelpers.title
+                    .copyWith(fontSize: 60, color: Color(0xFFc6D6F6)),
+              ),
             ),
-            Text(
-              "I love build things for the web or mobile.",
-              style: uiHelpers.headline
-                  .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
-            ),
-            uiHelpers.verticalSpaceLow,
-            Text(
-              "",
-              style: uiHelpers.body,
+            FadeAnimation(
+              delay: 1.25,
+              child: Text(
+                "I love build things for the web or mobile.",
+                style: uiHelpers.headline
+                    .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
+              ),
             ),
             uiHelpers.verticalSpaceMedium,
-            MaterialButton(
-              hoverElevation: 100,
-              elevation: 10,
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: primaryColor),
-                  borderRadius: BorderRadius.circular(8)),
-              onPressed: () {},
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Get In touch",
-                    style: uiHelpers.title.copyWith(
-                        letterSpacing: 1,
-                        color: primaryColor,
-                        fontWeight: FontWeight.w200),
-                  ),
-                  SizedBox(width: 10),
-                  Icon(Icons.arrow_forward_ios, color: primaryColor, size: 25)
-                ],
+            FadeAnimation(
+              delay: 1.5,
+              child: MaterialButton(
+                hoverElevation: 100,
+                elevation: 10,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: primaryColor),
+                    borderRadius: BorderRadius.circular(8)),
+                onPressed: () {},
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Get In touch",
+                      style: uiHelpers.title.copyWith(
+                          letterSpacing: 1,
+                          color: primaryColor,
+                          fontWeight: FontWeight.w200),
+                    ),
+                    SizedBox(width: 10),
+                    Icon(Icons.arrow_forward_ios, color: primaryColor, size: 25)
+                  ],
+                ),
               ),
             )
           ],
