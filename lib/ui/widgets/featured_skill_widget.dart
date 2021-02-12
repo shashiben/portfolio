@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
 import 'linear_percent_indicator.dart';
 
 class FeaturedSkillWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final uiHelpers = UIHelpers.fromContext(context);
+    final uiHelpers = ScreenUiHelper.fromContext(context);
     return ListView.builder(
         primary: false,
         shrinkWrap: true,

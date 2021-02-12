@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/about%20me/about_view_model.dart';
 import 'package:portfolio/ui/widgets/featured_skill_widget.dart';
 import 'package:portfolio/ui/widgets/skill_widget.dart';
 import 'package:portfolio/ui/widgets/timeline_widget.dart';
 
 class AboutDesktopView extends StatelessWidget {
-  final UIHelpers uiHelpers;
+  final ScreenUiHelper uiHelpers;
   final AboutViewModel model;
 
   const AboutDesktopView({Key key, this.uiHelpers, this.model})

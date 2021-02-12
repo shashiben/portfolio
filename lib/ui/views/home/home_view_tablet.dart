@@ -2,12 +2,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
 import 'home_view_model.dart';
 
 class HomeTabletView extends StatelessWidget {
-  final UIHelpers uiHelpers;
+  final ScreenUiHelper uiHelpers;
   final HomeViewModel model;
 
   const HomeTabletView({Key key, this.uiHelpers, this.model})

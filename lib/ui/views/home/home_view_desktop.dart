@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/widgets/fadeAnimation.dart';
 
 import 'home_view_model.dart';
 
 class HomeDesktopView extends StatelessWidget {
-  final UIHelpers uiHelpers;
+  final ScreenUiHelper uiHelpers;
   final HomeViewModel model;
 
   const HomeDesktopView({Key key, this.uiHelpers, this.model})

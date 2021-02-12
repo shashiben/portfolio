@@ -14,7 +14,8 @@ mixin SocialLinks {
 
 //*System Defaults
 mixin SystemProperties {
-  static String fontName = "Inter";
+  static String fontName = "Montserrat";
+  static String titleFont = "Lato";
 }
 
 //*Personal details
@@ -75,8 +76,7 @@ mixin PersonalDetails {
       child: Image.asset("assets/images/naaniz.png", height: 60, width: 40),
     ),
     ExperienceTimeline(
-            tools: ["Firebase", "DialogFlow", "Agora", "GCP", "Node js", "Mongo"],
-
+      tools: ["Firebase", "DialogFlow", "Agora", "GCP", "Node js", "Mongo"],
       timePeriod: "July 2020 - Aug 2020",
       title: "Naaniz",
       position: "Developement Team Lead",

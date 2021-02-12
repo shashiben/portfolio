@@ -43,14 +43,12 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-    - family: Inter
+    - family: Lora
       fonts:
-        - asset: assets/fonts/Inter-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Inter-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Inter-Regular.ttf
-          weight: 400
+        - asset: assets/fonts/Lora.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

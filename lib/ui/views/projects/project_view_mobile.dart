@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/projects/project_view_model.dart';
 import 'package:portfolio/ui/widgets/grid_view_widget.dart';
 import 'package:portfolio/ui/widgets/projectWidget.dart';
 
 class ProjectMobileView extends StatelessWidget {
-  final UIHelpers uiHelpers;
+  final ScreenUiHelper uiHelpers;
   final ProjectViewModel model;
 
   const ProjectMobileView({Key key, this.uiHelpers, this.model})

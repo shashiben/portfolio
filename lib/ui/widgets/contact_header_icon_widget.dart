@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
 class ContactIconHeader extends StatelessWidget {
   final bool isActive;
@@ -17,7 +17,7 @@ class ContactIconHeader extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final UIHelpers uiHelpers = UIHelpers.fromContext(context);
+    final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
     return GestureDetector(
       onTap: ()=>onTap(),
           child: Material(

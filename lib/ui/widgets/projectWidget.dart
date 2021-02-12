@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ProjectWidget extends StatelessWidget {
@@ -10,7 +10,7 @@ class ProjectWidget extends StatelessWidget {
   const ProjectWidget({Key key, this.type}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final UIHelpers uiHelpers = UIHelpers.fromContext(context);
+    final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
     return ScreenTypeLayout(
       desktop: Container(
         margin:

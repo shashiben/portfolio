@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
 class ExperienceChipWidget extends StatefulWidget {
   const ExperienceChipWidget({Key key, this.title}) : super(key: key);
@@ -16,7 +16,7 @@ class _ExperienceChipWidgetState extends State<ExperienceChipWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final UIHelpers uiHelpers = UIHelpers.fromContext(context);
+    final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MouseRegion(

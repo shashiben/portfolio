@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_view_model.dart';
 import 'package:portfolio/ui/widgets/contact_header_icon_widget.dart';
 
 class ContactTabletView extends StatelessWidget {
-  final UIHelpers uiHelpers;
+  final ScreenUiHelper uiHelpers;
   final ContactViewModel model;
 
   const ContactTabletView({Key key, this.uiHelpers, this.model})

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/ScreenUtils.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/experience/experience_view_model.dart';
 
 class ExperienceTabletView extends StatelessWidget {
-  final UIHelpers uiHelpers;
+  final ScreenUiHelper uiHelpers;
   final ExperienceViewModel model;
 
   const ExperienceTabletView({Key key, this.uiHelpers, this.model})

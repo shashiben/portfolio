@@ -3,7 +3,7 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/scaling.dart';
 
-class UIHelpers {
+class ScreenUiHelper {
   double width;
   double height;
 
@@ -25,7 +25,7 @@ class UIHelpers {
   SizedBox horizontalSpaceMedium;
   SizedBox horizontalSpaceHigh;
 
-  UIHelpers.fromContext(BuildContext context) {
+  ScreenUiHelper.fromContext(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
 
     double screenWidth = mediaQuery.size.width;
@@ -40,16 +40,16 @@ class UIHelpers {
         color: textPrimaryColor,
         fontSize: 24,
         decoration: TextDecoration.none,
-        fontFamily: SystemProperties.fontName);
+        fontFamily: SystemProperties.titleFont);
 
     title = TextStyle(
         fontWeight: FontWeight.w600,
         fontSize: 18,
         color: textPrimaryColor,
         decoration: TextDecoration.none,
-        fontFamily: SystemProperties.fontName);
+        fontFamily: SystemProperties.titleFont);
     buttonStyle = TextStyle(
-        fontFamily: SystemProperties.fontName,
+        fontFamily: SystemProperties.titleFont,
         decoration: TextDecoration.none,
         fontWeight: FontWeight.bold,
         fontSize: 14);
