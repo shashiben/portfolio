@@ -35,6 +35,8 @@ class HomeDesktopView extends StatelessWidget {
             SizedBox(height: 10),
             FadeAnimation(
               delay: 1,
+              yDistance: 10.0,
+              xDistance: 0.0,
               child: Text(
                 "${PersonalDetails.userName}.",
                 style: uiHelpers.title
@@ -43,15 +45,19 @@ class HomeDesktopView extends StatelessWidget {
             ),
             FadeAnimation(
               delay: 2,
+              yDistance: 20.0,
+              xDistance: 0.0,
               child: Text(
                 "I love build things for the web or mobile.",
                 style: uiHelpers.headline
                     .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
               ),
             ),
-            uiHelpers.verticalSpaceMedium,
+            uiHelpers.verticalSpaceLow,
             FadeAnimation(
               delay: 2.5,
+              yDistance: 30.0,
+              xDistance: 0.0,
               child: MaterialButton(
                 hoverElevation: 100,
                 elevation: 10,

@@ -3,7 +3,6 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/projects/project_view_model.dart';
 import 'package:portfolio/ui/widgets/grid_view_widget.dart';
-import 'package:portfolio/ui/widgets/projectWidget.dart';
 
 class ProjectMobileView extends StatelessWidget {
   final ScreenUiHelper uiHelpers;
@@ -42,16 +41,9 @@ class ProjectMobileView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: ResponsiveGridRow(
-                              children: [
-                                for (int i = 0; i < 10; i++)
-                                  ResponsiveGridCol(
-                                    child: ProjectWidget(),
-                                    xl: 4,
-                                  )
-                              ],
+                              children: model.list,
                             )),
                       ],
                     ),

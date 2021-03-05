@@ -20,6 +20,28 @@ mixin SystemProperties {
 
 //*Personal details
 mixin PersonalDetails {
+  static List<Project> projectsList = [
+    Project(
+        title: "Hostel Management",
+        description:
+            "Created a hostel management web app to track students where they are,and note down the attendance of students according to room No and download data of attendance for each day",
+        tools: ["Redux", "Node Js", "Express Js", "Mongo DB", "React Js"]),
+    Project(
+        title: "E Commerce",
+        description:
+            "An ECommerce application similar to amazon or flipkart where users can buy products,contains admin panel",
+        tools: ["Redux", "Node Js", "Express Js", "Mongo DB", "React Js"]),
+    Project(
+        title: "Face Mask Detection",
+        description:
+            "Mobile Application to detect whether person wears a mask or not.Built with Flutter and tensorflow lite.",
+        tools: ["Flutter", "Tflite", "CNN", "Python"]),
+    Project(
+        title: "Motion Detection Using OpenCv",
+        description:
+            "Detects motion of an object or a person and draws bounding box over it",
+        tools: ["Python", "OpenCv"])
+  ];
   static List<String> skillsList = [
     "Flutter",
     "MERN Stack",
@@ -95,10 +117,6 @@ mixin PersonalDetails {
     SkillModel(name: "Web Developer", percent: 80),
     SkillModel(name: "UI/UX Designer", percent: 75),
     SkillModel(name: "Backend Developer", percent: 80),
-  ];
-
-  static List<Project> projectsList = [
-    Project(tools: [], title: "", description: "")
   ];
 
   static String userName = "Shashi Kumar";

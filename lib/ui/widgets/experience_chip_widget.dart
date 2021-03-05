@@ -23,8 +23,7 @@ class _ExperienceChipWidgetState extends State<ExperienceChipWidget> {
         onEnter: (event) => setState(() => isHovered = true),
         onExit: (event) => setState(() => isHovered = false),
         child: AnimatedContainer(
-          padding:
-              EdgeInsets.symmetric(horizontal: 20, vertical: isHovered ? 8 : 5),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           decoration: BoxDecoration(
               color: isHovered
                   ? primaryColor.withOpacity(0.4)

@@ -1,11 +1,18 @@
 import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/models/project.dart';
+import 'package:portfolio/ui/widgets/grid_view_widget.dart';
+import 'package:portfolio/ui/widgets/projectWidget.dart';
 import 'package:stacked/stacked.dart';
 
 class ProjectViewModel extends BaseViewModel {
-  List<Project> projectList = [];
+  List<ResponsiveGridCol> list = [];
   init() {
-    projectList = PersonalDetails.projectsList;
+    for (int i = 0; i < PersonalDetails.projectsList.length; i++) {
+      list.add(ResponsiveGridCol(
+          xl: 4,
+          child: ProjectWidget(
+              index: i, project: PersonalDetails.projectsList[i])));
+    }
+
     notifyListeners();
   }
 }

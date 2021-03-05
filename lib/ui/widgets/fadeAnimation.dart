@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-enum AnimationType { opacity, translateX }
+enum AnimationType { opacity, translateX, translateY }
 
 class FadeAnimation extends StatelessWidget {
   final double delay;
   final Widget child;
   final double xDistance;
+  final double yDistance;
   const FadeAnimation(
-      {@required this.delay, @required this.child, this.xDistance = 30});
+      {@required this.delay,
+      @required this.child,
+      this.xDistance = 30,
+      this.yDistance = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,11 @@ class FadeAnimation extends StatelessWidget {
         AnimationType.translateX,
         Tween(begin: xDistance, end: 1.0),
         Duration(milliseconds: 500),
+      )
+      ..add(
+        AnimationType.translateY,
+        Tween(begin: yDistance, end: 1.0),
+        Duration(milliseconds: 500),
       );
 
     return PlayAnimation<MultiTweenValues<AnimationType>>(
@@ -32,7 +41,8 @@ class FadeAnimation extends StatelessWidget {
       builder: (context, child, value) => Opacity(
         opacity: value.get(AnimationType.opacity),
         child: Transform.translate(
-            offset: Offset(value.get(AnimationType.translateX), 0),
+            offset: Offset(value.get(AnimationType.translateX),
+                value.get(AnimationType.translateY)),
             child: child),
       ),
     );

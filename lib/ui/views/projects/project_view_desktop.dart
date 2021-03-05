@@ -3,7 +3,6 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/projects/project_view_model.dart';
 import 'package:portfolio/ui/widgets/grid_view_widget.dart';
-import 'package:portfolio/ui/widgets/projectWidget.dart';
 
 class ProjectDesktopView extends StatelessWidget {
   final ScreenUiHelper uiHelpers;
@@ -45,13 +44,7 @@ class ProjectDesktopView extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 100),
                             child: ResponsiveGridRow(
-                              children: [
-                                for (int i = 0; i < 10; i++)
-                                  ResponsiveGridCol(
-                                    child: ProjectWidget(),
-                                    xl: 4,
-                                  )
-                              ],
+                              children: model.list,
                             )),
                       ],
                     ),
