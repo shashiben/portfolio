@@ -13,21 +13,22 @@ dependencies:
   flutter_icons: ^1.1.0
 
   #*Architecture
-  stacked: ^1.7.7
-  stacked_services: ^0.6.6
-  responsive_builder: 0.3.0
-  get_it: 5.0.6
-  injectable: ^1.0.7
-  flutter_hooks: ^0.15.0
+  stacked: ^1.9.5
+  stacked_services: ^0.7.2
+  responsive_builder: ^0.3.0
+  get_it: ^5.0.6
+  injectable: ^1.1.2
+  flutter_hooks: ^0.16.0
 
   #*Services
-  url_launcher: 5.7.10
+  url_launcher: ^6.0.2
+  http: ^0.13.0
 
   #*Utilities
   collapsible_sidebar: ^1.0.7+2
-  animated_text_kit: ^3.1.0
-  simple_animations: ^2.5.0
-
+  animated_text_kit: ^4.0.0
+  simple_animations: ^2.5.1
+  oktoast: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

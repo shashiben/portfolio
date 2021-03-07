@@ -10,3 +10,6 @@ const Color textPrimaryColor = Color(0xFFCCD6F6);
 const Color textSecondaryColor = Color(0xFFA8B2D1);
 
 const Color dividerColor = Colors.white60;
+
+const Color successColor = Colors.green;
+const Color failureColor = Colors.red;

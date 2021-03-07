@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_desktop_view.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_mobile_view.dart';
@@ -13,18 +14,22 @@ class ContactView extends StatelessWidget {
     return ScreenBuilder<ContactViewModel>(
         viewModel: ContactViewModel(),
         onModelReady: (m) => m.init(),
-        builder: (context, uiHelpers, model) => ScreenTypeLayout(
-              mobile: ContactMobileView(
-                uiHelpers: uiHelpers,
-                model: model,
-              ),
-              desktop: ContactDesktopView(
-                uiHelpers: uiHelpers,
-                model: model,
-              ),
-              tablet: ContactTabletView(
-                uiHelpers: uiHelpers,
-                model: model,
+        builder: (context, uiHelpers, model) => OKToast(
+              radius: 5,
+              textStyle: uiHelpers.body,
+              child: ScreenTypeLayout(
+                mobile: ContactMobileView(
+                  uiHelpers: uiHelpers,
+                  model: model,
+                ),
+                desktop: ContactDesktopView(
+                  uiHelpers: uiHelpers,
+                  model: model,
+                ),
+                tablet: ContactTabletView(
+                  uiHelpers: uiHelpers,
+                  model: model,
+                ),
               ),
             ));
   }

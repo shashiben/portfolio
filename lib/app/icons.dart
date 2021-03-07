@@ -30,3 +30,6 @@ mixin ExperienceIcon {
   static IconData arrowIcon = FlutterIcons.play_arrow_mdi;
   static IconData timeIcon = FlutterIcons.clock_sli;
 }
+mixin ToastIcons {
+  static IconData successIcon = FlutterIcons.check_circle_fea;
+}
