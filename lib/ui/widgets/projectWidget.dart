@@ -74,10 +74,10 @@ class ProjectWidget extends StatelessWidget {
                   uiHelpers.verticalSpaceLow,
                   Wrap(
                     children: [
-                      for (int i = 0; i < 7; i++)
+                      for (int i = 0; i < project.tools.length; i++)
                         Padding(
                           child: Text(
-                            "Firebase",
+                            project.tools[i],
                             style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xFF8892B0)),
@@ -147,10 +147,10 @@ class ProjectWidget extends StatelessWidget {
                   uiHelpers.verticalSpaceLow,
                   Wrap(
                     children: [
-                      for (int i = 0; i < 7; i++)
+                      for (int i = 0; i < project.tools.length; i++)
                         Padding(
                           child: Text(
-                            "Firebase",
+                            project.tools[i],
                             style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xFF8892B0)),
@@ -220,10 +220,10 @@ class ProjectWidget extends StatelessWidget {
                   uiHelpers.verticalSpaceLow,
                   Wrap(
                     children: [
-                      for (int i = 0; i < 7; i++)
+                      for (int i = 0; i < project.tools.length; i++)
                         Padding(
                           child: Text(
-                            "Firebase",
+                            project.tools[i],
                             style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xFF8892B0)),
