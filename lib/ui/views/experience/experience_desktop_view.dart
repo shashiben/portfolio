@@ -5,6 +5,7 @@ import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/experience/experience_view_model.dart';
 import 'package:portfolio/ui/widgets/experience_chip_widget.dart';
+import 'package:portfolio/ui/widgets/fadeAnimation.dart';
 import 'package:portfolio/ui/widgets/staggered_aniamtion/animation_executor.dart';
 import 'package:portfolio/ui/widgets/staggered_aniamtion/animation_fade.dart';
 import 'package:portfolio/ui/widgets/staggered_aniamtion/configuration.dart';
@@ -48,168 +49,153 @@ class ExperienceDesktopView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40)
                             .copyWith(right: 80),
-                        child: AnimationLimiter(
-                          child: ListView.builder(
-                            primary: false,
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: PersonalDetails.experienceList.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
+                        child: ListView.builder(
+                          primary: false,
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: PersonalDetails.experienceList.length,
+                          itemBuilder: (context, index) {
+                            return FadeAnimation(
+                              delay: index * 0.2 + 1,
+                              xDistance: 0,
+                              yDistance: (20 + index * 5).toDouble(),
+                              child: Padding(
                                 padding: const EdgeInsets.all(4.0),
-                                child: AnimationConfiguration.staggeredList(
-                                  position: index,
-                                  delay: Duration(milliseconds: 700),
-                                  duration: const Duration(milliseconds: 375),
-                                  child: SlideAnimation(
-                                    verticalOffset: 300,
-                                    child: FadeInAnimation(
-                                      child: Card(
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 25, vertical: 20),
-                                          child: Row(
+                                child: Card(
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 25, vertical: 20),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: uiHelpers.width * 0.4,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                width: uiHelpers.width * 0.4,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    RichText(
-                                                      text: TextSpan(
-                                                          text: PersonalDetails
-                                                              .experienceList[
-                                                                  index]
-                                                              .title,
-                                                          style:
-                                                              uiHelpers.headline,
-                                                          children: [
-                                                            TextSpan(
-                                                              text:
-                                                                  "  @${PersonalDetails.experienceList[index].position} ",
-                                                              style: uiHelpers
-                                                                  .body
-                                                                  .copyWith(
-                                                                      color:
-                                                                          primaryColor),
-                                                            )
-                                                          ]),
-                                                    ),
-                                                    SizedBox(
-                                                      height: 8,
-                                                    ),
-                                                    Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.start,
-                                                      children: [
-                                                        Icon(
-                                                          ExperienceIcon.timeIcon,
-                                                          size: 15,
-                                                          color:
-                                                              textSecondaryColor,
-                                                        ),
-                                                        SizedBox(width: 6),
-                                                        Text(
-                                                          PersonalDetails
-                                                              .experienceList[
-                                                                  index]
-                                                              .timePeriod,
-                                                          style: uiHelpers.body
-                                                              .copyWith(
-                                                                  color:
-                                                                      textSecondaryColor),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    uiHelpers.verticalSpaceLow,
-                                                    Text(
-                                                      "Accomplishments",
-                                                      style: uiHelpers.title,
-                                                    ),
-                                                    for (int j = 0;
-                                                        j <
+                                              RichText(
+                                                text: TextSpan(
+                                                    text: PersonalDetails
+                                                        .experienceList[index]
+                                                        .title,
+                                                    style: uiHelpers.headline,
+                                                    children: [
+                                                      TextSpan(
+                                                        text:
+                                                            "  @${PersonalDetails.experienceList[index].position} ",
+                                                        style: uiHelpers.body
+                                                            .copyWith(
+                                                                color:
+                                                                    primaryColor),
+                                                      )
+                                                    ]),
+                                              ),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Icon(
+                                                    ExperienceIcon.timeIcon,
+                                                    size: 15,
+                                                    color: textSecondaryColor,
+                                                  ),
+                                                  SizedBox(width: 6),
+                                                  Text(
+                                                    PersonalDetails
+                                                        .experienceList[index]
+                                                        .timePeriod,
+                                                    style: uiHelpers.body.copyWith(
+                                                        color:
+                                                            textSecondaryColor),
+                                                  ),
+                                                ],
+                                              ),
+                                              uiHelpers.verticalSpaceLow,
+                                              Text(
+                                                "Accomplishments",
+                                                style: uiHelpers.title,
+                                              ),
+                                              for (int j = 0;
+                                                  j <
+                                                      PersonalDetails
+                                                          .experienceList[index]
+                                                          .description
+                                                          .length;
+                                                  j++)
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Icon(
+                                                          ExperienceIcon
+                                                              .arrowIcon,
+                                                          size: 20),
+                                                      SizedBox(width: 5),
+                                                      Expanded(
+                                                        child: Text(
                                                             PersonalDetails
                                                                 .experienceList[
                                                                     index]
-                                                                .description
-                                                                .length;
-                                                        j++)
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets.all(
-                                                                8.0),
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Icon(
-                                                                ExperienceIcon
-                                                                    .arrowIcon,
-                                                                size: 20),
-                                                            SizedBox(width: 5),
-                                                            Expanded(
-                                                              child: Text(PersonalDetails
-                                                                  .experienceList[
-                                                                      index]
-                                                                  .description[j]),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                  ],
+                                                                .description[j]),
+                                                      )
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                      "Tools Used:",
-                                                      style: uiHelpers.title,
-                                                    ),
-                                                    Container(
-                                                      child: Divider(
-                                                        color: dividerColor,
-                                                        thickness: 1.5,
-                                                      ),
-                                                      width: 75,
-                                                    ),
-                                                    Wrap(
-                                                      children: [
-                                                        for (int k = 0;
-                                                            k <
-                                                                PersonalDetails
-                                                                    .experienceList[
-                                                                        index]
-                                                                    .tools
-                                                                    .length;
-                                                            k++)
-                                                          ExperienceChipWidget(
-                                                            title: PersonalDetails
-                                                                .experienceList[
-                                                                    index]
-                                                                .tools[k],
-                                                          )
-                                                      ],
-                                                    )
-                                                  ],
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                ),
-                                              )
                                             ],
                                           ),
                                         ),
-                                      ),
+                                        Expanded(
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                "Tools Used:",
+                                                style: uiHelpers.title,
+                                              ),
+                                              Container(
+                                                child: Divider(
+                                                  color: dividerColor,
+                                                  thickness: 1.5,
+                                                ),
+                                                width: 75,
+                                              ),
+                                              Wrap(
+                                                children: [
+                                                  for (int k = 0;
+                                                      k <
+                                                          PersonalDetails
+                                                              .experienceList[
+                                                                  index]
+                                                              .tools
+                                                              .length;
+                                                      k++)
+                                                    ExperienceChipWidget(
+                                                      title: PersonalDetails
+                                                          .experienceList[index]
+                                                          .tools[k],
+                                                    )
+                                                ],
+                                              )
+                                            ],
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                            );
+                          },
                         ),
                       ),
                       uiHelpers.verticalSpaceMedium,

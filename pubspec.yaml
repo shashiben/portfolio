@@ -41,7 +41,6 @@ flutter:
   assets:
     - assets/illustrations/
     - assets/images/
-    - assets/icons/
   fonts:
     - family: Lora
       fonts:

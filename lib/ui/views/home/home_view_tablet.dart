@@ -10,8 +10,7 @@ class HomeTabletView extends StatelessWidget {
   final ScreenUiHelper uiHelpers;
   final HomeViewModel model;
 
-  const HomeTabletView({Key key, this.uiHelpers, this.model})
-      : super(key: key);
+  const HomeTabletView({Key key, this.uiHelpers, this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +59,7 @@ class HomeTabletView extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   side: BorderSide(color: primaryColor),
                   borderRadius: BorderRadius.circular(8)),
-              onPressed: () {},
+              onPressed: () => model.getInTouch(),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

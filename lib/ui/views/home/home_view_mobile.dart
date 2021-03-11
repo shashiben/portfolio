@@ -56,7 +56,7 @@ class HomeMobileView extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   side: BorderSide(color: primaryColor),
                   borderRadius: BorderRadius.circular(8)),
-              onPressed: () {},
+              onPressed: () => model.getInTouch(),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
