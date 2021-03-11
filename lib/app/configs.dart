@@ -1,7 +1,6 @@
 import 'package:portfolio/core/models/project.dart';
 import 'package:portfolio/core/models/skill_model.dart';
 import 'package:portfolio/core/models/timeline_experience.dart';
-import 'package:flutter/material.dart';
 
 //*Social Media Links
 mixin SocialLinks {
@@ -40,7 +39,12 @@ mixin PersonalDetails {
         title: "Motion Detection Using OpenCv",
         description:
             "Detects motion of an object or a person and draws bounding box over it",
-        tools: ["Python", "OpenCv"])
+        tools: ["Python", "OpenCv"]),
+    Project(
+        description:
+            "Created portfolio using flutter,Supports for mac os,windows,linux,web,ios,android",
+        title: "Portfolio",
+        tools: ["Flutter"])
   ];
   static List<String> skillsList = [
     "Flutter",
@@ -69,7 +73,6 @@ mixin PersonalDetails {
         "Integrated Payment Gateway Integration (Razorpay)",
         "Implemented Video Broadcasting feature,Chat bot,Voice Search"
       ],
-      child: Image.asset("assets/images/naaniz.png", height: 60, width: 40),
     ),
     ExperienceTimeline(
       tools: ["Firebase", "DialogFlow", "Agora", "GCP", "Node js", "Mongo"],
@@ -82,7 +85,6 @@ mixin PersonalDetails {
         "Integrated Payment Gateway Integration (Razorpay)",
         "Added Video Broadcasting feature"
       ],
-      child: Image.asset("assets/images/naaniz.png", height: 60, width: 40),
     ),
     ExperienceTimeline(
       tools: ["Firebase", "DialogFlow", "Agora", "GCP", "Node js", "Mongo"],
@@ -95,7 +97,6 @@ mixin PersonalDetails {
         "Integrated Payment Gateway Integration (Razorpay)",
         "Implemented Video Broadcasting feature,Chat bot,Voice Search"
       ],
-      child: Image.asset("assets/images/naaniz.png", height: 60, width: 40),
     ),
     ExperienceTimeline(
       tools: ["Firebase", "DialogFlow", "Agora", "GCP", "Node js", "Mongo"],
@@ -108,7 +109,6 @@ mixin PersonalDetails {
         "Integrated Payment Gateway Integration (Razorpay)",
         "Added Video Broadcasting feature"
       ],
-      child: Image.asset("assets/images/naaniz.png", height: 60, width: 40),
     )
   ];
   static String email = "kumarshashi5294@gmail.com";

@@ -1,14 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:oktoast/oktoast.dart';
-import 'package:portfolio/app/colors.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/services/http_service.dart';
 import 'package:portfolio/core/services/url_launcher_service.dart';
-import 'package:portfolio/ui/widgets/custom_toast.dart';
 import 'package:stacked/stacked.dart';
 
 class ContactViewModel extends BaseViewModel {
-  final HTTPService _httpService = HTTPService();
   final UrlLauncherService _urlLauncherService = UrlLauncherService();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
@@ -17,23 +11,16 @@ class ContactViewModel extends BaseViewModel {
   final TextEditingController nameController = TextEditingController();
 
   openMail() async {
-    showToastWidget(
-        CustomToast(
-            content: "Email Sent Successfully!",
-            icon: Icon(
-              ToastIcons.successIcon,
-              color: successColor,
-            )),
-        position: ToastPosition.center,
-        animationDuration: Duration(milliseconds: 600),
-        animationCurve: Curves.easeInOutCubic,
-        duration: Duration(seconds: 5));
     if (formKey.currentState.validate()) {
-      // String subject = "From ${nameController.text}:${subjectController.text}";
-      // String url =
-      //     'mailto:${emailController.text}?subject=$subject&body=${bodyController.text}';
-      // await _urlLauncherService.launchUrl(url);
+      sendMail();
     }
+  }
+
+  Future<void> sendMail() async {
+    String subject = "From ${nameController.text}:${subjectController.text}";
+    String url =
+        'mailto:${emailController.text}?subject=$subject&body=${bodyController.text}';
+    await _urlLauncherService.launchUrl(url);
   }
 
   Map<String, FocusNode> focusNodeMap = {

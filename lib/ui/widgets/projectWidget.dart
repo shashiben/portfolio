@@ -45,18 +45,24 @@ class ProjectWidget extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          IconButton(
-                            icon: Icon(ProjectIcons.websiteIcon),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(ProjectIcons.githubIcon),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(ProjectIcons.playstoreIcon),
-                            onPressed: () {},
-                          ),
+                          project.websiteLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.websiteIcon),
+                                  onPressed: () {},
+                                ),
+                          project.githubLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.githubIcon),
+                                  onPressed: () {},
+                                ),
+                          project.playstoreLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.playstoreIcon),
+                                  onPressed: () {},
+                                ),
                         ],
                       ),
                     ],
@@ -118,18 +124,24 @@ class ProjectWidget extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          IconButton(
-                            icon: Icon(ProjectIcons.websiteIcon),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(ProjectIcons.githubIcon),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(ProjectIcons.playstoreIcon),
-                            onPressed: () {},
-                          ),
+                          project.websiteLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.websiteIcon),
+                                  onPressed: () {},
+                                ),
+                          project.githubLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.githubIcon),
+                                  onPressed: () {},
+                                ),
+                          project.playstoreLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.playstoreIcon),
+                                  onPressed: () {},
+                                ),
                         ],
                       ),
                     ],
@@ -191,18 +203,24 @@ class ProjectWidget extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          IconButton(
-                            icon: Icon(ProjectIcons.websiteIcon),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(ProjectIcons.githubIcon),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: Icon(ProjectIcons.playstoreIcon),
-                            onPressed: () {},
-                          ),
+                          project.websiteLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.websiteIcon),
+                                  onPressed: () {},
+                                ),
+                          project.githubLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.githubIcon),
+                                  onPressed: () {},
+                                ),
+                          project.playstoreLink == null
+                              ? SizedBox()
+                              : IconButton(
+                                  icon: Icon(ProjectIcons.playstoreIcon),
+                                  onPressed: () {},
+                                ),
                         ],
                       ),
                     ],

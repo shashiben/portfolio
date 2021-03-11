@@ -12,6 +12,7 @@ class MainView extends HookWidget {
       viewModel: MainViewModel(),
       builder: (context, uiHelpers, model) => Scaffold(
         body: CollapsibleSidebar(
+            avatarImg: AssetImage("assets/images/avatar.png"),
             topPadding: 50,
             body: model.child,
             title: "Shashi Kumar",

@@ -34,8 +34,8 @@ class ContactMobileView extends StatelessWidget {
                     height: 8,
                   ),
                   FadeAnimation(
-                    xDistance: 30,
-                    delay: 1.5,
+                    yDistance: 30,
+                    delay: 1,
                     child: Text(
                       "Contact me for hiring,or help me to join your team",
                       style: uiHelpers.body.copyWith(fontSize: 18),
@@ -47,8 +47,8 @@ class ContactMobileView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       FadeAnimation(
-                        xDistance: 30,
-                        delay: 2,
+                        yDistance: 30,
+                        delay: 1.25,
                         child: IconButton(
                           icon: Icon(ContactIcons.githubIcon),
                           onPressed: () =>
@@ -56,8 +56,8 @@ class ContactMobileView extends StatelessWidget {
                         ),
                       ),
                       FadeAnimation(
-                        xDistance: 30,
-                        delay: 2.4,
+                        yDistance: 30,
+                        delay: 1.25,
                         child: IconButton(
                           icon: Icon(ContactIcons.twitterIcon),
                           onPressed: () =>
@@ -65,8 +65,8 @@ class ContactMobileView extends StatelessWidget {
                         ),
                       ),
                       FadeAnimation(
-                        xDistance: 30,
-                        delay: 2.8,
+                        yDistance: 30,
+                        delay: 1.25,
                         child: IconButton(
                           icon: Icon(ContactIcons.linkedinIcon),
                           onPressed: () =>
@@ -77,8 +77,8 @@ class ContactMobileView extends StatelessWidget {
                   ),
                   uiHelpers.verticalSpaceMedium,
                   FadeAnimation(
-                    xDistance: 30,
-                    delay: 3,
+                    yDistance: 30,
+                    delay: 1.5,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

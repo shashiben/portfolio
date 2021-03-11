@@ -4,7 +4,6 @@ class ExperienceTimeline {
   final String title;
   final String position;
   final List<String> description;
-  final Widget child;
   final String timePeriod;
   final List<String> tools;
 
@@ -13,6 +12,5 @@ class ExperienceTimeline {
       @required this.position,
       @required this.timePeriod,
       @required this.description,
-      @required this.child,
       @required this.tools});
 }
