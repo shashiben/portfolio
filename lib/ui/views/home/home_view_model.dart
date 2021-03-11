@@ -5,6 +5,18 @@ import 'package:stacked/stacked.dart';
 class HomeViewModel extends BaseViewModel {
   final UrlLauncherService _urlLauncherService = UrlLauncherService();
   bool isIntroCompleted = false;
+  bool isHoveredOnGetInTouch = false;
+  bool isShortIntroCompleted = false;
+
+  changeShortIntroToCompleted() {
+    isShortIntroCompleted = true;
+    notifyListeners();
+  }
+
+  changeHoveredBoolean(bool value) {
+    isHoveredOnGetInTouch = value;
+    notifyListeners();
+  }
 
   changeIntroToCompleted() {
     isIntroCompleted = true;

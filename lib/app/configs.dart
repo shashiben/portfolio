@@ -120,7 +120,8 @@ mixin PersonalDetails {
   ];
 
   static String userName = "Shashi Kumar";
-  static String shortIntro = "";
+  static String shortIntro =
+      "A dexterous builder for mobile and web application.";
   static String intro =
       "A Full stack developer from Andhra Pradesh,India. Intrested in building mobile applications and web applications with flutter . Recently started developing web apps with react. And had a little knowledge in Opencv.";
 }

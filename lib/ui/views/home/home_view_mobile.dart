@@ -38,38 +38,47 @@ class HomeMobileView extends StatelessWidget {
               onFinished: () => model.changeIntroToCompleted(),
               repeatForever: false,
             ),
-            Text(
-              "I love build things for the web or mobile.",
-              style: uiHelpers.headline
-                  .copyWith(color: Color(0xFFc6D6F6), fontSize: 20),
-            ),
+            model.isIntroCompleted
+                ? TypewriterAnimatedTextKit(
+                    text: ["${PersonalDetails.shortIntro}"],
+                    speed: Duration(milliseconds: 20),
+                    textStyle: uiHelpers.title.copyWith(
+                        fontSize: 18,
+                        color: Color(0xFFc6D6F6),
+                        fontWeight: FontWeight.w300),
+                    totalRepeatCount: 1,
+                    onFinished: () => model.changeShortIntroToCompleted(),
+                    repeatForever: false,
+                  )
+                : SizedBox(),
             uiHelpers.verticalSpaceLow,
-            Text(
-              "",
-              style: uiHelpers.body,
-            ),
-            uiHelpers.verticalSpaceMedium,
-            MaterialButton(
-              hoverElevation: 100,
-              elevation: 10,
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-              shape: RoundedRectangleBorder(
-                  side: BorderSide(color: primaryColor),
-                  borderRadius: BorderRadius.circular(8)),
-              onPressed: () => model.getInTouch(),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Get In touch",
-                    style: uiHelpers.title.copyWith(
-                        letterSpacing: 1,
-                        color: primaryColor,
-                        fontWeight: FontWeight.w200),
-                  ),
-                  SizedBox(width: 10),
-                  Icon(Icons.arrow_forward_ios, color: primaryColor, size: 20)
-                ],
+            AnimatedOpacity(
+              duration: Duration(milliseconds: 700),
+              opacity: model.isShortIntroCompleted ? 1.0 : 0.0,
+              child: MaterialButton(
+                hoverElevation: 100,
+                elevation: 10,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: primaryColor),
+                    borderRadius: BorderRadius.circular(8)),
+                onPressed: () => model.getInTouch(),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Get In touch",
+                      style: uiHelpers.title.copyWith(
+                          fontSize: 15,
+                          letterSpacing: 1,
+                          color: primaryColor,
+                          fontWeight: FontWeight.w200),
+                    ),
+                    SizedBox(width: 10),
+                    Icon(Icons.arrow_forward_ios, color: primaryColor, size: 20)
+                  ],
+                ),
               ),
             )
           ],

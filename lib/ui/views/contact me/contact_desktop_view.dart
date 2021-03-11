@@ -31,8 +31,9 @@ class ContactDesktopView extends StatelessWidget {
                   height: 8,
                 ),
                 FadeAnimation(
-                  xDistance: 50,
-                  delay: 1.5,
+                  xDistance: 0,
+                  delay: 1,
+                  yDistance: 10,
                   child: Text(
                     "Contact me for hiring,or help me to join your team",
                     style: uiHelpers.body.copyWith(fontSize: 25),
@@ -44,8 +45,9 @@ class ContactDesktopView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     FadeAnimation(
-                      xDistance: 50,
-                      delay: 2,
+                      xDistance: 00,
+                      yDistance: 20,
+                      delay: 1.25,
                       child: MouseRegion(
                         onEnter: (event) =>
                             model.changeSelected(true, "Github"),
@@ -61,8 +63,9 @@ class ContactDesktopView extends StatelessWidget {
                       ),
                     ),
                     FadeAnimation(
-                      xDistance: 50,
-                      delay: 2.4,
+                      xDistance: 00,
+                      yDistance: 20,
+                      delay: 1.25,
                       child: MouseRegion(
                         onEnter: (event) =>
                             model.changeSelected(true, "Twitter"),
@@ -78,8 +81,9 @@ class ContactDesktopView extends StatelessWidget {
                       ),
                     ),
                     FadeAnimation(
-                      xDistance: 50,
-                      delay: 2.6,
+                      xDistance: 00,
+                      yDistance: 20,
+                      delay: 1.25,
                       child: MouseRegion(
                         onEnter: (event) =>
                             model.changeSelected(true, "LinkedIn"),
@@ -98,8 +102,9 @@ class ContactDesktopView extends StatelessWidget {
                 ),
                 uiHelpers.verticalSpaceMedium,
                 FadeAnimation(
-                  xDistance: 50,
-                  delay: 2.8,
+                  xDistance: 00,
+                  yDistance: 25,
+                  delay: 1.5,
                   child: Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -148,7 +153,7 @@ class ContactDesktopView extends StatelessWidget {
                                             ),
                                             hintText: "Luffy San",
                                             hintStyle: TextStyle(
-                                                color: textPrimaryColor),
+                                                color: textSecondaryColor),
                                             enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
@@ -193,7 +198,7 @@ class ContactDesktopView extends StatelessWidget {
                                             ),
                                             hintText: "youremail@gmail.com",
                                             hintStyle: TextStyle(
-                                                color: textPrimaryColor),
+                                                color: textSecondaryColor),
                                             enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
@@ -236,7 +241,7 @@ class ContactDesktopView extends StatelessWidget {
                                             ),
                                             hintText: "Hiring for...",
                                             hintStyle: TextStyle(
-                                                color: textPrimaryColor),
+                                                color: textSecondaryColor),
                                             enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
@@ -286,9 +291,10 @@ class ContactDesktopView extends StatelessWidget {
                                                     color: textPrimaryColor)),
                                             alignLabelWithHint: true,
                                             hintStyle: TextStyle(
-                                                color: textPrimaryColor),
+                                                color: textSecondaryColor),
                                             hintText: "Your Messsage..",
                                             border: OutlineInputBorder(
+                                              
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
@@ -302,21 +308,31 @@ class ContactDesktopView extends StatelessWidget {
                             ],
                           ),
                           uiHelpers.verticalSpaceHigh,
-                          Container(
-                            alignment: Alignment.center,
-                            child: MaterialButton(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 40, vertical: 20),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6)),
-                                color: primaryColor,
-                                onPressed: () => model.openMail(),
-                                child: Text(
-                                  "Send Message",
-                                  style: uiHelpers.buttonStyle.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w400),
-                                )),
+                          FadeAnimation(
+                            xDistance: 00,
+                            yDistance: 0,
+                            delay: 2,
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: MaterialButton(
+                                  visualDensity:
+                                      VisualDensity.adaptivePlatformDensity,
+                                  disabledTextColor: textSecondaryColor,
+                                  disabledElevation: 0,
+                                  disabledColor: Colors.grey,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6)),
+                                  color: primaryColor,
+                                  onPressed: () => model.openMail(),
+                                  child: Text(
+                                    "Send Message",
+                                    style: uiHelpers.buttonStyle.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w400),
+                                  )),
+                            ),
                           ),
                         ],
                       ),

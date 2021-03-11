@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
@@ -48,9 +49,9 @@ class HomeDesktopView extends StatelessWidget {
               yDistance: 20.0,
               xDistance: 0.0,
               child: Text(
-                "I love build things for the web or mobile.",
+                PersonalDetails.shortIntro,
                 style: uiHelpers.headline
-                    .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
+                    .copyWith(color: Color(0xFFc6D6F6), fontSize: 40),
               ),
             ),
             uiHelpers.verticalSpaceLow,
@@ -58,28 +59,44 @@ class HomeDesktopView extends StatelessWidget {
               delay: 2.5,
               yDistance: 30.0,
               xDistance: 0.0,
-              child: MaterialButton(
-                hoverElevation: 100,
-                elevation: 10,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(color: primaryColor),
-                    borderRadius: BorderRadius.circular(8)),
-                onPressed: () => model.getInTouch(),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Get In touch",
-                      style: uiHelpers.title.copyWith(
-                          letterSpacing: 1,
-                          color: primaryColor,
-                          fontWeight: FontWeight.w200),
-                    ),
-                    SizedBox(width: 10),
-                    Icon(Icons.arrow_forward_ios, color: primaryColor, size: 25)
-                  ],
+              child: MouseRegion(
+                onEnter: (event) => model.changeHoveredBoolean(true),
+                onExit: (event) => model.changeHoveredBoolean(false),
+                child: MaterialButton(
+                  color: model.isHoveredOnGetInTouch
+                      ? primaryColor
+                      : backgroundColor,
+                  hoverElevation: 100,
+                  elevation: 10,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: primaryColor),
+                      borderRadius: BorderRadius.circular(8)),
+                  onPressed: () => model.getInTouch(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Get In touch",
+                        style: uiHelpers.title.copyWith(
+                            letterSpacing: 1,
+                            color: model.isHoveredOnGetInTouch
+                                ? textPrimaryColor
+                                : primaryColor,
+                            fontWeight: FontWeight.w200),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(
+                          model.isHoveredOnGetInTouch
+                              ? FlutterIcons.ios_arrow_forward_ion
+                              : FlutterIcons.ios_arrow_round_forward_ion,
+                          color: model.isHoveredOnGetInTouch
+                              ? textPrimaryColor
+                              : primaryColor,
+                          size: 20)
+                    ],
+                  ),
                 ),
               ),
             )

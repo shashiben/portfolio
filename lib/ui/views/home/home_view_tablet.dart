@@ -42,16 +42,11 @@ class HomeTabletView extends StatelessWidget {
               repeatForever: false,
             ),
             Text(
-              "I love build things for the web or mobile.",
+              PersonalDetails.shortIntro,
               style: uiHelpers.headline
                   .copyWith(color: Color(0xFFc6D6F6), fontSize: 50),
             ),
             uiHelpers.verticalSpaceLow,
-            Text(
-              "",
-              style: uiHelpers.body,
-            ),
-            uiHelpers.verticalSpaceMedium,
             MaterialButton(
               hoverElevation: 100,
               elevation: 10,

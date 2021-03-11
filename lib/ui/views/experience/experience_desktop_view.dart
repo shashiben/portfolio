@@ -6,9 +6,6 @@ import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/experience/experience_view_model.dart';
 import 'package:portfolio/ui/widgets/experience_chip_widget.dart';
 import 'package:portfolio/ui/widgets/fadeAnimation.dart';
-import 'package:portfolio/ui/widgets/staggered_aniamtion/animation_executor.dart';
-import 'package:portfolio/ui/widgets/staggered_aniamtion/animation_fade.dart';
-import 'package:portfolio/ui/widgets/staggered_aniamtion/configuration.dart';
 
 class ExperienceDesktopView extends StatelessWidget {
   final ScreenUiHelper uiHelpers;
