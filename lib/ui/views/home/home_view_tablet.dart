@@ -18,7 +18,7 @@ class HomeTabletView extends StatelessWidget {
         alignment: Alignment.center,
         width: double.infinity,
         height: double.infinity,
-        padding: const EdgeInsets.only(right: 120),
+        padding: const EdgeInsets.only(left: 120),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,

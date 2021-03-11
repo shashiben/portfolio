@@ -26,16 +26,14 @@ class ExperienceTabletView extends StatelessWidget {
               children: [
                 Text(
                   "Experience",
-                  style: uiHelpers.headline.copyWith(fontSize: 45),
+                  style: uiHelpers.headline,
                 ),
-                uiHelpers.verticalSpaceMedium,
+                uiHelpers.verticalSpaceLow,
                 TabBar(
                     labelStyle: TextStyle(
-                        color: primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24),
+                        color: primaryColor, fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(
-                        color: primaryColor, fontWeight: FontWeight.w300,fontSize:16),
+                        color: primaryColor, fontWeight: FontWeight.w300),
                     unselectedLabelColor: textSecondaryColor,
                     labelColor: primaryColor,
                     isScrollable: true,
@@ -82,25 +80,73 @@ class ExperienceTabletView extends StatelessWidget {
                                     .copyWith(color: textSecondaryColor),
                               ),
                               uiHelpers.verticalSpaceLow,
-                              for (int j = 0;
-                                  j <
-                                      PersonalDetails
-                                          .experienceList[i].description.length;
-                                  j++)
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(ExperienceIcon.arrowIcon, size: 20),
-                                      SizedBox(width: 5),
-                                      Expanded(
-                                        child: Text(PersonalDetails
-                                            .experienceList[i].description[j]),
-                                      )
-                                    ],
-                                  ),
-                                )
+                              ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                primary: false,
+                                shrinkWrap: true,
+                                itemBuilder: (_, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(ExperienceIcon.arrowIcon,
+                                            size: 20),
+                                        SizedBox(width: 5),
+                                        Expanded(
+                                          child: Text(PersonalDetails
+                                              .experienceList[i]
+                                              .description[index]),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                                itemCount:
+                                    PersonalDetails.experienceList.length,
+                              ),
+                              uiHelpers.verticalSpaceLow,
+                              Text(
+                                "Tools Used",
+                                style: uiHelpers.title,
+                              ),
+                              Container(
+                                width: uiHelpers.width * 0.16,
+                                child: Divider(
+                                  color: Colors.white60,
+                                  thickness: 2.5,
+                                ),
+                              ),
+                              uiHelpers.verticalSpaceLow,
+                              ListView.builder(
+                                primary: false,
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (_, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          ExperienceIcon.arrowIcon,
+                                          size: 20,
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Text(
+                                          PersonalDetails
+                                              .experienceList[i].tools[index],
+                                          style: uiHelpers.body,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                itemCount: PersonalDetails
+                                    .experienceList[i].tools.length,
+                              )
                             ],
                           ),
                         ),

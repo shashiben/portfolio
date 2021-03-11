@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/services/url_launcher_service.dart';
 import 'package:stacked/stacked.dart';
 
@@ -19,7 +20,7 @@ class ContactViewModel extends BaseViewModel {
   Future<void> sendMail() async {
     String subject = "From ${nameController.text}:${subjectController.text}";
     String url =
-        'mailto:${emailController.text}?subject=$subject&body=${bodyController.text}';
+        'mailto:${PersonalDetails.email}?subject=$subject&body=${bodyController.text}';
     await _urlLauncherService.launchUrl(url);
   }
 

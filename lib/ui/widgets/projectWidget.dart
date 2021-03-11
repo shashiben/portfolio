@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/models/project.dart';
+import 'package:portfolio/core/services/url_launcher_service.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -17,6 +18,7 @@ class ProjectWidget extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final UrlLauncherService _urlLauncherService = UrlLauncherService();
     final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
     return ScreenTypeLayout(
       desktop: FadeAnimation(
@@ -24,6 +26,7 @@ class ProjectWidget extends StatelessWidget {
         yDistance: 0000000,
         delay: index * 0.2 + 1,
         child: Container(
+          height: 250,
           margin: EdgeInsets.only(
               bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
           child: Material(
@@ -49,19 +52,22 @@ class ProjectWidget extends StatelessWidget {
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.websiteIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.websiteLink),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.githubIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.githubLink),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.playstoreIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.playstoreLink),
                                 ),
                         ],
                       ),
@@ -77,7 +83,7 @@ class ProjectWidget extends StatelessWidget {
                     project.description,
                     style: uiHelpers.body.copyWith(fontWeight: FontWeight.w300),
                   ),
-                  uiHelpers.verticalSpaceLow,
+                  Spacer(),
                   Wrap(
                     children: [
                       for (int i = 0; i < project.tools.length; i++)
@@ -128,19 +134,22 @@ class ProjectWidget extends StatelessWidget {
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.websiteIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.websiteLink),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.githubIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.githubLink),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.playstoreIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.playstoreLink),
                                 ),
                         ],
                       ),
@@ -207,19 +216,22 @@ class ProjectWidget extends StatelessWidget {
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.websiteIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.websiteLink),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.githubIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.githubLink),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
                               : IconButton(
                                   icon: Icon(ProjectIcons.playstoreIcon),
-                                  onPressed: () {},
+                                  onPressed: () => _urlLauncherService
+                                      .launchUrl(project.playstoreLink),
                                 ),
                         ],
                       ),
