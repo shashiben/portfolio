@@ -3,11 +3,11 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 //*Menu Items
 mixin MenuIcons {
-  static IconData homeIcon = FlutterIcons.home_ent;
-  static IconData experienceIcon = Icons.assessment;
-  static IconData aboutIcon = FlutterIcons.user_circle_o_faw;
-  static IconData projectIcon = FlutterIcons.project_oct;
-  static IconData contactIcon = Icons.mail;
+  static IconData homeIcon = FlutterIcons.home_fea;
+  static IconData experienceIcon = FlutterIcons.graph_sli;
+  static IconData aboutIcon = FlutterIcons.user_fea;
+  static IconData projectIcon = FlutterIcons.folder_fea;
+  static IconData contactIcon = FlutterIcons.mail_fea;
   static IconData menuIcon = FlutterIcons.grid_ent;
 }
 

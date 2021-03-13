@@ -47,6 +47,7 @@ class AboutMobileView extends StatelessWidget {
                     Container(
                       child: Text(PersonalDetails.intro,
                           style: uiHelpers.body.copyWith(
+                              height: 1.2,
                               color: textSecondaryColor.withOpacity(0.4))),
                     ),
                     uiHelpers.verticalSpaceMedium,

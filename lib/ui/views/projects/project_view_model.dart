@@ -9,6 +9,7 @@ class ProjectViewModel extends BaseViewModel {
     for (int i = 0; i < PersonalDetails.projectsList.length; i++) {
       list.add(ResponsiveGridCol(
           xl: 4,
+          md: 6,
           child: ProjectWidget(
               index: i, project: PersonalDetails.projectsList[i])));
     }

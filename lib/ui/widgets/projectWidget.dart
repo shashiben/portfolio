@@ -109,6 +109,7 @@ class ProjectWidget extends StatelessWidget {
         delay: index * 0.2 + 1,
         xDistance: 0,
         child: Container(
+          height: 250,
           margin: EdgeInsets.only(
               bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
           child: Material(

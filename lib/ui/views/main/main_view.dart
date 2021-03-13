@@ -17,6 +17,7 @@ class MainView extends HookWidget {
       builder: (context, uiHelpers, model) => Scaffold(
         body: ScreenTypeLayout(
           desktop: CollapsibleSidebar(
+              selectedIconColor: primaryColor,
               maxWidth: 250,
               avatarImg: AssetImage("assets/images/avatar.png"),
               topPadding: 50,
@@ -38,7 +39,8 @@ class MainView extends HookWidget {
                   child: Icon(MenuIcons.menuIcon),
                 ),
                 selectedIconTheme: IconThemeData(color: primaryColor),
-                unselectedIconTheme: IconThemeData(color: surfaceColor),
+                unselectedIconTheme:
+                    IconThemeData(color: primaryColor.withOpacity(0.4)),
                 selectedIndex: model.index,
                 onDestinationSelected: (int index) => model.changeIndex(index),
                 labelType: NavigationRailLabelType.all,
@@ -93,6 +95,9 @@ class MainView extends HookWidget {
               VerticalDivider(thickness: 1, width: 1),
               Expanded(
                 child: PageView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    allowImplicitScrolling: false,
+                    onPageChanged: (index) => model.changeIndex(index),
                     scrollDirection: Axis.vertical,
                     controller: model.pageController,
                     itemBuilder: (context, index) => model.views[model.index]),

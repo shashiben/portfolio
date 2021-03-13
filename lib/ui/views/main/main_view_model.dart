@@ -30,8 +30,8 @@ class MainViewModel extends BaseViewModel {
   changeIndex(int newIndex) {
     if (newIndex != index) {
       index = newIndex;
-      pageController.animateToPage(index,
-          duration: Duration(milliseconds: 800), curve: Curves.easeInOutCubic);
+      // pageController.animateToPage(newIndex,
+      //     duration: Duration(milliseconds: 800), curve: Curves.easeInOutCubic);
       notifyListeners();
     }
   }
