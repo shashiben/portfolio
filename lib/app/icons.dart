@@ -8,6 +8,7 @@ mixin MenuIcons {
   static IconData aboutIcon = FlutterIcons.user_circle_o_faw;
   static IconData projectIcon = FlutterIcons.project_oct;
   static IconData contactIcon = Icons.mail;
+  static IconData menuIcon = FlutterIcons.grid_ent;
 }
 
 mixin ProjectIcons {

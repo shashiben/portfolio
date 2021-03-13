@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 class MainViewModel extends BaseViewModel {
   int index = 0;
   bool isIntroCompleted = false;
+  PageController pageController = PageController();
 
   List<CollapsibleItem> collapsibleItem = [];
   final views = [
@@ -27,9 +28,10 @@ class MainViewModel extends BaseViewModel {
   }
 
   changeIndex(int newIndex) {
-    print(newIndex);
     if (newIndex != index) {
-      newIndex = index;
+      index = newIndex;
+      pageController.animateToPage(index,
+          duration: Duration(milliseconds: 800), curve: Curves.easeInOutCubic);
       notifyListeners();
     }
   }
@@ -78,7 +80,8 @@ class MainViewModel extends BaseViewModel {
       )
     ];
   }
-  init(){
+
+  init() {
     collapsibleItem = generateItems;
     child = views.first;
     notifyListeners();
