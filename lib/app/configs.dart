@@ -62,7 +62,7 @@ mixin PersonalDetails {
         title: "Alarm Managaer",
         githubLink: "https://github.com/shashiben/Flutter-Alarm",
         description:
-            "An application to schedule alarms on multiple devices supports for both android and android,built using mongo db and flutter.",
+            "An application to schedule alarms on multiple devices supports for both android and ios,built using mongo db and flutter.",
         tools: ["Flutter", "Mongo DB", "Node Js", "Express Js"]),
     Project(
         title: "Cache With Hive",
@@ -116,7 +116,7 @@ mixin PersonalDetails {
           "Worked as an intern for mobile app developement and front end developer",
           "Application is similar to Workflowy for note taking",
           "Added export service of all the data present in the parent node",
-          "Added Functionality to custome text styling dynamically"
+          "Added Functionality to customize text styling dynamically"
         ],
         tools: [
           "Flutter",
@@ -135,7 +135,7 @@ mixin PersonalDetails {
         description: [
           "Developed UI for ITI Hindupur and developed mobile application",
           "Designed Admin Panel to send notifications or add notes or create tests",
-          "Designed College Application to create quizes for different batches",
+          "Designed College Application to create quiz for different batches",
           "Able to add or delete or update notes",
           "Added Contact Support using Freshchat",
           "Can check analysis of his previous test"
@@ -176,10 +176,10 @@ mixin PersonalDetails {
   ];
   static String email = "kumarshashi5294@gmail.com";
   static List<SkillModel> featuredSkills = [
-    SkillModel(name: "Mobile Application Developement", percent: 90),
-    SkillModel(name: "Web Developer", percent: 80),
-    SkillModel(name: "UI/UX Designer", percent: 75),
-    SkillModel(name: "Backend Developer", percent: 80),
+    SkillModel(name: "Mobile Application Developement", percent: 95),
+    SkillModel(name: "Web Developer", percent: 90),
+    SkillModel(name: "UI/UX Designer", percent: 84),
+    SkillModel(name: "Backend Developer", percent: 89),
   ];
 
   static String userName = "Shashi Kumar";
