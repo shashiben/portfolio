@@ -16,6 +16,7 @@ class ExperienceDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: Container(
         width: uiHelpers.width,
         height: uiHelpers.height,

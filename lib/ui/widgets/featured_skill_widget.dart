@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
@@ -17,7 +16,7 @@ class FeaturedSkillWidget extends StatelessWidget {
         itemBuilder: (context, index) => Container(
               width: uiHelpers.width * 0.8,
               child: LinearPercentIndicator(
-                progressColor: primaryColor,
+                progressColor: uiHelpers.primaryColor,
                 title: PersonalDetails.featuredSkills[index].name,
                 percent:
                     PersonalDetails.featuredSkills[index].percent.toDouble() /

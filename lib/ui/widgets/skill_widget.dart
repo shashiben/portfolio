@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SkillWidget extends StatelessWidget {
@@ -11,6 +11,7 @@ class SkillWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
     return ScreenTypeLayout(
       mobile: ListView.builder(
         primary: false,
@@ -24,7 +25,7 @@ class SkillWidget extends StatelessWidget {
             children: [
               Icon(
                 FlutterIcons.play_mco,
-                color: primaryColor,
+                color: uiHelper.primaryColor,
                 size: 20,
               ),
               SizedBox(
@@ -34,6 +35,7 @@ class SkillWidget extends StatelessWidget {
                 PersonalDetails.skillsList[index],
                 style: textStyle ??
                     TextStyle(
+                      color: uiHelper.textPrimaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -56,7 +58,7 @@ class SkillWidget extends StatelessWidget {
             children: [
               Icon(
                 FlutterIcons.play_mco,
-                color: primaryColor,
+                color: uiHelper.primaryColor,
                 size: 20,
               ),
               SizedBox(
@@ -67,6 +69,7 @@ class SkillWidget extends StatelessWidget {
                 style: textStyle ??
                     TextStyle(
                       fontSize: 16,
+                      color: uiHelper.textPrimaryColor,
                       fontWeight: FontWeight.w400,
                     ),
               )
@@ -88,7 +91,7 @@ class SkillWidget extends StatelessWidget {
             children: [
               Icon(
                 FlutterIcons.play_mco,
-                color: primaryColor,
+                color: uiHelper.primaryColor,
                 size: 20,
               ),
               SizedBox(
@@ -98,6 +101,7 @@ class SkillWidget extends StatelessWidget {
                 PersonalDetails.skillsList[index],
                 style: textStyle ??
                     TextStyle(
+                      color: uiHelper.textPrimaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),

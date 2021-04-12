@@ -1,6 +1,7 @@
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
@@ -15,6 +16,16 @@ class MainView extends HookWidget {
       onModelReady: (m) => m.init(),
       viewModel: MainViewModel(),
       builder: (context, uiHelpers, model) => Scaffold(
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.toggle_on_outlined),
+          onPressed: () {
+            if (NeumorphicTheme.of(context).isUsingDark) {
+              NeumorphicTheme.of(context).themeMode = ThemeMode.light;
+            } else {
+              NeumorphicTheme.of(context).themeMode = ThemeMode.dark;
+            }
+          },
+        ),
         body: ScreenTypeLayout(
           desktop: CollapsibleSidebar(
               selectedIconColor: primaryColor,

@@ -29,9 +29,10 @@ class ScreenBuilder<T extends BaseViewModel> extends StatelessWidget {
           onModelReady: onModelReady ?? null,
           viewModelBuilder: () => viewModel,
           builder: (context, model, child) => SafeArea(
-                      child: Scaffold(
-                body: builder(context, uiHelpers, model)),
-          ));
+                child: Scaffold(
+                    backgroundColor: uiHelpers.backgroundColor,
+                    body: builder(context, uiHelpers, model)),
+              ));
     } else {
       return ViewModelBuilder<T>.nonReactive(
           builder: (context, model, child) =>

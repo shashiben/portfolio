@@ -13,6 +13,7 @@ class ProjectDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: Container(
         child: Center(
           child: Container(
@@ -30,7 +31,7 @@ class ProjectDesktopView extends StatelessWidget {
                 Container(
                   width: uiHelpers.width * 0.25,
                   child: Divider(
-                    color: dividerColor,
+                    color: uiHelpers.dividerColor,
                     thickness: 2.5,
                   ),
                 ),

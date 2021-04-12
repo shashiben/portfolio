@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
@@ -22,17 +23,15 @@ class _ExperienceChipWidgetState extends State<ExperienceChipWidget> {
       child: MouseRegion(
         onEnter: (event) => setState(() => isHovered = true),
         onExit: (event) => setState(() => isHovered = false),
-        child: AnimatedContainer(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          decoration: BoxDecoration(
-              color: isHovered
-                  ? primaryColor.withOpacity(0.4)
-                  : Colors.transparent,
-              border: Border.all(
-                  width: isHovered ? 2.5 : 1,
-                  color: isHovered ? primaryColor : textSecondaryColor),
-              borderRadius: BorderRadius.circular(12)),
-          duration: Duration(milliseconds: 800),
+        child: Neumorphic(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          style: NeumorphicStyle(
+            shape: isHovered ? NeumorphicShape.convex : NeumorphicShape.flat,
+            depth: isHovered ? 6 : -12,
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(12)),
+            color: surfaceColor,
+          ),
+          duration: Duration(milliseconds: 300),
           child: Text(
             widget.title,
             style: uiHelpers.body.copyWith(

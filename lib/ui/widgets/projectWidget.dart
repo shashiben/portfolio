@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/models/project.dart';
 import 'package:portfolio/core/services/url_launcher_service.dart';
@@ -29,12 +29,15 @@ class ProjectWidget extends StatelessWidget {
           height: 250,
           margin: EdgeInsets.only(
               bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
-          child: Material(
-            color: surfaceColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            elevation: 10,
+          child: Neumorphic(
+            style: NeumorphicStyle(
+                shape: NeumorphicShape.convex,
+                shadowLightColor: uiHelpers.backgroundColor,
+                depth: 5,
+                intensity: 0.6,
+                surfaceIntensity: 0.2,
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(12))),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: Column(
@@ -44,28 +47,53 @@ class ProjectWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Icon(ProjectIcons.folderIcon, size: 30),
+                      NeumorphicIcon(
+                        ProjectIcons.folderIcon,
+                        size: 30,
+                        style: NeumorphicStyle(
+                            surfaceIntensity: 0.1,
+                            intensity: 0.3,
+                            color: uiHelpers.primaryColor),
+                      ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           project.websiteLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.websiteIcon),
+                                  icon: NeumorphicIcon(
+                                    ProjectIcons.websiteIcon,
+                                    style: NeumorphicStyle(
+                                        surfaceIntensity: 0.1,
+                                        intensity: 0.3,
+                                        color: uiHelpers.primaryColor),
+                                  ),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.websiteLink),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.githubIcon),
+                                  icon: NeumorphicIcon(
+                                    ProjectIcons.githubIcon,
+                                    style: NeumorphicStyle(
+                                        surfaceIntensity: 0.1,
+                                        intensity: 0.3,
+                                        color: uiHelpers.primaryColor),
+                                  ),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.githubLink),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.playstoreIcon),
+                                  icon: NeumorphicIcon(
+                                    ProjectIcons.playstoreIcon,
+                                    style: NeumorphicStyle(
+                                        surfaceIntensity: 0.1,
+                                        intensity: 0.3,
+                                        color: uiHelpers.primaryColor),
+                                  ),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.playstoreLink),
                                 ),
@@ -92,7 +120,7 @@ class ProjectWidget extends StatelessWidget {
                             project.tools[i],
                             style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xFF8892B0)),
+                                color: uiHelpers.textSecondaryColor),
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 4)
                               .copyWith(right: 16),
@@ -113,7 +141,7 @@ class ProjectWidget extends StatelessWidget {
           margin: EdgeInsets.only(
               bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
           child: Material(
-            color: surfaceColor,
+            color: uiHelpers.surfaceColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
@@ -127,28 +155,31 @@ class ProjectWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Icon(ProjectIcons.folderIcon, size: 30),
+                      NeumorphicIcon(ProjectIcons.folderIcon, size: 30),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           project.websiteLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.websiteIcon),
+                                  icon: NeumorphicIcon(
+                                    ProjectIcons.websiteIcon,
+                                  ),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.websiteLink),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.githubIcon),
+                                  icon: NeumorphicIcon(ProjectIcons.githubIcon),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.githubLink),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.playstoreIcon),
+                                  icon: NeumorphicIcon(
+                                      ProjectIcons.playstoreIcon),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.playstoreLink),
                                 ),
@@ -175,7 +206,7 @@ class ProjectWidget extends StatelessWidget {
                             project.tools[i],
                             style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xFF8892B0)),
+                                color: uiHelpers.textSecondaryColor),
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 4)
                               .copyWith(right: 16),
@@ -195,7 +226,7 @@ class ProjectWidget extends StatelessWidget {
           margin: EdgeInsets.only(
               bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
           child: Material(
-            color: surfaceColor,
+            color: uiHelpers.surfaceColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
@@ -209,28 +240,30 @@ class ProjectWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Icon(ProjectIcons.folderIcon, size: 30),
+                      NeumorphicIcon(ProjectIcons.folderIcon, size: 30),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           project.websiteLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.websiteIcon),
+                                  icon:
+                                      NeumorphicIcon(ProjectIcons.websiteIcon),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.websiteLink),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.githubIcon),
+                                  icon: NeumorphicIcon(ProjectIcons.githubIcon),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.githubLink),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
                               : IconButton(
-                                  icon: Icon(ProjectIcons.playstoreIcon),
+                                  icon: NeumorphicIcon(
+                                      ProjectIcons.playstoreIcon),
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.playstoreLink),
                                 ),
@@ -257,7 +290,7 @@ class ProjectWidget extends StatelessWidget {
                             project.tools[i],
                             style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
-                                color: Color(0xFF8892B0)),
+                                color: uiHelpers.textSecondaryColor),
                           ),
                           padding: const EdgeInsets.symmetric(vertical: 4)
                               .copyWith(right: 16),

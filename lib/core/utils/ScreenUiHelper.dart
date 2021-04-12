@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/scaling.dart';
@@ -17,6 +18,18 @@ class ScreenUiHelper {
   TextStyle body;
   TextStyle buttonStyle;
 
+  Color surfaceColor;
+  Color backgroundColor;
+  Color primaryColor;
+  Color textPrimaryColor;
+  Color textSecondaryColor;
+  Color dividerColor;
+
+  NeumorphicTextStyle headlineTextStyle;
+  NeumorphicTextStyle titleTextStyle;
+  NeumorphicTextStyle bodyTextStyle;
+  NeumorphicTextStyle buttonTextStyle;
+
   SizedBox verticalSpaceLow;
   SizedBox verticalSpaceMedium;
   SizedBox verticalSpaceHigh;
@@ -27,6 +40,25 @@ class ScreenUiHelper {
 
   ScreenUiHelper.fromContext(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
+
+    surfaceColor = NeumorphicTheme.of(context).isUsingDark
+        ? darkColor.surfaceColor
+        : lightColor.surfaceColor;
+    backgroundColor = NeumorphicTheme.of(context).isUsingDark
+        ? darkColor.backgroundColor
+        : lightColor.backgroundColor;
+    primaryColor = NeumorphicTheme.of(context).isUsingDark
+        ? darkColor.primaryColor
+        : lightColor.primaryColor;
+    textPrimaryColor = NeumorphicTheme.of(context).isUsingDark
+        ? darkColor.textPrimaryColor
+        : lightColor.textPrimaryColor;
+    textSecondaryColor = NeumorphicTheme.of(context).isUsingDark
+        ? darkColor.textSecondaryColor
+        : lightColor.textSecondaryColor;
+    dividerColor = NeumorphicTheme.of(context).isUsingDark
+        ? darkColor.dividerColor
+        : lightColor.dividerColor;
 
     double screenWidth = mediaQuery.size.width;
     double screenHeight = mediaQuery.size.height;
@@ -56,6 +88,29 @@ class ScreenUiHelper {
 
     body = TextStyle(
         color: textSecondaryColor,
+        fontWeight: FontWeight.w400,
+        fontSize: 14,
+        decoration: TextDecoration.none,
+        fontFamily: SystemProperties.fontName);
+
+    headlineTextStyle = NeumorphicTextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
+        decoration: TextDecoration.none,
+        fontFamily: SystemProperties.titleFont);
+
+    titleTextStyle = NeumorphicTextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+        decoration: TextDecoration.none,
+        fontFamily: SystemProperties.titleFont);
+    buttonTextStyle = NeumorphicTextStyle(
+        fontFamily: SystemProperties.titleFont,
+        decoration: TextDecoration.none,
+        fontWeight: FontWeight.bold,
+        fontSize: 14);
+
+    bodyTextStyle = NeumorphicTextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 14,
         decoration: TextDecoration.none,

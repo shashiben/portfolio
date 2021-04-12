@@ -16,6 +16,7 @@ class AboutDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 30),
         child: SingleChildScrollView(
@@ -43,7 +44,7 @@ class AboutDesktopView extends StatelessWidget {
                         Container(
                           width: uiHelpers.width * 0.22,
                           child: Divider(
-                            color: Colors.white60,
+                            color: uiHelpers.dividerColor,
                             thickness: 2.5,
                           ),
                         ),
@@ -52,7 +53,7 @@ class AboutDesktopView extends StatelessWidget {
                           width: uiHelpers.width * 0.45,
                           child: Text(PersonalDetails.intro,
                               style: uiHelpers.body.copyWith(
-                                  color: textSecondaryColor.withOpacity(0.4))),
+                                  color: uiHelpers.textSecondaryColor)),
                         ),
                         uiHelpers.verticalSpaceMedium,
                         Text(
@@ -62,7 +63,7 @@ class AboutDesktopView extends StatelessWidget {
                         Container(
                           width: uiHelpers.width * 0.1,
                           child: Divider(
-                            color: Colors.white60,
+                            color: uiHelpers.dividerColor,
                             thickness: 2.5,
                           ),
                         ),
@@ -76,7 +77,7 @@ class AboutDesktopView extends StatelessWidget {
                         Container(
                           width: uiHelpers.width * 0.1,
                           child: Divider(
-                            color: Colors.white60,
+                            color: uiHelpers.dividerColor,
                             thickness: 2.5,
                           ),
                         ),
@@ -106,8 +107,8 @@ class AboutDesktopView extends StatelessWidget {
                         ),
                       ),
                       Timeline(
-                          indicatorColor: primaryColor,
-                          lineColor: textSecondaryColor,
+                          indicatorColor: uiHelpers.primaryColor,
+                          lineColor: uiHelpers.textSecondaryColor,
                           shrinkWrap: true,
                           itemGap: 25,
                           lineGap: 5,

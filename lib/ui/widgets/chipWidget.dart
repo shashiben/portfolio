@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 
 class ChipWidget extends StatelessWidget {
@@ -8,7 +9,8 @@ class ChipWidget extends StatelessWidget {
   const ChipWidget({Key key, this.text, this.isSelected}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Neumorphic(
+      style: NeumorphicStyle(shape: NeumorphicShape.flat),
       child: Text(
         text,
         style: isSelected

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
@@ -16,6 +16,7 @@ class HomeDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: Container(
         alignment: Alignment.center,
         width: double.infinity,
@@ -26,32 +27,33 @@ class HomeDesktopView extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            NeumorphicText(
               "Hello, this is",
-              style: uiHelpers.buttonStyle.copyWith(
-                  color: primaryColor,
-                  fontWeight: FontWeight.w300,
-                  letterSpacing: 1),
+              style: NeumorphicStyle(color:uiHelpers. primaryColor),
+              textStyle: NeumorphicTextStyle(
+                  fontSize: 20, fontWeight: FontWeight.w300, letterSpacing: 1),
             ),
             SizedBox(height: 10),
             FadeAnimation(
               delay: 1,
               yDistance: 10.0,
               xDistance: 0.0,
-              child: Text(
-                "${PersonalDetails.userName}.",
-                style: uiHelpers.title
-                    .copyWith(fontSize: 60, color: Color(0xFFc6D6F6)),
+              child: NeumorphicText(
+                PersonalDetails.userName,
+                style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),
+                textStyle: NeumorphicTextStyle(
+                    fontSize: 60, fontWeight: FontWeight.bold),
               ),
             ),
             FadeAnimation(
               delay: 2,
               yDistance: 20.0,
               xDistance: 0.0,
-              child: Text(
+              child: NeumorphicText(
                 PersonalDetails.shortIntro,
-                style: uiHelpers.headline
-                    .copyWith(color: Color(0xFFc6D6F6), fontSize: 40),
+                style: NeumorphicStyle(color: uiHelpers.textSecondaryColor),
+                textStyle: NeumorphicTextStyle(
+                    fontSize: 40, fontWeight: FontWeight.bold),
               ),
             ),
             uiHelpers.verticalSpaceLow,
@@ -60,45 +62,30 @@ class HomeDesktopView extends StatelessWidget {
               yDistance: 30.0,
               xDistance: 0.0,
               child: MouseRegion(
-                onEnter: (event) => model.changeHoveredBoolean(true),
-                onExit: (event) => model.changeHoveredBoolean(false),
-                child: MaterialButton(
-                  color: model.isHoveredOnGetInTouch
-                      ? primaryColor
-                      : backgroundColor,
-                  hoverElevation: 100,
-                  elevation: 10,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: primaryColor),
-                      borderRadius: BorderRadius.circular(8)),
-                  onPressed: () => model.getInTouch(),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "Get In touch",
-                        style: uiHelpers.title.copyWith(
-                            letterSpacing: 1,
-                            color: model.isHoveredOnGetInTouch
-                                ? textPrimaryColor
-                                : primaryColor,
-                            fontWeight: FontWeight.w200),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(
-                          model.isHoveredOnGetInTouch
-                              ? FlutterIcons.ios_arrow_forward_ion
-                              : FlutterIcons.ios_arrow_round_forward_ion,
-                          color: model.isHoveredOnGetInTouch
-                              ? textPrimaryColor
-                              : primaryColor,
-                          size: 20)
-                    ],
-                  ),
-                ),
-              ),
+                  onEnter: (event) => model.changeHoveredBoolean(true),
+                  onExit: (event) => model.changeHoveredBoolean(false),
+                  child: NeumorphicButton(
+                    onPressed: () => model.getInTouch(),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 30),
+                    style: NeumorphicStyle(
+                        border: NeumorphicBorder(
+                          isEnabled: true,
+                          color: uiHelpers.surfaceColor,
+                          width: 2,
+                        ),
+                        intensity: 8,
+                        boxShape: NeumorphicBoxShape.roundRect(
+                            BorderRadius.circular(12)),
+                        color: uiHelpers.backgroundColor,
+                        lightSource: LightSource.topLeft,
+                        depth: model.isHoveredOnGetInTouch ? -20 : 4,
+                        surfaceIntensity: 0.5,
+                        shape: model.isHoveredOnGetInTouch
+                            ? NeumorphicShape.flat
+                            : NeumorphicShape.flat),
+                    child: NeumorphicText("Get In Touch",style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),),
+                  )),
             )
           ],
         ),

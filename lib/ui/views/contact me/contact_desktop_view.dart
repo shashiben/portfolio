@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
@@ -16,6 +17,7 @@ class ContactDesktopView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: Form(
         key: model.formKey,
         child: Container(
@@ -23,9 +25,10 @@ class ContactDesktopView extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
+                NeumorphicText(
                   "Get In Touch!",
-                  style: uiHelpers.headline.copyWith(fontSize: 45),
+                  style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),
+                  textStyle: uiHelpers.headlineTextStyle.copyWith(fontSize: 45),
                 ),
                 SizedBox(
                   height: 8,
@@ -34,9 +37,10 @@ class ContactDesktopView extends StatelessWidget {
                   xDistance: 0,
                   delay: 1,
                   yDistance: 10,
-                  child: Text(
+                  child: NeumorphicText(
                     "Contact me for hiring,or help me to join your team",
-                    style: uiHelpers.body.copyWith(fontSize: 25),
+                    style: NeumorphicStyle(color: uiHelpers.textSecondaryColor),
+                    textStyle: uiHelpers.bodyTextStyle.copyWith(fontSize: 25),
                   ),
                 ),
                 uiHelpers.verticalSpaceMedium,
@@ -105,9 +109,21 @@ class ContactDesktopView extends StatelessWidget {
                   xDistance: 00,
                   yDistance: 25,
                   delay: 1.5,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                  child: Neumorphic(
+                    style: NeumorphicStyle(
+                      border: NeumorphicBorder(
+                        isEnabled: true,
+                        color: uiHelpers.surfaceColor,
+                        width: 2,
+                      ),
+                      intensity:0.4,
+                      boxShape: NeumorphicBoxShape.roundRect(
+                          BorderRadius.circular(12)),
+                      color: uiHelpers.backgroundColor,
+                      lightSource: LightSource.bottomRight,
+                      depth: 8,
+                      surfaceIntensity: 0.1,
+                    ),
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 25),
@@ -115,9 +131,10 @@ class ContactDesktopView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          NeumorphicText(
                             "Contact Form",
-                            style: uiHelpers.headline,
+                            style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),
+                            textStyle: uiHelpers.headlineTextStyle,
                           ),
                           uiHelpers.verticalSpaceLow,
                           Row(
@@ -126,9 +143,11 @@ class ContactDesktopView extends StatelessWidget {
                                 width: uiHelpers.width * 0.3,
                                 child: Column(
                                     children: [
-                                      Text(
+                                      NeumorphicText(
                                         "Your Name",
-                                        style: uiHelpers.body,
+                                        style: NeumorphicStyle(
+                                            color: uiHelpers.textSecondaryColor),
+                                        textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
@@ -149,27 +168,29 @@ class ContactDesktopView extends StatelessWidget {
                                               FormIcon.nameIcon,
                                               color: model.hasFocusMap["name"]
                                                   ? primaryColor
-                                                  : textPrimaryColor,
+                                                  : uiHelpers.textPrimaryColor,
                                             ),
                                             hintText: "Luffy San",
                                             hintStyle: TextStyle(
-                                                color: textSecondaryColor),
+                                                color: uiHelpers.textSecondaryColor),
                                             enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
-                                                    color: textPrimaryColor)),
+                                                    color: uiHelpers.textPrimaryColor)),
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
                                                     color:
-                                                        textSecondaryColor))),
+                                                        uiHelpers.textSecondaryColor))),
                                       ),
                                       SizedBox(height: 10),
-                                      Text(
+                                      NeumorphicText(
                                         "Your Email",
-                                        style: uiHelpers.body,
+                                        style: NeumorphicStyle(
+                                            color: uiHelpers.textSecondaryColor),
+                                        textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
@@ -194,27 +215,29 @@ class ContactDesktopView extends StatelessWidget {
                                               FormIcon.nameIcon,
                                               color: model.hasFocusMap["email"]
                                                   ? primaryColor
-                                                  : textPrimaryColor,
+                                                  : uiHelpers.textPrimaryColor,
                                             ),
                                             hintText: "youremail@gmail.com",
                                             hintStyle: TextStyle(
-                                                color: textSecondaryColor),
+                                                color: uiHelpers.textSecondaryColor),
                                             enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
-                                                    color: textPrimaryColor)),
+                                                    color: uiHelpers.textPrimaryColor)),
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
                                                     color:
-                                                        textSecondaryColor))),
+                                                        uiHelpers.textSecondaryColor))),
                                       ),
                                       SizedBox(height: 10),
-                                      Text(
+                                      NeumorphicText(
                                         "Subject",
-                                        style: uiHelpers.body,
+                                        style: NeumorphicStyle(
+                                            color: uiHelpers.textSecondaryColor),
+                                        textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
@@ -237,22 +260,22 @@ class ContactDesktopView extends StatelessWidget {
                                               color:
                                                   model.hasFocusMap["subject"]
                                                       ? primaryColor
-                                                      : textPrimaryColor,
+                                                      : uiHelpers.textPrimaryColor,
                                             ),
                                             hintText: "Hiring for...",
                                             hintStyle: TextStyle(
-                                                color: textSecondaryColor),
+                                                color: uiHelpers.textSecondaryColor),
                                             enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
-                                                    color: textPrimaryColor)),
+                                                    color: uiHelpers.textPrimaryColor)),
                                             border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
                                                     color:
-                                                        textSecondaryColor))),
+                                                        uiHelpers.textSecondaryColor))),
                                       ),
                                     ],
                                     crossAxisAlignment:
@@ -265,9 +288,11 @@ class ContactDesktopView extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      NeumorphicText(
                                         "Message",
-                                        style: uiHelpers.body,
+                                        style: NeumorphicStyle(
+                                            color: uiHelpers.textSecondaryColor),
+                                        textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
@@ -288,18 +313,17 @@ class ContactDesktopView extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
-                                                    color: textPrimaryColor)),
+                                                    color: uiHelpers.textPrimaryColor)),
                                             alignLabelWithHint: true,
                                             hintStyle: TextStyle(
-                                                color: textSecondaryColor),
+                                                color: uiHelpers.textSecondaryColor),
                                             hintText: "Your Messsage..",
                                             border: OutlineInputBorder(
-                                              
                                                 borderRadius:
                                                     BorderRadius.circular(8),
                                                 borderSide: BorderSide(
                                                     color:
-                                                        textSecondaryColor))),
+                                                        uiHelpers.textSecondaryColor))),
                                       ),
                                     ],
                                   ),
@@ -313,26 +337,28 @@ class ContactDesktopView extends StatelessWidget {
                             yDistance: 0,
                             delay: 2,
                             child: Container(
-                              alignment: Alignment.center,
-                              child: MaterialButton(
-                                  visualDensity:
-                                      VisualDensity.adaptivePlatformDensity,
-                                  disabledTextColor: textSecondaryColor,
-                                  disabledElevation: 0,
-                                  disabledColor: Colors.grey,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 40, vertical: 20),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6)),
-                                  color: primaryColor,
-                                  onPressed: () => model.openMail(),
-                                  child: Text(
-                                    "Send Message",
-                                    style: uiHelpers.buttonStyle.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w400),
-                                  )),
-                            ),
+                                alignment: Alignment.center,
+                                child: NeumorphicButton(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 30, vertical: 15),
+                                    style: NeumorphicStyle(
+                                      intensity: 8,
+                                      boxShape: NeumorphicBoxShape.roundRect(
+                                          BorderRadius.circular(12)),
+                                      surfaceIntensity: 0.6,
+                                      color: primaryColor,
+                                      depth: 8,
+                                      lightSource: LightSource.topLeft,
+                                    ),
+                                    onPressed: () => model.openMail(),
+                                    child: NeumorphicText(
+                                      "Send Message",
+                                      style:
+                                          NeumorphicStyle(color: Colors.white),
+                                      textStyle: uiHelpers.buttonTextStyle
+                                          .copyWith(
+                                              fontWeight: FontWeight.w400),
+                                    ))),
                           ),
                         ],
                       ),

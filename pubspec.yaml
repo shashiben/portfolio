@@ -29,6 +29,7 @@ dependencies:
   animated_text_kit: ^4.0.0
   simple_animations: ^2.5.1
   oktoast: ^3.0.0
+  flutter_neumorphic:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -39,7 +40,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/illustrations/
     - assets/images/
   fonts:
     - family: Lora

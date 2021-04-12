@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
@@ -19,8 +20,8 @@ class ContactIconHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
     return GestureDetector(
-      onTap: ()=>onTap(),
-          child: Material(
+      onTap: () => onTap(),
+      child: Material(
         color: Colors.transparent,
         elevation: isActive ? 10 : 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -30,26 +31,30 @@ class ContactIconHeader extends StatelessWidget {
           decoration: isActive
               ? BoxDecoration(boxShadow: [
                   BoxShadow(
-                    color: primaryColor,
+                    color: uiHelpers.primaryColor,
                     blurRadius: 5.0,
                   ),
-                ], color: primaryColor, borderRadius: BorderRadius.circular(8))
+                ], color: uiHelpers.primaryColor, borderRadius: BorderRadius.circular(8))
               : BoxDecoration(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
+              NeumorphicIcon(
                 icon,
-                color: Colors.white,
                 size: 30,
+                style: NeumorphicStyle(
+                    color: isActive ? Colors.white : uiHelpers.textPrimaryColor),
               ),
               SizedBox(
                 height: 5,
               ),
-              Text(
+              NeumorphicText(
                 name,
-                style: uiHelpers.title.copyWith(fontWeight: FontWeight.w300),
+                style: NeumorphicStyle(
+                    color: isActive ? Colors.white54 : uiHelpers.textSecondaryColor),
+                textStyle: uiHelpers.titleTextStyle
+                    .copyWith(fontWeight: FontWeight.w300),
               )
             ],
           ),
