@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/widgets/fadeAnimation.dart';

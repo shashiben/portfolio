@@ -19,6 +19,9 @@ mixin SystemProperties {
 
 //*Personal details
 mixin PersonalDetails {
+  static const String githubUserName = "shashiben";
+  static const String githubDataUrl =
+      "https://api.github.com/users/$githubUserName/repos";
   static List<Project> projectsList = [
     Project(
         title: "Hostel Management",

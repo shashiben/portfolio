@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/about%20me/about_view_model.dart';
+import 'package:portfolio/ui/widgets/divider_widget.dart';
 import 'package:portfolio/ui/widgets/featured_skill_widget.dart';
 import 'package:portfolio/ui/widgets/skill_widget.dart';
 import 'package:portfolio/ui/widgets/timeline_widget.dart';
@@ -62,9 +62,9 @@ class AboutDesktopView extends StatelessWidget {
                         ),
                         Container(
                           width: uiHelpers.width * 0.1,
-                          child: Divider(
-                            color: uiHelpers.dividerColor,
-                            thickness: 2.5,
+                          child: DividerWidget(
+                            width: uiHelpers.width * 0.1,
+                            dividerColor: uiHelpers.dividerColor,
                           ),
                         ),
                         uiHelpers.verticalSpaceLow,
@@ -111,7 +111,8 @@ class AboutDesktopView extends StatelessWidget {
                           lineColor: uiHelpers.textSecondaryColor,
                           shrinkWrap: true,
                           itemGap: 25,
-                          lineGap: 5,
+                          lineGap: 0,
+                          
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),

@@ -14,7 +14,7 @@ class Timeline extends StatelessWidget {
     this.shrinkWrap = true,
     this.primary = false,
     this.reverse = false,
-    this.indicatorSize = 30.0,
+    this.indicatorSize = 12.0,
     this.lineGap = 4.0,
     this.indicatorColor = Colors.blue,
     this.indicatorStyle = PaintingStyle.fill,

@@ -116,7 +116,7 @@ class ContactDesktopView extends StatelessWidget {
                         color: uiHelpers.surfaceColor,
                         width: 2,
                       ),
-                      intensity:0.4,
+                      intensity: 0.65,
                       boxShape: NeumorphicBoxShape.roundRect(
                           BorderRadius.circular(12)),
                       color: uiHelpers.backgroundColor,
@@ -133,7 +133,8 @@ class ContactDesktopView extends StatelessWidget {
                         children: [
                           NeumorphicText(
                             "Contact Form",
-                            style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),
+                            style: NeumorphicStyle(
+                                color: uiHelpers.textPrimaryColor),
                             textStyle: uiHelpers.headlineTextStyle,
                           ),
                           uiHelpers.verticalSpaceLow,
@@ -146,136 +147,161 @@ class ContactDesktopView extends StatelessWidget {
                                       NeumorphicText(
                                         "Your Name",
                                         style: NeumorphicStyle(
-                                            color: uiHelpers.textSecondaryColor),
+                                            color:
+                                                uiHelpers.textSecondaryColor),
                                         textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      TextFormField(
-                                        controller: model.nameController,
-                                        validator: (String value) {
-                                          if (value.trim().isEmpty) {
-                                            return "Please Enter Name";
-                                          }
+                                      Neumorphic(
+                                        margin: EdgeInsets.only(
+                                            left: 8,
+                                            right: 8,
+                                            top: 2,
+                                            bottom: 4),
+                                        style: NeumorphicStyle(
+                                          depth: NeumorphicTheme.embossDepth(
+                                              context),
+                                          boxShape:
+                                              NeumorphicBoxShape.roundRect(
+                                                  BorderRadius.circular(8)),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 6, horizontal: 8),
+                                        child: TextFormField(
+                                          controller: model.nameController,
+                                          validator: (String value) {
+                                            if (value.trim().isEmpty) {
+                                              return "Please Enter Name";
+                                            }
 
-                                          return null;
-                                        },
-                                        focusNode: model.focusNodeMap["name"],
-                                        keyboardType: TextInputType.name,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              FormIcon.nameIcon,
-                                              color: model.hasFocusMap["name"]
-                                                  ? primaryColor
-                                                  : uiHelpers.textPrimaryColor,
-                                            ),
-                                            hintText: "Luffy San",
-                                            hintStyle: TextStyle(
-                                                color: uiHelpers.textSecondaryColor),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color: uiHelpers.textPrimaryColor)),
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color:
-                                                        uiHelpers.textSecondaryColor))),
+                                            return null;
+                                          },
+                                          focusNode: model.focusNodeMap["name"],
+                                          keyboardType: TextInputType.name,
+                                          decoration: InputDecoration(
+                                              prefixIcon: Icon(
+                                                FormIcon.nameIcon,
+                                                color: model.hasFocusMap["name"]
+                                                    ? primaryColor
+                                                    : uiHelpers
+                                                        .textPrimaryColor,
+                                              ),
+                                              hintText: "Luffy San",
+                                              hintStyle: TextStyle(
+                                                  color: uiHelpers
+                                                      .textSecondaryColor),
+                                              border: InputBorder.none),
+                                        ),
                                       ),
                                       SizedBox(height: 10),
                                       NeumorphicText(
                                         "Your Email",
                                         style: NeumorphicStyle(
-                                            color: uiHelpers.textSecondaryColor),
+                                            color:
+                                                uiHelpers.textSecondaryColor),
                                         textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      TextFormField(
-                                        controller: model.emailController,
-                                        validator: (String value) {
-                                          if (value.trim().isEmpty) {
-                                            return "Please Enter Email";
-                                          } else if (!RegExp(
-                                                  r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
-                                              .hasMatch(value)) {
-                                            return "Please enter valid email";
-                                          }
+                                      Neumorphic(
+                                        margin: EdgeInsets.only(
+                                            left: 8,
+                                            right: 8,
+                                            top: 2,
+                                            bottom: 4),
+                                        style: NeumorphicStyle(
+                                          depth: NeumorphicTheme.embossDepth(
+                                              context),
+                                          boxShape:
+                                              NeumorphicBoxShape.roundRect(
+                                                  BorderRadius.circular(8)),
+                                        ),
+                                        child: TextFormField(
+                                          controller: model.emailController,
+                                          validator: (String value) {
+                                            if (value.trim().isEmpty) {
+                                              return "Please Enter Email";
+                                            } else if (!RegExp(
+                                                    r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                                                .hasMatch(value)) {
+                                              return "Please enter valid email";
+                                            }
 
-                                          return null;
-                                        },
-                                        focusNode: model.focusNodeMap["email"],
-                                        keyboardType: TextInputType.name,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              FormIcon.nameIcon,
-                                              color: model.hasFocusMap["email"]
-                                                  ? primaryColor
-                                                  : uiHelpers.textPrimaryColor,
-                                            ),
-                                            hintText: "youremail@gmail.com",
-                                            hintStyle: TextStyle(
-                                                color: uiHelpers.textSecondaryColor),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color: uiHelpers.textPrimaryColor)),
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color:
-                                                        uiHelpers.textSecondaryColor))),
+                                            return null;
+                                          },
+                                          focusNode:
+                                              model.focusNodeMap["email"],
+                                          keyboardType: TextInputType.name,
+                                          decoration: InputDecoration(
+                                              prefixIcon: Icon(
+                                                FormIcon.nameIcon,
+                                                color:
+                                                    model.hasFocusMap["email"]
+                                                        ? primaryColor
+                                                        : uiHelpers
+                                                            .textPrimaryColor,
+                                              ),
+                                              hintText: "youremail@gmail.com",
+                                              hintStyle: TextStyle(
+                                                  color: uiHelpers
+                                                      .textSecondaryColor),
+                                              border: InputBorder.none),
+                                        ),
                                       ),
                                       SizedBox(height: 10),
                                       NeumorphicText(
                                         "Subject",
                                         style: NeumorphicStyle(
-                                            color: uiHelpers.textSecondaryColor),
+                                            color:
+                                                uiHelpers.textSecondaryColor),
                                         textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      TextFormField(
-                                        controller: model.subjectController,
-                                        validator: (String value) {
-                                          if (value.trim().isEmpty) {
-                                            return "Please Enter Subject";
-                                          }
+                                      Neumorphic(
+                                        margin: EdgeInsets.only(
+                                            left: 8,
+                                            right: 8,
+                                            top: 2,
+                                            bottom: 4),
+                                        style: NeumorphicStyle(
+                                          depth: NeumorphicTheme.embossDepth(
+                                              context),
+                                          boxShape:
+                                              NeumorphicBoxShape.roundRect(
+                                                  BorderRadius.circular(8)),
+                                        ),
+                                        child: TextFormField(
+                                          controller: model.subjectController,
+                                          validator: (String value) {
+                                            if (value.trim().isEmpty) {
+                                              return "Please Enter Subject";
+                                            }
 
-                                          return null;
-                                        },
-                                        focusNode:
-                                            model.focusNodeMap["subject"],
-                                        keyboardType: TextInputType.name,
-                                        decoration: InputDecoration(
-                                            prefixIcon: Icon(
-                                              FormIcon.nameIcon,
-                                              color:
-                                                  model.hasFocusMap["subject"]
-                                                      ? primaryColor
-                                                      : uiHelpers.textPrimaryColor,
-                                            ),
-                                            hintText: "Hiring for...",
-                                            hintStyle: TextStyle(
-                                                color: uiHelpers.textSecondaryColor),
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color: uiHelpers.textPrimaryColor)),
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color:
-                                                        uiHelpers.textSecondaryColor))),
+                                            return null;
+                                          },
+                                          focusNode:
+                                              model.focusNodeMap["subject"],
+                                          keyboardType: TextInputType.name,
+                                          decoration: InputDecoration(
+                                              prefixIcon: Icon(
+                                                FormIcon.nameIcon,
+                                                color:
+                                                    model.hasFocusMap["subject"]
+                                                        ? primaryColor
+                                                        : uiHelpers
+                                                            .textPrimaryColor,
+                                              ),
+                                              hintText: "Hiring for...",
+                                              hintStyle: TextStyle(
+                                                  color: uiHelpers
+                                                      .textSecondaryColor),
+                                              border: InputBorder.none),
+                                        ),
                                       ),
                                     ],
                                     crossAxisAlignment:
@@ -291,39 +317,45 @@ class ContactDesktopView extends StatelessWidget {
                                       NeumorphicText(
                                         "Message",
                                         style: NeumorphicStyle(
-                                            color: uiHelpers.textSecondaryColor),
+                                            color:
+                                                uiHelpers.textSecondaryColor),
                                         textStyle: uiHelpers.bodyTextStyle,
                                       ),
                                       SizedBox(
                                         height: 4,
                                       ),
-                                      TextFormField(
-                                        controller: model.bodyController,
-                                        validator: (String value) {
-                                          if (value.trim().isEmpty) {
-                                            return "Please Enter Message";
-                                          }
+                                      Neumorphic(
+                                        margin: EdgeInsets.only(
+                                            left: 8,
+                                            right: 8,
+                                            top: 2,
+                                            bottom: 4),
+                                        style: NeumorphicStyle(
+                                          depth: NeumorphicTheme.embossDepth(
+                                              context),
+                                          boxShape:
+                                              NeumorphicBoxShape.roundRect(
+                                                  BorderRadius.circular(8)),
+                                        ),
+                                        child: TextFormField(
+                                          controller: model.bodyController,
+                                          validator: (String value) {
+                                            if (value.trim().isEmpty) {
+                                              return "Please Enter Message";
+                                            }
 
-                                          return null;
-                                        },
-                                        maxLines: 10,
-                                        keyboardType: TextInputType.name,
-                                        decoration: InputDecoration(
-                                            enabledBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color: uiHelpers.textPrimaryColor)),
-                                            alignLabelWithHint: true,
-                                            hintStyle: TextStyle(
-                                                color: uiHelpers.textSecondaryColor),
-                                            hintText: "Your Messsage..",
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                                borderSide: BorderSide(
-                                                    color:
-                                                        uiHelpers.textSecondaryColor))),
+                                            return null;
+                                          },
+                                          maxLines: 10,
+                                          keyboardType: TextInputType.name,
+                                          decoration: InputDecoration(
+                                              alignLabelWithHint: true,
+                                              hintStyle: TextStyle(
+                                                  color: uiHelpers
+                                                      .textSecondaryColor),
+                                              hintText: "Your Messsage..",
+                                              border: InputBorder.none),
+                                        ),
                                       ),
                                     ],
                                   ),
