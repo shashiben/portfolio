@@ -202,7 +202,11 @@ mixin EducationDetails {
   static String universityName = "Sri Venkateswara University";
   static String universityTimeline = "2017 - 2021";
 
-  static String universityStream = "B.Tech (CSE)";
+  static String universityStream = "Computer Science and Engineering";
   static String schoolStream = "SSC";
   static String collegeStream = "Intermediate (MPC)";
+
+  static double universityPercentage = 75.4;
+  static double schoolPercentage = 95.2;
+  static double collegePercentage = 93;
 }

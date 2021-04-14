@@ -8,7 +8,7 @@ class DividerWidget extends StatelessWidget {
 
   const DividerWidget(
       {Key key,
-      this.thickness = 2.5,
+      this.thickness = 2.0,
       @required this.dividerColor,
       this.radius = 6,
       @required this.width})

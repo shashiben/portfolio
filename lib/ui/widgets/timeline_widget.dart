@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/colors.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import 'package:portfolio/ui/widgets/custom%20painters/education_painter.dart';
 
 class Timeline extends StatelessWidget {
   const Timeline({
@@ -47,133 +50,27 @@ class Timeline extends StatelessWidget {
   final StrokeCap strokeCap;
   final double strokeWidth;
   final PaintingStyle style;
-
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: padding,
-      separatorBuilder: (_, __) => SizedBox(height: itemGap),
-      physics: physics,
-      shrinkWrap: shrinkWrap,
-      itemCount: itemCount,
-      controller: controller,
-      reverse: reverse,
-      primary: primary,
-      itemBuilder: (context, index) {
-        final child = children[index];
-
-        Widget indicator;
-        if (indicators != null) {
-          indicator = indicators[index];
-        }
-
-        final isFirst = index == 0;
-        final isLast = index == itemCount - 1;
-
-        final timelineTile = <Widget>[
-          CustomPaint(
-            foregroundPainter: _TimelinePainter(
-              hideDefaultIndicator: indicator != null,
-              lineColor: lineColor,
-              indicatorColor: indicatorColor,
-              indicatorSize: indicatorSize,
-              indicatorStyle: indicatorStyle,
-              isFirst: isFirst,
-              isLast: isLast,
-              lineGap: lineGap,
-              strokeCap: strokeCap,
-              strokeWidth: strokeWidth,
-              style: style,
-              itemGap: itemGap,
-            ),
-            child: SizedBox(
-              height: double.infinity,
-              width: indicatorSize,
-              child: indicator,
-            ),
-          ),
-          SizedBox(width: gutterSpacing),
-          Expanded(child: child),
-        ];
-
-        return IntrinsicHeight(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children:
-                isLeftAligned ? timelineTile : timelineTile.reversed.toList(),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _TimelinePainter extends CustomPainter {
-  _TimelinePainter({
-    @required this.hideDefaultIndicator,
-    @required this.indicatorColor,
-    @required this.indicatorStyle,
-    @required this.indicatorSize,
-    @required this.lineGap,
-    @required this.strokeCap,
-    @required this.strokeWidth,
-    @required this.style,
-    @required this.lineColor,
-    @required this.isFirst,
-    @required this.isLast,
-    @required this.itemGap,
-  })  : linePaint = Paint()
-          ..color = lineColor
-          ..strokeCap = strokeCap
-          ..strokeWidth = strokeWidth
-          ..style = style,
-        circlePaint = Paint()
-          ..color = indicatorColor
-          ..style = indicatorStyle;
-
-  final bool hideDefaultIndicator;
-  final Color indicatorColor;
-  final PaintingStyle indicatorStyle;
-  final double indicatorSize;
-  final double lineGap;
-  final StrokeCap strokeCap;
-  final double strokeWidth;
-  final PaintingStyle style;
-  final Color lineColor;
-  final Paint linePaint;
-  final Paint circlePaint;
-  final bool isFirst;
-  final bool isLast;
-  final double itemGap;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final indicatorRadius = indicatorSize / 2;
-    final halfItemGap = itemGap / 2;
-    final indicatorMargin = indicatorRadius + lineGap;
-
-    final top = size.topLeft(Offset(indicatorRadius, 0.0 - halfItemGap));
-    final centerTop = size.centerLeft(
-      Offset(indicatorRadius, -indicatorMargin),
-    );
-
-    final bottom = size.bottomLeft(Offset(indicatorRadius, 0.0 + halfItemGap));
-    final centerBottom = size.centerLeft(
-      Offset(indicatorRadius, indicatorMargin),
-    );
-
-    if (!isFirst) canvas.drawLine(top, centerTop, linePaint);
-    if (!isLast) canvas.drawLine(centerBottom, bottom, linePaint);
-
-    if (!hideDefaultIndicator) {
-      final Offset offsetCenter = size.centerLeft(Offset(indicatorRadius, 0));
-
-      canvas.drawCircle(offsetCenter, indicatorRadius, circlePaint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+    final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
+    return ListView.builder(
+        shrinkWrap: true,
+        primary: false,
+        itemCount: children.length,
+        itemBuilder: (context, index) => CustomPaint(
+              painter: RPSCustomPainter(
+                  indicatorColor: uiHelper.primaryColor,
+                  lineColor: uiHelper.dividerColor,
+                  verticalHeight: index == 0 ? 100 : 120,
+                  horizontalWidth: 200,
+                  indicatorSize: 6,
+                  isFirst: index == 0),
+              child: Container(
+                height: index == 0 ? 100 : 120,
+                padding: EdgeInsets.only(
+                    left: 20, top: (index != 0) ? 100 * 0.26 : 0),
+                child: children[index],
+              ),
+            ));
   }
 }

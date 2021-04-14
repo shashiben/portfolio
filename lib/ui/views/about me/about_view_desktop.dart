@@ -3,6 +3,7 @@ import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/about%20me/about_view_model.dart';
 import 'package:portfolio/ui/widgets/divider_widget.dart';
+import 'package:portfolio/ui/widgets/eductaion_timeline_widget.dart';
 import 'package:portfolio/ui/widgets/featured_skill_widget.dart';
 import 'package:portfolio/ui/widgets/skill_widget.dart';
 import 'package:portfolio/ui/widgets/timeline_widget.dart';
@@ -18,11 +19,14 @@ class AboutDesktopView extends StatelessWidget {
     return Scaffold(
       backgroundColor: uiHelpers.backgroundColor,
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 30,
+              ),
               Text(
                 "Wow, a whole page about my journey!",
                 style: uiHelpers.headline.copyWith(fontSize: 50),
@@ -42,10 +46,10 @@ class AboutDesktopView extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.22,
-                          child: Divider(
-                            color: uiHelpers.dividerColor,
-                            thickness: 2.5,
+                          width: uiHelpers.width * 0.1,
+                          child: DividerWidget(
+                            width: uiHelpers.width * 0.1,
+                            dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
                         uiHelpers.verticalSpaceLow,
@@ -61,10 +65,10 @@ class AboutDesktopView extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.1,
+                          width: uiHelpers.width * 0.07,
                           child: DividerWidget(
                             width: uiHelpers.width * 0.1,
-                            dividerColor: uiHelpers.dividerColor,
+                            dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
                         uiHelpers.verticalSpaceLow,
@@ -75,10 +79,10 @@ class AboutDesktopView extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.1,
-                          child: Divider(
-                            color: uiHelpers.dividerColor,
-                            thickness: 2.5,
+                          width: uiHelpers.width * 0.05,
+                          child: DividerWidget(
+                            width: uiHelpers.width * 0.1,
+                            dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
                         uiHelpers.verticalSpaceLow,
@@ -100,77 +104,36 @@ class AboutDesktopView extends StatelessWidget {
                         style: uiHelpers.title.copyWith(fontSize: 24),
                       ),
                       Container(
-                        width: uiHelpers.width * 0.08,
-                        child: Divider(
-                          color: Colors.white60,
-                          thickness: 2.5,
+                        width: uiHelpers.width * 0.04,
+                        child: DividerWidget(
+                          width: uiHelpers.width * 0.03,
+                          dividerColor: uiHelpers.primaryColor,
                         ),
                       ),
+                      SizedBox(height: 15),
                       Timeline(
                           indicatorColor: uiHelpers.primaryColor,
                           lineColor: uiHelpers.textSecondaryColor,
                           shrinkWrap: true,
                           itemGap: 25,
                           lineGap: 0,
-                          
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    EducationDetails.universityStream,
-                                    style: uiHelpers.title,
-                                  ),
-                                  SizedBox(height: 8),
-                                  Text(EducationDetails.universityName,
-                                      style: uiHelpers.body),
-                                  Text(
-                                    EducationDetails.universityTimeline,
-                                    style: uiHelpers.body,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    EducationDetails.collegeStream,
-                                    style: uiHelpers.title,
-                                  ),
-                                  SizedBox(height: 8),
-                                  Text(EducationDetails.collegeName,
-                                      style: uiHelpers.body),
-                                  Text(
-                                    EducationDetails.collegeTimeline,
-                                    style: uiHelpers.body,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    EducationDetails.schoolStream,
-                                    style: uiHelpers.title,
-                                  ),
-                                  SizedBox(height: 8),
-                                  Text(EducationDetails.schoolName,
-                                      style: uiHelpers.body),
-                                  Text(
-                                    EducationDetails.schoolTimeline,
-                                    style: uiHelpers.body,
-                                  )
-                                ],
-                              ),
-                            ),
+                            EducationDetailsTimelineWidget(
+                                name: EducationDetails.universityName,
+                                stream: EducationDetails.universityStream,
+                                year: EducationDetails.universityTimeline,
+                                percentage:
+                                    EducationDetails.universityPercentage),
+                            EducationDetailsTimelineWidget(
+                                name: EducationDetails.collegeName,
+                                stream: EducationDetails.collegeStream,
+                                year: EducationDetails.collegeTimeline,
+                                percentage: EducationDetails.collegePercentage),
+                            EducationDetailsTimelineWidget(
+                                name: EducationDetails.schoolName,
+                                stream: EducationDetails.schoolStream,
+                                year: EducationDetails.schoolTimeline,
+                                percentage: EducationDetails.schoolPercentage),
                           ])
                     ],
                   )))
