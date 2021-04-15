@@ -24,6 +24,8 @@ mixin PersonalDetails {
       "https://api.github.com/users/$githubUserName/repos";
   static List<Project> projectsList = [
     Project(
+        id: "0",
+        type: ["Website"],
         title: "Hostel Management",
         githubLink: "https://github.com/shashiben/Hostel-Management",
         websiteLink: "https://hostel-app-test.herokuapp.com/login",
@@ -31,6 +33,8 @@ mixin PersonalDetails {
             "Created a hostel management web app to track students where they are, and download data of attendance for each day",
         tools: ["Redux", "Node Js", "Express Js", "Mongo DB", "React Js"]),
     Project(
+        id: "1",
+        type: ["Website"],
         title: "E Commerce",
         githubLink: "https://github.com/shashiben/MERN-ECommerce",
         websiteLink: "https://nsd-solutions.herokuapp.com/",
@@ -38,42 +42,56 @@ mixin PersonalDetails {
             "An ECommerce application similar to amazon or flipkart where users can buy products,contains admin panel",
         tools: ["Redux", "Node Js", "Express Js", "Mongo DB", "React Js"]),
     Project(
+        id: "2",
+        type: ["Application"],
         title: "Flutter Custom Graph",
         githubLink: "https://github.com/shashiben/flutter_custom_graph",
         description:
             "Created a flutter package for building customized and aesthetic graphs.Built with the help of custom graphs.",
         tools: ["Flutter"]),
     Project(
+        id: "3",
+        type: ["Application"],
         title: "Face Mask Detection",
         githubLink: "https://github.com/shashiben/flutter-face-mask-detection",
         description:
             "Mobile Application to detect whether person wears a mask or not.Built with Flutter and tensorflow lite.",
         tools: ["Flutter", "Tflite", "CNN", "Python"]),
     Project(
+        id: "4",
+        type: ["Website"],
         title: "FReMP Stack",
         githubLink: "https://github.com/shashiben/FReMP-Stack",
         description:
             "Created a simple application to show how to perform crud operations using flask,react and mongo db and includes how to search by name.",
         tools: ["Flask", "React", "Mongo DB", "Python"]),
     Project(
+        id: "5",
+        type: ["Opencv"],
         title: "Motion Detection Using OpenCv",
         githubLink: "https://github.com/shashiben/Motion-Detection-with-Opencv",
         description:
             "Detects motion of an object or a person and draws bounding box over it",
         tools: ["Python", "OpenCv"]),
     Project(
+        id: "6",
+        type: ["Website", "Application"],
         title: "Alarm Managaer",
         githubLink: "https://github.com/shashiben/Flutter-Alarm",
         description:
             "An application to schedule alarms on multiple devices supports for both android and ios,built using mongo db and flutter.",
         tools: ["Flutter", "Mongo DB", "Node Js", "Express Js"]),
     Project(
+        id: "7",
+        type: ["Application", "Website"],
         title: "Cache With Hive",
         githubLink: "https://github.com/shashiben/Flutter-anime",
         description:
             "Application which shows how to cache rest api data,so that user can view data even though he is offline.Presently supports for web, android and ios",
         tools: ["Flutter", "Hive"]),
     Project(
+        id: "8",
+        type: ["Application"],
         title: "College Fest App",
         playstoreLink:
             "https://play.google.com/store/apps/details?id=com.cse.cynosure",
@@ -82,6 +100,8 @@ mixin PersonalDetails {
             "Created an app for college fest where users can register for events and get live notifications regarding events and has payment gateway integration.",
         tools: ["Java", "Firebase", "Paytm"]),
     Project(
+        id: "9",
+        type: ["Website", "Application"],
         websiteLink: "https://shashiben.github.io",
         description:
             "Created portfolio using flutter,Supports for mac os,windows,linux,web,ios,android",
@@ -89,6 +109,8 @@ mixin PersonalDetails {
         title: "Portfolio",
         tools: ["Flutter"]),
     Project(
+        id: "10",
+        type: ["Backend"],
         title: "Node Mailer",
         githubLink: "https://github.com/shashiben/node-mailer",
         description:

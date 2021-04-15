@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/projects/project_view_model.dart';
 import 'package:portfolio/ui/widgets/grid_view_widget.dart';
@@ -35,6 +36,33 @@ class ProjectDesktopView extends StatelessWidget {
                   ),
                 ),
                 uiHelpers.verticalSpaceHigh,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 100),
+                  child: NeumorphicToggle(
+                    onChanged: (value) => model.changeIndex(value),
+                    children: [
+                      ToggleElement(
+                          foreground: Center(child: Text("All")),
+                          background: Center(
+                            child: Text("All"),
+                          )),
+                      ToggleElement(
+                          foreground: Center(child: Text("Mobile Applications")),
+                          background: Center(child: Text("Applications"))),
+                      ToggleElement(
+                          foreground: Center(child: Text("Web Applications")),
+                          background: Center(child: Text("Web Applications"))),
+                      ToggleElement(
+                          foreground: Center(child: Text("Others")),
+                          background: Center(child: Text("Others")))
+                    ],
+                    thumb: SizedBox(),
+                    selectedIndex: model.index,
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -44,7 +72,7 @@ class ProjectDesktopView extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 100),
                             child: ResponsiveGridRow(
-                              children: model.list,
+                              children: model.getProjects(),
                             )),
                       ],
                     ),
