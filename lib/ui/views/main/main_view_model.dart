@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 class MainViewModel extends BaseViewModel {
   int index = 0;
   bool isIntroCompleted = false;
+  bool isMenuOpened = false;
   PageController pageController = PageController();
 
   List<CollapsibleItem> collapsibleItem = [];
@@ -27,11 +28,19 @@ class MainViewModel extends BaseViewModel {
     notifyListeners();
   }
 
+  changeMenuForMobile(AnimationController controller) {
+    if (isMenuOpened) {
+      controller.reverse();
+    } else {
+      controller.forward();
+    }
+    isMenuOpened = !isMenuOpened;
+  }
+
   changeIndex(int newIndex) {
     if (newIndex != index) {
       index = newIndex;
-      // pageController.animateToPage(newIndex,
-      //     duration: Duration(milliseconds: 800), curve: Curves.easeInOutCubic);
+
       notifyListeners();
     }
   }

@@ -6,117 +6,106 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
 import 'package:portfolio/ui/views/main/main_view_model.dart';
-import 'package:portfolio/ui/widgets/icon_wrapper.dart';
+import 'package:portfolio/ui/widgets/icon_switch.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MainView extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final iconController =
+        useAnimationController(duration: Duration(milliseconds: 700));
     return ScreenBuilder<MainViewModel>(
-      onModelReady: (m) => m.init(),
-      viewModel: MainViewModel(),
-      builder: (context, uiHelpers, model) => Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.toggle_on_outlined),
-          onPressed: () {
-            if (NeumorphicTheme.of(context).isUsingDark) {
-              NeumorphicTheme.of(context).themeMode = ThemeMode.light;
-            } else {
-              NeumorphicTheme.of(context).themeMode = ThemeMode.dark;
-            }
-          },
-        ),
-        body: ScreenTypeLayout(
-          desktop: CollapsibleSidebar(
-              selectedIconColor: primaryColor,
-              maxWidth: 250,
-              avatarImg: AssetImage("assets/images/avatar.png"),
-              topPadding: 50,
-              body: model.child,
-              title: "Shashi Kumar",
-              items: model.collapsibleItem),
-          tablet: CollapsibleSidebar(
-              maxWidth: 250,
-              avatarImg: AssetImage("assets/images/avatar.png"),
-              topPadding: 50,
-              body: model.child,
-              title: "Shashi Kumar",
-              items: model.collapsibleItem),
-          mobile: Row(
-            children: <Widget>[
-              NavigationRail(
-                leading: Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 20),
-                  child: Icon(MenuIcons.menuIcon),
+        onModelReady: (m) => m.init(),
+        viewModel: MainViewModel(),
+        builder: (context, uiHelpers, model) => Scaffold(
+              body: ScreenTypeLayout(
+                desktop: CollapsibleSidebar(
+                    selectedIconColor: primaryColor,
+                    maxWidth: 250,
+                    avatarImg: AssetImage("assets/images/avatar.png"),
+                    topPadding: 50,
+                    body: model.child,
+                    title: "Shashi Kumar",
+                    items: model.collapsibleItem),
+                tablet: CollapsibleSidebar(
+                    maxWidth: 250,
+                    avatarImg: AssetImage("assets/images/avatar.png"),
+                    topPadding: 50,
+                    body: model.child,
+                    title: "Shashi Kumar",
+                    items: model.collapsibleItem),
+                mobile: Row(
+                  children: <Widget>[
+                    Container(
+                      width: uiHelpers.width * 0.14,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15, bottom: 20),
+                            child: IconButton(
+                              icon: AnimatedIcon(
+                                icon: AnimatedIcons.menu_close,
+                                progress: iconController,
+                              ),
+                              onPressed: () =>
+                                  model.changeMenuForMobile(iconController),
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AnimateIcons(
+                              startIcon: NeumorphicTheme.of(context).isUsingDark
+                                  ? MenuIcons.sunIcon
+                                  : MenuIcons.moonIcon,
+                             
+                              size: 30.0,
+                              controller: AnimateIconController(),
+                              startTooltip:
+                                  NeumorphicTheme.of(context).isUsingDark
+                                      ? 'Dark Mode'
+                                      : "Light Mode",
+                              endTooltip:
+                                  !NeumorphicTheme.of(context).isUsingDark
+                                      ? 'Dark Mode'
+                                      : "Light Mode",
+                              onStartIconPress: () {
+                                NeumorphicTheme.of(context).themeMode =
+                                    NeumorphicTheme.of(context).isUsingDark
+                                        ? ThemeMode.light
+                                        : ThemeMode.dark;
+                                return true;
+                              },
+                              onEndIconPress: () {
+                                print(NeumorphicTheme.of(context).isUsingDark);
+                                NeumorphicTheme.of(context).themeMode =
+                                    ThemeMode.dark;
+
+                                return true;
+                              },
+                              duration: Duration(milliseconds: 500),
+                              startIconColor: Colors.deepPurple,
+                              endIconColor: Colors.deepOrange,
+                              clockwise: false,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    VerticalDivider(thickness: 1, width: 1),
+                    Expanded(
+                      child: PageView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          allowImplicitScrolling: false,
+                          onPageChanged: (index) => model.changeIndex(index),
+                          scrollDirection: Axis.vertical,
+                          controller: model.pageController,
+                          itemBuilder: (context, index) =>
+                              model.views[model.index]),
+                    )
+                  ],
                 ),
-                selectedIconTheme: IconThemeData(color: primaryColor),
-                unselectedIconTheme:
-                    IconThemeData(color: primaryColor.withOpacity(0.4)),
-                selectedIndex: model.index,
-                onDestinationSelected: (int index) => model.changeIndex(index),
-                labelType: NavigationRailLabelType.all,
-                destinations: [
-                  NavigationRailDestination(
-                    icon: Icon(MenuIcons.homeIcon),
-                    selectedIcon: IconWrapper(
-                      child: Icon(
-                        MenuIcons.homeIcon,
-                      ),
-                    ),
-                    label: Text(''),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(MenuIcons.aboutIcon),
-                    selectedIcon: IconWrapper(
-                      child: Icon(
-                        MenuIcons.aboutIcon,
-                      ),
-                    ),
-                    label: Text(''),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(MenuIcons.projectIcon),
-                    selectedIcon: IconWrapper(
-                      child: Icon(
-                        MenuIcons.projectIcon,
-                      ),
-                    ),
-                    label: Text(''),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(MenuIcons.experienceIcon),
-                    selectedIcon: IconWrapper(
-                      child: Icon(
-                        MenuIcons.experienceIcon,
-                      ),
-                    ),
-                    label: Text(''),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(MenuIcons.contactIcon),
-                    selectedIcon: IconWrapper(
-                      child: Icon(
-                        MenuIcons.contactIcon,
-                      ),
-                    ),
-                    label: Text(''),
-                  ),
-                ],
               ),
-              VerticalDivider(thickness: 1, width: 1),
-              Expanded(
-                child: PageView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    allowImplicitScrolling: false,
-                    onPageChanged: (index) => model.changeIndex(index),
-                    scrollDirection: Axis.vertical,
-                    controller: model.pageController,
-                    itemBuilder: (context, index) => model.views[model.index]),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
+            ));
   }
 }

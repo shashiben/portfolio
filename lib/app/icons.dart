@@ -9,6 +9,8 @@ mixin MenuIcons {
   static IconData projectIcon = FlutterIcons.folder_fea;
   static IconData contactIcon = FlutterIcons.mail_fea;
   static IconData menuIcon = FlutterIcons.grid_ent;
+  static IconData sunIcon = FlutterIcons.sun_fea;
+  static IconData moonIcon = FlutterIcons.moon_fea;
 }
 
 mixin ProjectIcons {
@@ -22,6 +24,8 @@ mixin ContactIcons {
   static IconData githubIcon = FlutterIcons.github_fea;
   static IconData twitterIcon = FlutterIcons.twitter_fea;
   static IconData linkedinIcon = FlutterIcons.linkedin_fea;
+  static IconData instagramIcon = FlutterIcons.instagram_fea;
+  static IconData facebookIcon = FlutterIcons.facebook_fea;
 }
 
 mixin FormIcon {

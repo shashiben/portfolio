@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/widgets/custom%20painters/education_painter.dart';
 
