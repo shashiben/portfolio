@@ -11,12 +11,13 @@ dependencies:
   #*Icons
   cupertino_icons: ^1.0.2
   flutter_icons: ^1.1.0
+  font_awesome_flutter:
 
   #*Architecture
-  stacked: ^1.9.5
-  stacked_services: ^0.7.2
-  responsive_builder: ^0.3.0
-  get_it: ^5.0.6
+  stacked: ^2.0.4
+  stacked_services: ^0.8.3
+  responsive_builder: ^0.4.1
+  get_it: ^6.1.1
   injectable: ^1.1.2
   flutter_hooks: ^0.16.0
 
@@ -25,18 +26,18 @@ dependencies:
   http: ^0.13.0
 
   #*Utilities
-  collapsible_sidebar: ^1.0.7+2
+  collapsible_sidebar: ^2.0.0
   animated_text_kit: ^4.0.0
-  simple_animations: ^2.5.1
+  simple_animations: ^3.0.3
   oktoast: ^3.0.0
   flutter_neumorphic:
   animations:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  injectable_generator: 1.0.7
-  auto_route_generator: 0.6.10
-  build_runner: 1.11.1
+  injectable_generator: ^1.2.2
+  auto_route_generator: ^1.0.2
+  build_runner: ^1.12.2
   change_app_package_name:
 flutter:
   uses-material-design: true

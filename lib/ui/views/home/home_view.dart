@@ -1,3 +1,4 @@
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
 import 'package:portfolio/ui/views/home/home_view_desktop.dart';
 import 'package:portfolio/ui/views/home/home_view_mobile.dart';
@@ -15,10 +16,12 @@ class HomeView extends StatelessWidget {
           // Do something once your model is initialized
         },
         builder: (context, uiHelpers, model) {
-          return ScreenTypeLayout(
-              tablet: HomeDesktopView(model: model, uiHelpers: uiHelpers),
-              mobile: HomeMobileView(model: model, uiHelpers: uiHelpers),
-              desktop: HomeDesktopView(model: model, uiHelpers: uiHelpers));
+          return Scaffold(
+            body: ScreenTypeLayout(
+                tablet: HomeDesktopView(model: model, uiHelpers: uiHelpers),
+                mobile: HomeMobileView(model: model, uiHelpers: uiHelpers),
+                desktop: HomeDesktopView(model: model, uiHelpers: uiHelpers)),
+          );
         });
   }
 }

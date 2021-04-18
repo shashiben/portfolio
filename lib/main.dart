@@ -4,6 +4,7 @@ import 'package:portfolio/app/snackbar_config.dart';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/theme.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'ui/views/main/main_view.dart';
 
 Future main() async {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NeumorphicApp(
+      navigatorKey: StackedService.navigatorKey,
       title: "Shashi Kumar",
       debugShowCheckedModeBanner: false,
       home: MainView(),

@@ -1,5 +1,7 @@
+import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/models/project.dart';
 import 'package:portfolio/core/models/skill_model.dart';
+import 'package:portfolio/core/models/technologies.dart';
 import 'package:portfolio/core/models/timeline_experience.dart';
 
 //*Social Media Links
@@ -17,8 +19,32 @@ mixin SystemProperties {
   static String titleFont = "Lato";
 }
 
+//*Education Details
+mixin EducationDetails {
+  static String collegeName = "Sri Chaitanya Jr College";
+  static String collegeTimeline = "2015 - 2017";
+  static String schoolName = "Cattamanchi Ramalinga Reddy High School";
+
+  static String schoolTimeline = "2014 - 2015";
+  static String universityName = "Sri Venkateswara University";
+  static String universityTimeline = "2017 - 2021";
+
+  static String universityStream = "Computer Science and Engineering";
+  static String schoolStream = "SSC";
+  static String collegeStream = "Intermediate (MPC)";
+
+  static double universityPercentage = 75.4;
+  static double schoolPercentage = 95.2;
+  static double collegePercentage = 93;
+}
+
 //*Personal details
 mixin PersonalDetails {
+  static const List<Technologies> techList = [
+    Technologies(icon: TechnologiesIcon.reactJsIcon, name: "React JS"),
+    Technologies(icon: TechnologiesIcon.javaIcon, name: "Java"),
+    Technologies(icon: TechnologiesIcon.pythonIcon, name: "Python")
+  ];
   static const String githubUserName = "shashiben";
   static const String githubDataUrl =
       "https://api.github.com/users/$githubUserName/repos";
@@ -212,23 +238,4 @@ mixin PersonalDetails {
       "A dexterous builder for mobile and web application.";
   static String intro =
       "I started my career into developement as android developer.First I built android applications in native android.Later I heared about flutter which helps in building cross platform applications.After gaining experience in flutter,I applied to internships,through which I was able to learn communication skills and code architectures.After that I worked as a freelancer and gained experience of how to build applications in production level.Presently I'm focusing on web developement.I learnt MERN Stack.And working projects on it.";
-}
-
-//*Education Details
-mixin EducationDetails {
-  static String collegeName = "Sri Chaitanya Jr College";
-  static String collegeTimeline = "2015 - 2017";
-  static String schoolName = "Cattamanchi Ramalinga Reddy High School";
-
-  static String schoolTimeline = "2014 - 2015";
-  static String universityName = "Sri Venkateswara University";
-  static String universityTimeline = "2017 - 2021";
-
-  static String universityStream = "Computer Science and Engineering";
-  static String schoolStream = "SSC";
-  static String collegeStream = "Intermediate (MPC)";
-
-  static double universityPercentage = 75.4;
-  static double schoolPercentage = 95.2;
-  static double collegePercentage = 93;
 }

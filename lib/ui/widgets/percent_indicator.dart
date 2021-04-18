@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom painters/circle_painter.dart';
+import 'custom shapes/circle_painter.dart';
 
 enum CircularStrokeCap { butt, round, square }
 

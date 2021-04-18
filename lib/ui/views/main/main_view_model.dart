@@ -11,10 +11,17 @@ import 'package:stacked/stacked.dart';
 class MainViewModel extends BaseViewModel {
   int index = 0;
   bool isIntroCompleted = false;
-  bool isMenuOpened = false;
   PageController pageController = PageController();
 
   List<CollapsibleItem> collapsibleItem = [];
+  final List<String> menuItems = [
+    "Home",
+    "About",
+    "Projects",
+    "Experience",
+    "Contact"
+  ];
+
   final views = [
     HomeView(),
     AboutView(),
@@ -22,25 +29,36 @@ class MainViewModel extends BaseViewModel {
     ExperienceView(),
     ContactView(),
   ];
+
   Widget child;
   changeIntroToCompleted() {
     isIntroCompleted = true;
     notifyListeners();
   }
 
-  changeMenuForMobile(AnimationController controller) {
-    if (isMenuOpened) {
-      controller.reverse();
-    } else {
-      controller.forward();
+  changeMenuForMobile(
+      AnimationController controller, AnimationController slideController) {
+    switch (slideController.status) {
+      case AnimationStatus.completed:
+        controller.reverse();
+        slideController.reverse();
+        break;
+      case AnimationStatus.dismissed:
+        controller.forward();
+        slideController.forward();
+        break;
+
+      default:
     }
-    isMenuOpened = !isMenuOpened;
   }
 
-  changeIndex(int newIndex) {
+  changeIndex(int newIndex,
+      {bool isMobile = false, controller, slideController}) {
     if (newIndex != index) {
       index = newIndex;
-
+      if (isMobile) {
+        changeMenuForMobile(controller, slideController);
+      }
       notifyListeners();
     }
   }

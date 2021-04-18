@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import 'package:portfolio/ui/widgets/custom%20shapes/message_shape.dart';
 import 'package:portfolio/ui/widgets/fadeAnimation.dart';
 
 import 'home_view_model.dart';
@@ -26,12 +27,22 @@ class HomeDesktopView extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            NeumorphicText(
-              "Hello, this is",
-              style: NeumorphicStyle(color:uiHelpers. primaryColor),
-              textStyle: NeumorphicTextStyle(
-                  fontSize: 20, fontWeight: FontWeight.w300, letterSpacing: 1),
-            ),
+            Container(
+                width: 150,
+                height: 64,
+                decoration: ShapeDecoration(
+                  color: uiHelpers.primaryColor,
+                  shape: MessageShape(),
+                ),
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(right: 8),
+                child: NeumorphicText(
+                  "Yo, this is",
+                  textStyle: NeumorphicTextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
             SizedBox(height: 10),
             FadeAnimation(
               delay: 1,
@@ -83,7 +94,10 @@ class HomeDesktopView extends StatelessWidget {
                         shape: model.isHoveredOnGetInTouch
                             ? NeumorphicShape.flat
                             : NeumorphicShape.flat),
-                    child: NeumorphicText("Get In Touch",style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),),
+                    child: NeumorphicText(
+                      "Get In Touch",
+                      style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),
+                    ),
                   )),
             )
           ],

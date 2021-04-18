@@ -14,6 +14,11 @@ class MainView extends HookWidget {
   Widget build(BuildContext context) {
     final iconController =
         useAnimationController(duration: Duration(milliseconds: 700));
+    final menuAnimationController =
+        useAnimationController(duration: Duration(milliseconds: 700));
+    final offset = Tween(end: Offset.zero, begin: Offset(-1, 0))
+        .animate(menuAnimationController);
+
     return ScreenBuilder<MainViewModel>(
         onModelReady: (m) => m.init(),
         viewModel: MainViewModel(),
@@ -34,76 +39,130 @@ class MainView extends HookWidget {
                     body: model.child,
                     title: "Shashi Kumar",
                     items: model.collapsibleItem),
-                mobile: Row(
-                  children: <Widget>[
-                    Container(
-                      width: uiHelpers.width * 0.14,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 15, bottom: 20),
-                            child: IconButton(
-                              icon: AnimatedIcon(
-                                icon: AnimatedIcons.menu_close,
-                                progress: iconController,
-                              ),
-                              onPressed: () =>
-                                  model.changeMenuForMobile(iconController),
+                mobile: Container(
+                  width: uiHelpers.width,
+                  height: uiHelpers.height,
+                  child: Stack(
+                    children: [
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            color: uiHelpers.surfaceColor,
+                            width: uiHelpers.width * 0.14,
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 15, bottom: 20),
+                                  child: IconButton(
+                                    icon: AnimatedIcon(
+                                      icon: AnimatedIcons.menu_close,
+                                      progress: iconController,
+                                    ),
+                                    onPressed: () => model.changeMenuForMobile(
+                                        iconController,
+                                        menuAnimationController),
+                                  ),
+                                ),
+                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: AnimateIcons(
+                                    startIcon:
+                                        NeumorphicTheme.of(context).isUsingDark
+                                            ? MenuIcons.sunIcon
+                                            : MenuIcons.moonIcon,
+                                    size: 30.0,
+                                    controller: AnimateIconController(),
+                                    startTooltip:
+                                        NeumorphicTheme.of(context).isUsingDark
+                                            ? 'Dark Mode'
+                                            : "Light Mode",
+                                    endTooltip:
+                                        !NeumorphicTheme.of(context).isUsingDark
+                                            ? 'Dark Mode'
+                                            : "Light Mode",
+                                    onStartIconPress: () {
+                                      NeumorphicTheme.of(context).themeMode =
+                                          NeumorphicTheme.of(context)
+                                                  .isUsingDark
+                                              ? ThemeMode.light
+                                              : ThemeMode.dark;
+                                      return true;
+                                    },
+                                    onEndIconPress: () {
+                                      print(NeumorphicTheme.of(context)
+                                          .isUsingDark);
+                                      NeumorphicTheme.of(context).themeMode =
+                                          ThemeMode.dark;
+
+                                      return true;
+                                    },
+                                    duration: Duration(milliseconds: 500),
+                                    startIconColor: Colors.deepPurple,
+                                    endIconColor: Colors.deepOrange,
+                                    clockwise: false,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: AnimateIcons(
-                              startIcon: NeumorphicTheme.of(context).isUsingDark
-                                  ? MenuIcons.sunIcon
-                                  : MenuIcons.moonIcon,
-                             
-                              size: 30.0,
-                              controller: AnimateIconController(),
-                              startTooltip:
-                                  NeumorphicTheme.of(context).isUsingDark
-                                      ? 'Dark Mode'
-                                      : "Light Mode",
-                              endTooltip:
-                                  !NeumorphicTheme.of(context).isUsingDark
-                                      ? 'Dark Mode'
-                                      : "Light Mode",
-                              onStartIconPress: () {
-                                NeumorphicTheme.of(context).themeMode =
-                                    NeumorphicTheme.of(context).isUsingDark
-                                        ? ThemeMode.light
-                                        : ThemeMode.dark;
-                                return true;
-                              },
-                              onEndIconPress: () {
-                                print(NeumorphicTheme.of(context).isUsingDark);
-                                NeumorphicTheme.of(context).themeMode =
-                                    ThemeMode.dark;
-
-                                return true;
-                              },
-                              duration: Duration(milliseconds: 500),
-                              startIconColor: Colors.deepPurple,
-                              endIconColor: Colors.deepOrange,
-                              clockwise: false,
-                            ),
+                          VerticalDivider(
+                            thickness: 1,
+                            width: 1,
+                            color: uiHelpers.dividerColor,
+                          ),
+                          Expanded(
+                            child: PageView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                allowImplicitScrolling: false,
+                                onPageChanged: (index) =>
+                                    model.changeIndex(index),
+                                scrollDirection: Axis.vertical,
+                                controller: model.pageController,
+                                itemBuilder: (context, index) =>
+                                    model.views[model.index]),
                           )
                         ],
                       ),
-                    ),
-                    VerticalDivider(thickness: 1, width: 1),
-                    Expanded(
-                      child: PageView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          allowImplicitScrolling: false,
-                          onPageChanged: (index) => model.changeIndex(index),
-                          scrollDirection: Axis.vertical,
-                          controller: model.pageController,
-                          itemBuilder: (context, index) =>
-                              model.views[model.index]),
-                    )
-                  ],
+                      Container(
+                        height: uiHelpers.height,
+                        width: uiHelpers.width,
+                        child: SlideTransition(
+                            position: offset,
+                            child: Row(children: [
+                              Container(width: uiHelpers.width * 0.14),
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: uiHelpers.surfaceColor),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: model.menuItems
+                                        .map((e) => ListTile(
+                                              title: Center(
+                                                  child: Text(
+                                                e,
+                                                style: uiHelpers.title,
+                                              )),
+                                              onTap: () => model.changeIndex(
+                                                  model.menuItems.indexOf(e),
+                                                  isMobile: true,
+                                                  slideController:
+                                                      menuAnimationController,
+                                                  controller: iconController),
+                                            ))
+                                        .toList(),
+                                  ),
+                                ),
+                              )
+                            ])),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ));

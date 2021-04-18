@@ -3,38 +3,45 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 //*Menu Items
 mixin MenuIcons {
-  static IconData homeIcon = FlutterIcons.home_fea;
-  static IconData experienceIcon = FlutterIcons.graph_sli;
-  static IconData aboutIcon = FlutterIcons.user_fea;
-  static IconData projectIcon = FlutterIcons.folder_fea;
-  static IconData contactIcon = FlutterIcons.mail_fea;
-  static IconData menuIcon = FlutterIcons.grid_ent;
-  static IconData sunIcon = FlutterIcons.sun_fea;
-  static IconData moonIcon = FlutterIcons.moon_fea;
+  static const IconData homeIcon = FlutterIcons.home_fea;
+  static const IconData experienceIcon = FlutterIcons.graph_sli;
+  static const IconData aboutIcon = FlutterIcons.user_fea;
+  static const IconData projectIcon = FlutterIcons.folder_fea;
+  static const IconData contactIcon = FlutterIcons.mail_fea;
+  static const IconData menuIcon = FlutterIcons.grid_ent;
+  static const IconData sunIcon = FlutterIcons.sun_fea;
+  static const IconData moonIcon = FlutterIcons.moon_fea;
 }
 
 mixin ProjectIcons {
-  static IconData githubIcon = FlutterIcons.github_fea;
-  static IconData playstoreIcon = FlutterIcons.google_play_mco;
-  static IconData folderIcon = FlutterIcons.folder_fea;
-  static IconData websiteIcon = FlutterIcons.link_fea;
+  static const IconData githubIcon = FlutterIcons.github_fea;
+  static const IconData playstoreIcon = FlutterIcons.google_play_mco;
+  static const IconData folderIcon = FlutterIcons.folder_fea;
+  static const IconData websiteIcon = FlutterIcons.link_fea;
 }
 
 mixin ContactIcons {
-  static IconData githubIcon = FlutterIcons.github_fea;
-  static IconData twitterIcon = FlutterIcons.twitter_fea;
-  static IconData linkedinIcon = FlutterIcons.linkedin_fea;
-  static IconData instagramIcon = FlutterIcons.instagram_fea;
-  static IconData facebookIcon = FlutterIcons.facebook_fea;
+  static const IconData githubIcon = FlutterIcons.github_fea;
+  static const IconData twitterIcon = FlutterIcons.twitter_fea;
+  static const IconData linkedinIcon = FlutterIcons.linkedin_fea;
+  static const IconData instagramIcon = FlutterIcons.instagram_fea;
+  static const IconData facebookIcon = FlutterIcons.facebook_fea;
 }
 
 mixin FormIcon {
-  static IconData nameIcon = FlutterIcons.user_fea;
+  static const IconData nameIcon = FlutterIcons.user_fea;
 }
 mixin ExperienceIcon {
-  static IconData arrowIcon = FlutterIcons.play_arrow_mdi;
-  static IconData timeIcon = FlutterIcons.clock_sli;
+  static const IconData arrowIcon = FlutterIcons.play_arrow_mdi;
+  static const IconData timeIcon = FlutterIcons.clock_sli;
 }
 mixin ToastIcons {
-  static IconData successIcon = FlutterIcons.check_circle_fea;
+  static const IconData successIcon = FlutterIcons.check_circle_fea;
+}
+
+mixin TechnologiesIcon {
+  static const IconData reactJsIcon = FlutterIcons.react_faw5d;
+  static const IconData javaIcon = FlutterIcons.language_java_mco;
+  static const IconData pythonIcon = FlutterIcons.language_python_mco;
+  static const IconData githubIcon=FlutterIcons.github_fea;
 }
