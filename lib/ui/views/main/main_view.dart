@@ -16,7 +16,7 @@ class MainView extends HookWidget {
         useAnimationController(duration: Duration(milliseconds: 700));
     final menuAnimationController =
         useAnimationController(duration: Duration(milliseconds: 700));
-    final offset = Tween(end: Offset.zero, begin: Offset(-1, 0))
+    final offset = Tween(end: Offset.zero, begin: Offset(1, 0))
         .animate(menuAnimationController);
 
     return ScreenBuilder<MainViewModel>(
