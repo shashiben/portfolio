@@ -7,7 +7,12 @@ class HomeViewModel extends BaseViewModel {
   bool isIntroCompleted = false;
   bool isHoveredOnGetInTouch = false;
   bool isShortIntroCompleted = false;
-
+  Map<String, String> skills = {
+    "Mobile Developer": "assets/images/android.png",
+    "Web Developer": "assets/images/web.png",
+    "Designer": "assets/images/design.png",
+    "AI Enthusiast": "assets/images/ml.png"
+  };
   changeShortIntroToCompleted() {
     isShortIntroCompleted = true;
     notifyListeners();

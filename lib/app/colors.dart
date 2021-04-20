@@ -17,12 +17,12 @@ const Color failureColor = Colors.red;
 mixin lightColor {
   //** Theme Colors
   static Color primaryColor = Color(0xFF2D4CC8);
-  static Color backgroundColor = Color(0xFFe6e7ee);
-  static Color surfaceColor = Color(0xFFe5e6ed);
+  static Color backgroundColor = Color(0xFFD7E5F0);
+  static Color surfaceColor = Color(0xFFD7E5F0);
 
 //** Text Colors
-  static Color textPrimaryColor = Color(0xFF31344b);
-  static Color textSecondaryColor = Color(0xFF53577b);
+  static Color textPrimaryColor = Color(0xFF324B72);
+  static Color textSecondaryColor = Color(0xFFD7E3F1);
 
   static Color dividerColor = Colors.black54;
 }

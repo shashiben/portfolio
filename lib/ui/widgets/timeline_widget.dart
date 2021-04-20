@@ -56,20 +56,25 @@ class Timeline extends StatelessWidget {
         shrinkWrap: true,
         primary: false,
         itemCount: children.length,
-        itemBuilder: (context, index) => CustomPaint(
-              painter: RPSCustomPainter(
-                  indicatorColor: uiHelper.primaryColor,
-                  lineColor: uiHelper.dividerColor,
-                  verticalHeight: index == 0 ? 100 : 120,
-                  horizontalWidth: 200,
-                  indicatorSize: 6,
-                  isFirst: index == 0),
-              child: Container(
-                height: index == 0 ? 100 : 120,
-                padding: EdgeInsets.only(
-                    left: 20, top: (index != 0) ? 100 * 0.26 : 0),
-                child: children[index],
-              ),
+        itemBuilder: (context, index) => LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                print(constraints.maxWidth);
+                return CustomPaint(
+                  painter: RPSCustomPainter(
+                      indicatorColor: uiHelper.primaryColor,
+                      lineColor: uiHelper.dividerColor,
+                      verticalHeight: index == 0 ? 120 : 150,
+                      horizontalWidth: 200,
+                      indicatorSize: 6,
+                      isFirst: index == 0),
+                  child: Container(
+                    height: index == 0 ? 100 : 120,
+                    padding: EdgeInsets.only(
+                        left: 20, top: (index != 0) ? 100 * 0.26 : 0),
+                    child: children[index],
+                  ),
+                );
+              },
             ));
   }
 }
