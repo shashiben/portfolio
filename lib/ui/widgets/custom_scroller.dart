@@ -1,0 +1,85 @@
+import 'package:flutter/material.dart';
+import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+
+class CustomScroller extends StatelessWidget {
+  CustomScroller({
+    this.width = 24,
+    this.height = 70,
+    this.padding = const EdgeInsets.all(0),
+    this.duration = 800,
+    this.borderRadius = 20,
+    this.onUpTap,
+    this.onDownTap,
+    this.topController,
+    this.centerChild,
+    this.bottomController,
+  });
+
+  final EdgeInsetsGeometry padding;
+  final double width;
+  final int duration;
+  final double height;
+  final double borderRadius;
+  final GestureTapCallback onUpTap;
+  final GestureTapCallback onDownTap;
+  final Widget topController;
+  final Widget bottomController;
+  final Widget centerChild;
+
+  @override
+  Widget build(BuildContext context) {
+    ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: TweenAnimationBuilder(
+        tween: Tween<double>(begin: 0, end: height),
+        duration: Duration(milliseconds: duration),
+        child: Container(
+          color: uiHelper.primaryColor,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: onUpTap,
+                  child: topController ??
+                      Icon(Icons.keyboard_arrow_up, color: Colors.white),
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                centerChild ??
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: Container(
+                        width: 6,
+                        height: 6,
+                        color: Colors.white,
+                      ),
+                    ),
+                SizedBox(
+                  height: 8,
+                ),
+                InkWell(
+                  onTap: onDownTap,
+                  child: bottomController ??
+                      Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.white,
+                      ),
+                )
+              ],
+            ),
+          ),
+        ),
+        builder: (BuildContext context, double value, Widget child) {
+          return Container(
+            width: width,
+            height: value,
+            color: Colors.red,
+            child: child,
+          );
+        },
+      ),
+    );
+  }
+}

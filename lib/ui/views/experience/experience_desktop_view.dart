@@ -1,210 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import 'package:portfolio/core/utils/adaptive.dart';
+import 'package:portfolio/core/utils/datetimeUtils.dart';
 import 'package:portfolio/ui/views/experience/experience_view_model.dart';
-import 'package:portfolio/ui/widgets/experience_chip_widget.dart';
-import 'package:portfolio/ui/widgets/fadeAnimation.dart';
+import 'package:portfolio/ui/widgets/content_wrapper.dart';
+import 'package:portfolio/ui/widgets/custom_scroller.dart';
+import 'package:portfolio/ui/widgets/experience_widget.dart';
+import 'package:portfolio/ui/widgets/trailing_widget.dart';
 
-class ExperienceDesktopView extends StatelessWidget {
+class ExperienceDesktopView extends HookWidget {
   final ScreenUiHelper uiHelpers;
   final ExperienceViewModel model;
 
   const ExperienceDesktopView({Key key, this.uiHelpers, this.model})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: uiHelpers.backgroundColor,
-      body: Container(
-        width: uiHelpers.width,
-        height: uiHelpers.height,
-        child: Container(
-          padding: const EdgeInsets.only(left: 10).copyWith(top: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Experience",
-                style: uiHelpers.headline,
-              ),
-              Container(
-                child: Divider(
-                  color: dividerColor,
-                  thickness: 1.5,
+    final _scrollController = useScrollController();
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              ContentWrapper(
+                width: assignWidth(
+                  context: context,
+                  fraction: 0.8,
                 ),
-                width: uiHelpers.width * 0.06,
-              ),
-              uiHelpers.verticalSpaceLow,
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40)
-                            .copyWith(right: 80),
-                        child: ListView.builder(
-                          primary: false,
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: PersonalDetails.experienceList.length,
-                          itemBuilder: (context, index) {
-                            return FadeAnimation(
-                              delay: index * 0.2 + 1,
-                              xDistance: 0,
-                              yDistance: (20 + index * 5).toDouble(),
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Card(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 25, vertical: 20),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          width: uiHelpers.width * 0.4,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                    text: PersonalDetails
-                                                        .experienceList[index]
-                                                        .title,
-                                                    style: uiHelpers.headline,
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            "  @${PersonalDetails.experienceList[index].position} ",
-                                                        style: uiHelpers.body
-                                                            .copyWith(
-                                                                color:
-                                                                    primaryColor),
-                                                      )
-                                                    ]),
-                                              ),
-                                              SizedBox(
-                                                height: 8,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Icon(
-                                                    ExperienceIcon.timeIcon,
-                                                    size: 15,
-                                                    color: textSecondaryColor,
-                                                  ),
-                                                  SizedBox(width: 6),
-                                                  Text(
-                                                    PersonalDetails
-                                                        .experienceList[index]
-                                                        .timePeriod,
-                                                    style: uiHelpers.body.copyWith(
-                                                        color:
-                                                            textSecondaryColor),
-                                                  ),
-                                                ],
-                                              ),
-                                              uiHelpers.verticalSpaceLow,
-                                              Text(
-                                                "Accomplishments",
-                                                style: uiHelpers.title,
-                                              ),
-                                              for (int j = 0;
-                                                  j <
-                                                      PersonalDetails
-                                                          .experienceList[index]
-                                                          .description
-                                                          .length;
-                                                  j++)
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Icon(
-                                                          ExperienceIcon
-                                                              .arrowIcon,
-                                                          size: 20),
-                                                      SizedBox(width: 5),
-                                                      Expanded(
-                                                        child: Text(
-                                                            PersonalDetails
-                                                                .experienceList[
-                                                                    index]
-                                                                .description[j]),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "Tools Used:",
-                                                style: uiHelpers.title,
-                                              ),
-                                              Container(
-                                                child: Divider(
-                                                  color: dividerColor,
-                                                  thickness: 1.5,
-                                                ),
-                                                width: 75,
-                                              ),
-                                              Wrap(
-                                                children: [
-                                                  for (int k = 0;
-                                                      k <
-                                                          PersonalDetails
-                                                              .experienceList[
-                                                                  index]
-                                                              .tools
-                                                              .length;
-                                                      k++)
-                                                    ExperienceChipWidget(
-                                                      title: PersonalDetails
-                                                          .experienceList[index]
-                                                          .tools[k],
-                                                    )
-                                                ],
-                                              )
-                                            ],
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                color: uiHelpers.backgroundColor,
+                child: Row(
+                  children: [
+                    Container(
+                      width: assignWidth(
+                        context: context,
+                        fraction: 0.7,
                       ),
-                      uiHelpers.verticalSpaceMedium,
-                    ],
-                  ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal:
+                            assignWidth(context: context, fraction: 0.04),
+                        vertical:
+                            assignHeight(context: context, fraction: 0.04),
+                      ),
+                      child: _buildExperience(context, _scrollController),
+                    ),
+                    SizedBox(
+                      width: assignWidth(
+                        context: context,
+                        fraction: 0.025,
+                      ),
+                    ),
+                    Spacer(),
+                    TrailingInfo(
+                      width: assignWidth(
+                        context: context,
+                        fraction: 0.075,
+                      ),
+                      trailingWidget: CustomScroller(
+                        onUpTap: () {
+                          _scroll(_scrollController.position.minScrollExtent,
+                              _scrollController);
+                        },
+                        onDownTap: () {
+                          _scroll(_scrollController.position.maxScrollExtent,
+                              _scrollController);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ))
+              ),
             ],
-          ),
-        ),
+          )
+        ],
       ),
+    );
+  }
+
+  Widget _buildExperience(
+      BuildContext context, ScrollController _scrollController) {
+    return ExperienceTree(
+      headTitle:
+          "${DateTimeUtils().monthsList[DateTime.now().month]} - ${DateTime.now().year}",
+      tailTitle: "May - 2020",
+      experienceData: PersonalDetails.experienceList,
+      scrollController: _scrollController,
+      widthOfTree: assignWidth(context: context, fraction: 0.62),
+    );
+  }
+
+  _scroll(double offset, ScrollController _scrollController) {
+    _scrollController.animateTo(
+      offset,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeIn,
     );
   }
 }
