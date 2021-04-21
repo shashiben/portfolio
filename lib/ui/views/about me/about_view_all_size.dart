@@ -21,6 +21,7 @@ class AboutViewResponsive extends StatelessWidget {
         backgroundColor: uiHelpers.backgroundColor,
         body: SingleChildScrollView(
           child: BootstrapContainer(
+            padding: const EdgeInsets.all(8.0),
             children: [
               Text(
                 "Wow, a whole page about my journey!",

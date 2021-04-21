@@ -7,6 +7,7 @@ import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
 import 'package:portfolio/ui/views/main/main_view_model.dart';
 import 'package:portfolio/ui/widgets/icon_switch.dart';
+import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class MainView extends HookWidget {
@@ -23,18 +24,57 @@ class MainView extends HookWidget {
         onModelReady: (m) => m.init(),
         viewModel: MainViewModel(),
         builder: (context, uiHelpers, model) => Scaffold(
+              backgroundColor: uiHelpers.backgroundColor,
+              floatingActionButton: model.isMobile(context)
+                  ? SizedBox()
+                  : FloatingActionButton(
+                      backgroundColor: uiHelpers.primaryColor,
+                      onPressed: () {},
+                      child: AnimateIcons(
+                        startIcon: NeumorphicTheme.of(context).isUsingDark
+                            ? MenuIcons.sunIcon
+                            : MenuIcons.moonIcon,
+                        size: 30.0,
+                        controller: AnimateIconController(),
+                        startTooltip: NeumorphicTheme.of(context).isUsingDark
+                            ? 'Dark Mode'
+                            : "Light Mode",
+                        endTooltip: !NeumorphicTheme.of(context).isUsingDark
+                            ? 'Dark Mode'
+                            : "Light Mode",
+                        onStartIconPress: () {
+                          NeumorphicTheme.of(context).themeMode =
+                              NeumorphicTheme.of(context).isUsingDark
+                                  ? ThemeMode.light
+                                  : ThemeMode.dark;
+                          return true;
+                        },
+                        onEndIconPress: () {
+                          print(NeumorphicTheme.of(context).isUsingDark);
+                          NeumorphicTheme.of(context).themeMode =
+                              ThemeMode.dark;
+
+                          return true;
+                        },
+                        duration: Duration(milliseconds: 500),
+                        startIconColor: Colors.deepPurple,
+                        endIconColor: Colors.deepOrange,
+                        clockwise: false,
+                      ),
+                    ),
               body: ScreenTypeLayout(
                 desktop: CollapsibleSidebar(
+                    fitItemsToBottom: false,
                     selectedIconColor: primaryColor,
                     maxWidth: 250,
-                    avatarImg: AssetImage("assets/images/avatar.png"),
+                    avatarImg: AssetImage("assets/images/s.jpg"),
                     topPadding: 50,
                     body: model.child,
                     title: "Shashi Kumar",
                     items: model.collapsibleItem),
                 tablet: CollapsibleSidebar(
                     maxWidth: 250,
-                    avatarImg: AssetImage("assets/images/avatar.png"),
+                    avatarImg: AssetImage("assets/images/s.jpg"),
                     topPadding: 50,
                     body: model.child,
                     title: "Shashi Kumar",
@@ -58,6 +98,7 @@ class MainView extends HookWidget {
                                     icon: AnimatedIcon(
                                       icon: AnimatedIcons.menu_close,
                                       progress: iconController,
+                                      color: uiHelpers.primaryColor,
                                     ),
                                     onPressed: () => model.changeMenuForMobile(
                                         iconController,
@@ -65,6 +106,12 @@ class MainView extends HookWidget {
                                   ),
                                 ),
                                 Spacer(),
+                                IconWrrapper(
+                                    padding: const EdgeInsets.all(4),
+                                    onTap: () {},
+                                    child: Center(
+                                        child:
+                                            Icon(ContactIcons.facebookIcon))),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: AnimateIcons(

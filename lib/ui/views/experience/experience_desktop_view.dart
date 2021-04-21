@@ -5,7 +5,6 @@ import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/core/utils/adaptive.dart';
 import 'package:portfolio/core/utils/datetimeUtils.dart';
 import 'package:portfolio/ui/views/experience/experience_view_model.dart';
-import 'package:portfolio/ui/widgets/content_wrapper.dart';
 import 'package:portfolio/ui/widgets/custom_scroller.dart';
 import 'package:portfolio/ui/widgets/experience_widget.dart';
 import 'package:portfolio/ui/widgets/trailing_widget.dart';
@@ -21,59 +20,42 @@ class ExperienceDesktopView extends HookWidget {
   Widget build(BuildContext context) {
     final _scrollController = useScrollController();
     return Container(
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              ContentWrapper(
-                width: assignWidth(
-                  context: context,
-                  fraction: 0.8,
-                ),
-                color: uiHelpers.backgroundColor,
-                child: Row(
-                  children: [
-                    Container(
-                      width: assignWidth(
-                        context: context,
-                        fraction: 0.7,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        horizontal:
-                            assignWidth(context: context, fraction: 0.04),
-                        vertical:
-                            assignHeight(context: context, fraction: 0.04),
-                      ),
-                      child: _buildExperience(context, _scrollController),
-                    ),
-                    SizedBox(
-                      width: assignWidth(
-                        context: context,
-                        fraction: 0.025,
-                      ),
-                    ),
-                    Spacer(),
-                    TrailingInfo(
-                      width: assignWidth(
-                        context: context,
-                        fraction: 0.075,
-                      ),
-                      trailingWidget: CustomScroller(
-                        onUpTap: () {
-                          _scroll(_scrollController.position.minScrollExtent,
-                              _scrollController);
-                        },
-                        onDownTap: () {
-                          _scroll(_scrollController.position.maxScrollExtent,
-                              _scrollController);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
+      child: Row(
+        children: [
+          Container(
+            width: assignWidth(
+              context: context,
+              fraction: 0.7,
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: assignWidth(context: context, fraction: 0.04),
+              vertical: assignHeight(context: context, fraction: 0.04),
+            ),
+            child: _buildExperience(context, _scrollController),
+          ),
+          SizedBox(
+            width: assignWidth(
+              context: context,
+              fraction: 0.025,
+            ),
+          ),
+          Spacer(),
+          TrailingInfo(
+            width: assignWidth(
+              context: context,
+              fraction: 0.075,
+            ),
+            trailingWidget: CustomScroller(
+              onUpTap: () {
+                _scroll(_scrollController.position.minScrollExtent,
+                    _scrollController);
+              },
+              onDownTap: () {
+                _scroll(_scrollController.position.maxScrollExtent,
+                    _scrollController);
+              },
+            ),
+          ),
         ],
       ),
     );

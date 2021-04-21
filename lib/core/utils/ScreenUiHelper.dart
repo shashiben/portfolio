@@ -84,6 +84,7 @@ class ScreenUiHelper {
         fontFamily: SystemProperties.titleFont,
         decoration: TextDecoration.none,
         fontWeight: FontWeight.bold,
+        color: textPrimaryColor,
         fontSize: 14);
 
     body = TextStyle(

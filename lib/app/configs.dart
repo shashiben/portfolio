@@ -40,6 +40,9 @@ mixin EducationDetails {
 
 //*Personal details
 mixin PersonalDetails {
+  static const String resumeLink =
+      "https://drive.google.com/file/d/1zgGpQfz1sgvG-8eiCDXzmBIu59mJ7Jho/view?usp=sharing";
+  static const String whatsappLink = "https://wa.me/7997217156";
   static const List<Technologies> techList = [
     Technologies(icon: TechnologiesIcon.reactJsIcon, name: "React JS"),
     Technologies(icon: TechnologiesIcon.javaIcon, name: "Java"),

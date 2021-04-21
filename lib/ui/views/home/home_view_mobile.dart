@@ -1,7 +1,9 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
+import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 
 import 'home_view_model.dart';
 
@@ -14,76 +16,89 @@ class HomeMobileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: uiHelpers.backgroundColor,
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            uiHelpers.verticalSpaceMedium,
-            Text(
-              "Hello, this is",
-              style: uiHelpers.buttonStyle.copyWith(
-                  color: uiHelpers.primaryColor,
-                  fontWeight: FontWeight.w300,
-                  letterSpacing: 1),
-            ),
-            SizedBox(height: 10),
-            TypewriterAnimatedTextKit(
-              text: ["${PersonalDetails.userName}."],
-              speed: Duration(milliseconds: 100),
-              textStyle: uiHelpers.title
-                  .copyWith(fontSize: 24, color: uiHelpers.textPrimaryColor),
-              totalRepeatCount: 1,
-              onFinished: () => model.changeIntroToCompleted(),
-              repeatForever: false,
-            ),
-            model.isIntroCompleted
-                ? TypewriterAnimatedTextKit(
-                    text: ["${PersonalDetails.shortIntro}"],
-                    speed: Duration(milliseconds: 20),
-                    textStyle: uiHelpers.title.copyWith(
-                        fontSize: 18,
-                        color: uiHelpers.textSecondaryColor,
-                        fontWeight: FontWeight.w300),
-                    totalRepeatCount: 1,
-                    onFinished: () => model.changeShortIntroToCompleted(),
-                    repeatForever: false,
-                  )
-                : SizedBox(),
-            uiHelpers.verticalSpaceLow,
-            AnimatedOpacity(
-              duration: Duration(milliseconds: 700),
-              opacity: model.isShortIntroCompleted ? 1.0 : 0.0,
-              child: MaterialButton(
-                hoverElevation: 100,
-                elevation: 10,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(color: uiHelpers.primaryColor),
-                    borderRadius: BorderRadius.circular(8)),
-                onPressed: () => model.getInTouch(),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
+      body: Stack(
+        children: [
+          Container(
+              width: uiHelpers.width,
+              height: uiHelpers.height,
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Column(children: [
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
-                      "Get In touch",
-                      style: uiHelpers.title.copyWith(
-                          fontSize: 15,
-                          letterSpacing: 1,
-                          color: uiHelpers.primaryColor,
-                          fontWeight: FontWeight.w200),
+                    Image.asset("assets/images/sk_logo.png",
+                        height: 40,
+                        width: 40,
+                        color: uiHelpers.textPrimaryColor),
+                    IconWrrapper(
+                      margin: const EdgeInsets.all(0),
+                      color: uiHelpers.primaryColor,
+                      padding: const EdgeInsets.all(8),
+                      onTap: () => model.navigateToUrl(SocialLinks.githubLink),
+                      child: Icon(
+                        MenuIcons.contactIcon,
+                        color: Colors.white,
+                      ),
                     ),
-                    SizedBox(width: 10),
-                    Icon(Icons.arrow_forward_ios,
-                        color: uiHelpers.primaryColor, size: 20)
                   ],
                 ),
-              ),
-            )
-          ],
-        ),
+                SizedBox(height: 40),
+                Text(
+                  "Portfolio",
+                  style: uiHelpers.body,
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "Hello,I'm",
+                  style: uiHelpers.headline,
+                ),
+                Text(
+                  "Shashi Kumar",
+                  style: uiHelpers.headline,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                    height: 50.0,
+                    child: PageView.builder(
+                      itemCount: model.titles.length,
+                      controller: model.pageController,
+                      itemBuilder: (_, index) {
+                        return model.titles[index];
+                      },
+                      scrollDirection: Axis.horizontal,
+                    )),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(children: [
+                  IconWrrapper(
+                    margin: const EdgeInsets.all(0),
+                    color: uiHelpers.primaryColor,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 12),
+                    onTap: () => model.navigateToUrl(SocialLinks.githubLink),
+                    child: Text(
+                      "Contact",
+                      style:
+                          uiHelpers.buttonStyle.copyWith(color: Colors.white),
+                    ),
+                  ),
+                  IconWrrapper(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 12),
+                    onTap: () => model.navigateToUrl(SocialLinks.githubLink),
+                    child: Text(
+                      "Download CV",
+                      style: uiHelpers.buttonStyle,
+                    ),
+                  )
+                ]),
+              ], crossAxisAlignment: CrossAxisAlignment.start)),
+        ],
       ),
     );
   }

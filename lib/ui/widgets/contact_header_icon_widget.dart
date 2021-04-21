@@ -28,12 +28,15 @@ class ContactIconHeader extends StatelessWidget {
           duration: Duration(milliseconds: 400),
           curve: Curves.fastLinearToSlowEaseIn,
           decoration: isActive
-              ? BoxDecoration(boxShadow: [
-                  BoxShadow(
-                    color: uiHelpers.primaryColor,
-                    blurRadius: 5.0,
-                  ),
-                ], color: uiHelpers.primaryColor, borderRadius: BorderRadius.circular(8))
+              ? BoxDecoration(
+                  boxShadow: [
+                      BoxShadow(
+                        color: uiHelpers.primaryColor,
+                        blurRadius: 5.0,
+                      ),
+                    ],
+                  color: uiHelpers.primaryColor,
+                  borderRadius: BorderRadius.circular(8))
               : BoxDecoration(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 10),
           child: Column(
@@ -43,7 +46,8 @@ class ContactIconHeader extends StatelessWidget {
                 icon,
                 size: 30,
                 style: NeumorphicStyle(
-                    color: isActive ? Colors.white : uiHelpers.textPrimaryColor),
+                    color:
+                        isActive ? Colors.white : uiHelpers.textPrimaryColor),
               ),
               SizedBox(
                 height: 5,
@@ -51,7 +55,10 @@ class ContactIconHeader extends StatelessWidget {
               NeumorphicText(
                 name,
                 style: NeumorphicStyle(
-                    color: isActive ? Colors.white54 : uiHelpers.textSecondaryColor),
+                    intensity: 0.3,
+                    color: isActive
+                        ? Colors.white54
+                        : uiHelpers.textSecondaryColor),
                 textStyle: uiHelpers.titleTextStyle
                     .copyWith(fontWeight: FontWeight.w300),
               )

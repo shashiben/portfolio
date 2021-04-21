@@ -6,6 +6,7 @@ import 'package:portfolio/ui/views/contact%20me/contact_view.dart';
 import 'package:portfolio/ui/views/experience/experience_view.dart';
 import 'package:portfolio/ui/views/home/home_view.dart';
 import 'package:portfolio/ui/views/projects/project_view.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
 class MainViewModel extends BaseViewModel {
@@ -104,8 +105,13 @@ class MainViewModel extends BaseViewModel {
           child = views[4];
           notifyListeners();
         },
-      )
+      ),
     ];
+  }
+
+  isMobile(context) {
+    return getDeviceType(MediaQuery.of(context).size) ==
+        DeviceScreenType.mobile;
   }
 
   init() {

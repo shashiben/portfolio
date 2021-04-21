@@ -39,6 +39,9 @@ class ProjectDesktopView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 100),
                   child: NeumorphicToggle(
+                    movingCurve: Curves.linearToEaseOut,
+                    style: NeumorphicToggleStyle(
+                        backgroundColor: uiHelpers.surfaceColor),
                     onChanged: (value) => model.changeIndex(value),
                     children: [
                       ToggleElement(
@@ -47,7 +50,8 @@ class ProjectDesktopView extends StatelessWidget {
                             child: Text("All"),
                           )),
                       ToggleElement(
-                          foreground: Center(child: Text("Mobile Applications")),
+                          foreground:
+                              Center(child: Text("Mobile Applications")),
                           background: Center(child: Text("Applications"))),
                       ToggleElement(
                           foreground: Center(child: Text("Web Applications")),

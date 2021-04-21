@@ -5,9 +5,11 @@ import 'package:portfolio/app/snackbar_config.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/theme.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'ui/views/main/main_view.dart';
 
 Future main() async {
+  setPathUrlStrategy();
   await setupLocator();
   setupSnackbarUi();
   runApp(MyApp());

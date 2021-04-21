@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
@@ -45,19 +46,22 @@ class TrailingInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: crossAxisAlignment,
         children: [
-          InkWell(
-            onTap: onLeadingWidgetPressed ?? () {},
-            child: leadingWidget ??
-                CircularContainer(
-                  width: 30,
-                  height: 30,
-                  color: uiHelper.primaryColor,
-                  child: Icon(
-                    Icons.email,
-                    color: Colors.white,
-                    size: 20,
+          NeumorphicFloatingActionButton(
+            tooltip: "Mail",
+            style: NeumorphicStyle(
+                color: uiHelper.primaryColor,
+                boxShape: NeumorphicBoxShape.circle()),
+            onPressed: () {},
+            child: Center(
+              child: leadingWidget ??
+                  NeumorphicIcon(
+                    Icons.mail,
+                    style: NeumorphicStyle(
+                      color: Colors.white,
+                    ),
+                    size: 25,
                   ),
-                ),
+            ),
           ),
           spacingWidget ?? Spacer(flex: 1),
           middleWidget ??
@@ -111,6 +115,7 @@ class CircularContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       width: width,
       height: height,
       decoration: BoxDecoration(

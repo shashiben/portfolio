@@ -5,8 +5,8 @@ import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_view_model.dart';
-import 'package:portfolio/ui/widgets/contact_header_icon_widget.dart';
 import 'package:portfolio/ui/widgets/fadeAnimation.dart';
+import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 
 class ContactDesktopView extends StatelessWidget {
   final ScreenUiHelper uiHelpers;
@@ -21,13 +21,15 @@ class ContactDesktopView extends StatelessWidget {
       body: Form(
         key: model.formKey,
         child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20),
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Column(
               children: [
                 NeumorphicText(
                   "Get In Touch!",
-                  style: NeumorphicStyle(color: uiHelpers.textPrimaryColor),
+                  style: NeumorphicStyle(
+                      color: uiHelpers.textPrimaryColor, intensity: 0.3),
                   textStyle: uiHelpers.headlineTextStyle.copyWith(fontSize: 45),
                 ),
                 SizedBox(
@@ -39,7 +41,8 @@ class ContactDesktopView extends StatelessWidget {
                   yDistance: 10,
                   child: NeumorphicText(
                     "Contact me for hiring,or help me to join your team",
-                    style: NeumorphicStyle(color: uiHelpers.textSecondaryColor),
+                    style: NeumorphicStyle(
+                        color: uiHelpers.textSecondaryColor, intensity: 0.3),
                     textStyle: uiHelpers.bodyTextStyle.copyWith(fontSize: 25),
                   ),
                 ),
@@ -49,59 +52,41 @@ class ContactDesktopView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     FadeAnimation(
-                      xDistance: 00,
-                      yDistance: 20,
-                      delay: 1.25,
-                      child: MouseRegion(
-                        onEnter: (event) =>
-                            model.changeSelected(true, "Github"),
-                        onExit: (event) =>
-                            model.changeSelected(false, "Github"),
-                        child: ContactIconHeader(
+                        xDistance: 00,
+                        yDistance: 20,
+                        delay: 1.25,
+                        child: IconWrrapper(
                           onTap: () =>
                               model.navigateToSocial(SocialLinks.githubLink),
-                          name: "Github",
-                          icon: ContactIcons.githubIcon,
-                          isActive: model.selected == "Github",
-                        ),
-                      ),
-                    ),
+                          child: Icon(
+                            ContactIcons.githubIcon,
+                            size: 30,
+                          ),
+                        )),
                     FadeAnimation(
-                      xDistance: 00,
-                      yDistance: 20,
-                      delay: 1.25,
-                      child: MouseRegion(
-                        onEnter: (event) =>
-                            model.changeSelected(true, "Twitter"),
-                        onExit: (event) =>
-                            model.changeSelected(false, "Twitter"),
-                        child: ContactIconHeader(
+                        xDistance: 00,
+                        yDistance: 20,
+                        delay: 1.25,
+                        child: IconWrrapper(
                           onTap: () =>
                               model.navigateToSocial(SocialLinks.twitterLink),
-                          name: "Twitter",
-                          icon: ContactIcons.twitterIcon,
-                          isActive: model.selected == "Twitter",
-                        ),
-                      ),
-                    ),
+                          child: Icon(
+                            ContactIcons.twitterIcon,
+                            size: 30,
+                          ),
+                        )),
                     FadeAnimation(
-                      xDistance: 00,
-                      yDistance: 20,
-                      delay: 1.25,
-                      child: MouseRegion(
-                        onEnter: (event) =>
-                            model.changeSelected(true, "LinkedIn"),
-                        onExit: (event) =>
-                            model.changeSelected(false, "LinkedIn"),
-                        child: ContactIconHeader(
+                        xDistance: 00,
+                        yDistance: 20,
+                        delay: 1.25,
+                        child: IconWrrapper(
                           onTap: () =>
                               model.navigateToSocial(SocialLinks.linkedinUrl),
-                          name: "LinkedIn",
-                          icon: ContactIcons.linkedinIcon,
-                          isActive: model.selected == "LinkedIn",
-                        ),
-                      ),
-                    ),
+                          child: Icon(
+                            ContactIcons.linkedinIcon,
+                            size: 30,
+                          ),
+                        )),
                   ],
                 ),
                 uiHelpers.verticalSpaceMedium,
@@ -161,6 +146,7 @@ class ContactDesktopView extends StatelessWidget {
                                             top: 2,
                                             bottom: 4),
                                         style: NeumorphicStyle(
+                                          color: uiHelpers.surfaceColor,
                                           depth: NeumorphicTheme.embossDepth(
                                               context),
                                           boxShape:
@@ -213,6 +199,7 @@ class ContactDesktopView extends StatelessWidget {
                                             top: 2,
                                             bottom: 4),
                                         style: NeumorphicStyle(
+                                          color: uiHelpers.surfaceColor,
                                           depth: NeumorphicTheme.embossDepth(
                                               context),
                                           boxShape:
@@ -269,6 +256,7 @@ class ContactDesktopView extends StatelessWidget {
                                             top: 2,
                                             bottom: 4),
                                         style: NeumorphicStyle(
+                                          color: uiHelpers.surfaceColor,
                                           depth: NeumorphicTheme.embossDepth(
                                               context),
                                           boxShape:
@@ -317,6 +305,7 @@ class ContactDesktopView extends StatelessWidget {
                                       NeumorphicText(
                                         "Message",
                                         style: NeumorphicStyle(
+                                            intensity: 0.3,
                                             color:
                                                 uiHelpers.textSecondaryColor),
                                         textStyle: uiHelpers.bodyTextStyle,
@@ -325,12 +314,14 @@ class ContactDesktopView extends StatelessWidget {
                                         height: 4,
                                       ),
                                       Neumorphic(
+                                        padding: const EdgeInsets.all(12),
                                         margin: EdgeInsets.only(
                                             left: 8,
                                             right: 8,
                                             top: 2,
                                             bottom: 4),
                                         style: NeumorphicStyle(
+                                          color: uiHelpers.surfaceColor,
                                           depth: NeumorphicTheme.embossDepth(
                                               context),
                                           boxShape:
@@ -371,26 +362,38 @@ class ContactDesktopView extends StatelessWidget {
                             child: Container(
                                 alignment: Alignment.center,
                                 child: NeumorphicButton(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 15),
-                                    style: NeumorphicStyle(
+                                  onPressed: () => model.openMail(),
+                                  style: NeumorphicStyle(
+                                      border: NeumorphicBorder(
+                                        isEnabled: true,
+                                        color: uiHelpers.surfaceColor,
+                                        width: 2,
+                                      ),
                                       intensity: 8,
                                       boxShape: NeumorphicBoxShape.roundRect(
                                           BorderRadius.circular(12)),
-                                      surfaceIntensity: 0.6,
-                                      color: primaryColor,
-                                      depth: 8,
-                                      lightSource: LightSource.topLeft,
-                                    ),
-                                    onPressed: () => model.openMail(),
-                                    child: NeumorphicText(
-                                      "Send Message",
-                                      style:
-                                          NeumorphicStyle(color: Colors.white),
-                                      textStyle: uiHelpers.buttonTextStyle
-                                          .copyWith(
-                                              fontWeight: FontWeight.w400),
-                                    ))),
+                                      color: uiHelpers.backgroundColor,
+                                      lightSource: LightSource.top,
+                                      depth: 4,
+                                      surfaceIntensity: 0.5,
+                                      shape: NeumorphicShape.flat),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        FormIcon.messageIcon,
+                                        color: uiHelpers.textPrimaryColor,
+                                      ),
+                                      SizedBox(
+                                        width: 6,
+                                      ),
+                                      Text(
+                                        "Send Message",
+                                        style: uiHelpers.buttonStyle,
+                                      )
+                                    ],
+                                  ),
+                                )),
                           ),
                         ],
                       ),

@@ -16,25 +16,25 @@ const Color failureColor = Colors.red;
 
 mixin lightColor {
   //** Theme Colors
-  static Color primaryColor = Color(0xFF2D4CC8);
-  static Color backgroundColor = Color(0xFFD7E5F0);
-  static Color surfaceColor = Color(0xFFD7E5F0);
+  static Color primaryColor = Color(0xFF31344B);
+  static Color backgroundColor = Color(0xFFe6e7ee);
+  static Color surfaceColor = Color(0xFFe6e7ee);
 
 //** Text Colors
-  static Color textPrimaryColor = Color(0xFF324B72);
-  static Color textSecondaryColor = Color(0xFFD7E3F1);
+  static Color textPrimaryColor = Color(0xFF31344B);
+  static Color textSecondaryColor = Color(0xFF44476A);
 
-  static Color dividerColor = Colors.black54;
+  static Color dividerColor = Colors.grey[300];
 }
 mixin darkColor {
   //** Theme Colors
-  static Color primaryColor = Color(0xFF2D4CC8);
-  static Color backgroundColor = Colors.black;
-  static Color surfaceColor = Colors.black;
+  static const primaryColor = Color(0xFF1EEBB3);
+  static const backgroundColor = Color(0xFF071D34);
+  static const surfaceColor = Color(0xFF112240);
 
-//** Text Colors
-  static Color textPrimaryColor = Colors.white;
-  static Color textSecondaryColor = Colors.white54;
+  //**Text Colors
+  static const Color textPrimaryColor = Color(0xFFCCD6F6);
+  static const Color textSecondaryColor = Colors.white60;
 
-  static Color dividerColor = Colors.white54;
+  static const Color dividerColor = Colors.white60;
 }

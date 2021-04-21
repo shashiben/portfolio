@@ -35,7 +35,8 @@ class ProjectWidget extends StatelessWidget {
                 shadowLightColor: uiHelpers.backgroundColor,
                 depth: 5,
                 intensity: 0.6,
-                surfaceIntensity: 0.2,
+                color: uiHelpers.backgroundColor,
+                surfaceIntensity: 0.3,
                 boxShape:
                     NeumorphicBoxShape.roundRect(BorderRadius.circular(12))),
             child: Container(

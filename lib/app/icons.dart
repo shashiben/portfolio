@@ -30,6 +30,7 @@ mixin ContactIcons {
 
 mixin FormIcon {
   static const IconData nameIcon = FlutterIcons.user_fea;
+  static const IconData messageIcon = FlutterIcons.message_square_fea;
 }
 mixin ExperienceIcon {
   static const IconData arrowIcon = FlutterIcons.play_arrow_mdi;
@@ -43,5 +44,5 @@ mixin TechnologiesIcon {
   static const IconData reactJsIcon = FlutterIcons.react_faw5d;
   static const IconData javaIcon = FlutterIcons.language_java_mco;
   static const IconData pythonIcon = FlutterIcons.language_python_mco;
-  static const IconData githubIcon=FlutterIcons.github_fea;
+  static const IconData githubIcon = FlutterIcons.github_fea;
 }

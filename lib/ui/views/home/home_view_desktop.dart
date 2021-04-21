@@ -4,6 +4,7 @@ import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 
 import 'home_view_model.dart';
 
@@ -24,6 +25,7 @@ class HomeDesktopView extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             style: NeumorphicStyle(
+              color: uiHelpers.surfaceColor,
               depth: NeumorphicTheme.embossDepth(context),
               boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
             ),
@@ -51,7 +53,8 @@ class HomeDesktopView extends StatelessWidget {
                     Row(
                       children: [
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () =>
+                                model.navigateToUrl(PersonalDetails.resumeLink),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -60,7 +63,8 @@ class HomeDesktopView extends StatelessWidget {
                               ),
                             )),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () => model
+                                .navigateToUrl(PersonalDetails.whatsappLink),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
@@ -138,26 +142,21 @@ class HomeDesktopView extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        NeumorphicButton(
-                          onPressed: () {},
-                          style: NeumorphicStyle(
-                              border: NeumorphicBorder(
-                                isEnabled: true,
-                                color: uiHelpers.surfaceColor,
-                                width: 2,
-                              ),
-                              intensity: 8,
-                              boxShape: NeumorphicBoxShape.roundRect(
-                                  BorderRadius.circular(12)),
-                              color: uiHelpers.backgroundColor,
-                              lightSource: LightSource.topLeft,
-                              depth: 4,
-                              surfaceIntensity: 0.5,
-                              shape: NeumorphicShape.flat),
+                        IconWrrapper(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 12),
+                          onTap: () =>
+                              model.navigateToUrl(SocialLinks.githubLink),
                           child: Row(
                             children: [
                               Icon(ContactIcons.githubIcon),
-                              Text("Github")
+                              SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                "Github",
+                                style: uiHelpers.buttonStyle,
+                              )
                             ],
                           ),
                         )

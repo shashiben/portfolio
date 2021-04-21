@@ -20,45 +20,47 @@ class EducationDetailsTimelineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            year,
-            style: uiHelper.body
-                .copyWith(fontSize: 12, fontWeight: FontWeight.w200),
-          ),
-          Text(
-            stream,
-            style: uiHelper.title.copyWith(
-                fontSize: 20,
-                fontFamily: SystemProperties.fontName,
-                fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(
-            name,
-            style: uiHelper.title.copyWith(fontSize: 16),
-          ),
-          SizedBox(height: 4),
-          RichText(
-            text: TextSpan(
-                text: "Percentage: ",
-                style: uiHelper.title
-                    .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
-                children: [
-                  TextSpan(
-                      text: "$percentage",
-                      style: uiHelper.title.copyWith(
-                          fontSize: 14,
-                          color: primaryColor,
-                          fontWeight: FontWeight.bold))
-                ]),
-          ),
-          SizedBox(height: 10)
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              year,
+              style: uiHelper.body
+                  .copyWith(fontSize: 12, fontWeight: FontWeight.w200),
+            ),
+            Text(
+              stream,
+              style: uiHelper.title.copyWith(
+                  fontSize: 20,
+                  fontFamily: SystemProperties.fontName,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              name,
+              style: uiHelper.title.copyWith(fontSize: 16),
+            ),
+            SizedBox(height: 4),
+            RichText(
+              text: TextSpan(
+                  text: "Percentage: ",
+                  style: uiHelper.title
+                      .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
+                  children: [
+                    TextSpan(
+                        text: "$percentage",
+                        style: uiHelper.title.copyWith(
+                            fontSize: 14,
+                            color: primaryColor,
+                            fontWeight: FontWeight.bold))
+                  ]),
+            ),
+            SizedBox(height: 10)
+          ],
+        ),
       ),
     );
   }
