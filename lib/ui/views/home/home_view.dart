@@ -12,7 +12,7 @@ class HomeView extends StatelessWidget {
     return ScreenBuilder<HomeViewModel>(
         viewModel: HomeViewModel(),
         disposeViewModel: true,
-        onModelReady: (model) => model.init(),
+        onModelReady: (model) => model.init(context),
         builder: (context, uiHelpers, model) {
           return Scaffold(
             body: ScreenTypeLayout(

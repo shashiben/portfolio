@@ -13,6 +13,7 @@ class MainViewModel extends BaseViewModel {
   int index = 0;
   bool isIntroCompleted = false;
   PageController pageController = PageController();
+  bool isIndex3 = false;
 
   List<CollapsibleItem> collapsibleItem = [];
   final List<String> menuItems = [
@@ -60,6 +61,7 @@ class MainViewModel extends BaseViewModel {
       if (isMobile) {
         changeMenuForMobile(controller, slideController);
       }
+      isIndex3 = (index == 3);
       notifyListeners();
     }
   }
@@ -70,6 +72,7 @@ class MainViewModel extends BaseViewModel {
           text: 'Home',
           icon: MenuIcons.homeIcon,
           onPressed: () {
+            isIndex3 = false;
             child = views[0];
             notifyListeners();
           },
@@ -78,6 +81,8 @@ class MainViewModel extends BaseViewModel {
         text: 'About',
         icon: MenuIcons.aboutIcon,
         onPressed: () {
+          isIndex3 = false;
+
           child = views[1];
           notifyListeners();
         },
@@ -86,6 +91,8 @@ class MainViewModel extends BaseViewModel {
         text: 'Projects',
         icon: MenuIcons.projectIcon,
         onPressed: () {
+          isIndex3 = false;
+
           child = views[2];
           notifyListeners();
         },
@@ -94,6 +101,7 @@ class MainViewModel extends BaseViewModel {
         text: 'Experience',
         icon: MenuIcons.experienceIcon,
         onPressed: () {
+          isIndex3 = true;
           child = views[3];
           notifyListeners();
         },
@@ -102,6 +110,7 @@ class MainViewModel extends BaseViewModel {
         text: 'Contact',
         icon: MenuIcons.contactIcon,
         onPressed: () {
+          isIndex3 = false;
           child = views[4];
           notifyListeners();
         },

@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/models/project.dart';
+import 'package:portfolio/core/models/skill_display.dart';
 import 'package:portfolio/core/models/skill_model.dart';
 import 'package:portfolio/core/models/technologies.dart';
 import 'package:portfolio/core/models/timeline_experience.dart';
@@ -40,6 +42,24 @@ mixin EducationDetails {
 
 //*Personal details
 mixin PersonalDetails {
+  static const List<SkillDisplay> skillDisplayList = [
+    SkillDisplay(
+        title: "Mobile Application Developement",
+        color: Color(0xFFE2A599),
+        iconData: SkillDisplayIcons.appIcon),
+    SkillDisplay(
+        title: "Full Stack Web Developement",
+        color: Color(0xFF5E57BB),
+        iconData: SkillDisplayIcons.websiteIcon),
+    SkillDisplay(
+        title: "AI/ML Engineering",
+        color: Color(0xFFE45447),
+        iconData: SkillDisplayIcons.mlIcon),
+    SkillDisplay(
+        title: "Database Management",
+        color: Color(0xFFFFB300),
+        iconData: SkillDisplayIcons.databaseIcon)
+  ];
   static const String resumeLink =
       "https://drive.google.com/file/d/1zgGpQfz1sgvG-8eiCDXzmBIu59mJ7Jho/view?usp=sharing";
   static const String whatsappLink = "https://wa.me/7997217156";
@@ -238,7 +258,7 @@ mixin PersonalDetails {
 
   static String userName = "Shashi Kumar";
   static String shortIntro =
-      "A dexterous builder for mobile and web application.";
+      "I’m Shashi Kumar and I’m a full stack developer, and I specialize in efficient Flutter Applications that just work across all platforms and browsers. I care deeply about building interfaces that are usable and pleasant for the most number of people possible.And my main motto whenever building any application is to always build pixel perfect high performant applications that provide user with a rich experience.";
   static String intro =
       "I started my career into developement as android developer.First I built android applications in native android.Later I heared about flutter which helps in building cross platform applications.After gaining experience in flutter,I applied to internships,through which I was able to learn communication skills and code architectures.After that I worked as a freelancer and gained experience of how to build applications in production level.Presently I'm focusing on web developement.I learnt MERN Stack.And working projects on it.";
 }

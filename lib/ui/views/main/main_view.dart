@@ -2,7 +2,6 @@ import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
 import 'package:portfolio/ui/views/main/main_view_model.dart';
@@ -25,47 +24,51 @@ class MainView extends HookWidget {
         viewModel: MainViewModel(),
         builder: (context, uiHelpers, model) => Scaffold(
               backgroundColor: uiHelpers.backgroundColor,
-              floatingActionButton: model.isMobile(context)
+              floatingActionButton: (model.isMobile(context))
                   ? SizedBox()
-                  : FloatingActionButton(
-                      backgroundColor: uiHelpers.primaryColor,
-                      onPressed: () {},
-                      child: AnimateIcons(
-                        startIcon: NeumorphicTheme.of(context).isUsingDark
-                            ? MenuIcons.sunIcon
-                            : MenuIcons.moonIcon,
-                        size: 30.0,
-                        controller: AnimateIconController(),
-                        startTooltip: NeumorphicTheme.of(context).isUsingDark
-                            ? 'Dark Mode'
-                            : "Light Mode",
-                        endTooltip: !NeumorphicTheme.of(context).isUsingDark
-                            ? 'Dark Mode'
-                            : "Light Mode",
-                        onStartIconPress: () {
-                          NeumorphicTheme.of(context).themeMode =
-                              NeumorphicTheme.of(context).isUsingDark
-                                  ? ThemeMode.light
-                                  : ThemeMode.dark;
-                          return true;
-                        },
-                        onEndIconPress: () {
-                          print(NeumorphicTheme.of(context).isUsingDark);
-                          NeumorphicTheme.of(context).themeMode =
-                              ThemeMode.dark;
+                  : AnimatedOpacity(
+                      opacity: model.isIndex3 ? 0 : 1,
+                      duration: Duration(milliseconds: 700),
+                      child: FloatingActionButton(
+                        backgroundColor: uiHelpers.primaryColor,
+                        onPressed: () {},
+                        child: AnimateIcons(
+                          startIcon: NeumorphicTheme.of(context).isUsingDark
+                              ? MenuIcons.sunIcon
+                              : MenuIcons.moonIcon,
+                          size: 30.0,
+                          controller: AnimateIconController(),
+                          startTooltip: NeumorphicTheme.of(context).isUsingDark
+                              ? 'Dark Mode'
+                              : "Light Mode",
+                          endTooltip: !NeumorphicTheme.of(context).isUsingDark
+                              ? 'Dark Mode'
+                              : "Light Mode",
+                          onStartIconPress: () {
+                            NeumorphicTheme.of(context).themeMode =
+                                NeumorphicTheme.of(context).isUsingDark
+                                    ? ThemeMode.light
+                                    : ThemeMode.dark;
+                            return true;
+                          },
+                          onEndIconPress: () {
+                            print(NeumorphicTheme.of(context).isUsingDark);
+                            NeumorphicTheme.of(context).themeMode =
+                                ThemeMode.dark;
 
-                          return true;
-                        },
-                        duration: Duration(milliseconds: 500),
-                        startIconColor: Colors.deepPurple,
-                        endIconColor: Colors.deepOrange,
-                        clockwise: false,
+                            return true;
+                          },
+                          duration: Duration(milliseconds: 500),
+                          startIconColor: Colors.deepPurple,
+                          endIconColor: Colors.deepOrange,
+                          clockwise: false,
+                        ),
                       ),
                     ),
               body: ScreenTypeLayout(
                 desktop: CollapsibleSidebar(
                     fitItemsToBottom: false,
-                    selectedIconColor: primaryColor,
+                    selectedIconColor: uiHelpers.primaryColor,
                     maxWidth: 250,
                     avatarImg: AssetImage("assets/images/s.jpg"),
                     topPadding: 50,

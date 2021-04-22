@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-//** Theme Colors
-const primaryColor = Color(0xFF2D4CC8);
-const backgroundColor = Color(0xFFe6e7ee);
-const surfaceColor = Color(0xFFe5e6ed);
+// //** Theme Colors
+// const primaryColor = Color(0xFF2D4CC8);
+// const backgroundColor = Color(0xFFe6e7ee);
+// const surfaceColor = Color(0xFFe5e6ed);
 
-//** Text Colors
-const Color textPrimaryColor = Color(0xFF31344b);
-const Color textSecondaryColor = Color(0xFF53577b);
+// //** Text Colors
+// const Color textPrimaryColor = Color(0xFF31344b);
+// const Color textSecondaryColor = Color(0xFF53577b);
 
-const Color dividerColor = Colors.black54;
+// const Color dividerColor = Colors.black54;
 
-const Color successColor = Colors.green;
-const Color failureColor = Colors.red;
+// const Color successColor = Colors.green;
+// const Color failureColor = Colors.red;
 
 mixin lightColor {
   //** Theme Colors
@@ -34,7 +34,7 @@ mixin darkColor {
 
   //**Text Colors
   static const Color textPrimaryColor = Color(0xFFCCD6F6);
-  static const Color textSecondaryColor = Colors.white60;
+  static const Color textSecondaryColor = Colors.white30;
 
   static const Color dividerColor = Colors.white60;
 }

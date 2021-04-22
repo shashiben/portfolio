@@ -99,6 +99,7 @@ class AboutViewResponsive extends StatelessWidget {
                         ),
                         SizedBox(height: 15),
                         Timeline(
+                            indicatorSize: 16,
                             indicatorColor: uiHelpers.primaryColor,
                             lineColor: uiHelpers.textSecondaryColor,
                             shrinkWrap: true,

@@ -3,6 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/scaling.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class ScreenUiHelper {
   double width;
@@ -17,6 +18,10 @@ class ScreenUiHelper {
   TextStyle title;
   TextStyle body;
   TextStyle buttonStyle;
+
+  double headlineSize;
+  double titleSize;
+  double bodySize;
 
   Color surfaceColor;
   Color backgroundColor;
@@ -67,16 +72,32 @@ class ScreenUiHelper {
 
     scalingHelper = ScalingHelper(width: screenWidth);
 
+    headlineSize = getDeviceType(mediaQuery.size) == DeviceScreenType.desktop
+        ? 24
+        : getDeviceType(mediaQuery.size) == DeviceScreenType.tablet
+            ? 24
+            : 20;
+    titleSize = getDeviceType(mediaQuery.size) == DeviceScreenType.desktop
+        ? 20
+        : getDeviceType(mediaQuery.size) == DeviceScreenType.tablet
+            ? 18
+            : 16;
+    bodySize = getDeviceType(mediaQuery.size) == DeviceScreenType.desktop
+        ? 14
+        : getDeviceType(mediaQuery.size) == DeviceScreenType.tablet
+            ? 14
+            : 12;
+
     headline = TextStyle(
         fontWeight: FontWeight.bold,
         color: textPrimaryColor,
-        fontSize: 24,
+        fontSize: headlineSize,
         decoration: TextDecoration.none,
         fontFamily: SystemProperties.titleFont);
 
     title = TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: titleSize,
         color: textPrimaryColor,
         decoration: TextDecoration.none,
         fontFamily: SystemProperties.titleFont);
@@ -85,35 +106,35 @@ class ScreenUiHelper {
         decoration: TextDecoration.none,
         fontWeight: FontWeight.bold,
         color: textPrimaryColor,
-        fontSize: 14);
+        fontSize: bodySize);
 
     body = TextStyle(
         color: textSecondaryColor,
         fontWeight: FontWeight.w400,
-        fontSize: 14,
+        fontSize: bodySize,
         decoration: TextDecoration.none,
         fontFamily: SystemProperties.fontName);
 
     headlineTextStyle = NeumorphicTextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 24,
+        fontSize: headlineSize,
         decoration: TextDecoration.none,
         fontFamily: SystemProperties.titleFont);
 
     titleTextStyle = NeumorphicTextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: titleSize,
         decoration: TextDecoration.none,
         fontFamily: SystemProperties.titleFont);
     buttonTextStyle = NeumorphicTextStyle(
         fontFamily: SystemProperties.titleFont,
         decoration: TextDecoration.none,
         fontWeight: FontWeight.bold,
-        fontSize: 14);
+        fontSize: bodySize);
 
     bodyTextStyle = NeumorphicTextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 14,
+        fontSize: bodySize,
         decoration: TextDecoration.none,
         fontFamily: SystemProperties.fontName);
 

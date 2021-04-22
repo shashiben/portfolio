@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_view_model.dart';
 import 'package:portfolio/ui/widgets/fadeAnimation.dart';
+import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 
 class ContactMobileView extends StatelessWidget {
   final ScreenUiHelper uiHelpers;
@@ -39,6 +40,7 @@ class ContactMobileView extends StatelessWidget {
                     child: Text(
                       "Contact me for hiring,or help me to join your team",
                       style: uiHelpers.body.copyWith(fontSize: 18),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   uiHelpers.verticalSpaceMedium,
@@ -49,27 +51,27 @@ class ContactMobileView extends StatelessWidget {
                       FadeAnimation(
                         yDistance: 30,
                         delay: 1.25,
-                        child: IconButton(
-                          icon: Icon(ContactIcons.githubIcon),
-                          onPressed: () =>
+                        child: IconWrrapper(
+                          child: Icon(ContactIcons.githubIcon),
+                          onTap: () =>
                               model.navigateToSocial(SocialLinks.githubLink),
                         ),
                       ),
                       FadeAnimation(
                         yDistance: 30,
                         delay: 1.25,
-                        child: IconButton(
-                          icon: Icon(ContactIcons.twitterIcon),
-                          onPressed: () =>
+                        child: IconWrrapper(
+                          child: Icon(ContactIcons.twitterIcon),
+                          onTap: () =>
                               model.navigateToSocial(SocialLinks.twitterLink),
                         ),
                       ),
                       FadeAnimation(
                         yDistance: 30,
                         delay: 1.25,
-                        child: IconButton(
-                          icon: Icon(ContactIcons.linkedinIcon),
-                          onPressed: () =>
+                        child: IconWrrapper(
+                          child: Icon(ContactIcons.linkedinIcon),
+                          onTap: () =>
                               model.navigateToSocial(SocialLinks.linkedinUrl),
                         ),
                       )
@@ -95,35 +97,40 @@ class ContactMobileView extends StatelessWidget {
                           SizedBox(
                             height: 4,
                           ),
-                          TextFormField(
-                            controller: model.nameController,
-                            validator: (String value) {
-                              if (value.trim().isEmpty) {
-                                return "Please Enter Name";
-                              }
+                          Neumorphic(
+                            style: NeumorphicStyle(
+                              color: uiHelpers.surfaceColor,
+                              depth: NeumorphicTheme.embossDepth(context),
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                  BorderRadius.circular(8)),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 4),
+                            child: TextFormField(
+                              controller: model.nameController,
+                              validator: (String value) {
+                                if (value.trim().isEmpty) {
+                                  return "Please Enter Name";
+                                }
 
-                              return null;
-                            },
-                            focusNode: model.focusNodeMap["name"],
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
+                                return null;
+                              },
+                              focusNode: model.focusNodeMap["name"],
+                              keyboardType: TextInputType.name,
+                              decoration: InputDecoration(
                                 isDense: true,
                                 prefixIcon: Icon(
                                   FormIcon.nameIcon,
                                   color: model.hasFocusMap["name"]
-                                      ? primaryColor
-                                      : textPrimaryColor,
+                                      ? uiHelpers.primaryColor
+                                      : uiHelpers.textPrimaryColor,
                                 ),
                                 hintText: "Luffy San",
-                                hintStyle: TextStyle(color: textPrimaryColor),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textPrimaryColor)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textSecondaryColor))),
+                                hintStyle: TextStyle(
+                                    color: uiHelpers.textPrimaryColor),
+                                border: InputBorder.none,
+                              ),
+                            ),
                           ),
                           SizedBox(height: 10),
                           Text(
@@ -133,39 +140,44 @@ class ContactMobileView extends StatelessWidget {
                           SizedBox(
                             height: 4,
                           ),
-                          TextFormField(
-                            validator: (String value) {
-                              if (value.trim().isEmpty) {
-                                return "Please Enter Email";
-                              } else if (!RegExp(
-                                      r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
-                                  .hasMatch(value)) {
-                                return "Please enter valid email";
-                              }
+                          Neumorphic(
+                            style: NeumorphicStyle(
+                              color: uiHelpers.surfaceColor,
+                              depth: NeumorphicTheme.embossDepth(context),
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                  BorderRadius.circular(8)),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 4),
+                            child: TextFormField(
+                              validator: (String value) {
+                                if (value.trim().isEmpty) {
+                                  return "Please Enter Email";
+                                } else if (!RegExp(
+                                        r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                                    .hasMatch(value)) {
+                                  return "Please enter valid email";
+                                }
 
-                              return null;
-                            },
-                            controller: model.emailController,
-                            focusNode: model.focusNodeMap["email"],
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
+                                return null;
+                              },
+                              controller: model.emailController,
+                              focusNode: model.focusNodeMap["email"],
+                              keyboardType: TextInputType.name,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
                                 isDense: true,
                                 prefixIcon: Icon(
                                   FormIcon.nameIcon,
                                   color: model.hasFocusMap["email"]
-                                      ? primaryColor
-                                      : textPrimaryColor,
+                                      ? uiHelpers.primaryColor
+                                      : uiHelpers.textPrimaryColor,
                                 ),
                                 hintText: "youremail@gmail.com",
-                                hintStyle: TextStyle(color: textPrimaryColor),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textPrimaryColor)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textSecondaryColor))),
+                                hintStyle: TextStyle(
+                                    color: uiHelpers.textPrimaryColor),
+                              ),
+                            ),
                           ),
                           SizedBox(height: 10),
                           Text(
@@ -175,35 +187,40 @@ class ContactMobileView extends StatelessWidget {
                           SizedBox(
                             height: 4,
                           ),
-                          TextFormField(
-                            controller: model.subjectController,
-                            validator: (String value) {
-                              if (value.trim().isEmpty) {
-                                return "Please Enter Subject";
-                              }
+                          Neumorphic(
+                            style: NeumorphicStyle(
+                              color: uiHelpers.surfaceColor,
+                              depth: NeumorphicTheme.embossDepth(context),
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                  BorderRadius.circular(8)),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 4),
+                            child: TextFormField(
+                              controller: model.subjectController,
+                              validator: (String value) {
+                                if (value.trim().isEmpty) {
+                                  return "Please Enter Subject";
+                                }
 
-                              return null;
-                            },
-                            focusNode: model.focusNodeMap["subject"],
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
+                                return null;
+                              },
+                              focusNode: model.focusNodeMap["subject"],
+                              keyboardType: TextInputType.name,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
                                 isDense: true,
                                 prefixIcon: Icon(
                                   FormIcon.nameIcon,
                                   color: model.hasFocusMap["subject"]
-                                      ? primaryColor
-                                      : textPrimaryColor,
+                                      ? uiHelpers.primaryColor
+                                      : uiHelpers.textPrimaryColor,
                                 ),
                                 hintText: "Hiring for...",
-                                hintStyle: TextStyle(color: textPrimaryColor),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textPrimaryColor)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textSecondaryColor))),
+                                hintStyle: TextStyle(
+                                    color: uiHelpers.textPrimaryColor),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 10,
@@ -215,48 +232,55 @@ class ContactMobileView extends StatelessWidget {
                           SizedBox(
                             height: 4,
                           ),
-                          TextFormField(
-                            controller: model.bodyController,
-                            validator: (String value) {
-                              if (value.trim().isEmpty) {
-                                return "Please Enter Message";
-                              }
+                          Neumorphic(
+                            style: NeumorphicStyle(
+                              color: uiHelpers.surfaceColor,
+                              depth: NeumorphicTheme.embossDepth(context),
+                              boxShape: NeumorphicBoxShape.roundRect(
+                                  BorderRadius.circular(8)),
+                            ),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 4),
+                            child: TextFormField(
+                              controller: model.bodyController,
+                              validator: (String value) {
+                                if (value.trim().isEmpty) {
+                                  return "Please Enter Message";
+                                }
 
-                              return null;
-                            },
-                            maxLines: 4,
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
+                                return null;
+                              },
+                              maxLines: 4,
+                              keyboardType: TextInputType.name,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
                                 isDense: true,
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textPrimaryColor)),
                                 alignLabelWithHint: true,
-                                hintStyle: TextStyle(color: textPrimaryColor),
+                                hintStyle: TextStyle(
+                                    color: uiHelpers.textPrimaryColor),
                                 hintText: "Your Messsage..",
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                    borderSide:
-                                        BorderSide(color: textSecondaryColor))),
+                              ),
+                            ),
                           ),
                         ], crossAxisAlignment: CrossAxisAlignment.start),
                         uiHelpers.verticalSpaceMedium,
-                        Container(
+                        Align(
                           alignment: Alignment.center,
-                          child: MaterialButton(
+                          child: IconWrrapper(
+                            margin: const EdgeInsets.all(0),
+                            color: uiHelpers.backgroundColor,
+                            padding: const EdgeInsets.all(0),
+                            onTap: () => model.openMail(),
+                            child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 40, vertical: 20),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                              color: primaryColor,
-                              onPressed: () => model.openMail(),
+                                  horizontal: 25, vertical: 15),
                               child: Text(
                                 "Send Message",
                                 style: uiHelpers.buttonStyle.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400),
-                              )),
+                                    color: uiHelpers.textPrimaryColor),
+                              ),
+                            ),
+                          ),
                         ),
                         uiHelpers.verticalSpaceMedium,
                       ],

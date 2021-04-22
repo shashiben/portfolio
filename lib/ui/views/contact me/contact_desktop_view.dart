@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
@@ -170,7 +169,7 @@ class ContactDesktopView extends StatelessWidget {
                                               prefixIcon: Icon(
                                                 FormIcon.nameIcon,
                                                 color: model.hasFocusMap["name"]
-                                                    ? primaryColor
+                                                    ? uiHelpers.primaryColor
                                                     : uiHelpers
                                                         .textPrimaryColor,
                                               ),
@@ -227,7 +226,7 @@ class ContactDesktopView extends StatelessWidget {
                                                 FormIcon.nameIcon,
                                                 color:
                                                     model.hasFocusMap["email"]
-                                                        ? primaryColor
+                                                        ? uiHelpers.primaryColor
                                                         : uiHelpers
                                                             .textPrimaryColor,
                                               ),
@@ -280,7 +279,7 @@ class ContactDesktopView extends StatelessWidget {
                                                 FormIcon.nameIcon,
                                                 color:
                                                     model.hasFocusMap["subject"]
-                                                        ? primaryColor
+                                                        ? uiHelpers.primaryColor
                                                         : uiHelpers
                                                             .textPrimaryColor,
                                               ),

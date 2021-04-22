@@ -35,6 +35,8 @@ class ProjectViewModel extends BaseViewModel {
             mapList[s] = [
               ResponsiveGridCol(
                   xl: 4,
+                  sm: 12,
+                  xs: 12,
                   md: 6,
                   child: ProjectWidget(
                       index: i, project: PersonalDetails.projectsList[i]))
@@ -42,6 +44,8 @@ class ProjectViewModel extends BaseViewModel {
           } else {
             mapList[s].add(ResponsiveGridCol(
                 xl: 4,
+                sm: 12,
+                xs: 12,
                 md: 6,
                 child: ProjectWidget(
                     index: i, project: PersonalDetails.projectsList[i])));
@@ -49,6 +53,8 @@ class ProjectViewModel extends BaseViewModel {
         } else {
           mapList["Others"].add(ResponsiveGridCol(
               xl: 4,
+              sm: 12,
+              xs: 12,
               md: 6,
               child: ProjectWidget(
                   index: i, project: PersonalDetails.projectsList[i])));
@@ -57,6 +63,8 @@ class ProjectViewModel extends BaseViewModel {
       mapList["All"].add(ResponsiveGridCol(
           xl: 4,
           md: 6,
+          sm: 12,
+          xs: 12,
           child: ProjectWidget(
               index: i, project: PersonalDetails.projectsList[i])));
     }

@@ -3,7 +3,6 @@ import 'package:oktoast/oktoast.dart';
 import 'package:portfolio/core/utils/architecture_view.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_desktop_view.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_mobile_view.dart';
-import 'package:portfolio/ui/views/contact%20me/contact_tablet_view.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'contact_view_model.dart';
@@ -26,7 +25,7 @@ class ContactView extends StatelessWidget {
                   uiHelpers: uiHelpers,
                   model: model,
                 ),
-                tablet: ContactTabletView(
+                tablet: ContactDesktopView(
                   uiHelpers: uiHelpers,
                   model: model,
                 ),

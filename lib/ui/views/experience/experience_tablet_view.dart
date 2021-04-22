@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
@@ -31,11 +30,13 @@ class ExperienceTabletView extends StatelessWidget {
                 uiHelpers.verticalSpaceLow,
                 TabBar(
                     labelStyle: TextStyle(
-                        color: primaryColor, fontWeight: FontWeight.bold),
+                        color: uiHelpers.primaryColor,
+                        fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(
-                        color: primaryColor, fontWeight: FontWeight.w300),
-                    unselectedLabelColor: textSecondaryColor,
-                    labelColor: primaryColor,
+                        color: uiHelpers.primaryColor,
+                        fontWeight: FontWeight.w300),
+                    unselectedLabelColor: uiHelpers.textSecondaryColor,
+                    labelColor: uiHelpers.primaryColor,
                     isScrollable: true,
                     physics: BouncingScrollPhysics(),
                     tabs: [
@@ -62,22 +63,22 @@ class ExperienceTabletView extends StatelessWidget {
                                 text: TextSpan(
                                     text:
                                         PersonalDetails.experienceList[i].title,
-                                    style: uiHelpers.title
-                                        .copyWith(color: textPrimaryColor),
+                                    style: uiHelpers.title.copyWith(
+                                        color: uiHelpers.textPrimaryColor),
                                     children: [
                                       TextSpan(
                                         text:
                                             "  @${PersonalDetails.experienceList[i].position}",
-                                        style: uiHelpers.body
-                                            .copyWith(color: primaryColor),
+                                        style: uiHelpers.body.copyWith(
+                                            color: uiHelpers.primaryColor),
                                       )
                                     ]),
                               ),
                               SizedBox(height: 8),
                               Text(
                                 "${PersonalDetails.experienceList[i].timePeriod}",
-                                style: uiHelpers.body
-                                    .copyWith(color: textSecondaryColor),
+                                style: uiHelpers.body.copyWith(
+                                    color: uiHelpers.textSecondaryColor),
                               ),
                               uiHelpers.verticalSpaceLow,
                               ListView.builder(

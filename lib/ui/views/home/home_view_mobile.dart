@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
@@ -59,17 +60,49 @@ class HomeMobileView extends StatelessWidget {
                   style: uiHelpers.headline,
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 25,
                 ),
                 Container(
-                    height: 50.0,
-                    child: PageView.builder(
-                      itemCount: model.titles.length,
-                      controller: model.pageController,
-                      itemBuilder: (_, index) {
-                        return model.titles[index];
+                    height: 175.0,
+                    child: CarouselSlider.builder(
+                      options: CarouselOptions(
+                          scrollDirection: Axis.horizontal,
+                          autoPlay: true,
+                          viewportFraction: 1),
+                      itemCount: PersonalDetails.skillDisplayList.length,
+                      itemBuilder: (_, index, realIndex) {
+                        return Container(
+                          width: uiHelpers.width,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                PersonalDetails
+                                    .skillDisplayList[index].iconData,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                PersonalDetails.skillDisplayList[index].title,
+                                style: uiHelpers.title.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontFamily: SystemProperties.fontName),
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                              color:
+                                  PersonalDetails.skillDisplayList[index].color,
+                              borderRadius: BorderRadius.circular(12)),
+                        );
                       },
-                      scrollDirection: Axis.horizontal,
                     )),
                 SizedBox(
                   height: 30,

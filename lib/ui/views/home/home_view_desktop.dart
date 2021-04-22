@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
@@ -112,7 +111,7 @@ class HomeDesktopView extends StatelessWidget {
                                       SizedBox(width: 10),
                                       Text(
                                         e,
-                                        style: uiHelpers.headline,
+                                        style: uiHelpers.title,
                                       )
                                     ],
                                   ),
@@ -130,17 +129,20 @@ class HomeDesktopView extends StatelessWidget {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           child: Text(
-                            PersonalDetails.intro,
-                            style: uiHelpers.body
-                                .copyWith(height: 2, color: textPrimaryColor),
+                            PersonalDetails.shortIntro,
+                            style: uiHelpers.body.copyWith(
+                                fontWeight: FontWeight.w400,
+                                height: 2,
+                                color: uiHelpers.textPrimaryColor),
                           ),
                           width: uiHelpers.width * 0.3,
                         ),
                         SizedBox(
-                          height: 10,
+                          height: 15,
                         ),
                         IconWrrapper(
                           padding: const EdgeInsets.symmetric(

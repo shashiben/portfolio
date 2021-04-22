@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
@@ -20,6 +19,7 @@ class EducationDetailsTimelineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
     return Container(
+      padding: const EdgeInsets.only(left: 10),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +54,7 @@ class EducationDetailsTimelineWidget extends StatelessWidget {
                         text: "$percentage",
                         style: uiHelper.title.copyWith(
                             fontSize: 14,
-                            color: primaryColor,
+                            color: uiHelper.primaryColor,
                             fontWeight: FontWeight.bold))
                   ]),
             ),

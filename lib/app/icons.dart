@@ -46,3 +46,10 @@ mixin TechnologiesIcon {
   static const IconData pythonIcon = FlutterIcons.language_python_mco;
   static const IconData githubIcon = FlutterIcons.github_fea;
 }
+
+mixin SkillDisplayIcons {
+  static const IconData appIcon = FlutterIcons.device_mobile_oct;
+  static const IconData websiteIcon = FlutterIcons.laptop_mac_mco;
+  static const IconData mlIcon = FlutterIcons.brain_mco;
+  static const IconData databaseIcon = FlutterIcons.database_fea;
+}

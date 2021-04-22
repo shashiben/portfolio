@@ -1,6 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/locator.dart';
-import 'package:portfolio/app/snackbar_config.dart';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/theme.dart';
@@ -11,7 +10,6 @@ import 'ui/views/main/main_view.dart';
 Future main() async {
   setPathUrlStrategy();
   await setupLocator();
-  setupSnackbarUi();
   runApp(MyApp());
 }
 
