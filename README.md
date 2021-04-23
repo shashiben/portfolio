@@ -16,10 +16,12 @@ Screen Name| Web | Mobile |
 
 # Check out other version of this portfolio
 
-|   Screen Name   |                                                   Web                                                    |                                                     Mobile                                                     |
-| :-------------: | :------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------: |
-|    Home View    |  ![Home](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/home.png)  |   ![Home](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/home.png)    |
-|   About View    |    ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/about.png)    |    ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/about.png)    |
-|  Project View   |  ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/projects.png)   |    ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/project.png)    |
+Check out live preview at [Traditional UI](https://shashiben.netlify.app/#/)
+
+|   Screen Name   |                                                     Web                                                      |                                                     Mobile                                                      |
+| :-------------: | :----------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------: |
+|    Home View    |    ![Home](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/home.png)    |    ![Home](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/home.png)    |
+|   About View    |   ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/about.png)    |   ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/about.png)    |
+|  Project View   |  ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/projects.png)  |  ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/project.png)   |
 | Experience View | ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/experience.png) | ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/experience.png) |
 |  Contact View   |  ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/web/contact.png)   |  ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/traditional_ui/screenshots/mobile/contact.png)   |
