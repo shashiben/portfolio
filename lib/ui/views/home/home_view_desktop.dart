@@ -4,6 +4,7 @@ import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/widgets/icon_wrapper.dart';
+import 'package:portfolio/ui/widgets/translate_on_hover.dart';
 
 import 'home_view_model.dart';
 
@@ -51,26 +52,30 @@ class HomeDesktopView extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        TextButton(
-                            onPressed: () =>
-                                model.navigateToUrl(PersonalDetails.resumeLink),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Resume",
-                                style: uiHelpers.title,
-                              ),
-                            )),
-                        TextButton(
-                            onPressed: () => model
-                                .navigateToUrl(PersonalDetails.whatsappLink),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                "Contact",
-                                style: uiHelpers.title,
-                              ),
-                            ))
+                        TranslateOnHover(
+                          child: TextButton(
+                              onPressed: () => model
+                                  .navigateToUrl(PersonalDetails.resumeLink),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Resume",
+                                  style: uiHelpers.title,
+                                ),
+                              )),
+                        ),
+                        TranslateOnHover(
+                          child: TextButton(
+                              onPressed: () => model
+                                  .navigateToUrl(PersonalDetails.whatsappLink),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Contact",
+                                  style: uiHelpers.title,
+                                ),
+                              )),
+                        )
                       ],
                     )
                   ],
@@ -151,7 +156,10 @@ class HomeDesktopView extends StatelessWidget {
                               model.navigateToUrl(SocialLinks.githubLink),
                           child: Row(
                             children: [
-                              Icon(ContactIcons.githubIcon),
+                              Icon(
+                                ContactIcons.githubIcon,
+                                color: uiHelpers.textPrimaryColor,
+                              ),
                               SizedBox(
                                 width: 6,
                               ),

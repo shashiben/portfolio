@@ -21,11 +21,14 @@ class AboutViewResponsive extends StatelessWidget {
         backgroundColor: uiHelpers.backgroundColor,
         body: SingleChildScrollView(
           child: BootstrapContainer(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 20.0),
             children: [
-              Text(
-                "Wow, a whole page about my journey!",
-                style: uiHelpers.headline,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Wow, a whole page about my journey!",
+                  style: uiHelpers.headline,
+                ),
               ),
               SizedBox(height: 80),
               BootstrapRow(
@@ -39,9 +42,9 @@ class AboutViewResponsive extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.1,
+                          width: 80,
                           child: DividerWidget(
-                            width: uiHelpers.width * 0.1,
+                            width: 80,
                             dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
@@ -55,9 +58,9 @@ class AboutViewResponsive extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.07,
+                          width: 70,
                           child: DividerWidget(
-                            width: uiHelpers.width * 0.1,
+                            width: 70,
                             dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
@@ -69,9 +72,9 @@ class AboutViewResponsive extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.05,
+                          width: 75,
                           child: DividerWidget(
-                            width: uiHelpers.width * 0.1,
+                            width: 75,
                             dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
@@ -91,9 +94,9 @@ class AboutViewResponsive extends StatelessWidget {
                           style: uiHelpers.title.copyWith(fontSize: 24),
                         ),
                         Container(
-                          width: uiHelpers.width * 0.04,
+                          width: 70,
                           child: DividerWidget(
-                            width: uiHelpers.width * 0.03,
+                            width: 70,
                             dividerColor: uiHelpers.primaryColor,
                           ),
                         ),
@@ -101,7 +104,7 @@ class AboutViewResponsive extends StatelessWidget {
                         Timeline(
                             indicatorSize: 16,
                             indicatorColor: uiHelpers.primaryColor,
-                            lineColor: uiHelpers.textSecondaryColor,
+                            lineColor: uiHelpers.textPrimaryColor,
                             shrinkWrap: true,
                             itemGap: 25,
                             lineGap: 0,

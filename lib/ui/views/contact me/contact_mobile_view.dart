@@ -16,6 +16,7 @@ class ContactMobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: Form(
         key: model.formKey,
         child: Container(
@@ -52,7 +53,10 @@ class ContactMobileView extends StatelessWidget {
                         yDistance: 30,
                         delay: 1.25,
                         child: IconWrrapper(
-                          child: Icon(ContactIcons.githubIcon),
+                          child: Icon(
+                            ContactIcons.githubIcon,
+                            color: uiHelpers.textPrimaryColor,
+                          ),
                           onTap: () =>
                               model.navigateToSocial(SocialLinks.githubLink),
                         ),
@@ -61,7 +65,10 @@ class ContactMobileView extends StatelessWidget {
                         yDistance: 30,
                         delay: 1.25,
                         child: IconWrrapper(
-                          child: Icon(ContactIcons.twitterIcon),
+                          child: Icon(
+                            ContactIcons.twitterIcon,
+                            color: uiHelpers.textPrimaryColor,
+                          ),
                           onTap: () =>
                               model.navigateToSocial(SocialLinks.twitterLink),
                         ),
@@ -70,7 +77,10 @@ class ContactMobileView extends StatelessWidget {
                         yDistance: 30,
                         delay: 1.25,
                         child: IconWrrapper(
-                          child: Icon(ContactIcons.linkedinIcon),
+                          child: Icon(
+                            ContactIcons.linkedinIcon,
+                            color: uiHelpers.textPrimaryColor,
+                          ),
                           onTap: () =>
                               model.navigateToSocial(SocialLinks.linkedinUrl),
                         ),

@@ -15,6 +15,7 @@ class ExperienceMobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: uiHelpers.backgroundColor,
       body: DefaultTabController(
         length: PersonalDetails.experienceList.length,
         child: Container(
@@ -98,9 +99,11 @@ class ExperienceMobileView extends StatelessWidget {
                                             size: 20),
                                         SizedBox(width: 5),
                                         Expanded(
-                                          child: Text(PersonalDetails
-                                              .experienceList[i]
-                                              .description[index]),
+                                          child: Text(
+                                            PersonalDetails.experienceList[i]
+                                                .description[index],
+                                            style: uiHelpers.body,
+                                          ),
                                         )
                                       ],
                                     ),
@@ -133,6 +136,7 @@ class ExperienceMobileView extends StatelessWidget {
                                       children: [
                                         Icon(
                                           ExperienceIcon.arrowIcon,
+                                          color: uiHelpers.textPrimaryColor,
                                           size: 20,
                                         ),
                                         SizedBox(

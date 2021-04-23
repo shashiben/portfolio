@@ -47,6 +47,7 @@ class ProjectResponsiveView extends StatelessWidget {
                           "All",
                           style: uiHelpers.body.copyWith(
                               fontWeight: FontWeight.bold,
+                              color: uiHelpers.textPrimaryColor,
                               fontFamily: SystemProperties.titleFont),
                           textAlign: TextAlign.center,
                         )),
@@ -63,6 +64,7 @@ class ProjectResponsiveView extends StatelessWidget {
                           "Apps",
                           style: uiHelpers.body.copyWith(
                               fontWeight: FontWeight.bold,
+                              color: uiHelpers.textPrimaryColor,
                               fontFamily: SystemProperties.titleFont),
                           textAlign: TextAlign.center,
                         )),
@@ -77,6 +79,7 @@ class ProjectResponsiveView extends StatelessWidget {
                             child: Text(
                           "Web Apps",
                           style: uiHelpers.body.copyWith(
+                              color: uiHelpers.textPrimaryColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: SystemProperties.titleFont),
                           textAlign: TextAlign.center,
@@ -92,6 +95,7 @@ class ProjectResponsiveView extends StatelessWidget {
                             child: Text(
                           "Others",
                           style: uiHelpers.body.copyWith(
+                              color: uiHelpers.textPrimaryColor,
                               fontWeight: FontWeight.bold,
                               fontFamily: SystemProperties.titleFont),
                           textAlign: TextAlign.center,

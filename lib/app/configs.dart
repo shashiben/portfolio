@@ -8,36 +8,40 @@ import 'package:portfolio/core/models/timeline_experience.dart';
 
 //*Social Media Links
 mixin SocialLinks {
-  static String linkedinUrl =
+  static const String linkedinUrl =
       "https://www.linkedin.com/in/shashi-kumar-58ab1b1a4/";
-  static String mediumLink = "https://medium.com/@ben75930";
-  static String twitterLink = "https://twitter.com/Shashi35744438";
-  static String githubLink = "https://github.com/shashiben";
+  static const String mediumLink = "https://medium.com/@ben75930";
+  static const String twitterLink = "https://twitter.com/Shashi35744438";
+  static const String githubLink = "https://github.com/shashiben";
+  static const String facebookLink = "https://www.facebook.com/shashiben7997";
+  static const String instagramLink =
+      "https://www.instagram.com/shashikumar7997/";
+  static const String telegramLink = "https://t.me/shashiben";
 }
 
 //*System Defaults
 mixin SystemProperties {
-  static String fontName = "Montserrat";
-  static String titleFont = "Lato";
+  static const String fontName = "Montserrat";
+  static const String titleFont = "Lato";
 }
 
 //*Education Details
 mixin EducationDetails {
-  static String collegeName = "Sri Chaitanya Jr College";
-  static String collegeTimeline = "2015 - 2017";
-  static String schoolName = "Cattamanchi Ramalinga Reddy High School";
+  static const String collegeName = "Sri Chaitanya Jr College";
+  static const String collegeTimeline = "2015 - 2017";
+  static const String schoolName = "Cattamanchi Ramalinga Reddy High School";
 
-  static String schoolTimeline = "2014 - 2015";
-  static String universityName = "Sri Venkateswara University";
-  static String universityTimeline = "2017 - 2021";
+  static const String schoolTimeline = "2014 - 2015";
+  static const String universityName = "Sri Venkateswara University";
+  static const String universityTimeline = "2017 - 2021";
 
-  static String universityStream = "Computer Science and Engineering";
-  static String schoolStream = "SSC";
-  static String collegeStream = "Intermediate (MPC)";
+  static const String universityStream = "Computer Science and Engineering";
+  static const String schoolStream = "SSC";
+  static const String collegeStream = "Intermediate (MPC)";
 
-  static double universityPercentage = 75.4;
-  static double schoolPercentage = 95.2;
-  static double collegePercentage = 93;
+  static const double universityPercentage = 75.4;
+  static const double schoolPercentage = 95.2;
+  static const double collegePercentage = 93;
 }
 
 //*Personal details
@@ -166,7 +170,7 @@ mixin PersonalDetails {
             "Backend for sending mails.Used to add functionality of sending mail without opening any other applications",
         tools: ["Node JS", "Email JS", "Express JS"])
   ];
-  static List<String> skillsList = [
+  static const List<String> skillsList = [
     "Flutter",
     "MERN Stack",
     "FReMP Stack",
@@ -181,7 +185,7 @@ mixin PersonalDetails {
     "Problem Solving",
   ];
 
-  static List<ExperienceTimeline> experienceList = [
+  static const List<ExperienceTimeline> experienceList = [
     ExperienceTimeline(
         title: "TopRecur",
         position: "Internship",
@@ -248,7 +252,7 @@ mixin PersonalDetails {
       ],
     ),
   ];
-  static String email = "kumarshashi5294@gmail.com";
+  static const String email = "kumarshashi5294@gmail.com";
   static List<SkillModel> featuredSkills = [
     SkillModel(name: "Mobile Application Developement", percent: 95),
     SkillModel(name: "Web Developer", percent: 90),
@@ -256,9 +260,9 @@ mixin PersonalDetails {
     SkillModel(name: "Backend Developer", percent: 89),
   ];
 
-  static String userName = "Shashi Kumar";
-  static String shortIntro =
-      "I’m Shashi Kumar and I’m a full stack developer, and I specialize in efficient Flutter Applications that just work across all platforms and browsers. I care deeply about building interfaces that are usable and pleasant for the most number of people possible.And my main motto whenever building any application is to always build pixel perfect high performant applications that provide user with a rich experience.";
-  static String intro =
+  static const String userName = "Shashi Kumar";
+  static const String shortIntro =
+      "I’m Shashi Kumar and I’m a full stack developer, and I specialize in building efficient Flutter Applications that just work across all platforms and browsers. I care deeply about building interfaces that are usable and pleasant for the most number of people possible.And my main motto is whenever building any application is to always build pixel perfect high performant applications that provide user with a rich experience.";
+  static const String intro =
       "I started my career into developement as android developer.First I built android applications in native android.Later I heared about flutter which helps in building cross platform applications.After gaining experience in flutter,I applied to internships,through which I was able to learn communication skills and code architectures.After that I worked as a freelancer and gained experience of how to build applications in production level.Presently I'm focusing on web developement.I learnt MERN Stack.And working projects on it.";
 }

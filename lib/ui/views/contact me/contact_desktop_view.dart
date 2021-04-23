@@ -360,22 +360,8 @@ class ContactDesktopView extends StatelessWidget {
                             delay: 2,
                             child: Container(
                                 alignment: Alignment.center,
-                                child: NeumorphicButton(
-                                  onPressed: () => model.openMail(),
-                                  style: NeumorphicStyle(
-                                      border: NeumorphicBorder(
-                                        isEnabled: true,
-                                        color: uiHelpers.surfaceColor,
-                                        width: 2,
-                                      ),
-                                      intensity: 8,
-                                      boxShape: NeumorphicBoxShape.roundRect(
-                                          BorderRadius.circular(12)),
-                                      color: uiHelpers.backgroundColor,
-                                      lightSource: LightSource.top,
-                                      depth: 4,
-                                      surfaceIntensity: 0.5,
-                                      shape: NeumorphicShape.flat),
+                                child: IconWrrapper(
+                                  onTap: () => model.openMail(),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [

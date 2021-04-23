@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
+import 'package:portfolio/core/services/url_launcher_service.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
 class TrailingInfo extends StatelessWidget {
@@ -51,7 +52,8 @@ class TrailingInfo extends StatelessWidget {
             style: NeumorphicStyle(
                 color: uiHelper.primaryColor,
                 boxShape: NeumorphicBoxShape.circle()),
-            onPressed: () {},
+            onPressed: () => UrlLauncherService()
+                .launchUrl("mailto:${PersonalDetails.email}"),
             child: Center(
               child: leadingWidget ??
                   NeumorphicIcon(

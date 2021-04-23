@@ -26,6 +26,7 @@ mixin ContactIcons {
   static const IconData linkedinIcon = FlutterIcons.linkedin_fea;
   static const IconData instagramIcon = FlutterIcons.instagram_fea;
   static const IconData facebookIcon = FlutterIcons.facebook_fea;
+  static const IconData telegramIcon = FlutterIcons.telegram_mco;
 }
 
 mixin FormIcon {
