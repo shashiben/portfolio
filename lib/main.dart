@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/locator.dart';
 
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
       title: "Shashi Kumar",
       debugShowCheckedModeBanner: false,
       home: MainView(),
-      themeMode: ThemeMode.light,
+      themeMode: ((defaultTargetPlatform == TargetPlatform.iOS) ||
+              (defaultTargetPlatform == TargetPlatform.android))
+          ? ThemeMode.dark
+          : ThemeMode.light,
       theme: neumorphicLightTheme,
       darkTheme: neumorphicDarkTheme,
     );

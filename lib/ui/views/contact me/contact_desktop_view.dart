@@ -59,6 +59,7 @@ class ContactDesktopView extends StatelessWidget {
                               model.navigateToSocial(SocialLinks.githubLink),
                           child: Icon(
                             ContactIcons.githubIcon,
+                            color: uiHelpers.textPrimaryColor,
                             size: 30,
                           ),
                         )),
@@ -71,6 +72,7 @@ class ContactDesktopView extends StatelessWidget {
                               model.navigateToSocial(SocialLinks.twitterLink),
                           child: Icon(
                             ContactIcons.twitterIcon,
+                            color: uiHelpers.textPrimaryColor,
                             size: 30,
                           ),
                         )),
@@ -83,6 +85,7 @@ class ContactDesktopView extends StatelessWidget {
                               model.navigateToSocial(SocialLinks.linkedinUrl),
                           child: Icon(
                             ContactIcons.linkedinIcon,
+                            color: uiHelpers.textPrimaryColor,
                             size: 30,
                           ),
                         )),
