@@ -10,20 +10,20 @@ class LinearPainter extends CustomPainter {
   final progress;
   final center;
   final isRTL;
-  final Color progressColor;
+  final Color? progressColor;
   final Color backgroundColor;
-  final LinearStrokeCap linearStrokeCap;
-  final LinearGradient linearGradient;
-  final MaskFilter maskFilter;
-  final bool clipLinearGradient;
+  final LinearStrokeCap? linearStrokeCap;
+  final LinearGradient? linearGradient;
+  final MaskFilter? maskFilter;
+  final bool? clipLinearGradient;
 
   LinearPainter({
-    this.lineWidth,
+    required this.lineWidth,
     this.progress,
     this.center,
     this.isRTL,
     this.progressColor,
-    this.backgroundColor,
+    required this.backgroundColor,
     this.linearStrokeCap = LinearStrokeCap.butt,
     this.linearGradient,
     this.maskFilter,
@@ -34,8 +34,8 @@ class LinearPainter extends CustomPainter {
     _paintBackground.strokeWidth = lineWidth;
 
     _paintLine.color = progress.toString() == "0.0"
-        ? progressColor.withOpacity(0.0)
-        : progressColor;
+        ? progressColor!.withOpacity(0.0)
+        : progressColor!;
     _paintLine.style = PaintingStyle.stroke;
     _paintLine.strokeWidth = lineWidth;
 
@@ -76,8 +76,8 @@ class LinearPainter extends CustomPainter {
 
   Shader _createGradientShaderRightToLeft(Size size, double xProgress) {
     Offset shaderEndPoint =
-        clipLinearGradient ? Offset.zero : Offset(xProgress, size.height);
-    return linearGradient.createShader(
+        clipLinearGradient! ? Offset.zero : Offset(xProgress, size.height);
+    return linearGradient!.createShader(
       Rect.fromPoints(
         Offset(size.width, size.height),
         shaderEndPoint,
@@ -86,10 +86,10 @@ class LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderLeftToRight(Size size, double xProgress) {
-    Offset shaderEndPoint = clipLinearGradient
+    Offset shaderEndPoint = clipLinearGradient!
         ? Offset(size.width, size.height)
         : Offset(xProgress, size.height);
-    return linearGradient.createShader(
+    return linearGradient!.createShader(
       Rect.fromPoints(
         Offset.zero,
         shaderEndPoint,

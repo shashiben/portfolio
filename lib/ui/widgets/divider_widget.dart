@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class DividerWidget extends StatelessWidget {
   final double thickness;
-  final Color dividerColor;
+  final Color? dividerColor;
   final double radius;
   final double width;
 
   const DividerWidget(
-      {Key key,
+      {Key? key,
       this.thickness = 2.0,
-      @required this.dividerColor,
+      required this.dividerColor,
       this.radius = 6,
-      @required this.width})
+      required this.width})
       : super(key: key);
 
   @override

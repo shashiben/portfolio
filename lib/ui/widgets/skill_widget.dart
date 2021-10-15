@@ -5,9 +5,9 @@ import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class SkillWidget extends StatelessWidget {
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
-  const SkillWidget({Key key, this.textStyle}) : super(key: key);
+  const SkillWidget({Key? key, this.textStyle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

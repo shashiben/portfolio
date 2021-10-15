@@ -95,8 +95,8 @@ double bootstrapMaxWidthNonFluid(double width) {
 ///
 class BootstrapContainer extends StatelessWidget {
   BootstrapContainer({
-    Key key,
-    @required this.children,
+    Key? key,
+    required this.children,
     this.fluid = false,
     this.decoration,
     this.padding,
@@ -111,7 +111,7 @@ class BootstrapContainer extends StatelessWidget {
   ///
   /// Any potential BoxDecoration
   ///
-  final BoxDecoration decoration;
+  final BoxDecoration? decoration;
 
   ///
   /// Children
@@ -121,7 +121,7 @@ class BootstrapContainer extends StatelessWidget {
   ///
   /// Padding
   ///
-  final EdgeInsets padding;
+  final EdgeInsets? padding;
 
   //
   // Computes the max-width of a container, based on the available space
@@ -161,7 +161,7 @@ class BootstrapContainer extends StatelessWidget {
 
         if (padding != null) {
           widget = Padding(
-            padding: padding,
+            padding: padding!,
             child: widget,
           );
         }
@@ -182,7 +182,7 @@ class BootstrapContainer extends StatelessWidget {
 ///
 class BootstrapRow extends StatelessWidget {
   BootstrapRow({
-    @required this.children,
+    required this.children,
     this.decoration,
     this.height,
   });
@@ -190,12 +190,12 @@ class BootstrapRow extends StatelessWidget {
   ///
   /// Min container height
   ///
-  final double height;
+  final double? height;
 
   ///
   /// Any potential BoxDecoration
   ///
-  final BoxDecoration decoration;
+  final BoxDecoration? decoration;
 
   ///
   /// List of the children of type [BootstrapCol]
@@ -215,13 +215,13 @@ class BootstrapRow extends StatelessWidget {
         // We need to iterate through all the children and consider any potential order
         //
         List<BootstrapCol> _children = List.from(children);
-        _children.sort((a, b) => a.orderPerSize[pfx] - b.orderPerSize[pfx]);
+        _children.sort((a, b) => a.orderPerSize[pfx]! - b.orderPerSize[pfx]!);
 
         return Container(
           constraints: BoxConstraints(
             minWidth: constraints.maxWidth,
             maxWidth: constraints.maxWidth,
-            minHeight: height,
+            minHeight: height!,
           ),
           decoration: decoration,
           child: Wrap(
@@ -240,7 +240,7 @@ class BootstrapRow extends StatelessWidget {
 ///
 class BootstrapCol extends StatelessWidget {
   BootstrapCol({
-    @required this.child,
+    required this.child,
     this.fit = FlexFit.loose,
     this.absoluteSizes = true,
     String sizes = "",
@@ -308,7 +308,7 @@ class BootstrapCol extends StatelessWidget {
   /// Example:
   ///   invisibleForSizes: 'xs xl'
   ///
-  final String invisibleForSizes;
+  final String? invisibleForSizes;
 
   ///
   /// Do we consider relative dimensions (based on the parent container)
@@ -320,7 +320,7 @@ class BootstrapCol extends StatelessWidget {
   //
   // Flex ratios per size, based on the column's definition
   //
-  final Map<String, int> _ratiosPerSize = {
+  final Map<String, int?> _ratiosPerSize = {
     'xl': 100,
     'lg': 100,
     'md': 100,
@@ -331,7 +331,7 @@ class BootstrapCol extends StatelessWidget {
   //
   // Offsets per size, based on the column's definition
   //
-  final Map<String, int> _offsetsPerSize = {
+  final Map<String, int?> _offsetsPerSize = {
     'xl': -100,
     'lg': -100,
     'md': -100,
@@ -342,7 +342,7 @@ class BootstrapCol extends StatelessWidget {
   //
   // Sequence order per size, based on the column's definition
   //
-  final Map<String, int> orderPerSize = {
+  final Map<String, int?> orderPerSize = {
     'xl': 0,
     'lg': 0,
     'md': 0,
@@ -369,13 +369,13 @@ class BootstrapCol extends StatelessWidget {
     final int nbPrefixes = _prefixes.length;
 
     void _initArray({
-      String referenceArgument,
-      Map<String, int> map,
-      String argPrefix,
-      Function minMaxFct,
+      required String referenceArgument,
+      Map<String, int?>? map,
+      String? argPrefix,
+      Function? minMaxFct,
       int lowerBoundValue = 0,
-      int noValue,
-      int minMaxNoValueReference,
+      int? noValue,
+      int? minMaxNoValueReference,
     }) {
       //
       // Identification of the defined "dimensions"
@@ -391,11 +391,11 @@ class BootstrapCol extends StatelessWidget {
         _prefixes.forEach((pfx) {
           final String prefix = '$argPrefix-$pfx${pfx == "" ? "" : "-"}';
           if (part.startsWith(prefix)) {
-            String valString = part.split(prefix)?.last;
-            if (valString != null && valString != prefix) {
-              int value = int.tryParse(valString);
+            String? valString = part.split(prefix).last;
+            if (valString != prefix) {
+              int? value = int.tryParse(valString);
               if (value != null && value < 13 && value > lowerBoundValue) {
-                map[pfx] = minMaxFct(map[pfx], value);
+                map![pfx] = minMaxFct!(map[pfx], value);
               }
             }
           }
@@ -407,7 +407,7 @@ class BootstrapCol extends StatelessWidget {
       //
       for (int idx = 0; idx < nbPrefixes; idx++) {
         String pfx = _prefixesReversed[idx];
-        int value = map[pfx];
+        int? value = map![pfx];
 
         if (value == noValue) {
           //
@@ -439,7 +439,7 @@ class BootstrapCol extends StatelessWidget {
             }
           }
 
-          map[pfx] = minMaxFct(minMaxNoValueReference, value);
+          map[pfx] = minMaxFct!(minMaxNoValueReference, value);
         }
       }
     }
@@ -486,7 +486,7 @@ class BootstrapCol extends StatelessWidget {
     //
     List<String> parts = (invisibleForSizes ?? "").trim().isEmpty
         ? []
-        : invisibleForSizes
+        : invisibleForSizes!
             .toLowerCase()
             .split(' ')
             .where((t) => t.trim().isNotEmpty)
@@ -502,7 +502,7 @@ class BootstrapCol extends StatelessWidget {
   // Returns the flex ratio % column's definition and available width of
   // the container
   //
-  int _getFlexRatio(String prefix) {
+  int? _getFlexRatio(String prefix) {
     return _ratiosPerSize[prefix];
   }
 
@@ -528,7 +528,7 @@ class BootstrapCol extends StatelessWidget {
         //
         // Check if invisible
         //
-        bool isInvisible = hiddenPerSize[pfx];
+        bool isInvisible = hiddenPerSize[pfx]!;
 
         if (isInvisible) {
           return Container();
@@ -538,7 +538,7 @@ class BootstrapCol extends StatelessWidget {
         //
         // Get the flexible ratio
         //
-        int flexRatio = _getFlexRatio(pfx);
+        int flexRatio = _getFlexRatio(pfx)!;
 
         //
         // Get the margin-left (offset)
@@ -577,7 +577,7 @@ class BootstrapCol extends StatelessWidget {
 ///
 class BootstrapVisibility extends StatelessWidget {
   BootstrapVisibility({
-    @required this.child,
+    required this.child,
     String sizes = "",
   }) : this.sizes = sizes.trim() {
     _initialize();
@@ -646,7 +646,7 @@ class BootstrapVisibility extends StatelessWidget {
     //
     // Check if it is visible
     //
-    bool visible = _visibilityPerSize[pfx];
+    bool? visible = _visibilityPerSize[pfx];
 
     if (visible == false) {
       return Container();
@@ -676,8 +676,8 @@ class BootstrapVisibility extends StatelessWidget {
 /// returns the nearest (upper first)
 ///
 dynamic bootStrapValueBasedOnSize({
-  @required Map<String, dynamic> sizes,
-  @required BuildContext context,
+  required Map<String, dynamic> sizes,
+  required BuildContext context,
 }) {
   //
   // Get the prefix for the definition, based on the available width

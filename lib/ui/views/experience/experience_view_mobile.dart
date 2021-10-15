@@ -7,20 +7,20 @@ import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/views/experience/experience_view_model.dart';
 
 class ExperienceMobileView extends StatelessWidget {
-  final ScreenUiHelper uiHelpers;
-  final ExperienceViewModel model;
+  final ScreenUiHelper? uiHelpers;
+  final ExperienceViewModel? model;
 
-  const ExperienceMobileView({Key key, this.uiHelpers, this.model})
+  const ExperienceMobileView({Key? key, this.uiHelpers, this.model})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: uiHelpers.backgroundColor,
+      backgroundColor: uiHelpers!.backgroundColor,
       body: DefaultTabController(
         length: PersonalDetails.experienceList.length,
         child: Container(
-          width: uiHelpers.width,
-          height: uiHelpers.height,
+          width: uiHelpers!.width,
+          height: uiHelpers!.height,
           child: Container(
             padding: const EdgeInsets.only(left: 10).copyWith(top: 30),
             child: Column(
@@ -28,18 +28,18 @@ class ExperienceMobileView extends StatelessWidget {
               children: [
                 Text(
                   "Experience",
-                  style: uiHelpers.headline,
+                  style: uiHelpers!.headline,
                 ),
-                uiHelpers.verticalSpaceLow,
+                uiHelpers!.verticalSpaceLow,
                 TabBar(
                     labelStyle: TextStyle(
-                        color: uiHelpers.primaryColor,
+                        color: uiHelpers!.primaryColor,
                         fontWeight: FontWeight.bold),
                     unselectedLabelStyle: TextStyle(
-                        color: uiHelpers.primaryColor,
+                        color: uiHelpers!.primaryColor,
                         fontWeight: FontWeight.w300),
-                    unselectedLabelColor: uiHelpers.textSecondaryColor,
-                    labelColor: uiHelpers.primaryColor,
+                    unselectedLabelColor: uiHelpers!.textSecondaryColor,
+                    labelColor: uiHelpers!.primaryColor,
                     isScrollable: true,
                     physics: BouncingScrollPhysics(),
                     tabs: [
@@ -61,29 +61,29 @@ class ExperienceMobileView extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              uiHelpers.verticalSpaceLow,
+                              uiHelpers!.verticalSpaceLow,
                               RichText(
                                 text: TextSpan(
                                     text:
                                         PersonalDetails.experienceList[i].title,
-                                    style: uiHelpers.title.copyWith(
-                                        color: uiHelpers.textPrimaryColor),
+                                    style: uiHelpers!.title!.copyWith(
+                                        color: uiHelpers!.textPrimaryColor),
                                     children: [
                                       TextSpan(
                                         text:
                                             "  @${PersonalDetails.experienceList[i].position}",
-                                        style: uiHelpers.body.copyWith(
-                                            color: uiHelpers.primaryColor),
+                                        style: uiHelpers!.body!.copyWith(
+                                            color: uiHelpers!.primaryColor),
                                       )
                                     ]),
                               ),
                               SizedBox(height: 8),
                               Text(
                                 "${PersonalDetails.experienceList[i].timePeriod}",
-                                style: uiHelpers.body.copyWith(
-                                    color: uiHelpers.textSecondaryColor),
+                                style: uiHelpers!.body!.copyWith(
+                                    color: uiHelpers!.textSecondaryColor),
                               ),
-                              uiHelpers.verticalSpaceLow,
+                              uiHelpers!.verticalSpaceLow,
                               ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
                                 primary: false,
@@ -102,7 +102,7 @@ class ExperienceMobileView extends StatelessWidget {
                                           child: Text(
                                             PersonalDetails.experienceList[i]
                                                 .description[index],
-                                            style: uiHelpers.body,
+                                            style: uiHelpers!.body,
                                           ),
                                         )
                                       ],
@@ -112,19 +112,19 @@ class ExperienceMobileView extends StatelessWidget {
                                 itemCount:
                                     PersonalDetails.experienceList.length,
                               ),
-                              uiHelpers.verticalSpaceLow,
+                              uiHelpers!.verticalSpaceLow,
                               Text(
                                 "Tools Used",
-                                style: uiHelpers.title,
+                                style: uiHelpers!.title,
                               ),
                               Container(
-                                width: uiHelpers.width * 0.16,
+                                width: uiHelpers!.width! * 0.16,
                                 child: Divider(
-                                  color: uiHelpers.dividerColor,
+                                  color: uiHelpers!.dividerColor,
                                   thickness: 2.5,
                                 ),
                               ),
-                              uiHelpers.verticalSpaceLow,
+                              uiHelpers!.verticalSpaceLow,
                               ListView.builder(
                                 primary: false,
                                 physics: NeverScrollableScrollPhysics(),
@@ -136,7 +136,7 @@ class ExperienceMobileView extends StatelessWidget {
                                       children: [
                                         Icon(
                                           ExperienceIcon.arrowIcon,
-                                          color: uiHelpers.textPrimaryColor,
+                                          color: uiHelpers!.textPrimaryColor,
                                           size: 20,
                                         ),
                                         SizedBox(
@@ -145,7 +145,7 @@ class ExperienceMobileView extends StatelessWidget {
                                         Text(
                                           PersonalDetails
                                               .experienceList[i].tools[index],
-                                          style: uiHelpers.body,
+                                          style: uiHelpers!.body,
                                         ),
                                       ],
                                     ),

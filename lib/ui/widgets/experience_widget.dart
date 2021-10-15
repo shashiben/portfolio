@@ -7,7 +7,7 @@ import 'custom shapes/tree_painter.dart';
 
 class ExperienceTree extends StatelessWidget {
   ExperienceTree({
-    @required this.experienceData,
+    required this.experienceData,
     this.head,
     this.widthOfTree,
     this.headTitle,
@@ -20,17 +20,17 @@ class ExperienceTree extends StatelessWidget {
     this.scrollController,
   });
 
-  final Widget head;
-  final double widthOfTree;
-  final String headTitle;
-  final TextStyle headTitleStyle;
-  final TextStyle tailTitleStyle;
-  final Color headBackgroundColor;
-  final String tailTitle;
-  final Color tailBackgroundColor;
-  final Widget tail;
+  final Widget? head;
+  final double? widthOfTree;
+  final String? headTitle;
+  final TextStyle? headTitleStyle;
+  final TextStyle? tailTitleStyle;
+  final Color? headBackgroundColor;
+  final String? tailTitle;
+  final Color? tailBackgroundColor;
+  final Widget? tail;
   final List<ExperienceTimeline> experienceData;
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -45,14 +45,14 @@ class ExperienceTree extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: headBackgroundColor ??
-                    uiHelper.primaryColor.withOpacity(0.1),
+                    uiHelper.primaryColor!.withOpacity(0.1),
               ),
               child: Text(
-                headTitle,
+                headTitle!,
                 style: headTitleStyle ??
                     Theme.of(context)
                         .textTheme
-                        .headline6
+                        .headline6!
                         .copyWith(color: uiHelper.primaryColor),
               ),
             ),
@@ -69,14 +69,14 @@ class ExperienceTree extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: tailBackgroundColor ??
-                    uiHelper.primaryColor.withOpacity(0.1),
+                    uiHelper.primaryColor!.withOpacity(0.1),
               ),
               child: Text(
-                tailTitle,
+                tailTitle!,
                 style: tailTitleStyle ??
                     Theme.of(context)
                         .textTheme
-                        .subtitle1
+                        .subtitle1!
                         .copyWith(color: uiHelper.primaryColor),
               ),
             ),
@@ -87,8 +87,8 @@ class ExperienceTree extends StatelessWidget {
   }
 
   List<Widget> _buildExperienceBranches({
-    @required BuildContext context,
-    @required List<ExperienceTimeline> experienceData,
+    required BuildContext context,
+    required List<ExperienceTimeline> experienceData,
   }) {
     List<Widget> branchWidgets = [];
     for (var index = 0; index < experienceData.length; index++) {
@@ -125,16 +125,16 @@ class ExperienceBranch extends StatefulWidget {
     this.stalk = 0.1,
   });
 
-  final double width;
+  final double? width;
   final double stalk;
   final double height;
-  final String company;
-  final String companyUrl;
-  final String location;
-  final String duration;
-  final String position;
-  final List<String> roles;
-  final CustomPainter customPainter;
+  final String? company;
+  final String? companyUrl;
+  final String? location;
+  final String? duration;
+  final String? position;
+  final List<String>? roles;
+  final CustomPainter? customPainter;
 
   @override
   _ExperienceBranchState createState() => _ExperienceBranchState();
@@ -143,14 +143,14 @@ class ExperienceBranch extends StatefulWidget {
 class _ExperienceBranchState extends State<ExperienceBranch> {
   GlobalKey roleLeafKey = GlobalKey();
   GlobalKey locationLeafKey = GlobalKey();
-  double offsetRoleLeaf;
-  double offsetLocationLeaf;
+  double? offsetRoleLeaf;
+  double? offsetLocationLeaf;
 
   @override
   void initState() {
     offsetRoleLeaf = (widget.height / 5) - 10;
     offsetLocationLeaf = (widget.height / 2) - 16;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       _getHeightOfRoleLeaf();
     });
     super.initState();
@@ -158,9 +158,9 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
 
   _getHeightOfRoleLeaf() {
     final RenderBox roleLeafRenderBox =
-        roleLeafKey.currentContext.findRenderObject();
+        roleLeafKey.currentContext!.findRenderObject() as RenderBox;
     final RenderBox locationLeafRenderBox =
-        locationLeafKey.currentContext.findRenderObject();
+        locationLeafKey.currentContext!.findRenderObject() as RenderBox;
     final roleLeafHeight = roleLeafRenderBox.size.height;
     final locationLeafHeight = locationLeafRenderBox.size.height;
     setState(() {
@@ -182,12 +182,12 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
         child: Stack(
           children: [
             Positioned(
-              width: widget.width / 2,
+              width: widget.width! / 2,
               top: offsetLocationLeaf,
               left: 0,
               child: Container(
                 key: locationLeafKey,
-                padding: EdgeInsets.only(right: (widget.width * widget.stalk)),
+                padding: EdgeInsets.only(right: (widget.width! * widget.stalk)),
                 child: LocationDateLeaf(
                   duration: widget.duration,
                   location: widget.location,
@@ -196,13 +196,13 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
             ),
             SizedBox(height: 8),
             Positioned(
-              width: widget.width / 2,
+              width: widget.width! / 2,
               top: offsetRoleLeaf,
               right: 0,
               child: Container(
                 key: roleLeafKey,
                 padding: EdgeInsets.only(
-                  left: (widget.width * widget.stalk),
+                  left: (widget.width! * widget.stalk),
                 ),
                 child: RoleLeaf(
                   company: widget.company,
@@ -221,20 +221,20 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
 
 class LocationDateLeaf extends StatelessWidget {
   LocationDateLeaf({
-    @required this.duration,
-    @required this.location,
+    required this.duration,
+    required this.location,
     this.durationIcon,
     this.locationIcon,
     this.locationTextStyle,
     this.durationTextStyle,
   });
 
-  final String duration;
-  final TextStyle durationTextStyle;
-  final String location;
-  final TextStyle locationTextStyle;
-  final Icon locationIcon;
-  final Icon durationIcon;
+  final String? duration;
+  final TextStyle? durationTextStyle;
+  final String? location;
+  final TextStyle? locationTextStyle;
+  final Icon? locationIcon;
+  final Icon? durationIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -247,18 +247,17 @@ class LocationDateLeaf extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                duration,
+                duration!,
                 style: durationTextStyle ??
-                    theme.textTheme.bodyText2
+                    theme.textTheme.bodyText2!
                         .copyWith(color: uiHelper.textPrimaryColor),
               ),
               SizedBox(width: 4),
               Icon(
-                    Icons.access_time,
-                    color: uiHelper.primaryColor,
-                    size: 18,
-                  ) ??
-                  durationIcon,
+                Icons.access_time,
+                color: uiHelper.primaryColor,
+                size: 18,
+              ),
             ],
           ),
           SizedBox(height: 8),
@@ -266,9 +265,9 @@ class LocationDateLeaf extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Text(
-                location,
+                location!,
                 style: locationTextStyle ??
-                    theme.textTheme.bodyText2
+                    theme.textTheme.bodyText2!
                         .copyWith(color: uiHelper.textSecondaryColor),
               ),
               SizedBox(width: 4),
@@ -282,22 +281,22 @@ class LocationDateLeaf extends StatelessWidget {
 
 class RoleLeaf extends StatelessWidget {
   RoleLeaf({
-    @required this.company,
-    @required this.position,
-    @required this.roles,
+    required this.company,
+    required this.position,
+    required this.roles,
     this.companyTextStyle,
     this.positionTextStyle,
     this.roleTextStyle,
     this.onTap,
   });
 
-  final String company;
-  final String position;
-  final List<String> roles;
-  final TextStyle companyTextStyle;
-  final TextStyle positionTextStyle;
-  final TextStyle roleTextStyle;
-  final GestureTapCallback onTap;
+  final String? company;
+  final String? position;
+  final List<String>? roles;
+  final TextStyle? companyTextStyle;
+  final TextStyle? positionTextStyle;
+  final TextStyle? roleTextStyle;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -310,16 +309,16 @@ class RoleLeaf extends StatelessWidget {
           InkWell(
             onTap: onTap,
             child: Text(
-              company,
+              company!,
               style: companyTextStyle ??
-                  theme.textTheme.subtitle1
+                  theme.textTheme.subtitle1!
                       .copyWith(fontSize: 18, color: uiHelper.primaryColor),
             ),
           ),
           Text(
-            position,
+            position!,
             style: positionTextStyle ??
-                theme.textTheme.subtitle2.copyWith(
+                theme.textTheme.subtitle2!.copyWith(
                     fontStyle: FontStyle.italic,
                     color: uiHelper.textPrimaryColor),
           ),
@@ -327,7 +326,7 @@ class RoleLeaf extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: _buildRoles(
-              roles: roles,
+              roles: roles!,
               context: context,
             ),
           ),
@@ -337,8 +336,8 @@ class RoleLeaf extends StatelessWidget {
   }
 
   List<Widget> _buildRoles({
-    @required List<String> roles,
-    @required BuildContext context,
+    required List<String> roles,
+    required BuildContext context,
   }) {
     ThemeData theme = Theme.of(context);
     ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
@@ -348,7 +347,7 @@ class RoleLeaf extends StatelessWidget {
         Role(
           role: roles[index],
           roleTextStyle: roleTextStyle ??
-              theme.textTheme.bodyText2
+              theme.textTheme.bodyText2!
                   .copyWith(color: uiHelper.textSecondaryColor),
         ),
       );
@@ -361,14 +360,14 @@ class RoleLeaf extends StatelessWidget {
 
 class Role extends StatelessWidget {
   Role({
-    @required this.role,
+    required this.role,
     this.roleTextStyle,
     this.icon = Icons.arrow_right,
     this.iconSize = 18,
   });
 
   final String role;
-  final TextStyle roleTextStyle;
+  final TextStyle? roleTextStyle;
   final IconData icon;
   final double iconSize;
 
@@ -390,7 +389,7 @@ class Role extends StatelessWidget {
           child: Text(
             role,
             style: roleTextStyle ??
-                theme.textTheme.bodyText1.copyWith(
+                theme.textTheme.bodyText1!.copyWith(
                   color: uiHelper.textPrimaryColor,
                 ),
           ),

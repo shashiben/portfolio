@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/colors.dart';
 import 'package:portfolio/app/configs.dart';
@@ -6,62 +5,62 @@ import 'package:portfolio/core/utils/scaling.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 class ScreenUiHelper {
-  double width;
-  double height;
+  double? width;
+  double? height;
 
-  double blockSizeHorizontal;
-  double blockSizeVertical;
+  late double blockSizeHorizontal;
+  late double blockSizeVertical;
 
-  ScalingHelper scalingHelper;
+  ScalingHelper? scalingHelper;
 
-  TextStyle headline;
-  TextStyle title;
-  TextStyle body;
-  TextStyle buttonStyle;
+  TextStyle? headline;
+  TextStyle? title;
+  TextStyle? body;
+  TextStyle? buttonStyle;
 
-  double headlineSize;
-  double titleSize;
-  double bodySize;
+  double? headlineSize;
+  double? titleSize;
+  double? bodySize;
 
-  Color surfaceColor;
-  Color backgroundColor;
-  Color primaryColor;
-  Color textPrimaryColor;
-  Color textSecondaryColor;
-  Color dividerColor;
+  Color? surfaceColor;
+  Color? backgroundColor;
+  Color? primaryColor;
+  Color? textPrimaryColor;
+  Color? textSecondaryColor;
+  Color? dividerColor;
 
-  NeumorphicTextStyle headlineTextStyle;
-  NeumorphicTextStyle titleTextStyle;
-  NeumorphicTextStyle bodyTextStyle;
-  NeumorphicTextStyle buttonTextStyle;
+  NeumorphicTextStyle? headlineTextStyle;
+  late NeumorphicTextStyle titleTextStyle;
+  NeumorphicTextStyle? bodyTextStyle;
+  NeumorphicTextStyle? buttonTextStyle;
 
-  SizedBox verticalSpaceLow;
-  SizedBox verticalSpaceMedium;
-  SizedBox verticalSpaceHigh;
+  late SizedBox verticalSpaceLow;
+  late SizedBox verticalSpaceMedium;
+  late SizedBox verticalSpaceHigh;
 
-  SizedBox horizontalSpaceLow;
-  SizedBox horizontalSpaceMedium;
-  SizedBox horizontalSpaceHigh;
+  SizedBox? horizontalSpaceLow;
+  SizedBox? horizontalSpaceMedium;
+  SizedBox? horizontalSpaceHigh;
 
   ScreenUiHelper.fromContext(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
 
-    surfaceColor = NeumorphicTheme.of(context).isUsingDark
+    surfaceColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.surfaceColor
         : lightColor.surfaceColor;
-    backgroundColor = NeumorphicTheme.of(context).isUsingDark
+    backgroundColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.backgroundColor
         : lightColor.backgroundColor;
-    primaryColor = NeumorphicTheme.of(context).isUsingDark
+    primaryColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.primaryColor
         : lightColor.primaryColor;
-    textPrimaryColor = NeumorphicTheme.of(context).isUsingDark
+    textPrimaryColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.textPrimaryColor
         : lightColor.textPrimaryColor;
-    textSecondaryColor = NeumorphicTheme.of(context).isUsingDark
+    textSecondaryColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.textSecondaryColor
         : lightColor.textSecondaryColor;
-    dividerColor = NeumorphicTheme.of(context).isUsingDark
+    dividerColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.dividerColor
         : lightColor.dividerColor;
 

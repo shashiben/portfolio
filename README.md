@@ -9,7 +9,7 @@ Screen Name| Web | Mobile |
 |:---:| :---: | :---: |
 | Menu View | ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/menu_web.png)| ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/menu_mobile.png) |
 | Home View | ![Home](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/home_web.png)| ![Home](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/home_mobile.png) |
-| About View | ![About](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/menu_web.png)| ![About](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/about_mobile.png) |
+| About View | ![About](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/about_web.png)| ![About](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/about_mobile.png) |
 | Project View | ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/project_web.png)| ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/menu_mobile.png) |
 | Experience View | ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/experience_web.png)| ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/experience_mobile.png) |
 | Contact View | ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/web/contact_web.png)| ![Menu](https://raw.githubusercontent.com/shashiben/portfolio/master/screenshots/mobile/contact_mobile.png) |

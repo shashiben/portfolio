@@ -4,7 +4,7 @@ import 'dart:math' as math;
 class AnimateIcons extends StatefulWidget {
   const AnimateIcons({
     /// The IconData that will be visible before animation Starts
-    @required this.startIcon,
+    required this.startIcon,
 
     /// The IconData that will be visible after animation ends
 
@@ -12,19 +12,19 @@ class AnimateIcons extends StatefulWidget {
     /// It should return a bool
     /// If true is returned it'll animate to the end icon
     /// if false is returned it'll not animate to the end icons
-    @required this.onStartIconPress,
+    required this.onStartIconPress,
 
     /// The callback on endIcon Press
     /// /// It should return a bool
     /// If true is returned it'll animate to the end icon
     /// if false is returned it'll not animate to the end icons
-    @required this.onEndIconPress,
+    required this.onEndIconPress,
 
     /// The size of the icon that are to be shown.
     this.size,
 
     /// AnimateIcons controller
-    @required this.controller,
+    required this.controller,
 
     /// The color to be used for the [startIcon]
     this.startIconColor,
@@ -46,12 +46,12 @@ class AnimateIcons extends StatefulWidget {
   });
   final IconData startIcon;
   final bool Function() onStartIconPress, onEndIconPress;
-  final Duration duration;
-  final bool clockwise;
-  final double size;
-  final Color startIconColor, endIconColor;
+  final Duration? duration;
+  final bool? clockwise;
+  final double? size;
+  final Color? startIconColor, endIconColor;
   final AnimateIconController controller;
-  final String startTooltip, endTooltip;
+  final String? startTooltip, endTooltip;
 
   @override
   _AnimateIconsState createState() => _AnimateIconsState();
@@ -59,7 +59,7 @@ class AnimateIcons extends StatefulWidget {
 
 class _AnimateIconsState extends State<AnimateIcons>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -177,6 +177,6 @@ class _AnimateIconsState extends State<AnimateIcons>
 }
 
 class AnimateIconController {
-  bool Function() animateToStart, animateToEnd;
-  bool Function() isStart, isEnd;
+  bool Function()? animateToStart, animateToEnd;
+  bool Function()? isStart, isEnd;
 }

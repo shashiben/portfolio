@@ -9,17 +9,17 @@ import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 import 'home_view_model.dart';
 
 class HomeMobileView extends StatelessWidget {
-  final ScreenUiHelper uiHelpers;
-  final HomeViewModel model;
+  final ScreenUiHelper? uiHelpers;
+  final HomeViewModel? model;
 
-  const HomeMobileView({Key key, this.uiHelpers, this.model}) : super(key: key);
+  const HomeMobileView({Key? key, this.uiHelpers, this.model}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: uiHelpers.backgroundColor,
+      backgroundColor: uiHelpers!.backgroundColor,
       body: Container(
-          width: uiHelpers.width,
-          height: uiHelpers.height,
+          width: uiHelpers!.width,
+          height: uiHelpers!.height,
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(children: [
             SizedBox(height: 30),
@@ -28,13 +28,13 @@ class HomeMobileView extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Image.asset("assets/images/sk_logo.png",
-                    height: 40, width: 40, color: uiHelpers.textPrimaryColor),
+                    height: 40, width: 40, color: uiHelpers!.textPrimaryColor),
                 IconWrrapper(
                   margin: const EdgeInsets.all(0),
-                  color: uiHelpers.primaryColor,
+                  color: uiHelpers!.primaryColor,
                   padding: const EdgeInsets.all(8),
                   onTap: () =>
-                      model.navigateToUrl("mailto:" + PersonalDetails.email),
+                      model!.navigateToUrl("mailto:" + PersonalDetails.email),
                   child: Icon(
                     MenuIcons.contactIcon,
                     color: Colors.white,
@@ -45,16 +45,16 @@ class HomeMobileView extends StatelessWidget {
             SizedBox(height: 40),
             Text(
               "Portfolio",
-              style: uiHelpers.body,
+              style: uiHelpers!.body,
             ),
             SizedBox(height: 8),
             Text(
               "Hello,I'm",
-              style: uiHelpers.headline,
+              style: uiHelpers!.headline,
             ),
             Text(
               "Shashi Kumar",
-              style: uiHelpers.headline,
+              style: uiHelpers!.headline,
             ),
             SizedBox(
               height: 25,
@@ -70,7 +70,7 @@ class HomeMobileView extends StatelessWidget {
                   itemCount: PersonalDetails.skillDisplayList.length,
                   itemBuilder: (_, index, realIndex) {
                     return Container(
-                      width: uiHelpers.width,
+                      width: uiHelpers!.width,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 20),
                       child: Column(
@@ -86,8 +86,8 @@ class HomeMobileView extends StatelessWidget {
                             height: 20,
                           ),
                           Text(
-                            PersonalDetails.skillDisplayList[index].title,
-                            style: uiHelpers.title.copyWith(
+                            PersonalDetails.skillDisplayList[index].title!,
+                            style: uiHelpers!.title!.copyWith(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontFamily: SystemProperties.fontName),
@@ -106,22 +106,22 @@ class HomeMobileView extends StatelessWidget {
             Row(children: [
               IconWrrapper(
                 margin: const EdgeInsets.all(0),
-                color: uiHelpers.primaryColor,
+                color: uiHelpers!.primaryColor,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-                onTap: () => model.navigateToUrl(PersonalDetails.whatsappLink),
+                onTap: () => model!.navigateToUrl(PersonalDetails.whatsappLink),
                 child: Text(
                   "Contact",
-                  style: uiHelpers.buttonStyle.copyWith(color: Colors.white),
+                  style: uiHelpers!.buttonStyle!.copyWith(color: Colors.white),
                 ),
               ),
               IconWrrapper(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-                onTap: () => model.navigateToUrl(PersonalDetails.resumeLink),
+                onTap: () => model!.navigateToUrl(PersonalDetails.resumeLink),
                 child: Text(
                   "Download CV",
-                  style: uiHelpers.buttonStyle,
+                  style: uiHelpers!.buttonStyle,
                 ),
               )
             ]),

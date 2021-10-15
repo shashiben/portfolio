@@ -10,10 +10,10 @@ import 'package:portfolio/ui/widgets/experience_widget.dart';
 import 'package:portfolio/ui/widgets/trailing_widget.dart';
 
 class ExperienceDesktopView extends HookWidget {
-  final ScreenUiHelper uiHelpers;
-  final ExperienceViewModel model;
+  final ScreenUiHelper? uiHelpers;
+  final ExperienceViewModel? model;
 
-  const ExperienceDesktopView({Key key, this.uiHelpers, this.model})
+  const ExperienceDesktopView({Key? key, this.uiHelpers, this.model})
       : super(key: key);
 
   @override

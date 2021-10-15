@@ -17,37 +17,37 @@ class CircularPercentIndicator extends StatefulWidget {
   final double backgroundWidth;
   final Color fillColor;
   final Color backgroundColor;
-  Color get progressColor => _progressColor;
-  Color _progressColor;
+  Color? get progressColor => _progressColor;
+  Color? _progressColor;
   final bool animation;
   final int animationDuration;
-  final Widget header;
-  final Widget footer;
-  final Widget center;
-  final LinearGradient linearGradient;
-  final CircularStrokeCap circularStrokeCap;
+  final Widget? header;
+  final Widget? footer;
+  final Widget? center;
+  final LinearGradient? linearGradient;
+  final CircularStrokeCap? circularStrokeCap;
   final double startAngle;
   final bool animateFromLastPercent;
   final bool addAutomaticKeepAlive;
-  final ArcType arcType;
-  final Color arcBackgroundColor;
+  final ArcType? arcType;
+  final Color? arcBackgroundColor;
   final bool reverse;
-  final MaskFilter maskFilter;
+  final MaskFilter? maskFilter;
   final Curve curve;
   final bool restartAnimation;
-  final VoidCallback onAnimationEnd;
-  final Widget widgetIndicator;
+  final VoidCallback? onAnimationEnd;
+  final Widget? widgetIndicator;
   final bool rotateLinearGradient;
 
   CircularPercentIndicator(
-      {Key key,
+      {Key? key,
       this.percent = 0.0,
       this.lineWidth = 5.0,
       this.startAngle = 0.0,
-      @required this.radius,
+      required this.radius,
       this.fillColor = Colors.transparent,
       this.backgroundColor = const Color(0xFFB8C7CB),
-      Color progressColor,
+      Color? progressColor,
       this.backgroundWidth = -1,
       this.linearGradient,
       this.animation = false,
@@ -75,7 +75,6 @@ class CircularPercentIndicator extends StatefulWidget {
     _progressColor = progressColor ?? Colors.red;
 
     assert(startAngle >= 0.0);
-    assert(curve != null);
     if (percent < 0.0 || percent > 1.0) {
       throw Exception("Percent value must be a double between 0.0 and 1.0");
     }
@@ -92,14 +91,14 @@ class CircularPercentIndicator extends StatefulWidget {
 
 class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  AnimationController? _animationController;
+  late Animation _animation;
   double _percent = 0.0;
 
   @override
   void dispose() {
     if (_animationController != null) {
-      _animationController.dispose();
+      _animationController!.dispose();
     }
     super.dispose();
   }
@@ -111,22 +110,22 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
       _animation = Tween(begin: 0.0, end: widget.percent).animate(
-        CurvedAnimation(parent: _animationController, curve: widget.curve),
+        CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
           setState(() {
             _percent = _animation.value;
           });
           if (widget.restartAnimation && _percent == 1.0) {
-            _animationController.repeat(min: 0, max: 1.0);
+            _animationController!.repeat(min: 0, max: 1.0);
           }
         });
-      _animationController.addStatusListener((status) {
+      _animationController!.addStatusListener((status) {
         if (widget.onAnimationEnd != null &&
             status == AnimationStatus.completed) {
-          widget.onAnimationEnd();
+          widget.onAnimationEnd!();
         }
       });
-      _animationController.forward();
+      _animationController!.forward();
     } else {
       _updateProgress();
     }
@@ -139,15 +138,15 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     if (oldWidget.percent != widget.percent ||
         oldWidget.startAngle != widget.startAngle) {
       if (_animationController != null) {
-        _animationController.duration =
+        _animationController!.duration =
             Duration(milliseconds: widget.animationDuration);
         _animation = Tween(
                 begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0,
                 end: widget.percent)
             .animate(
-          CurvedAnimation(parent: _animationController, curve: widget.curve),
+          CurvedAnimation(parent: _animationController!, curve: widget.curve),
         );
-        _animationController.forward(from: 0.0);
+        _animationController!.forward(from: 0.0);
       } else {
         _updateProgress();
       }
@@ -165,7 +164,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     super.build(context);
     List<Widget> items = [];
     if (widget.header != null) {
-      items.add(widget.header);
+      items.add(widget.header!);
     }
     items.add(
       Container(
@@ -176,7 +175,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
             CustomPaint(
               painter: CirclePainter(
                   progress: _percent * 360,
-                  progressColor: widget.progressColor,
+                  progressColor: widget.progressColor!,
                   backgroundColor: widget.backgroundColor,
                   startAngle: widget.startAngle,
                   circularStrokeCap: widget.circularStrokeCap,
@@ -202,9 +201,10 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
                       (widget.circularStrokeCap != CircularStrokeCap.butt &&
                               widget.reverse)
                           ? -15
-                          : 0),
+                          : 0) as double,
                   child: Transform.rotate(
-                    angle: radians((widget.reverse ? -360 : 360) * _percent),
+                    angle: radians((widget.reverse ? -360 : 360) * _percent)
+                        as double,
                     child: Transform.translate(
                       offset: Offset(
                         (widget.circularStrokeCap != CircularStrokeCap.butt)
@@ -223,7 +223,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     );
 
     if (widget.footer != null) {
-      items.add(widget.footer);
+      items.add(widget.footer!);
     }
 
     return Material(

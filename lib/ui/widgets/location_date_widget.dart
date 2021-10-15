@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class LocationDateWidget extends StatelessWidget {
   LocationDateWidget({
-    @required this.duration,
-    @required this.location,
+    required this.duration,
+    required this.location,
     this.durationIcon,
     this.locationIcon,
     this.locationTextStyle,
@@ -11,11 +11,11 @@ class LocationDateWidget extends StatelessWidget {
   });
 
   final String duration;
-  final TextStyle durationTextStyle;
+  final TextStyle? durationTextStyle;
   final String location;
-  final TextStyle locationTextStyle;
-  final Icon locationIcon;
-  final Icon durationIcon;
+  final TextStyle? locationTextStyle;
+  final Icon? locationIcon;
+  final Icon? durationIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +29,14 @@ class LocationDateWidget extends StatelessWidget {
               Text(
                 duration,
                 style: durationTextStyle ??
-                    theme.textTheme.bodyText2.copyWith(color: Colors.black),
+                    theme.textTheme.bodyText2!.copyWith(color: Colors.black),
               ),
               SizedBox(height: 5),
               Icon(
-                    Icons.access_time,
-                    color: Color(0xFF000000),
-                    size: 18,
-                  ) ??
-                  durationIcon,
+                Icons.access_time,
+                color: Color(0xFF000000),
+                size: 18,
+              ),
             ],
           ),
           SizedBox(height: 10),
@@ -47,17 +46,16 @@ class LocationDateWidget extends StatelessWidget {
               Text(
                 location,
                 style: locationTextStyle ??
-                    theme.textTheme.bodyText2.copyWith(color: Colors.black),
+                    theme.textTheme.bodyText2!.copyWith(color: Colors.black),
               ),
               SizedBox(
                 height: 5,
               ),
               Icon(
-                    Icons.location_on,
-                    color: Color(0xFF000000),
-                    size: 18,
-                  ) ??
-                  locationIcon,
+                Icons.location_on,
+                color: Color(0xFF000000),
+                size: 18,
+              ),
             ],
           )
         ],

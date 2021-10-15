@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/icons.dart';
 import 'package:portfolio/core/models/project.dart';
@@ -9,12 +8,12 @@ import 'package:portfolio/ui/widgets/translate_on_hover.dart';
 import 'fadeAnimation.dart';
 
 class ProjectWidget extends StatelessWidget {
-  final String type;
+  final String? type;
   final int index;
   final Project project;
 
   const ProjectWidget(
-      {Key key, this.type, @required this.index, @required this.project})
+      {Key? key, this.type, required this.index, required this.project})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -28,7 +27,7 @@ class ProjectWidget extends StatelessWidget {
         child: Container(
           height: 250,
           margin: EdgeInsets.only(
-              bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
+              bottom: 15, right: uiHelpers.width! > 768 ? 15 : 0),
           child: Neumorphic(
             style: NeumorphicStyle(
                 shape: NeumorphicShape.convex,
@@ -65,7 +64,7 @@ class ProjectWidget extends StatelessWidget {
                                     color: uiHelpers.primaryColor,
                                   ),
                                   onPressed: () => _urlLauncherService
-                                      .launchUrl(project.websiteLink),
+                                      .launchUrl(project.websiteLink!),
                                 ),
                           project.githubLink == null
                               ? SizedBox()
@@ -75,7 +74,7 @@ class ProjectWidget extends StatelessWidget {
                                     color: uiHelpers.primaryColor,
                                   ),
                                   onPressed: () => _urlLauncherService
-                                      .launchUrl(project.githubLink),
+                                      .launchUrl(project.githubLink!),
                                 ),
                           project.playstoreLink == null
                               ? SizedBox()
@@ -85,7 +84,7 @@ class ProjectWidget extends StatelessWidget {
                                     color: uiHelpers.primaryColor,
                                   ),
                                   onPressed: () => _urlLauncherService
-                                      .launchUrl(project.playstoreLink),
+                                      .launchUrl(project.playstoreLink!),
                                 ),
                         ],
                       ),
@@ -99,7 +98,7 @@ class ProjectWidget extends StatelessWidget {
                   uiHelpers.verticalSpaceLow,
                   Text(
                     project.description,
-                    style: uiHelpers.body.copyWith(fontWeight: FontWeight.w300),
+                    style: uiHelpers.body!.copyWith(fontWeight: FontWeight.w300),
                   ),
                   Spacer(),
                   Wrap(
@@ -108,7 +107,7 @@ class ProjectWidget extends StatelessWidget {
                         Padding(
                           child: Text(
                             project.tools[i],
-                            style: uiHelpers.body.copyWith(
+                            style: uiHelpers.body!.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: uiHelpers.textSecondaryColor),
                           ),

@@ -1,19 +1,18 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:portfolio/ui/widgets/translate_on_hover.dart';
 
 class IconWrrapper extends HookWidget {
-  final Widget child;
-  final EdgeInsets padding;
-  final Function onTap;
-  final Color color;
+  final Widget? child;
+  final EdgeInsets? padding;
+  final Function? onTap;
+  final Color? color;
   final EdgeInsets margin;
-  final NeumorphicBoxShape boxShape;
+  final NeumorphicBoxShape? boxShape;
 
   const IconWrrapper(
-      {Key key,
+      {Key? key,
       this.child,
       this.onTap,
       this.padding,
@@ -32,7 +31,7 @@ class IconWrrapper extends HookWidget {
           onExit: (event) => isHovered.value = false,
           child: NeumorphicButton(
             margin: margin,
-            onPressed: onTap,
+            onPressed: onTap as void Function()?,
             padding: padding ?? const EdgeInsets.all(12),
             style: NeumorphicStyle(
                 border: NeumorphicBorder(

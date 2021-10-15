@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/app/icons.dart';
@@ -9,15 +8,15 @@ import 'package:portfolio/ui/widgets/translate_on_hover.dart';
 import 'home_view_model.dart';
 
 class HomeDesktopView extends StatelessWidget {
-  final ScreenUiHelper uiHelpers;
-  final HomeViewModel model;
+  final ScreenUiHelper? uiHelpers;
+  final HomeViewModel? model;
 
-  const HomeDesktopView({Key key, this.uiHelpers, this.model})
+  const HomeDesktopView({Key? key, this.uiHelpers, this.model})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: uiHelpers.backgroundColor,
+        backgroundColor: uiHelpers!.backgroundColor,
         body: Container(
           alignment: Alignment.center,
           padding: const EdgeInsets.all(60),
@@ -25,7 +24,7 @@ class HomeDesktopView extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             style: NeumorphicStyle(
-              color: uiHelpers.surfaceColor,
+              color: uiHelpers!.surfaceColor,
               depth: NeumorphicTheme.embossDepth(context),
               boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(8)),
             ),
@@ -42,11 +41,11 @@ class HomeDesktopView extends StatelessWidget {
                           "assets/images/sk_logo.png",
                           width: 50,
                           height: 50,
-                          color: uiHelpers.textPrimaryColor,
+                          color: uiHelpers!.textPrimaryColor,
                         ),
                         Text(
                           "Shashi Kumar",
-                          style: uiHelpers.title,
+                          style: uiHelpers!.title,
                         )
                       ],
                     ),
@@ -54,25 +53,25 @@ class HomeDesktopView extends StatelessWidget {
                       children: [
                         TranslateOnHover(
                           child: TextButton(
-                              onPressed: () => model
+                              onPressed: () => model!
                                   .navigateToUrl(PersonalDetails.resumeLink),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   "Resume",
-                                  style: uiHelpers.title,
+                                  style: uiHelpers!.title,
                                 ),
                               )),
                         ),
                         TranslateOnHover(
                           child: TextButton(
-                              onPressed: () => model
+                              onPressed: () => model!
                                   .navigateToUrl(PersonalDetails.whatsappLink),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
                                   "Contact",
-                                  style: uiHelpers.title,
+                                  style: uiHelpers!.title,
                                 ),
                               )),
                         )
@@ -81,7 +80,7 @@ class HomeDesktopView extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: uiHelpers.width * 0.05,
+                  height: uiHelpers!.width! * 0.05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -89,11 +88,11 @@ class HomeDesktopView extends StatelessWidget {
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: model.skills.keys
+                      children: model!.skills.keys
                           .map((e) => Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8),
-                                width: uiHelpers.width * 0.28,
+                                width: uiHelpers!.width! * 0.28,
                                 child: Neumorphic(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
@@ -109,14 +108,14 @@ class HomeDesktopView extends StatelessWidget {
                                                 NeumorphicBoxShape.circle(),
                                           ),
                                           child: Image.asset(
-                                            model.skills[e],
+                                            model!.skills[e]!,
                                             width: 40,
                                             height: 40,
                                           )),
                                       SizedBox(width: 10),
                                       Text(
                                         e,
-                                        style: uiHelpers.title,
+                                        style: uiHelpers!.title,
                                       )
                                     ],
                                   ),
@@ -127,7 +126,7 @@ class HomeDesktopView extends StatelessWidget {
                                       depth: 8,
                                       intensity: 0.6,
                                       lightSource: LightSource.topLeft,
-                                      color: uiHelpers.surfaceColor),
+                                      color: uiHelpers!.surfaceColor),
                                 ),
                               ))
                           .toList(),
@@ -139,12 +138,12 @@ class HomeDesktopView extends StatelessWidget {
                         Container(
                           child: Text(
                             PersonalDetails.shortIntro,
-                            style: uiHelpers.body.copyWith(
+                            style: uiHelpers!.body!.copyWith(
                                 fontWeight: FontWeight.w400,
                                 height: 2,
-                                color: uiHelpers.textPrimaryColor),
+                                color: uiHelpers!.textPrimaryColor),
                           ),
-                          width: uiHelpers.width * 0.3,
+                          width: uiHelpers!.width! * 0.3,
                         ),
                         SizedBox(
                           height: 15,
@@ -153,19 +152,19 @@ class HomeDesktopView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 12),
                           onTap: () =>
-                              model.navigateToUrl(SocialLinks.githubLink),
+                              model!.navigateToUrl(SocialLinks.githubLink),
                           child: Row(
                             children: [
                               Icon(
                                 ContactIcons.githubIcon,
-                                color: uiHelpers.textPrimaryColor,
+                                color: uiHelpers!.textPrimaryColor,
                               ),
                               SizedBox(
                                 width: 6,
                               ),
                               Text(
                                 "Github",
-                                style: uiHelpers.buttonStyle,
+                                style: uiHelpers!.buttonStyle,
                               )
                             ],
                           ),

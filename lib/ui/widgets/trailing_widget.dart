@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/app/configs.dart';
 import 'package:portfolio/core/services/url_launcher_service.dart';
@@ -19,16 +18,16 @@ class TrailingInfo extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.end,
   });
 
-  final Widget leadingWidget;
-  final Widget middleWidget;
-  final Widget trailingWidget;
-  final Widget spacingWidget;
-  final EdgeInsetsGeometry padding;
-  final String info;
-  final double width;
-  final Color color;
-  final GestureTapCallback onTrailingWidgetPressed;
-  final GestureTapCallback onLeadingWidgetPressed;
+  final Widget? leadingWidget;
+  final Widget? middleWidget;
+  final Widget? trailingWidget;
+  final Widget? spacingWidget;
+  final EdgeInsetsGeometry? padding;
+  final String? info;
+  final double? width;
+  final Color? color;
+  final GestureTapCallback? onTrailingWidgetPressed;
+  final GestureTapCallback? onLeadingWidgetPressed;
   final CrossAxisAlignment crossAxisAlignment;
 
   @override
@@ -72,7 +71,7 @@ class TrailingInfo extends StatelessWidget {
                 child: Text(
                   info ?? "${PersonalDetails.email}",
                   textAlign: TextAlign.end,
-                  style: theme.textTheme.bodyText1.copyWith(
+                  style: theme.textTheme.bodyText1!.copyWith(
                     color: uiHelper.textPrimaryColor,
                     letterSpacing: 3,
                     fontWeight: FontWeight.w200,
@@ -108,11 +107,11 @@ class CircularContainer extends StatelessWidget {
     this.borderRadius,
   });
 
-  final Color color;
-  final Widget child;
+  final Color? color;
+  final Widget? child;
   final double width;
   final double height;
-  final BorderRadiusGeometry borderRadius;
+  final BorderRadiusGeometry? borderRadius;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 
@@ -9,11 +8,11 @@ class ContactIconHeader extends StatelessWidget {
   final IconData icon;
 
   const ContactIconHeader(
-      {Key key,
+      {Key? key,
       this.isActive = false,
-      @required this.onTap,
-      @required this.name,
-      @required this.icon})
+      required this.onTap,
+      required this.name,
+      required this.icon})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class ContactIconHeader extends StatelessWidget {
               ? BoxDecoration(
                   boxShadow: [
                       BoxShadow(
-                        color: uiHelpers.primaryColor,
+                        color: uiHelpers.primaryColor!,
                         blurRadius: 5.0,
                       ),
                     ],

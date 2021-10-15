@@ -1,59 +1,59 @@
 class DateTimeUtils {
-  List<String> monthsList = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+  List<String> monthsList = <String>[
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
   List<String> shortMonthsList = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
   ];
 
   getMonth(int timeStamp, bool isShort) {
-    var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
+    var date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
     int month = date.month;
     return isShort ? shortMonthsList[month] : monthsList[month];
   }
 
-  getDate(int timeStamp) {
-    var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
+  int getDate(int timeStamp) {
+    var date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
     return date.day;
   }
 
-  getTime(int timeStamp) {
+  String getTime(int timeStamp) {
     var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
-    String time = date.hour.toString() + ":" + date.minute.toString();
+    String time = date.hour.toString() + ':' + date.minute.toString();
     return time;
   }
 
-  getWholeDate(int timeStamp) {
+  String getWholeDate(int timeStamp) {
     try {
       var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
       String tim = monthsList[date.month - 1] +
-          " " +
+          ' ' +
           date.day.toString() +
-          "," +
+          ',' +
           date.year.toString() +
-          " " +
+          ' ' +
           getTime(timeStamp);
       return tim;
     } catch (e) {

@@ -1,17 +1,18 @@
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/services/url_launcher_service.dart';
-import 'package:portfolio/ui/views/about%20me/about_view.dart';
-import 'package:portfolio/ui/views/contact%20me/contact_view.dart';
-import 'package:portfolio/ui/views/experience/experience_view.dart';
-import 'package:portfolio/ui/views/home/home_view.dart';
-import 'package:portfolio/ui/views/projects/project_view.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../app/icons.dart';
+import '../../../core/services/url_launcher_service.dart';
+import '../about%20me/about_view.dart';
+import '../contact%20me/contact_view.dart';
+import '../experience/experience_view.dart';
+import '../home/home_view.dart';
+import '../projects/project_view.dart';
+
 class MainViewModel extends BaseViewModel {
-  UrlLauncherService _urlLauncherService = UrlLauncherService();
+  final UrlLauncherService _urlLauncherService = UrlLauncherService();
   int index = 0;
   bool isIntroCompleted = false;
   PageController pageController = PageController();
@@ -19,14 +20,14 @@ class MainViewModel extends BaseViewModel {
 
   List<CollapsibleItem> collapsibleItem = [];
   final List<String> menuItems = [
-    "Home",
-    "About",
-    "Projects",
-    "Experience",
-    "Contact"
+    'Home',
+    'About',
+    'Projects',
+    'Experience',
+    'Contact'
   ];
 
-  final views = [
+  final List<Widget> views = <Widget>[
     HomeView(),
     AboutView(),
     ProjectView(),
@@ -34,26 +35,26 @@ class MainViewModel extends BaseViewModel {
     ContactView(),
   ];
 
-  Widget child;
-  changeIntroToCompleted() {
+  late Widget child;
+  void changeIntroToCompleted() {
     isIntroCompleted = true;
     notifyListeners();
   }
 
-  changeMenuForMobile(
-      AnimationController controller,
+  Future<void> changeMenuForMobile(
+      AnimationController? controller,
       AnimationController slideController,
-      AnimationController menuTextController) async {
+      AnimationController? menuTextController) async {
     switch (slideController.status) {
       case AnimationStatus.completed:
-        controller.reverse();
+        controller!.reverse();
         slideController.reverse();
         break;
       case AnimationStatus.dismissed:
-        controller.forward();
+        controller!.forward();
         slideController.forward();
         try {
-          await menuTextController.forward();
+          await menuTextController!.forward();
           await menuTextController.reverse();
         } on TickerCanceled {
           // the animation got canceled, probably because it was disposed of
@@ -64,7 +65,7 @@ class MainViewModel extends BaseViewModel {
     }
   }
 
-  changeIndex(int newIndex,
+  void changeIndex(int newIndex,
       {bool isMobile = false,
       controller,
       slideController,
@@ -131,16 +132,16 @@ class MainViewModel extends BaseViewModel {
     ];
   }
 
-  isMobile(context) {
+  bool isMobile(BuildContext context) {
     return getDeviceType(MediaQuery.of(context).size) ==
         DeviceScreenType.mobile;
   }
 
-  openUrl(String url) async {
+  Future<void> openUrl(String url) async {
     await _urlLauncherService.launchUrl(url);
   }
 
-  init() {
+  void init() {
     collapsibleItem = generateItems;
     child = views.first;
     notifyListeners();

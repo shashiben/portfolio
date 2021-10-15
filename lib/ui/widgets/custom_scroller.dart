@@ -20,11 +20,11 @@ class CustomScroller extends StatelessWidget {
   final int duration;
   final double height;
   final double borderRadius;
-  final GestureTapCallback onUpTap;
-  final GestureTapCallback onDownTap;
-  final Widget topController;
-  final Widget bottomController;
-  final Widget centerChild;
+  final GestureTapCallback? onUpTap;
+  final GestureTapCallback? onDownTap;
+  final Widget? topController;
+  final Widget? bottomController;
+  final Widget? centerChild;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class CustomScroller extends StatelessWidget {
             ),
           ),
         ),
-        builder: (BuildContext context, double value, Widget child) {
+        builder: (BuildContext context, double value, Widget? child) {
           return Container(
             width: width,
             height: value,

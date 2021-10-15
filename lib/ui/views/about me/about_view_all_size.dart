@@ -10,15 +10,15 @@ import 'package:portfolio/ui/widgets/skill_widget.dart';
 import 'package:portfolio/ui/widgets/timeline_widget.dart';
 
 class AboutViewResponsive extends StatelessWidget {
-  final ScreenUiHelper uiHelpers;
-  final AboutViewModel model;
+  final ScreenUiHelper? uiHelpers;
+  final AboutViewModel? model;
 
-  const AboutViewResponsive({Key key, this.uiHelpers, this.model})
+  const AboutViewResponsive({Key? key, this.uiHelpers, this.model})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: uiHelpers.backgroundColor,
+        backgroundColor: uiHelpers!.backgroundColor,
         body: SingleChildScrollView(
           child: BootstrapContainer(
             padding: const EdgeInsets.only(top: 20.0),
@@ -27,7 +27,7 @@ class AboutViewResponsive extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   "Wow, a whole page about my journey!",
-                  style: uiHelpers.headline,
+                  style: uiHelpers!.headline,
                 ),
               ),
               SizedBox(height: 80),
@@ -39,46 +39,46 @@ class AboutViewResponsive extends StatelessWidget {
                       children: [
                         Text(
                           "Me,talking about myself",
-                          style: uiHelpers.title.copyWith(fontSize: 24),
+                          style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
                         Container(
                           width: 80,
                           child: DividerWidget(
                             width: 80,
-                            dividerColor: uiHelpers.primaryColor,
+                            dividerColor: uiHelpers!.primaryColor,
                           ),
                         ),
-                        uiHelpers.verticalSpaceLow,
+                        uiHelpers!.verticalSpaceLow,
                         Text(PersonalDetails.intro,
-                            style: uiHelpers.body
-                                .copyWith(color: uiHelpers.textSecondaryColor)),
-                        uiHelpers.verticalSpaceMedium,
+                            style: uiHelpers!.body!
+                                .copyWith(color: uiHelpers!.textSecondaryColor)),
+                        uiHelpers!.verticalSpaceMedium,
                         Text(
                           "Technical Skills",
-                          style: uiHelpers.title.copyWith(fontSize: 24),
+                          style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
                         Container(
                           width: 70,
                           child: DividerWidget(
                             width: 70,
-                            dividerColor: uiHelpers.primaryColor,
+                            dividerColor: uiHelpers!.primaryColor,
                           ),
                         ),
-                        uiHelpers.verticalSpaceLow,
+                        uiHelpers!.verticalSpaceLow,
                         SkillWidget(),
-                        uiHelpers.verticalSpaceMedium,
+                        uiHelpers!.verticalSpaceMedium,
                         Text(
                           "Featured Skills",
-                          style: uiHelpers.title.copyWith(fontSize: 24),
+                          style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
                         Container(
                           width: 75,
                           child: DividerWidget(
                             width: 75,
-                            dividerColor: uiHelpers.primaryColor,
+                            dividerColor: uiHelpers!.primaryColor,
                           ),
                         ),
-                        uiHelpers.verticalSpaceLow,
+                        uiHelpers!.verticalSpaceLow,
                         FeaturedSkillWidget(),
                       ],
                     ),
@@ -91,20 +91,20 @@ class AboutViewResponsive extends StatelessWidget {
                       children: [
                         Text(
                           "Education",
-                          style: uiHelpers.title.copyWith(fontSize: 24),
+                          style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
                         Container(
                           width: 70,
                           child: DividerWidget(
                             width: 70,
-                            dividerColor: uiHelpers.primaryColor,
+                            dividerColor: uiHelpers!.primaryColor,
                           ),
                         ),
                         SizedBox(height: 15),
                         Timeline(
                             indicatorSize: 16,
-                            indicatorColor: uiHelpers.primaryColor,
-                            lineColor: uiHelpers.textPrimaryColor,
+                            indicatorColor: uiHelpers!.primaryColor,
+                            lineColor: uiHelpers!.textPrimaryColor,
                             shrinkWrap: true,
                             itemGap: 25,
                             lineGap: 0,
@@ -133,7 +133,7 @@ class AboutViewResponsive extends StatelessWidget {
                     sizes: "col-12 col-md-6 col-sm-12",
                   )
                 ],
-                height: uiHelpers.height,
+                height: uiHelpers!.height,
               )
             ],
             fluid: true,

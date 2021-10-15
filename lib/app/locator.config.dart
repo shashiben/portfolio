@@ -15,8 +15,8 @@ import '../core/services/third_party_services.dart';
 
 GetIt $initGetIt(
   GetIt get, {
-  String environment,
-  EnvironmentFilter environmentFilter,
+  String? environment,
+  EnvironmentFilter? environmentFilter,
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final registerDependencies = _$RegisterDependencies();

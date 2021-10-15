@@ -8,35 +8,35 @@ enum LinearStrokeCap { butt, round, roundAll }
 // ignore: must_be_immutable
 class LinearPercentIndicator extends StatefulWidget {
   final double percent;
-  final String title;
-  final double width;
+  final String? title;
+  final double? width;
   final double lineHeight;
   final Color fillColor;
   final Color backgroundColor;
-  Color get progressColor => _progressColor;
-  Color _progressColor;
+  Color? get progressColor => _progressColor;
+  Color? _progressColor;
   final bool animation;
   final int animationDuration;
-  final Widget leading;
-  final Widget trailing;
-  final Widget center;
-  final LinearStrokeCap linearStrokeCap;
+  final Widget? leading;
+  final Widget? trailing;
+  final Widget? center;
+  final LinearStrokeCap? linearStrokeCap;
   final MainAxisAlignment alignment;
   final EdgeInsets padding;
   final bool animateFromLastPercent;
-  final LinearGradient linearGradient;
+  final LinearGradient? linearGradient;
   final bool addAutomaticKeepAlive;
   final bool isRTL;
-  final MaskFilter maskFilter;
+  final MaskFilter? maskFilter;
   final bool clipLinearGradient;
 
   final Curve curve;
   final bool restartAnimation;
 
-  final VoidCallback onAnimationEnd;
+  final VoidCallback? onAnimationEnd;
 
   LinearPercentIndicator({
-    Key key,
+    Key? key,
     this.title,
     this.fillColor = Colors.transparent,
     this.percent = 0.0,
@@ -44,7 +44,7 @@ class LinearPercentIndicator extends StatefulWidget {
     this.width,
     this.backgroundColor = const Color(0xFFB8C7CB),
     this.linearGradient,
-    Color progressColor,
+    Color? progressColor,
     this.animation = false,
     this.animationDuration = 500,
     this.animateFromLastPercent = false,
@@ -68,8 +68,6 @@ class LinearPercentIndicator extends StatefulWidget {
     }
     _progressColor = progressColor ?? Colors.red;
 
-    assert(curve != null);
-
     if (percent < 0.0 || percent > 1.0) {
       throw new Exception("Percent value must be a double between 0.0 and 1.0");
     }
@@ -81,8 +79,8 @@ class LinearPercentIndicator extends StatefulWidget {
 
 class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  AnimationController? _animationController;
+  late Animation _animation;
   double _percent = 0.0;
 
   @override
@@ -98,22 +96,22 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
           vsync: this,
           duration: Duration(milliseconds: widget.animationDuration));
       _animation = Tween(begin: 0.0, end: widget.percent).animate(
-        CurvedAnimation(parent: _animationController, curve: widget.curve),
+        CurvedAnimation(parent: _animationController!, curve: widget.curve),
       )..addListener(() {
           setState(() {
             _percent = _animation.value;
           });
           if (widget.restartAnimation && _percent == 1.0) {
-            _animationController.repeat(min: 0, max: 1.0);
+            _animationController!.repeat(min: 0, max: 1.0);
           }
         });
-      _animationController.addStatusListener((status) {
+      _animationController!.addStatusListener((status) {
         if (widget.onAnimationEnd != null &&
             status == AnimationStatus.completed) {
-          widget.onAnimationEnd();
+          widget.onAnimationEnd!();
         }
       });
-      _animationController.forward();
+      _animationController!.forward();
     } else {
       _updateProgress();
     }
@@ -125,15 +123,15 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.percent != widget.percent) {
       if (_animationController != null) {
-        _animationController.duration =
+        _animationController!.duration =
             Duration(milliseconds: widget.animationDuration);
         _animation = Tween(
                 begin: widget.animateFromLastPercent ? oldWidget.percent : 0.0,
                 end: widget.percent)
             .animate(
-          CurvedAnimation(parent: _animationController, curve: widget.curve),
+          CurvedAnimation(parent: _animationController!, curve: widget.curve),
         );
-        _animationController.forward(from: 0.0);
+        _animationController!.forward(from: 0.0);
       } else {
         _updateProgress();
       }
@@ -151,7 +149,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
     super.build(context);
     List<Widget> items = [];
     if (widget.leading != null) {
-      items.add(widget.leading);
+      items.add(widget.leading!);
     }
     final hasSetWidth = widget.width != null;
     var containerWidget = Container(
@@ -185,7 +183,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
       ));
     }
     if (widget.trailing != null) {
-      items.add(widget.trailing);
+      items.add(widget.trailing!);
     }
     ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
 
@@ -199,7 +197,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  widget.title,
+                  widget.title!,
                   style: uiHelper.title,
                 ),
               ),

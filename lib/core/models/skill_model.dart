@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 
 class SkillModel {
   final String name;
   final int percent;
 
-  SkillModel({@required this.name, @required this.percent});
+  SkillModel({required this.name, required this.percent});
 }

@@ -24,13 +24,13 @@ mixin lightColor {
   static Color textPrimaryColor = Color(0xFF31344B);
   static Color textSecondaryColor = Color(0xFF44476A);
 
-  static Color dividerColor = Colors.grey[300];
+  static Color? dividerColor = Colors.grey[300];
 }
 mixin darkColor {
   //** Theme Colors
-  static const primaryColor = Color(0xFF1EEBB3);
-  static const backgroundColor = Color(0xFF071D34);
-  static const surfaceColor = Color(0xFF112240);
+  static const primaryColor = Color(0xFFff9950);
+  static const backgroundColor = Color(0xFF050028);
+  static const surfaceColor = Color(0xFF1a163c);
 
   //**Text Colors
   static const Color textPrimaryColor = Color(0xFFCCD6F6);

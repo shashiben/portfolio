@@ -1,17 +1,17 @@
 import 'dart:math';
 
 import 'package:collapsible_sidebar/collapsible_sidebar.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/architecture_view.dart';
-import 'package:portfolio/ui/views/main/main_view_model.dart';
-import 'package:portfolio/ui/widgets/flicker_text_animation.dart';
-import 'package:portfolio/ui/widgets/icon_switch.dart';
-import 'package:portfolio/ui/widgets/icon_wrapper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import '../../../app/configs.dart';
+import '../../../app/icons.dart';
+import '../../../core/utils/architecture_view.dart';
+import '../../widgets/flicker_text_animation.dart';
+import '../../widgets/icon_switch.dart';
+import '../../widgets/icon_wrapper.dart';
+import 'main_view_model.dart';
 
 class MainView extends HookWidget {
   @override
@@ -31,7 +31,7 @@ class MainView extends HookWidget {
         builder: (context, uiHelpers, model) => Scaffold(
               backgroundColor: uiHelpers.backgroundColor,
               floatingActionButton: (model.isMobile(context) || model.isIndex3)
-                  ? SizedBox()
+                  ? const SizedBox()
                   : AnimatedOpacity(
                       opacity: model.isIndex3 ? 0 : 1,
                       duration: Duration(milliseconds: 700),
@@ -39,27 +39,27 @@ class MainView extends HookWidget {
                         backgroundColor: uiHelpers.primaryColor,
                         onPressed: () {},
                         child: AnimateIcons(
-                          startIcon: NeumorphicTheme.of(context).isUsingDark
+                          startIcon: NeumorphicTheme.of(context)!.isUsingDark
                               ? MenuIcons.sunIcon
                               : MenuIcons.moonIcon,
                           size: 30.0,
                           controller: AnimateIconController(),
-                          startTooltip: NeumorphicTheme.of(context).isUsingDark
+                          startTooltip: NeumorphicTheme.of(context)!.isUsingDark
                               ? 'Dark Mode'
                               : "Light Mode",
-                          endTooltip: !NeumorphicTheme.of(context).isUsingDark
+                          endTooltip: !NeumorphicTheme.of(context)!.isUsingDark
                               ? 'Dark Mode'
                               : "Light Mode",
                           onStartIconPress: () {
-                            NeumorphicTheme.of(context).themeMode =
-                                NeumorphicTheme.of(context).isUsingDark
+                            NeumorphicTheme.of(context)!.themeMode =
+                                NeumorphicTheme.of(context)!.isUsingDark
                                     ? ThemeMode.light
                                     : ThemeMode.dark;
                             return true;
                           },
                           onEndIconPress: () {
-                            print(NeumorphicTheme.of(context).isUsingDark);
-                            NeumorphicTheme.of(context).themeMode =
+                            print(NeumorphicTheme.of(context)!.isUsingDark);
+                            NeumorphicTheme.of(context)!.themeMode =
                                 ThemeMode.dark;
 
                             return true;
@@ -73,15 +73,14 @@ class MainView extends HookWidget {
                     ),
               body: ScreenTypeLayout(
                 desktop: CollapsibleSidebar(
-                    fitItemsToBottom: false,
-                    selectedIconColor: NeumorphicTheme.of(context).isUsingDark
-                        ? uiHelpers.primaryColor
+                    selectedIconColor: NeumorphicTheme.of(context)!.isUsingDark
+                        ? uiHelpers.primaryColor!
                         : Colors.white,
                     maxWidth: 250,
-                    avatarImg: AssetImage("assets/images/s.jpg"),
+                    avatarImg: const AssetImage('assets/images/s.jpg'),
                     topPadding: 50,
                     body: model.child,
-                    title: "Shashi Kumar",
+                    title: 'Shashi Kumar',
                     items: model.collapsibleItem),
                 tablet: CollapsibleSidebar(
                     maxWidth: 250,
@@ -99,7 +98,7 @@ class MainView extends HookWidget {
                         children: <Widget>[
                           Container(
                             color: uiHelpers.surfaceColor,
-                            width: uiHelpers.width * 0.14,
+                            width: uiHelpers.width! * 0.14,
                             child: Column(
                               children: [
                                 Padding(
@@ -164,31 +163,31 @@ class MainView extends HookWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: AnimateIcons(
                                     startIcon:
-                                        NeumorphicTheme.of(context).isUsingDark
+                                        NeumorphicTheme.of(context)!.isUsingDark
                                             ? MenuIcons.sunIcon
                                             : MenuIcons.moonIcon,
                                     size: 30.0,
                                     controller: AnimateIconController(),
                                     startTooltip:
-                                        NeumorphicTheme.of(context).isUsingDark
+                                        NeumorphicTheme.of(context)!.isUsingDark
                                             ? 'Dark Mode'
                                             : "Light Mode",
                                     endTooltip:
-                                        !NeumorphicTheme.of(context).isUsingDark
+                                        !NeumorphicTheme.of(context)!.isUsingDark
                                             ? 'Dark Mode'
                                             : "Light Mode",
                                     onStartIconPress: () {
-                                      NeumorphicTheme.of(context).themeMode =
-                                          NeumorphicTheme.of(context)
+                                      NeumorphicTheme.of(context)!.themeMode =
+                                          NeumorphicTheme.of(context)!
                                                   .isUsingDark
                                               ? ThemeMode.light
                                               : ThemeMode.dark;
                                       return true;
                                     },
                                     onEndIconPress: () {
-                                      print(NeumorphicTheme.of(context)
+                                      print(NeumorphicTheme.of(context)!
                                           .isUsingDark);
-                                      NeumorphicTheme.of(context).themeMode =
+                                      NeumorphicTheme.of(context)!.themeMode =
                                           ThemeMode.dark;
 
                                       return true;
@@ -226,7 +225,7 @@ class MainView extends HookWidget {
                         child: SlideTransition(
                             position: offset,
                             child: Row(children: [
-                              Container(width: uiHelpers.width * 0.14),
+                              Container(width: uiHelpers.width! * 0.14),
                               Expanded(
                                 child: Container(
                                   height: uiHelpers.height,
@@ -268,7 +267,7 @@ class MainView extends HookWidget {
                                             child: FlickerTextAnimation(
                                               text: "Menu",
                                               controller: menuTextController,
-                                              textStyle: uiHelpers.headline
+                                              textStyle: uiHelpers.headline!
                                                   .copyWith(fontSize: 50),
                                             ),
                                           ),

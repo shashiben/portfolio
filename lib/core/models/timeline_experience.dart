@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ExperienceTimeline {
   final String title;
   final String position;
@@ -8,9 +6,9 @@ class ExperienceTimeline {
   final List<String> tools;
 
   const ExperienceTimeline(
-      {@required this.title,
-      @required this.position,
-      @required this.timePeriod,
-      @required this.description,
-      @required this.tools});
+      {required this.title,
+      required this.position,
+      required this.timePeriod,
+      required this.description,
+      required this.tools});
 }

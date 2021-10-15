@@ -9,8 +9,8 @@ class FadeAnimation extends StatelessWidget {
   final double xDistance;
   final double yDistance;
   const FadeAnimation(
-      {@required this.delay,
-      @required this.child,
+      {required this.delay,
+      required this.child,
       this.xDistance = 30,
       this.yDistance = 0.0});
 

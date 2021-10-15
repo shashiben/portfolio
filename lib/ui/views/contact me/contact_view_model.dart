@@ -12,7 +12,7 @@ class ContactViewModel extends BaseViewModel {
   final TextEditingController nameController = TextEditingController();
 
   openMail() async {
-    if (formKey.currentState.validate()) {
+    if (formKey.currentState!.validate()) {
       sendMail();
     }
   }
@@ -34,7 +34,7 @@ class ContactViewModel extends BaseViewModel {
     "email": false,
     "subject": false
   };
-  String selected;
+  String? selected;
   changeSelected(bool active, String name) {
     if (active) {
       selected = name;
@@ -50,16 +50,16 @@ class ContactViewModel extends BaseViewModel {
   }
 
   init() {
-    focusNodeMap["name"].addListener(() {
-      hasFocusMap["name"] = focusNodeMap["name"].hasFocus;
+    focusNodeMap["name"]!.addListener(() {
+      hasFocusMap["name"] = focusNodeMap["name"]!.hasFocus;
       notifyListeners();
     });
-    focusNodeMap["email"].addListener(() {
-      hasFocusMap["email"] = focusNodeMap["email"].hasFocus;
+    focusNodeMap["email"]!.addListener(() {
+      hasFocusMap["email"] = focusNodeMap["email"]!.hasFocus;
       notifyListeners();
     });
-    focusNodeMap["subject"].addListener(() {
-      hasFocusMap["subject"] = focusNodeMap["subject"].hasFocus;
+    focusNodeMap["subject"]!.addListener(() {
+      hasFocusMap["subject"] = focusNodeMap["subject"]!.hasFocus;
       notifyListeners();
     });
   }

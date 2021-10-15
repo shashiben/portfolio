@@ -21,7 +21,7 @@ class ProjectViewModel extends BaseViewModel {
   };
 
   getProjects() {
-    return mapList[typeList[index]];
+    return mapList[typeList[index]!];
   }
 
   List<ResponsiveGridCol> list = [];
@@ -42,7 +42,7 @@ class ProjectViewModel extends BaseViewModel {
                       index: i, project: PersonalDetails.projectsList[i]))
             ];
           } else {
-            mapList[s].add(ResponsiveGridCol(
+            mapList[s]!.add(ResponsiveGridCol(
                 xl: 4,
                 sm: 12,
                 xs: 12,
@@ -51,7 +51,7 @@ class ProjectViewModel extends BaseViewModel {
                     index: i, project: PersonalDetails.projectsList[i])));
           }
         } else {
-          mapList["Others"].add(ResponsiveGridCol(
+          mapList["Others"]!.add(ResponsiveGridCol(
               xl: 4,
               sm: 12,
               xs: 12,
@@ -60,7 +60,7 @@ class ProjectViewModel extends BaseViewModel {
                   index: i, project: PersonalDetails.projectsList[i])));
         }
       }
-      mapList["All"].add(ResponsiveGridCol(
+      mapList["All"]!.add(ResponsiveGridCol(
           xl: 4,
           md: 6,
           sm: 12,
