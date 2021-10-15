@@ -39,6 +39,7 @@ dependencies:
 
   animations: ^2.0.1
   carousel_slider: ^4.0.0
+  auto_route: ^2.4.2
 
 dev_dependencies:
   flutter_test:
