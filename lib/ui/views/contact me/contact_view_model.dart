@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/services/url_launcher_service.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../app/configs.dart';
+import '../../../core/services/url_launcher_service.dart';
 
 class ContactViewModel extends BaseViewModel {
   final UrlLauncherService _urlLauncherService = UrlLauncherService();
@@ -18,21 +19,21 @@ class ContactViewModel extends BaseViewModel {
   }
 
   Future<void> sendMail() async {
-    String subject = "From ${nameController.text}:${subjectController.text}";
-    String url =
+    final String subject = 'From ${nameController.text}:${subjectController.text}';
+    final String url =
         'mailto:${PersonalDetails.email}?subject=$subject&body=${bodyController.text}';
     await _urlLauncherService.launchUrl(url);
   }
 
   Map<String, FocusNode> focusNodeMap = {
-    "name": FocusNode(),
-    "email": FocusNode(),
-    "subject": FocusNode()
+    'name': FocusNode(),
+    'email': FocusNode(),
+    'subject': FocusNode()
   };
   Map<String, bool> hasFocusMap = {
-    "name": false,
-    "email": false,
-    "subject": false
+    'name': false,
+    'email': false,
+    'subject': false
   };
   String? selected;
   changeSelected(bool active, String name) {
@@ -50,16 +51,16 @@ class ContactViewModel extends BaseViewModel {
   }
 
   init() {
-    focusNodeMap["name"]!.addListener(() {
-      hasFocusMap["name"] = focusNodeMap["name"]!.hasFocus;
+    focusNodeMap['name']!.addListener(() {
+      hasFocusMap['name'] = focusNodeMap['name']!.hasFocus;
       notifyListeners();
     });
-    focusNodeMap["email"]!.addListener(() {
-      hasFocusMap["email"] = focusNodeMap["email"]!.hasFocus;
+    focusNodeMap['email']!.addListener(() {
+      hasFocusMap['email'] = focusNodeMap['email']!.hasFocus;
       notifyListeners();
     });
-    focusNodeMap["subject"]!.addListener(() {
-      hasFocusMap["subject"] = focusNodeMap["subject"]!.hasFocus;
+    focusNodeMap['subject']!.addListener(() {
+      hasFocusMap['subject'] = focusNodeMap['subject']!.hasFocus;
       notifyListeners();
     });
   }

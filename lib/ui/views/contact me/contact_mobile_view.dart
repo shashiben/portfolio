@@ -26,10 +26,11 @@ class ContactMobileView extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   uiHelpers!.verticalSpaceMedium,
                   Text(
-                    "Get In Touch!",
+                    'Get In Touch!',
                     style: uiHelpers!.headline!.copyWith(fontSize: 24),
                   ),
                   const SizedBox(
@@ -47,7 +48,6 @@ class ContactMobileView extends StatelessWidget {
                   uiHelpers!.verticalSpaceMedium,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
                       FadeAnimation(
                         yDistance: 30,
@@ -99,12 +99,12 @@ class ContactMobileView extends StatelessWidget {
                           style: uiHelpers!.title,
                         ),
                         uiHelpers!.verticalSpaceLow,
-                        Column(children: [
+                        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                           Text(
                             'Your Name',
                             style: uiHelpers!.body,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Neumorphic(
@@ -114,7 +114,7 @@ class ContactMobileView extends StatelessWidget {
                               boxShape: NeumorphicBoxShape.roundRect(
                                   BorderRadius.circular(8)),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 4),
                             child: TextFormField(
                               controller: model!.nameController,
@@ -142,12 +142,12 @@ class ContactMobileView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             'Your Email',
                             style: uiHelpers!.body,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Neumorphic(
@@ -157,7 +157,7 @@ class ContactMobileView extends StatelessWidget {
                               boxShape: NeumorphicBoxShape.roundRect(
                                   BorderRadius.circular(8)),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 4),
                             child: TextFormField(
                               validator: (String? value) {
@@ -189,12 +189,12 @@ class ContactMobileView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Text(
                             'Subject',
                             style: uiHelpers!.body,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Neumorphic(
@@ -204,7 +204,7 @@ class ContactMobileView extends StatelessWidget {
                               boxShape: NeumorphicBoxShape.roundRect(
                                   BorderRadius.circular(8)),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 4),
                             child: TextFormField(
                               controller: model!.subjectController,
@@ -232,14 +232,14 @@ class ContactMobileView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             'Message',
                             style: uiHelpers!.body,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 4,
                           ),
                           Neumorphic(
@@ -249,7 +249,7 @@ class ContactMobileView extends StatelessWidget {
                               boxShape: NeumorphicBoxShape.roundRect(
                                   BorderRadius.circular(8)),
                             ),
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 4, horizontal: 4),
                             child: TextFormField(
                               controller: model!.bodyController,
@@ -272,10 +272,9 @@ class ContactMobileView extends StatelessWidget {
                               ),
                             ),
                           ),
-                        ], crossAxisAlignment: CrossAxisAlignment.start),
+                        ]),
                         uiHelpers!.verticalSpaceMedium,
                         Align(
-                          alignment: Alignment.center,
                           child: IconWrrapper(
                             margin: const EdgeInsets.all(0),
                             color: uiHelpers!.backgroundColor,
@@ -297,9 +296,6 @@ class ContactMobileView extends StatelessWidget {
                     ),
                   )
                 ],
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
               ),
             ),
           ),

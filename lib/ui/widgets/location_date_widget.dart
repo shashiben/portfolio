@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LocationDateWidget extends StatelessWidget {
-  LocationDateWidget({
+  const LocationDateWidget({
+    Key? key,
     required this.duration,
-    required this.location,
-    this.durationIcon,
-    this.locationIcon,
-    this.locationTextStyle,
     this.durationTextStyle,
-  });
+    required this.location,
+    this.locationTextStyle,
+    this.locationIcon,
+    this.durationIcon,
+  }) : super(key: key);
 
   final String duration;
   final TextStyle? durationTextStyle;
@@ -19,7 +20,7 @@ class LocationDateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Container(
       child: Column(
         children: [
@@ -31,15 +32,15 @@ class LocationDateWidget extends StatelessWidget {
                 style: durationTextStyle ??
                     theme.textTheme.bodyText2!.copyWith(color: Colors.black),
               ),
-              SizedBox(height: 5),
-              Icon(
+              const SizedBox(height: 5),
+              const Icon(
                 Icons.access_time,
                 color: Color(0xFF000000),
                 size: 18,
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -48,10 +49,10 @@ class LocationDateWidget extends StatelessWidget {
                 style: locationTextStyle ??
                     theme.textTheme.bodyText2!.copyWith(color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Icon(
+              const Icon(
                 Icons.location_on,
                 color: Color(0xFF000000),
                 size: 18,

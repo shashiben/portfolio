@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/models/project.dart';
-import 'package:portfolio/core/models/skill_display.dart';
-import 'package:portfolio/core/models/skill_model.dart';
-import 'package:portfolio/core/models/technologies.dart';
-import 'package:portfolio/core/models/timeline_experience.dart';
+
+import '../core/models/project.dart';
+import '../core/models/skill_display.dart';
+import '../core/models/skill_model.dart';
+import '../core/models/technologies.dart';
+import '../core/models/timeline_experience.dart';
+import 'icons.dart';
 
 //*Social Media Links
 mixin SocialLinks {

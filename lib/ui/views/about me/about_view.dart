@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/utils/architecture_view.dart';
-import 'package:portfolio/ui/views/about%20me/about_view_all_size.dart';
+import '../../../core/utils/architecture_view.dart';
+import 'about_view_all_size.dart';
 
 import 'about_view_model.dart';
 

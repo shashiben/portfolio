@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/technologies.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../core/models/technologies.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class TechnologyWidget extends StatelessWidget {
   final Technologies? technologies;
@@ -12,6 +12,7 @@ class TechnologyWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             technologies!.icon,
@@ -23,8 +24,6 @@ class TechnologyWidget extends StatelessWidget {
                 .copyWith(color: uiHelper.textPrimaryColor, fontSize: 16),
           )
         ],
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
       ),
     );
   }

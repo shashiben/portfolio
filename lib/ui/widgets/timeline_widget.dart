@@ -98,7 +98,6 @@ class Timeline extends StatelessWidget {
 
         return IntrinsicHeight(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children:
                 isLeftAligned ? timelineTile : timelineTile.reversed.toList(),
           ),

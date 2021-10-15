@@ -1,6 +1,7 @@
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/services/url_launcher_service.dart';
 import 'package:stacked/stacked.dart';
+
+import '../../../app/configs.dart';
+import '../../../core/services/url_launcher_service.dart';
 
 class HomeViewModel extends BaseViewModel {
   final UrlLauncherService _urlLauncherService = UrlLauncherService();
@@ -9,12 +10,12 @@ class HomeViewModel extends BaseViewModel {
   bool isHoveredOnGetInTouch = false;
   bool isShortIntroCompleted = false;
   Map<String, String> skills = {
-    "Mobile Developer": "assets/images/android.png",
-    "Web Developer": "assets/images/web.png",
-    "Designer": "assets/images/design.png",
-    "AI Enthusiast": "assets/images/ml.png"
+    'Mobile Developer': 'assets/images/android.png',
+    'Web Developer': 'assets/images/web.png',
+    'Designer': 'assets/images/design.png',
+    'AI Enthusiast': 'assets/images/ml.png'
   };
-  changeShortIntroToCompleted() {
+  void changeShortIntroToCompleted() {
     isShortIntroCompleted = true;
     notifyListeners();
   }

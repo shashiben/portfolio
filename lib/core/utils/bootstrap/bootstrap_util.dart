@@ -46,22 +46,22 @@ void bootstrapGridParameters({
 /// Returns the definition prefix, based on the available width
 ///
 String bootstrapPrefixBasedOnWidth(double width) {
-  String pfx = "";
+  const String pfx = '';
 
   if (width > 1200) {
-    return "xl";
+    return 'xl';
   }
 
   if (width > 992) {
-    return "lg";
+    return 'lg';
   }
 
   if (width > 768) {
-    return "md";
+    return 'md';
   }
 
   if (width > 575) {
-    return "sm";
+    return 'sm';
   }
 
   return pfx;
@@ -94,7 +94,7 @@ double bootstrapMaxWidthNonFluid(double width) {
 /// Implementation of the Bootstrap .container and .container-fluid
 ///
 class BootstrapContainer extends StatelessWidget {
-  BootstrapContainer({
+  const BootstrapContainer({
     Key? key,
     required this.children,
     this.fluid = false,
@@ -130,7 +130,7 @@ class BootstrapContainer extends StatelessWidget {
     //
     // If the container is fluid, no constraints in terms of width
     //
-    if (this.fluid) {
+    if (fluid) {
       return width;
     }
 
@@ -147,14 +147,12 @@ class BootstrapContainer extends StatelessWidget {
         //
         // Get the max width of the container
         //
-        double width = _getMaxWidth(constraints.maxWidth);
+        final double width = _getMaxWidth(constraints.maxWidth);
 
         Widget widget = Container(
           width: width,
           decoration: decoration,
           child: Wrap(
-            alignment: WrapAlignment.start,
-            direction: Axis.horizontal,
             children: children,
           ),
         );
@@ -181,11 +179,12 @@ class BootstrapContainer extends StatelessWidget {
 /// A [BootstapRow] may only contain [BootstapCol] children.
 ///
 class BootstrapRow extends StatelessWidget {
-  BootstrapRow({
-    required this.children,
-    this.decoration,
+  const BootstrapRow({
+    Key? key,
     this.height,
-  });
+    this.decoration,
+    required this.children,
+  }) : super(key: key);
 
   ///
   /// Min container height
@@ -209,12 +208,12 @@ class BootstrapRow extends StatelessWidget {
         //
         // Get the prefix for the definition, based on the available width
         //
-        String pfx = bootstrapPrefixBasedOnWidth(constraints.maxWidth);
+        final String pfx = bootstrapPrefixBasedOnWidth(constraints.maxWidth);
 
         //
         // We need to iterate through all the children and consider any potential order
         //
-        List<BootstrapCol> _children = List.from(children);
+        final List<BootstrapCol> _children = List.from(children);
         _children.sort((a, b) => a.orderPerSize[pfx]! - b.orderPerSize[pfx]!);
 
         return Container(
@@ -225,8 +224,6 @@ class BootstrapRow extends StatelessWidget {
           ),
           decoration: decoration,
           child: Wrap(
-            alignment: WrapAlignment.start,
-            direction: Axis.horizontal,
             children: _children,
           ),
         );
@@ -240,16 +237,18 @@ class BootstrapRow extends StatelessWidget {
 ///
 class BootstrapCol extends StatelessWidget {
   BootstrapCol({
+    Key? key,
     required this.child,
     this.fit = FlexFit.loose,
     this.absoluteSizes = true,
-    String sizes = "",
-    String offsets = "",
-    String orders = "",
+    String sizes = '',
+    String offsets = '',
+    String orders = '',
     this.invisibleForSizes,
-  })  : this.sizes = sizes.trim(),
-        this.offsets = offsets.trim(),
-        this.orders = orders.trim() {
+  })  : sizes = sizes.trim(),
+        offsets = offsets.trim(),
+        orders = orders.trim(),
+        super(key: key) {
     _initialize();
   }
 
@@ -380,33 +379,33 @@ class BootstrapCol extends StatelessWidget {
       //
       // Identification of the defined "dimensions"
       //
-      List<String> parts = referenceArgument.isEmpty
+      final List<String> parts = referenceArgument.isEmpty
           ? []
           : referenceArgument
               .toLowerCase()
               .split(' ')
               .where((t) => t.trim().isNotEmpty)
               .toList();
-      parts.forEach((String part) {
-        _prefixes.forEach((pfx) {
+      for (final String part in parts) {
+        for (final String pfx in _prefixes) {
           final String prefix = '$argPrefix-$pfx${pfx == "" ? "" : "-"}';
           if (part.startsWith(prefix)) {
-            String? valString = part.split(prefix).last;
-            if (valString != prefix) {
-              int? value = int.tryParse(valString);
+            final String? valString = part.split(prefix).last;
+            if (valString != prefix && valString != null) {
+              final int? value = int.tryParse(valString);
               if (value != null && value < 13 && value > lowerBoundValue) {
                 map![pfx] = minMaxFct!(map[pfx], value);
               }
             }
           }
-        });
-      });
+        }
+      }
 
       //
       // As there might be holes, we need to re-adapt
       //
       for (int idx = 0; idx < nbPrefixes; idx++) {
-        String pfx = _prefixesReversed[idx];
+        final String pfx = _prefixesReversed[idx];
         int? value = map![pfx];
 
         if (value == noValue) {
@@ -419,7 +418,7 @@ class BootstrapCol extends StatelessWidget {
           // Look for the nearest value in higher resolutions
           //
           for (i = idx + 1; i < nbPrefixes; i++) {
-            String pfx2 = _prefixesReversed[i];
+            final String pfx2 = _prefixesReversed[i];
             if (map[pfx2] != noValue) {
               value = map[pfx2];
               break;
@@ -431,7 +430,7 @@ class BootstrapCol extends StatelessWidget {
             // Look for the nearest value in lower resolutions
             //
             for (int j = i - 1; j > -1; j--) {
-              String pfx3 = _prefixesReversed[j];
+              final String pfx3 = _prefixesReversed[j];
               if (map[pfx3] != noValue) {
                 value = map[pfx3];
                 break;
@@ -484,18 +483,18 @@ class BootstrapCol extends StatelessWidget {
     //
     // Finally, invisibility
     //
-    List<String> parts = (invisibleForSizes ?? "").trim().isEmpty
+    final List<String> parts = (invisibleForSizes ?? '').trim().isEmpty
         ? []
         : invisibleForSizes!
             .toLowerCase()
             .split(' ')
             .where((t) => t.trim().isNotEmpty)
             .toList();
-    parts.forEach((String pfx) {
+    for (final pfx in parts) {
       if (['xl', 'lg', 'md', 'sm', 'xs'].contains(pfx)) {
         hiddenPerSize[pfx == 'xs' ? '' : pfx] = true;
       }
-    });
+    }
   }
 
   //
@@ -521,14 +520,14 @@ class BootstrapCol extends StatelessWidget {
         //
         // Get the prefix for the definition, based on the available width
         //
-        String pfx = bootstrapPrefixBasedOnWidth(absoluteSizes
+        final String pfx = bootstrapPrefixBasedOnWidth(absoluteSizes
             ? MediaQuery.of(context).size.width
             : constraints.maxWidth);
 
         //
         // Check if invisible
         //
-        bool isInvisible = hiddenPerSize[pfx]!;
+        final bool isInvisible = hiddenPerSize[pfx]!;
 
         if (isInvisible) {
           return Container();
@@ -538,14 +537,14 @@ class BootstrapCol extends StatelessWidget {
         //
         // Get the flexible ratio
         //
-        int flexRatio = _getFlexRatio(pfx)!;
+        final int flexRatio = _getFlexRatio(pfx)!;
 
         //
         // Get the margin-left (offset)
         //
-        int leftMarginRatio = _getLeftMarginRatio(pfx);
+        final int leftMarginRatio = _getLeftMarginRatio(pfx);
 
-        Widget widget = Container(
+        Widget widget = SizedBox(
           width: flexRatio * constraints.maxWidth * _oneColumnRatio,
           child: Padding(
             padding: _gutterSize == 0.0
@@ -577,9 +576,11 @@ class BootstrapCol extends StatelessWidget {
 ///
 class BootstrapVisibility extends StatelessWidget {
   BootstrapVisibility({
+    Key? key,
     required this.child,
-    String sizes = "",
-  }) : this.sizes = sizes.trim() {
+    String sizes = '',
+  })  : sizes = sizes.trim(),
+        super(key: key) {
     _initialize();
   }
 
@@ -616,21 +617,21 @@ class BootstrapVisibility extends StatelessWidget {
     //
     // Parsing of the rules
     //
-    List<String> parts = sizes.isEmpty
+    final List<String> parts = sizes.isEmpty
         ? []
         : sizes
             .toLowerCase()
             .split(' ')
             .where((t) => t.trim().isNotEmpty)
             .toList();
-    parts.forEach((String part) {
-      _prefixes.forEach((pfx) {
+    for (final part in parts) {
+      for (final pfx in _prefixes) {
         final String prefix = 'col-$pfx';
         if (part.startsWith(prefix) && pfx != '') {
           _visibilityPerSize[pfx] = true;
         }
-      });
-    });
+      }
+    }
   }
 
   @override
@@ -646,7 +647,7 @@ class BootstrapVisibility extends StatelessWidget {
     //
     // Check if it is visible
     //
-    bool? visible = _visibilityPerSize[pfx];
+    final bool? visible = _visibilityPerSize[pfx];
 
     if (visible == false) {
       return Container();
@@ -682,7 +683,8 @@ dynamic bootStrapValueBasedOnSize({
   //
   // Get the prefix for the definition, based on the available width
   //
-  String pfx = bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
+  final String pfx =
+      bootstrapPrefixBasedOnWidth(MediaQuery.of(context).size.width);
 
   final int nbPrefixes = _prefixes.length;
   dynamic value;
@@ -697,13 +699,13 @@ dynamic bootStrapValueBasedOnSize({
     // No definition was found for this prefix
     //
     int i;
-    int idx = _prefixes.indexOf(pfx);
+    final int idx = _prefixes.indexOf(pfx);
 
     //
     // Look for the nearest value in higher resolutions
     //
     for (i = idx + 1; i < nbPrefixes; i++) {
-      String pfx2 = _prefixesReversed[i];
+      final String pfx2 = _prefixesReversed[i];
       if (sizes[pfx2] != null) {
         value = sizes[pfx2];
         break;
@@ -715,7 +717,7 @@ dynamic bootStrapValueBasedOnSize({
       // Look for the nearest value in lower resolutions
       //
       for (int j = i - 1; j > -1; j--) {
-        String pfx3 = _prefixesReversed[j];
+        final String pfx3 = _prefixesReversed[j];
         if (sizes[pfx3] != null) {
           value = sizes[pfx3];
           break;

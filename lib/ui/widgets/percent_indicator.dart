@@ -5,8 +5,8 @@ import 'custom shapes/circle_painter.dart';
 enum CircularStrokeCap { butt, round, square }
 
 enum ArcType {
-  HALF,
-  FULL,
+  half,
+  full,
 }
 
 // ignore: must_be_immutable
@@ -76,7 +76,7 @@ class CircularPercentIndicator extends StatefulWidget {
 
     assert(startAngle >= 0.0);
     if (percent < 0.0 || percent > 1.0) {
-      throw Exception("Percent value must be a double between 0.0 and 1.0");
+      throw Exception('Percent value must be a double between 0.0 and 1.0');
     }
 
     if (arcType == null && arcBackgroundColor != null) {
@@ -153,7 +153,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
     }
   }
 
-  _updateProgress() {
+  void _updateProgress() {
     setState(() {
       _percent = widget.percent;
     });
@@ -162,12 +162,12 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    List<Widget> items = [];
+    final List<Widget> items = <Widget>[];
     if (widget.header != null) {
       items.add(widget.header!);
     }
     items.add(
-      Container(
+      SizedBox(
         height: widget.radius + widget.lineWidth,
         width: widget.radius,
         child: Stack(
@@ -210,7 +210,7 @@ class _CircularPercentIndicatorState extends State<CircularPercentIndicator>
                         (widget.circularStrokeCap != CircularStrokeCap.butt)
                             ? widget.lineWidth / 2
                             : 0,
-                        (-widget.radius / 2 + widget.lineWidth / 2),
+                        -widget.radius / 2 + widget.lineWidth / 2,
                       ),
                       child: widget.widgetIndicator,
                     ),

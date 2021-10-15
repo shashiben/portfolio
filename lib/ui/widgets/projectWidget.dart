@@ -1,11 +1,11 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/models/project.dart';
-import 'package:portfolio/core/services/url_launcher_service.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/ui/widgets/translate_on_hover.dart';
 
+import '../../app/icons.dart';
+import '../../core/models/project.dart';
+import '../../core/services/url_launcher_service.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 import 'fadeAnimation.dart';
+import 'translate_on_hover.dart';
 
 class ProjectWidget extends StatelessWidget {
   final String? type;
@@ -21,7 +21,6 @@ class ProjectWidget extends StatelessWidget {
     final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
     return FadeAnimation(
       xDistance: 0,
-      yDistance: 0000000,
       delay: index * 0.2 + 1,
       child: TranslateOnHover(
         child: Container(
@@ -46,7 +45,6 @@ class ProjectWidget extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.max,
                     children: [
                       Icon(
                         ProjectIcons.folderIcon,
@@ -56,9 +54,7 @@ class ProjectWidget extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          project.websiteLink == null
-                              ? SizedBox()
-                              : IconButton(
+                          if (project.websiteLink == null) const SizedBox() else IconButton(
                                   icon: Icon(
                                     ProjectIcons.websiteIcon,
                                     color: uiHelpers.primaryColor,
@@ -66,9 +62,7 @@ class ProjectWidget extends StatelessWidget {
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.websiteLink!),
                                 ),
-                          project.githubLink == null
-                              ? SizedBox()
-                              : IconButton(
+                          if (project.githubLink == null) const SizedBox() else IconButton(
                                   icon: Icon(
                                     ProjectIcons.githubIcon,
                                     color: uiHelpers.primaryColor,
@@ -76,9 +70,7 @@ class ProjectWidget extends StatelessWidget {
                                   onPressed: () => _urlLauncherService
                                       .launchUrl(project.githubLink!),
                                 ),
-                          project.playstoreLink == null
-                              ? SizedBox()
-                              : IconButton(
+                          if (project.playstoreLink == null) const SizedBox() else IconButton(
                                   icon: Icon(
                                     ProjectIcons.playstoreIcon,
                                     color: uiHelpers.primaryColor,
@@ -98,21 +90,22 @@ class ProjectWidget extends StatelessWidget {
                   uiHelpers.verticalSpaceLow,
                   Text(
                     project.description,
-                    style: uiHelpers.body!.copyWith(fontWeight: FontWeight.w300),
+                    style:
+                        uiHelpers.body!.copyWith(fontWeight: FontWeight.w300),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Wrap(
                     children: [
                       for (int i = 0; i < project.tools.length; i++)
                         Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4)
+                              .copyWith(right: 16),
                           child: Text(
                             project.tools[i],
                             style: uiHelpers.body!.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: uiHelpers.textSecondaryColor),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 4)
-                              .copyWith(right: 16),
                         ),
                     ],
                   )

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../app/configs.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 import 'linear_percent_indicator.dart';
 
 class FeaturedSkillWidget extends StatelessWidget {
+  const FeaturedSkillWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final uiHelpers = ScreenUiHelper.fromContext(context);
@@ -12,8 +14,8 @@ class FeaturedSkillWidget extends StatelessWidget {
         primary: false,
         shrinkWrap: true,
         itemCount: PersonalDetails.featuredSkills.length,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => Container(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => SizedBox(
               width: uiHelpers.width! * 0.8,
               child: LinearPercentIndicator(
                 progressColor: uiHelpers.primaryColor,

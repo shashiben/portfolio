@@ -28,27 +28,27 @@ class DateTimeUtils {
     'Dec'
   ];
 
-  getMonth(int timeStamp, bool isShort) {
-    var date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
-    int month = date.month;
+  String getMonth(int timeStamp, bool isShort) {
+    final date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
+    final int month = date.month;
     return isShort ? shortMonthsList[month] : monthsList[month];
   }
 
   int getDate(int timeStamp) {
-    var date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
+    final date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
     return date.day;
   }
 
   String getTime(int timeStamp) {
-    var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
-    String time = date.hour.toString() + ':' + date.minute.toString();
+    final date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
+    final String time = date.hour.toString() + ':' + date.minute.toString();
     return time;
   }
 
   String getWholeDate(int timeStamp) {
     try {
-      var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
-      String tim = monthsList[date.month - 1] +
+      final date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
+      final String tim = monthsList[date.month - 1] +
           ' ' +
           date.day.toString() +
           ',' +
@@ -57,13 +57,12 @@ class DateTimeUtils {
           getTime(timeStamp);
       return tim;
     } catch (e) {
-      print(e);
       return e.toString();
     }
   }
 
   String timeAgoSinceDate(int timeStamp) {
-    var date = new DateTime.fromMillisecondsSinceEpoch(timeStamp);
+    final date = DateTime.fromMillisecondsSinceEpoch(timeStamp);
     final date2 = DateTime.now();
     final difference = date2.difference(date);
 

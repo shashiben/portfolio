@@ -1,10 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/ui/widgets/icon_wrapper.dart';
+import '../../../app/configs.dart';
+import '../../../app/icons.dart';
+import '../../../core/utils/ScreenUiHelper.dart';
+import '../../widgets/icon_wrapper.dart';
 
 import 'home_view_model.dart';
 
@@ -12,7 +12,8 @@ class HomeMobileView extends StatelessWidget {
   final ScreenUiHelper? uiHelpers;
   final HomeViewModel? model;
 
-  const HomeMobileView({Key? key, this.uiHelpers, this.model}) : super(key: key);
+  const HomeMobileView({Key? key, this.uiHelpers, this.model})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,50 +22,48 @@ class HomeMobileView extends StatelessWidget {
           width: uiHelpers!.width,
           height: uiHelpers!.height,
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(children: [
-            SizedBox(height: 30),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
               children: [
-                Image.asset("assets/images/sk_logo.png",
+                Image.asset('assets/images/sk_logo.png',
                     height: 40, width: 40, color: uiHelpers!.textPrimaryColor),
                 IconWrrapper(
                   margin: const EdgeInsets.all(0),
                   color: uiHelpers!.primaryColor,
                   padding: const EdgeInsets.all(8),
                   onTap: () =>
-                      model!.navigateToUrl("mailto:" + PersonalDetails.email),
-                  child: Icon(
+                      model!.navigateToUrl('mailto:' + PersonalDetails.email),
+                  child: const Icon(
                     MenuIcons.contactIcon,
                     color: Colors.white,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Text(
-              "Portfolio",
+              'Portfolio',
               style: uiHelpers!.body,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               "Hello,I'm",
               style: uiHelpers!.headline,
             ),
             Text(
-              "Shashi Kumar",
+              'Shashi Kumar',
               style: uiHelpers!.headline,
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
-            Container(
+            SizedBox(
                 height: 175.0,
                 child: CarouselSlider.builder(
                   options: CarouselOptions(
                       autoPlayCurve: Curves.easeOutQuart,
-                      scrollDirection: Axis.horizontal,
                       autoPlay: true,
                       viewportFraction: 1),
                   itemCount: PersonalDetails.skillDisplayList.length,
@@ -73,6 +72,9 @@ class HomeMobileView extends StatelessWidget {
                       width: uiHelpers!.width,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 20),
+                      decoration: BoxDecoration(
+                          color: PersonalDetails.skillDisplayList[index].color,
+                          borderRadius: BorderRadius.circular(12)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -82,7 +84,7 @@ class HomeMobileView extends StatelessWidget {
                             color: Colors.white,
                             size: 30,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Text(
@@ -94,13 +96,10 @@ class HomeMobileView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      decoration: BoxDecoration(
-                          color: PersonalDetails.skillDisplayList[index].color,
-                          borderRadius: BorderRadius.circular(12)),
                     );
                   },
                 )),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(children: [
@@ -111,7 +110,7 @@ class HomeMobileView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                 onTap: () => model!.navigateToUrl(PersonalDetails.whatsappLink),
                 child: Text(
-                  "Contact",
+                  'Contact',
                   style: uiHelpers!.buttonStyle!.copyWith(color: Colors.white),
                 ),
               ),
@@ -120,21 +119,21 @@ class HomeMobileView extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                 onTap: () => model!.navigateToUrl(PersonalDetails.resumeLink),
                 child: Text(
-                  "Download CV",
+                  'Download CV',
                   style: uiHelpers!.buttonStyle,
                 ),
               )
             ]),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: Align(
-                child: Image.asset(
-                  "assets/images/business.png",
-                ),
                 alignment: Alignment.bottomRight,
+                child: Image.asset(
+                  'assets/images/business.png',
+                ),
               ),
             ),
-          ], crossAxisAlignment: CrossAxisAlignment.start)),
+          ])),
     );
   }
 }

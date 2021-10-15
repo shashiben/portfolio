@@ -1,10 +1,12 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/services/url_launcher_service.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+
+import '../../app/configs.dart';
+import '../../core/services/url_launcher_service.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class TrailingInfo extends StatelessWidget {
-  TrailingInfo({
+  const TrailingInfo({
+    Key? key,
     this.leadingWidget,
     this.middleWidget,
     this.trailingWidget,
@@ -12,11 +14,11 @@ class TrailingInfo extends StatelessWidget {
     this.padding,
     this.info,
     this.width,
+    this.color,
     this.onTrailingWidgetPressed,
     this.onLeadingWidgetPressed,
-    this.color,
     this.crossAxisAlignment = CrossAxisAlignment.end,
-  });
+  }) : super(key: key);
 
   final Widget? leadingWidget;
   final Widget? middleWidget;
@@ -33,11 +35,11 @@ class TrailingInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
-    ThemeData theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Container(
       width: width,
       padding: padding ??
-          EdgeInsets.only(
+          const EdgeInsets.only(
             top: 30,
             right: 30,
             bottom: 20,
@@ -47,29 +49,29 @@ class TrailingInfo extends StatelessWidget {
         crossAxisAlignment: crossAxisAlignment,
         children: [
           NeumorphicFloatingActionButton(
-            tooltip: "Mail",
+            tooltip: 'Mail',
             style: NeumorphicStyle(
                 color: uiHelper.primaryColor,
-                boxShape: NeumorphicBoxShape.circle()),
+                boxShape: const NeumorphicBoxShape.circle()),
             onPressed: () => UrlLauncherService()
-                .launchUrl("mailto:${PersonalDetails.email}"),
+                .launchUrl('mailto:${PersonalDetails.email}'),
             child: Center(
               child: leadingWidget ??
                   NeumorphicIcon(
                     Icons.mail,
-                    style: NeumorphicStyle(
+                    style: const NeumorphicStyle(
                       color: Colors.white,
                     ),
                     size: 25,
                   ),
             ),
           ),
-          spacingWidget ?? Spacer(flex: 1),
+          spacingWidget ?? const Spacer(),
           middleWidget ??
               RotatedBox(
                 quarterTurns: 1,
                 child: Text(
-                  info ?? "${PersonalDetails.email}",
+                  info ?? PersonalDetails.email,
                   textAlign: TextAlign.end,
                   style: theme.textTheme.bodyText1!.copyWith(
                     color: uiHelper.textPrimaryColor,
@@ -78,7 +80,7 @@ class TrailingInfo extends StatelessWidget {
                   ),
                 ),
               ),
-          spacingWidget ?? Spacer(flex: 1),
+          spacingWidget ?? const Spacer(),
           InkWell(
             onTap: onTrailingWidgetPressed,
             child: trailingWidget ??
@@ -86,7 +88,7 @@ class TrailingInfo extends StatelessWidget {
                   color: uiHelper.primaryColor,
                   width: 30,
                   height: 30,
-                  child: Icon(
+                  child: const Icon(
                     Icons.chevron_right,
                     color: Colors.white,
                   ),
@@ -99,7 +101,7 @@ class TrailingInfo extends StatelessWidget {
 }
 
 class CircularContainer extends StatelessWidget {
-  CircularContainer({
+  const CircularContainer({
     this.child,
     this.width = 40,
     this.height = 40,

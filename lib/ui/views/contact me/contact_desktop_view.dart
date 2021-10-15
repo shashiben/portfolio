@@ -1,10 +1,11 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/ui/views/contact%20me/contact_view_model.dart';
-import 'package:portfolio/ui/widgets/fadeAnimation.dart';
-import 'package:portfolio/ui/widgets/icon_wrapper.dart';
+
+import '../../../app/configs.dart';
+import '../../../app/icons.dart';
+import '../../../core/utils/ScreenUiHelper.dart';
+import '../../widgets/fadeAnimation.dart';
+import '../../widgets/icon_wrapper.dart';
+import 'contact_view_model.dart';
 
 class ContactDesktopView extends StatelessWidget {
   final ScreenUiHelper? uiHelpers;
@@ -23,14 +24,16 @@ class ContactDesktopView extends StatelessWidget {
           alignment: Alignment.center,
           child: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NeumorphicText(
-                  "Get In Touch!",
+                  'Get In Touch!',
                   style: NeumorphicStyle(
                       color: uiHelpers!.textPrimaryColor, intensity: 0.3),
-                  textStyle: uiHelpers!.headlineTextStyle!.copyWith(fontSize: 45),
+                  textStyle:
+                      uiHelpers!.headlineTextStyle!.copyWith(fontSize: 45),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 FadeAnimation(
@@ -38,7 +41,7 @@ class ContactDesktopView extends StatelessWidget {
                   delay: 1,
                   yDistance: 10,
                   child: NeumorphicText(
-                    "Contact me for hiring,or help me to join your team",
+                    'Contact me for hiring,or help me to join your team',
                     style: NeumorphicStyle(
                         color: uiHelpers!.textSecondaryColor, intensity: 0.3),
                     textStyle: uiHelpers!.bodyTextStyle!.copyWith(fontSize: 25),
@@ -47,7 +50,6 @@ class ContactDesktopView extends StatelessWidget {
                 uiHelpers!.verticalSpaceMedium,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.max,
                   children: [
                     FadeAnimation(
                         xDistance: 00,
@@ -98,7 +100,6 @@ class ContactDesktopView extends StatelessWidget {
                   child: Neumorphic(
                     style: NeumorphicStyle(
                       border: NeumorphicBorder(
-                        isEnabled: true,
                         color: uiHelpers!.surfaceColor,
                         width: 2,
                       ),
@@ -118,7 +119,7 @@ class ContactDesktopView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           NeumorphicText(
-                            "Contact Form",
+                            'Contact Form',
                             style: NeumorphicStyle(
                                 color: uiHelpers!.textPrimaryColor),
                             textStyle: uiHelpers!.headlineTextStyle,
@@ -126,22 +127,24 @@ class ContactDesktopView extends StatelessWidget {
                           uiHelpers!.verticalSpaceLow,
                           Row(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: uiHelpers!.width! * 0.3,
                                 child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       NeumorphicText(
-                                        "Your Name",
+                                        'Your Name',
                                         style: NeumorphicStyle(
                                             color:
                                                 uiHelpers!.textSecondaryColor),
                                         textStyle: uiHelpers!.bodyTextStyle,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 4,
                                       ),
                                       Neumorphic(
-                                        margin: EdgeInsets.only(
+                                        margin: const EdgeInsets.only(
                                             left: 8,
                                             right: 8,
                                             top: 2,
@@ -154,47 +157,49 @@ class ContactDesktopView extends StatelessWidget {
                                               NeumorphicBoxShape.roundRect(
                                                   BorderRadius.circular(8)),
                                         ),
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             vertical: 6, horizontal: 8),
                                         child: TextFormField(
                                           controller: model!.nameController,
                                           validator: (String? value) {
                                             if (value!.trim().isEmpty) {
-                                              return "Please Enter Name";
+                                              return 'Please Enter Name';
                                             }
 
                                             return null;
                                           },
-                                          focusNode: model!.focusNodeMap["name"],
+                                          focusNode:
+                                              model!.focusNodeMap['name'],
                                           keyboardType: TextInputType.name,
                                           decoration: InputDecoration(
                                               prefixIcon: Icon(
                                                 FormIcon.nameIcon,
-                                                color: model!.hasFocusMap["name"]!
+                                                color: model!
+                                                        .hasFocusMap['name']!
                                                     ? uiHelpers!.primaryColor
                                                     : uiHelpers!
                                                         .textPrimaryColor,
                                               ),
-                                              hintText: "Luffy San",
+                                              hintText: 'Luffy San',
                                               hintStyle: TextStyle(
                                                   color: uiHelpers!
                                                       .textSecondaryColor),
                                               border: InputBorder.none),
                                         ),
                                       ),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       NeumorphicText(
-                                        "Your Email",
+                                        'Your Email',
                                         style: NeumorphicStyle(
                                             color:
                                                 uiHelpers!.textSecondaryColor),
                                         textStyle: uiHelpers!.bodyTextStyle,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 4,
                                       ),
                                       Neumorphic(
-                                        margin: EdgeInsets.only(
+                                        margin: const EdgeInsets.only(
                                             left: 8,
                                             right: 8,
                                             top: 2,
@@ -211,47 +216,47 @@ class ContactDesktopView extends StatelessWidget {
                                           controller: model!.emailController,
                                           validator: (String? value) {
                                             if (value!.trim().isEmpty) {
-                                              return "Please Enter Email";
+                                              return 'Please Enter Email';
                                             } else if (!RegExp(
-                                                    r"^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$")
+                                                    r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$')
                                                 .hasMatch(value)) {
-                                              return "Please enter valid email";
+                                              return 'Please enter valid email';
                                             }
 
                                             return null;
                                           },
                                           focusNode:
-                                              model!.focusNodeMap["email"],
+                                              model!.focusNodeMap['email'],
                                           keyboardType: TextInputType.name,
                                           decoration: InputDecoration(
                                               prefixIcon: Icon(
                                                 FormIcon.nameIcon,
-                                                color:
-                                                    model!.hasFocusMap["email"]!
-                                                        ? uiHelpers!.primaryColor
-                                                        : uiHelpers!
-                                                            .textPrimaryColor,
+                                                color: model!
+                                                        .hasFocusMap['email']!
+                                                    ? uiHelpers!.primaryColor
+                                                    : uiHelpers!
+                                                        .textPrimaryColor,
                                               ),
-                                              hintText: "youremail@gmail.com",
+                                              hintText: 'youremail@gmail.com',
                                               hintStyle: TextStyle(
                                                   color: uiHelpers!
                                                       .textSecondaryColor),
                                               border: InputBorder.none),
                                         ),
                                       ),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       NeumorphicText(
-                                        "Subject",
+                                        'Subject',
                                         style: NeumorphicStyle(
                                             color:
                                                 uiHelpers!.textSecondaryColor),
                                         textStyle: uiHelpers!.bodyTextStyle,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 4,
                                       ),
                                       Neumorphic(
-                                        margin: EdgeInsets.only(
+                                        margin: const EdgeInsets.only(
                                             left: 8,
                                             right: 8,
                                             top: 2,
@@ -268,33 +273,31 @@ class ContactDesktopView extends StatelessWidget {
                                           controller: model!.subjectController,
                                           validator: (String? value) {
                                             if (value!.trim().isEmpty) {
-                                              return "Please Enter Subject";
+                                              return 'Please Enter Subject';
                                             }
 
                                             return null;
                                           },
                                           focusNode:
-                                              model!.focusNodeMap["subject"],
+                                              model!.focusNodeMap['subject'],
                                           keyboardType: TextInputType.name,
                                           decoration: InputDecoration(
                                               prefixIcon: Icon(
                                                 FormIcon.nameIcon,
-                                                color:
-                                                    model!.hasFocusMap["subject"]!
-                                                        ? uiHelpers!.primaryColor
-                                                        : uiHelpers!
-                                                            .textPrimaryColor,
+                                                color: model!
+                                                        .hasFocusMap['subject']!
+                                                    ? uiHelpers!.primaryColor
+                                                    : uiHelpers!
+                                                        .textPrimaryColor,
                                               ),
-                                              hintText: "Hiring for...",
+                                              hintText: 'Hiring for...',
                                               hintStyle: TextStyle(
                                                   color: uiHelpers!
                                                       .textSecondaryColor),
                                               border: InputBorder.none),
                                         ),
                                       ),
-                                    ],
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start),
+                                    ]),
                               ),
                               Expanded(
                                 child: Container(
@@ -304,19 +307,19 @@ class ContactDesktopView extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       NeumorphicText(
-                                        "Message",
+                                        'Message',
                                         style: NeumorphicStyle(
                                             intensity: 0.3,
                                             color:
                                                 uiHelpers!.textSecondaryColor),
                                         textStyle: uiHelpers!.bodyTextStyle,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 4,
                                       ),
                                       Neumorphic(
                                         padding: const EdgeInsets.all(12),
-                                        margin: EdgeInsets.only(
+                                        margin: const EdgeInsets.only(
                                             left: 8,
                                             right: 8,
                                             top: 2,
@@ -333,7 +336,7 @@ class ContactDesktopView extends StatelessWidget {
                                           controller: model!.bodyController,
                                           validator: (String? value) {
                                             if (value!.trim().isEmpty) {
-                                              return "Please Enter Message";
+                                              return 'Please Enter Message';
                                             }
 
                                             return null;
@@ -345,7 +348,7 @@ class ContactDesktopView extends StatelessWidget {
                                               hintStyle: TextStyle(
                                                   color: uiHelpers!
                                                       .textSecondaryColor),
-                                              hintText: "Your Messsage..",
+                                              hintText: 'Your Messsage..',
                                               border: InputBorder.none),
                                         ),
                                       ),
@@ -358,7 +361,6 @@ class ContactDesktopView extends StatelessWidget {
                           uiHelpers!.verticalSpaceHigh,
                           FadeAnimation(
                             xDistance: 00,
-                            yDistance: 0,
                             delay: 2,
                             child: Container(
                                 alignment: Alignment.center,
@@ -371,11 +373,11 @@ class ContactDesktopView extends StatelessWidget {
                                         FormIcon.messageIcon,
                                         color: uiHelpers!.textPrimaryColor,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 6,
                                       ),
                                       Text(
-                                        "Send Message",
+                                        'Send Message',
                                         style: uiHelpers!.buttonStyle,
                                       )
                                     ],
@@ -388,9 +390,6 @@ class ContactDesktopView extends StatelessWidget {
                   ),
                 )
               ],
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
             ),
           ),
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class CustomScroller extends StatelessWidget {
-  CustomScroller({
+  const CustomScroller({
     this.width = 24,
     this.height = 70,
     this.padding = const EdgeInsets.all(0),
@@ -28,7 +28,7 @@ class CustomScroller extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
+    final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: TweenAnimationBuilder(
@@ -42,9 +42,9 @@ class CustomScroller extends StatelessWidget {
                 InkWell(
                   onTap: onUpTap,
                   child: topController ??
-                      Icon(Icons.keyboard_arrow_up, color: Colors.white),
+                      const Icon(Icons.keyboard_arrow_up, color: Colors.white),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 centerChild ??
@@ -56,13 +56,13 @@ class CustomScroller extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 InkWell(
                   onTap: onDownTap,
                   child: bottomController ??
-                      Icon(
+                      const Icon(
                         Icons.keyboard_arrow_down,
                         color: Colors.white,
                       ),

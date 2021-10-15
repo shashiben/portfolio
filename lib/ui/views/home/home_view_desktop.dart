@@ -1,9 +1,9 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/app/icons.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/ui/widgets/icon_wrapper.dart';
-import 'package:portfolio/ui/widgets/translate_on_hover.dart';
+import '../../../app/configs.dart';
+import '../../../app/icons.dart';
+import '../../../core/utils/ScreenUiHelper.dart';
+import '../../widgets/icon_wrapper.dart';
+import '../../widgets/translate_on_hover.dart';
 
 import 'home_view_model.dart';
 
@@ -21,8 +21,8 @@ class HomeDesktopView extends StatelessWidget {
           alignment: Alignment.center,
           padding: const EdgeInsets.all(60),
           child: Neumorphic(
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             style: NeumorphicStyle(
               color: uiHelpers!.surfaceColor,
               depth: NeumorphicTheme.embossDepth(context),
@@ -32,19 +32,18 @@ class HomeDesktopView extends StatelessWidget {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Image.asset(
-                          "assets/images/sk_logo.png",
+                          'assets/images/sk_logo.png',
                           width: 50,
                           height: 50,
                           color: uiHelpers!.textPrimaryColor,
                         ),
                         Text(
-                          "Shashi Kumar",
+                          'Shashi Kumar',
                           style: uiHelpers!.title,
                         )
                       ],
@@ -58,7 +57,7 @@ class HomeDesktopView extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Resume",
+                                  'Resume',
                                   style: uiHelpers!.title,
                                 ),
                               )),
@@ -70,7 +69,7 @@ class HomeDesktopView extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  "Contact",
+                                  'Contact',
                                   style: uiHelpers!.title,
                                 ),
                               )),
@@ -84,7 +83,6 @@ class HomeDesktopView extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,37 +94,35 @@ class HomeDesktopView extends StatelessWidget {
                                 child: Neumorphic(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Neumorphic(
-                                          style: NeumorphicStyle(
-                                            depth: NeumorphicTheme.embossDepth(
-                                                context),
-                                            boxShape:
-                                                NeumorphicBoxShape.circle(),
-                                          ),
-                                          child: Image.asset(
-                                            model!.skills[e]!,
-                                            width: 40,
-                                            height: 40,
-                                          )),
-                                      SizedBox(width: 10),
-                                      Text(
-                                        e,
-                                        style: uiHelpers!.title,
-                                      )
-                                    ],
-                                  ),
                                   style: NeumorphicStyle(
                                       shape: NeumorphicShape.concave,
                                       boxShape: NeumorphicBoxShape.roundRect(
                                           BorderRadius.circular(12)),
                                       depth: 8,
                                       intensity: 0.6,
-                                      lightSource: LightSource.topLeft,
                                       color: uiHelpers!.surfaceColor),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Neumorphic(
+                                          style: NeumorphicStyle(
+                                            depth: NeumorphicTheme.embossDepth(
+                                                context),
+                                            boxShape: const NeumorphicBoxShape
+                                                .circle(),
+                                          ),
+                                          child: Image.asset(
+                                            model!.skills[e]!,
+                                            width: 40,
+                                            height: 40,
+                                          )),
+                                      const SizedBox(width: 10),
+                                      Text(
+                                        e,
+                                        style: uiHelpers!.title,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ))
                           .toList(),
@@ -135,7 +131,8 @@ class HomeDesktopView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
+                        SizedBox(
+                          width: uiHelpers!.width! * 0.3,
                           child: Text(
                             PersonalDetails.shortIntro,
                             style: uiHelpers!.body!.copyWith(
@@ -143,9 +140,8 @@ class HomeDesktopView extends StatelessWidget {
                                 height: 2,
                                 color: uiHelpers!.textPrimaryColor),
                           ),
-                          width: uiHelpers!.width! * 0.3,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         IconWrrapper(
@@ -159,11 +155,11 @@ class HomeDesktopView extends StatelessWidget {
                                 ContactIcons.githubIcon,
                                 color: uiHelpers!.textPrimaryColor,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 6,
                               ),
                               Text(
-                                "Github",
+                                'Github',
                                 style: uiHelpers!.buttonStyle,
                               )
                             ],

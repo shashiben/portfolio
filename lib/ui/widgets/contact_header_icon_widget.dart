@@ -1,5 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class ContactIconHeader extends StatelessWidget {
   final bool isActive;
@@ -24,7 +24,7 @@ class ContactIconHeader extends StatelessWidget {
         elevation: isActive ? 10 : 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 400),
           curve: Curves.fastLinearToSlowEaseIn,
           decoration: isActive
               ? BoxDecoration(
@@ -39,7 +39,6 @@ class ContactIconHeader extends StatelessWidget {
               : BoxDecoration(borderRadius: BorderRadius.circular(8)),
           padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 10),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               NeumorphicIcon(
                 icon,
@@ -48,7 +47,7 @@ class ContactIconHeader extends StatelessWidget {
                     color:
                         isActive ? Colors.white : uiHelpers.textPrimaryColor),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               NeumorphicText(

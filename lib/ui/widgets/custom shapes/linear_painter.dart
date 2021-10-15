@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 
 import '../linear_percent_indicator.dart';
 
 class LinearPainter extends CustomPainter {
-  final Paint _paintBackground = new Paint();
-  final Paint _paintLine = new Paint();
+  final Paint _paintBackground = Paint();
+  final Paint _paintLine = Paint();
   final lineWidth;
   final progress;
   final center;
@@ -33,7 +32,7 @@ class LinearPainter extends CustomPainter {
     _paintBackground.style = PaintingStyle.stroke;
     _paintBackground.strokeWidth = lineWidth;
 
-    _paintLine.color = progress.toString() == "0.0"
+    _paintLine.color = progress.toString() == '0.0'
         ? progressColor!.withOpacity(0.0)
         : progressColor!;
     _paintLine.style = PaintingStyle.stroke;
@@ -75,7 +74,7 @@ class LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderRightToLeft(Size size, double xProgress) {
-    Offset shaderEndPoint =
+    final Offset shaderEndPoint =
         clipLinearGradient! ? Offset.zero : Offset(xProgress, size.height);
     return linearGradient!.createShader(
       Rect.fromPoints(
@@ -86,7 +85,7 @@ class LinearPainter extends CustomPainter {
   }
 
   Shader _createGradientShaderLeftToRight(Size size, double xProgress) {
-    Offset shaderEndPoint = clipLinearGradient!
+    final Offset shaderEndPoint = clipLinearGradient!
         ? Offset(size.width, size.height)
         : Offset(xProgress, size.height);
     return linearGradient!.createShader(

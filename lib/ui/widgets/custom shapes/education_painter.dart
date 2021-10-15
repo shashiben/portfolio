@@ -16,13 +16,13 @@ class RPSCustomPainter extends CustomPainter {
       this.indicatorSize = 10});
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint_0 = new Paint()
+    final Paint paint_0 = Paint()
       ..color = lineColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.2;
 
-    Path path_0 = Path();
-    var paint1 = Paint()
+    final Path path_0 = Path();
+    final paint1 = Paint()
       ..color = indicatorColor
       ..style = PaintingStyle.fill;
     path_0.moveTo(5, 0);

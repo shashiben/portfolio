@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/core/utils/adaptive.dart';
-import 'package:portfolio/core/utils/datetimeUtils.dart';
-import 'package:portfolio/ui/views/experience/experience_view_model.dart';
-import 'package:portfolio/ui/widgets/custom_scroller.dart';
-import 'package:portfolio/ui/widgets/experience_widget.dart';
-import 'package:portfolio/ui/widgets/trailing_widget.dart';
+
+import '../../../app/configs.dart';
+import '../../../core/utils/ScreenUiHelper.dart';
+import '../../../core/utils/adaptive.dart';
+import '../../../core/utils/datetimeUtils.dart';
+import '../../widgets/custom_scroller.dart';
+import '../../widgets/experience_widget.dart';
+import '../../widgets/trailing_widget.dart';
+import 'experience_view_model.dart';
 
 class ExperienceDesktopView extends HookWidget {
   final ScreenUiHelper? uiHelpers;
@@ -39,7 +40,7 @@ class ExperienceDesktopView extends HookWidget {
               fraction: 0.025,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           TrailingInfo(
             width: assignWidth(
               context: context,
@@ -65,8 +66,8 @@ class ExperienceDesktopView extends HookWidget {
       BuildContext context, ScrollController _scrollController) {
     return ExperienceTree(
       headTitle:
-          "${DateTimeUtils().monthsList[DateTime.now().month]} - ${DateTime.now().year}",
-      tailTitle: "May - 2020",
+          '${DateTimeUtils().monthsList[DateTime.now().month]} - ${DateTime.now().year}',
+      tailTitle: 'May - 2020',
       experienceData: PersonalDetails.experienceList,
       scrollController: _scrollController,
       widthOfTree: assignWidth(context: context, fraction: 0.62),
@@ -76,7 +77,7 @@ class ExperienceDesktopView extends HookWidget {
   _scroll(double offset, ScrollController _scrollController) {
     _scrollController.animateTo(
       offset,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeIn,
     );
   }

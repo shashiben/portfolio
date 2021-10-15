@@ -47,10 +47,10 @@ class ScalingHelper {
       return value;
     }
     // Adapt small ones for landscape
-    double devWidth =
+    final double devWidth =
         min(window.physicalSize.width, window.physicalSize.height);
 
-    double s = devWidth / this.width;
+    final double s = devWidth / width;
 
     final double r = value * s;
 

@@ -1,8 +1,9 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/app/colors.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/scaling.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import '../../app/colors.dart';
+import '../../app/configs.dart';
+import 'scaling.dart';
 
 class ScreenUiHelper {
   double? width;
@@ -43,7 +44,7 @@ class ScreenUiHelper {
   SizedBox? horizontalSpaceHigh;
 
   ScreenUiHelper.fromContext(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    final mediaQuery = MediaQuery.of(context);
 
     surfaceColor = NeumorphicTheme.of(context)!.isUsingDark
         ? darkColor.surfaceColor
@@ -64,8 +65,8 @@ class ScreenUiHelper {
         ? darkColor.dividerColor
         : lightColor.dividerColor;
 
-    double screenWidth = mediaQuery.size.width;
-    double screenHeight = mediaQuery.size.height;
+    final double screenWidth = mediaQuery.size.width;
+    final double screenHeight = mediaQuery.size.height;
     width = screenWidth;
     height = screenHeight;
 

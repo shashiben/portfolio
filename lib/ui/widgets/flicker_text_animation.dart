@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -22,8 +21,8 @@ class FlickerTextAnimation extends StatefulWidget {
           CurvedAnimation(
             parent: controller,
             curve: Interval(
-              start == null ? 0.0 : start,
-              end == null ? 1.0 : end,
+              start ?? 0.0,
+              end ?? 1.0,
               curve: Curves.easeIn,
             ),
           ),
@@ -35,8 +34,8 @@ class FlickerTextAnimation extends StatefulWidget {
           CurvedAnimation(
             parent: controller,
             curve: Interval(
-              start == null ? 0.0 : start,
-              end == null ? 1.0 : end,
+              start ?? 0.0,
+              end ?? 1.0,
               curve: Curves.easeIn,
             ),
           ),
@@ -86,23 +85,19 @@ class _FlickerTextAnimationState extends State<FlickerTextAnimation> {
   }
 
   Widget _buildAnimation(BuildContext context, Widget? child) {
-    ThemeData theme = Theme.of(context);
-    return Container(
-      child: Wrap(
-        alignment: widget.wrapAlignment,
-        spacing: 0,
-        runSpacing: 0,
-        children: [
-          Text(
-            isAnimating ? widget.title.value.toString() : widget.text,
-            style: widget.textStyle ??
-                theme.textTheme.headline6!.copyWith(
-                  color: widget.color.value,
-                  fontSize: widget.fontSize,
-                ),
-          )
-        ],
-      ),
+    final ThemeData theme = Theme.of(context);
+    return Wrap(
+      alignment: widget.wrapAlignment,
+      children: [
+        Text(
+          isAnimating ? widget.title.value.toString() : widget.text,
+          style: widget.textStyle ??
+              theme.textTheme.headline6!.copyWith(
+                color: widget.color.value,
+                fontSize: widget.fontSize,
+              ),
+        )
+      ],
     );
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/ui/widgets/translate_on_hover.dart';
+import '../../core/utils/ScreenUiHelper.dart';
+import 'translate_on_hover.dart';
 
 class IconWrrapper extends HookWidget {
   final Widget? child;
@@ -35,7 +35,6 @@ class IconWrrapper extends HookWidget {
             padding: padding ?? const EdgeInsets.all(12),
             style: NeumorphicStyle(
                 border: NeumorphicBorder(
-                  isEnabled: true,
                   color: color ?? uiHelpers.surfaceColor,
                   width: 2,
                 ),
@@ -46,8 +45,7 @@ class IconWrrapper extends HookWidget {
                 lightSource: LightSource.top,
                 depth:
                     isHovered.value ? NeumorphicTheme.embossDepth(context) : 4,
-                surfaceIntensity: isHovered.value ? 0.25 : 0.5,
-                shape: NeumorphicShape.flat),
+                surfaceIntensity: isHovered.value ? 0.25 : 0.5),
             child: child,
           )),
     );

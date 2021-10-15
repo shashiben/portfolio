@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class ContentWrapper extends StatelessWidget {
-  ContentWrapper({
+  const ContentWrapper({
     this.width,
     this.height,
     this.color ,
@@ -18,7 +18,7 @@ class ContentWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUiHelper uiHelper=ScreenUiHelper.fromContext(context);
+    final ScreenUiHelper uiHelper=ScreenUiHelper.fromContext(context);
     return Container(
       width: width ??uiHelper.width,
       height: height ?? uiHelper.height,

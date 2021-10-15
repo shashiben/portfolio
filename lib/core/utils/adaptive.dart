@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:flutter/foundation.dart';
 
 enum DisplayType {
   desktop,
@@ -101,7 +101,7 @@ double assignHeight({
   double additions = 0,
   double subs = 0,
 }) {
-  return (heightOfScreen(context) - (subs) + (additions)) * fraction;
+  return (heightOfScreen(context) - subs + additions) * fraction;
 }
 
 //
@@ -111,5 +111,5 @@ double assignWidth({
   double additions = 0,
   double subs = 0,
 }) {
-  return (widthOfScreen(context) - (subs) + (additions)) * fraction;
+  return (widthOfScreen(context) - subs + additions) * fraction;
 }

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Role extends StatelessWidget {
-  Role({
+  const Role({
+    Key? key,
     required this.role,
     this.roleTextStyle,
     this.icon = Icons.arrow_right,
     this.iconSize = 18,
-  });
+  }) : super(key: key);
 
   final String role;
   final TextStyle? roleTextStyle;
@@ -15,21 +16,21 @@ class Role extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Row(
       children: [
         Icon(
           icon,
           size: iconSize,
-          color: Color(0xffCCD7F5),
+          color: const Color(0xffCCD7F5),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Expanded(
           child: Text(
             role,
             style: roleTextStyle ??
                 theme.textTheme.bodyText1!.copyWith(
-                  color: Color(0xff75809C),
+                  color: const Color(0xff75809C),
                 ),
           ),
         ),

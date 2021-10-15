@@ -1,7 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../percent_indicator.dart';
-import 'dart:math' as math;
 
 class CirclePainter extends CustomPainter {
   final Paint _paintBackground = Paint();
@@ -93,7 +94,6 @@ class CirclePainter extends CustomPainter {
                         radians(-90.0 + startAngle) - correction),
                 startAngle: radians(0) as double,
                 endAngle: radians(progress!) as double,
-                tileMode: TileMode.clamp,
                 colors: reverse!
                     ? linearGradient!.colors.reversed.toList()
                     : linearGradient!.colors)
@@ -117,7 +117,7 @@ class CirclePainter extends CustomPainter {
 
     double startAngleFixedMargin = 1.0;
     if (arcType != null) {
-      if (arcType == ArcType.FULL) {
+      if (arcType == ArcType.full) {
         fixedStartAngle = 220;
         startAngleFixedMargin = 172 / fixedStartAngle;
       } else {

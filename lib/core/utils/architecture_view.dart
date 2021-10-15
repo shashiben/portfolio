@@ -10,7 +10,7 @@ class ScreenBuilder<T extends BaseViewModel> extends StatelessWidget {
   final T? viewModel;
   final Function(T)? onModelReady;
 
-  ScreenBuilder(
+  const ScreenBuilder(
       {Key? key,
       this.builder,
       this.viewModel,
@@ -21,12 +21,12 @@ class ScreenBuilder<T extends BaseViewModel> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
+    final ScreenUiHelper uiHelpers = ScreenUiHelper.fromContext(context);
 
     if (isReactive) {
       return ViewModelBuilder<T>.reactive(
           disposeViewModel: disposeViewModel,
-          onModelReady: onModelReady ?? null,
+          onModelReady: onModelReady,
           viewModelBuilder: () => viewModel!,
           builder: (context, model, child) => SafeArea(
                 child: Scaffold(
@@ -38,7 +38,7 @@ class ScreenBuilder<T extends BaseViewModel> extends StatelessWidget {
           builder: (context, model, child) =>
               SafeArea(child: builder!(context, uiHelpers, model)),
           disposeViewModel: disposeViewModel,
-          onModelReady: onModelReady ?? null,
+          onModelReady: onModelReady,
           viewModelBuilder: () => viewModel!);
     }
   }

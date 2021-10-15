@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/timeline_experience.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/core/utils/adaptive.dart';
 
+import '../../core/models/timeline_experience.dart';
+import '../../core/utils/ScreenUiHelper.dart';
+import '../../core/utils/adaptive.dart';
 import 'custom shapes/tree_painter.dart';
 
 class ExperienceTree extends StatelessWidget {
-  ExperienceTree({
+  const ExperienceTree({
     required this.experienceData,
     this.head,
     this.widthOfTree,
@@ -35,54 +35,52 @@ class ExperienceTree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
-    return Container(
-      child: ListView(
-        controller: scrollController,
-        children: [
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: headBackgroundColor ??
-                    uiHelper.primaryColor!.withOpacity(0.1),
-              ),
-              child: Text(
-                headTitle!,
-                style: headTitleStyle ??
-                    Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(color: uiHelper.primaryColor),
-              ),
+    return ListView(
+      controller: scrollController,
+      children: [
+        Center(
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: headBackgroundColor ??
+                  uiHelper.primaryColor!.withOpacity(0.1),
+            ),
+            child: Text(
+              headTitle!,
+              style: headTitleStyle ??
+                  Theme.of(context)
+                      .textTheme
+                      .headline6!
+                      .copyWith(color: uiHelper.primaryColor),
             ),
           ),
-          Column(
-            children: _buildExperienceBranches(
-              context: context,
-              experienceData: experienceData,
+        ),
+        Column(
+          children: _buildExperienceBranches(
+            context: context,
+            experienceData: experienceData,
+          ),
+        ),
+        Center(
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: tailBackgroundColor ??
+                  uiHelper.primaryColor!.withOpacity(0.1),
+            ),
+            child: Text(
+              tailTitle!,
+              style: tailTitleStyle ??
+                  Theme.of(context)
+                      .textTheme
+                      .subtitle1!
+                      .copyWith(color: uiHelper.primaryColor),
             ),
           ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: tailBackgroundColor ??
-                    uiHelper.primaryColor!.withOpacity(0.1),
-              ),
-              child: Text(
-                tailTitle!,
-                style: tailTitleStyle ??
-                    Theme.of(context)
-                        .textTheme
-                        .subtitle1!
-                        .copyWith(color: uiHelper.primaryColor),
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -90,14 +88,14 @@ class ExperienceTree extends StatelessWidget {
     required BuildContext context,
     required List<ExperienceTimeline> experienceData,
   }) {
-    List<Widget> branchWidgets = [];
+    final List<Widget> branchWidgets = [];
     for (var index = 0; index < experienceData.length; index++) {
       branchWidgets.add(
         ExperienceBranch(
           company: experienceData[index].title,
           position: experienceData[index].position,
           roles: experienceData[index].description,
-          location: "",
+          location: '',
           duration: experienceData[index].timePeriod,
           width: widthOfTree,
           height: isDisplaySmallDesktop(context)
@@ -112,18 +110,19 @@ class ExperienceTree extends StatelessWidget {
 }
 
 class ExperienceBranch extends StatefulWidget {
-  ExperienceBranch({
+  const ExperienceBranch({
+    Key? key,
     this.width,
+    this.stalk = 0.1,
     this.height = 200,
-    this.roles,
     this.company,
     this.companyUrl,
-    this.position,
     this.location,
     this.duration,
+    this.position,
+    this.roles,
     this.customPainter,
-    this.stalk = 0.1,
-  });
+  }) : super(key: key);
 
   final double? width;
   final double stalk;
@@ -156,7 +155,7 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
     super.initState();
   }
 
-  _getHeightOfRoleLeaf() {
+  void _getHeightOfRoleLeaf() {
     final RenderBox roleLeafRenderBox =
         roleLeafKey.currentContext!.findRenderObject() as RenderBox;
     final RenderBox locationLeafRenderBox =
@@ -172,11 +171,8 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      foregroundPainter: widget.customPainter ??
-          TreePainter(
-            stalk: 0.1,
-          ),
-      child: Container(
+      foregroundPainter: widget.customPainter ?? TreePainter(),
+      child: SizedBox(
         width: widget.width,
         height: widget.height,
         child: Stack(
@@ -187,14 +183,14 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
               left: 0,
               child: Container(
                 key: locationLeafKey,
-                padding: EdgeInsets.only(right: (widget.width! * widget.stalk)),
+                padding: EdgeInsets.only(right: widget.width! * widget.stalk),
                 child: LocationDateLeaf(
                   duration: widget.duration,
                   location: widget.location,
                 ),
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Positioned(
               width: widget.width! / 2,
               top: offsetRoleLeaf,
@@ -202,7 +198,7 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
               child: Container(
                 key: roleLeafKey,
                 padding: EdgeInsets.only(
-                  left: (widget.width! * widget.stalk),
+                  left: widget.width! * widget.stalk,
                 ),
                 child: RoleLeaf(
                   company: widget.company,
@@ -220,7 +216,7 @@ class _ExperienceBranchState extends State<ExperienceBranch> {
 }
 
 class LocationDateLeaf extends StatelessWidget {
-  LocationDateLeaf({
+  const LocationDateLeaf({
     required this.duration,
     required this.location,
     this.durationIcon,
@@ -239,7 +235,7 @@ class LocationDateLeaf extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
-    ThemeData theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Container(
       child: Column(
         children: [
@@ -252,7 +248,7 @@ class LocationDateLeaf extends StatelessWidget {
                     theme.textTheme.bodyText2!
                         .copyWith(color: uiHelper.textPrimaryColor),
               ),
-              SizedBox(width: 4),
+              const SizedBox(width: 4),
               Icon(
                 Icons.access_time,
                 color: uiHelper.primaryColor,
@@ -260,7 +256,7 @@ class LocationDateLeaf extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -270,7 +266,7 @@ class LocationDateLeaf extends StatelessWidget {
                     theme.textTheme.bodyText2!
                         .copyWith(color: uiHelper.textSecondaryColor),
               ),
-              SizedBox(width: 4),
+              const SizedBox(width: 4),
             ],
           )
         ],
@@ -280,7 +276,7 @@ class LocationDateLeaf extends StatelessWidget {
 }
 
 class RoleLeaf extends StatelessWidget {
-  RoleLeaf({
+  const RoleLeaf({
     required this.company,
     required this.position,
     required this.roles,
@@ -301,7 +297,7 @@ class RoleLeaf extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
-    ThemeData theme = Theme.of(context);
+    final ThemeData theme = Theme.of(context);
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,7 +318,7 @@ class RoleLeaf extends StatelessWidget {
                     fontStyle: FontStyle.italic,
                     color: uiHelper.textPrimaryColor),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: _buildRoles(
@@ -339,9 +335,9 @@ class RoleLeaf extends StatelessWidget {
     required List<String> roles,
     required BuildContext context,
   }) {
-    ThemeData theme = Theme.of(context);
-    ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
-    List<Widget> roleWidgets = [];
+    final ThemeData theme = Theme.of(context);
+    final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
+    final List<Widget> roleWidgets = [];
     for (var index = 0; index < roles.length; index++) {
       roleWidgets.add(
         Role(
@@ -351,7 +347,7 @@ class RoleLeaf extends StatelessWidget {
                   .copyWith(color: uiHelper.textSecondaryColor),
         ),
       );
-      roleWidgets.add(SizedBox(height: 8));
+      roleWidgets.add(const SizedBox(height: 8));
     }
 
     return roleWidgets;
@@ -359,7 +355,7 @@ class RoleLeaf extends StatelessWidget {
 }
 
 class Role extends StatelessWidget {
-  Role({
+  const Role({
     required this.role,
     this.roleTextStyle,
     this.icon = Icons.arrow_right,
@@ -373,8 +369,8 @@ class Role extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
-    ThemeData theme = Theme.of(context);
+    final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
+    final ThemeData theme = Theme.of(context);
     return Row(
       children: [
         Icon(
@@ -382,7 +378,7 @@ class Role extends StatelessWidget {
           size: iconSize,
           color: uiHelper.primaryColor,
         ),
-        SizedBox(
+        const SizedBox(
           width: 8,
         ),
         Expanded(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../app/configs.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class EducationDetailsTimelineWidget extends StatelessWidget {
   final String year;
@@ -36,29 +36,29 @@ class EducationDetailsTimelineWidget extends StatelessWidget {
                   fontFamily: SystemProperties.fontName,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Text(
               name,
               style: uiHelper.title!.copyWith(fontSize: 16),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             RichText(
               text: TextSpan(
-                  text: "Percentage: ",
+                  text: 'Percentage: ',
                   style: uiHelper.title!
                       .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
                   children: [
                     TextSpan(
-                        text: "$percentage",
+                        text: '$percentage',
                         style: uiHelper.title!.copyWith(
                             fontSize: 14,
                             color: uiHelper.primaryColor,
                             fontWeight: FontWeight.bold))
                   ]),
             ),
-            SizedBox(height: 10)
+            const SizedBox(height: 10)
           ],
         ),
       ),

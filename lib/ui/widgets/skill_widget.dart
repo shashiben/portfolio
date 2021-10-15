@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+
+import '../../app/configs.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 class SkillWidget extends StatelessWidget {
   final TextStyle? textStyle;
@@ -15,7 +16,7 @@ class SkillWidget extends StatelessWidget {
     return ScreenTypeLayout(
       mobile: ListView.builder(
         primary: false,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: PersonalDetails.skillsList.length,
         itemBuilder: (context, index) => Padding(
@@ -28,7 +29,7 @@ class SkillWidget extends StatelessWidget {
                 color: uiHelper.primaryColor,
                 size: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
@@ -48,8 +49,8 @@ class SkillWidget extends StatelessWidget {
         itemCount: PersonalDetails.skillsList.length,
         primary: false,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 6, crossAxisCount: 2),
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
@@ -61,7 +62,7 @@ class SkillWidget extends StatelessWidget {
                 color: uiHelper.primaryColor,
                 size: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
@@ -81,8 +82,8 @@ class SkillWidget extends StatelessWidget {
         itemCount: PersonalDetails.skillsList.length,
         primary: false,
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 8, crossAxisCount: 2),
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(vertical: 4),
@@ -94,7 +95,7 @@ class SkillWidget extends StatelessWidget {
                 color: uiHelper.primaryColor,
                 size: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(

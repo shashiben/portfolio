@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import '../../core/utils/ScreenUiHelper.dart';
 
 import 'custom shapes/linear_painter.dart';
 
@@ -69,7 +69,7 @@ class LinearPercentIndicator extends StatefulWidget {
     _progressColor = progressColor ?? Colors.red;
 
     if (percent < 0.0 || percent > 1.0) {
-      throw new Exception("Percent value must be a double between 0.0 and 1.0");
+      throw Exception('Percent value must be a double between 0.0 and 1.0');
     }
   }
 
@@ -147,12 +147,12 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    List<Widget> items = [];
+    final List<Widget> items = [];
     if (widget.leading != null) {
       items.add(widget.leading!);
     }
     final hasSetWidth = widget.width != null;
-    var containerWidget = Container(
+    final containerWidget = Container(
       width: hasSetWidth ? widget.width : double.infinity,
       height: widget.lineHeight,
       padding: widget.padding,
@@ -185,11 +185,11 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
     if (widget.trailing != null) {
       items.add(widget.trailing!);
     }
-    ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
+    final ScreenUiHelper uiHelper = ScreenUiHelper.fromContext(context);
 
     return Material(
       color: Colors.transparent,
-      child: new Container(
+      child: Container(
           color: widget.fillColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,10 +203,9 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
               ),
               Row(
                 mainAxisAlignment: widget.alignment,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: items,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
             ],
           )),
     );

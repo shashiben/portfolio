@@ -6,46 +6,46 @@ class ResponsiveGridRow extends StatefulWidget {
   final List<ResponsiveGridCol>? children;
   final CrossAxisAlignment crossAxisAlignment;
 
-  ResponsiveGridRow(
-      {required this.children,
-      this.crossAxisAlignment = CrossAxisAlignment.start});
+  const ResponsiveGridRow(
+      {Key? key,
+      required this.children,
+      this.crossAxisAlignment = CrossAxisAlignment.start})
+      : super(key: key);
 
   @override
   _ResponsiveGridRowState createState() => _ResponsiveGridRowState();
 }
 
 class _ResponsiveGridRowState extends State<ResponsiveGridRow> {
-  double _refWidth = 375;
+  final double _refWidth = 375;
 
   late double _scalingFactor;
   double? _width;
 
   void initScaling(BuildContext context) {
-    var mq = MediaQuery.of(context);
+    final mq = MediaQuery.of(context);
     _width = mq.size.width < mq.size.height ? mq.size.width : mq.size.height;
     _scalingFactor = _width! / _refWidth;
-
-    print("width => $_width");
   }
 
   double scale(double dimension) {
     if (_width == null) {
-      throw Exception("You must call init() before any use of scale()");
+      throw Exception('You must call init() before any use of scale()');
     }
 
     return dimension * _scalingFactor;
   }
 
-  int _totalSegments = 12;
+  final int _totalSegments = 12;
   @override
   Widget build(BuildContext context) {
-    List<Widget> rows = [];
+    final List<Widget> rows = [];
 
     int accumulatedWidth = 0;
     List<Widget> cols = [];
 
-    widget.children!.forEach((col) {
-      var colWidth = col.currentConfig(context);
+    for (final col in widget.children!) {
+      final colWidth = col.currentConfig(context);
 
       if (accumulatedWidth + colWidth > _totalSegments) {
         if (accumulatedWidth < _totalSegments) {
@@ -62,7 +62,7 @@ class _ResponsiveGridRowState extends State<ResponsiveGridRow> {
 
       cols.add(col);
       accumulatedWidth += colWidth;
-    });
+    }
 
     if (accumulatedWidth >= 0) {
       if (accumulatedWidth < _totalSegments) {
@@ -71,7 +71,7 @@ class _ResponsiveGridRowState extends State<ResponsiveGridRow> {
         ));
       }
       rows.add(Row(
-        crossAxisAlignment: this.widget.crossAxisAlignment,
+        crossAxisAlignment: widget.crossAxisAlignment,
         children: cols,
       ));
     }
@@ -84,8 +84,8 @@ class _ResponsiveGridRowState extends State<ResponsiveGridRow> {
 
 class ResponsiveGridCol extends StatelessWidget {
   _GridTier getCurrentSize(BuildContext context) {
-    MediaQueryData mediaQueryData = MediaQuery.of(context);
-    double width = mediaQueryData.size.width;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final double width = mediaQueryData.size.width;
     if (width < 576) {
       return _GridTier.xs;
     } else if (width < 768) {
@@ -103,7 +103,14 @@ class ResponsiveGridCol extends StatelessWidget {
   final Widget child;
 
   ResponsiveGridCol(
-      {int xs = 12, int? sm, int? md, int? lg, int? xl, required this.child}) {
+      {Key? key,
+      int xs = 12,
+      int? sm,
+      int? md,
+      int? lg,
+      int? xl,
+      required this.child})
+      : super(key: key) {
     _config[_GridTier.xs.index] = xs;
     _config[_GridTier.sm.index] = sm ?? _config[_GridTier.xs.index];
     _config[_GridTier.md.index] = md ?? _config[_GridTier.sm.index];
@@ -127,24 +134,26 @@ class ResponsiveGridCol extends StatelessWidget {
 class ResponsiveGridList extends StatelessWidget {
   final double? desiredItemWidth, minSpacing;
   final List<Widget>? children;
-  final bool squareCells, scroll;
+  final bool? squareCells, scroll;
   final MainAxisAlignment rowMainAxisAlignment;
 
-  ResponsiveGridList(
-      {this.desiredItemWidth,
+  const ResponsiveGridList(
+      {Key? key,
       this.minSpacing,
-      this.squareCells = false,
-      this.scroll = true,
       this.children,
-      this.rowMainAxisAlignment = MainAxisAlignment.start});
+      this.scroll = true,
+      this.rowMainAxisAlignment = MainAxisAlignment.start,
+      this.desiredItemWidth,
+      this.squareCells})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (children!.length == 0) return Container();
-        double width = constraints.maxWidth;
-        double N = (width - minSpacing!) / (desiredItemWidth! + minSpacing!);
+        if (children!.isEmpty) return Container();
+        final double width = constraints.maxWidth;
+        final double N = (width - minSpacing!) / (desiredItemWidth! + minSpacing!);
         int n;
         double? spacing, itemWidth;
         if (N % 1 == 0) {
@@ -153,15 +162,16 @@ class ResponsiveGridList extends StatelessWidget {
           itemWidth = desiredItemWidth;
         } else {
           n = N.floor();
-          double dw =
+          final double dw =
               width - (n * (desiredItemWidth! + minSpacing!) + minSpacing!);
           itemWidth = desiredItemWidth! +
-              (dw / n) * (desiredItemWidth! / (desiredItemWidth! + minSpacing!));
+              (dw / n) *
+                  (desiredItemWidth! / (desiredItemWidth! + minSpacing!));
           spacing = (width - itemWidth * n) / (n + 1);
         }
-        if (scroll) {
+        if (scroll ?? false) {
           return ListView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemCount: (children!.length / n).ceil() * 2 - 1,
               itemBuilder: (context, index) {
                 if (index % 2 == 1) {
@@ -169,14 +179,14 @@ class ResponsiveGridList extends StatelessWidget {
                     height: minSpacing,
                   );
                 }
-                var rowChildren = [];
+                final rowChildren = [];
                 index = index ~/ 2;
                 for (int i = index * n; i < (index + 1) * n; i++) {
                   if (i >= children!.length) break;
                   rowChildren.add(children![i]);
                 }
                 return _ResponsiveGridListItem(
-                  mainAxisAlignment: this.rowMainAxisAlignment,
+                  mainAxisAlignment: rowMainAxisAlignment,
                   itemWidth: itemWidth,
                   spacing: spacing,
                   squareCells: squareCells,
@@ -184,13 +194,13 @@ class ResponsiveGridList extends StatelessWidget {
                 );
               });
         } else {
-          var rows = [];
+          final rows = [];
           rows.add(SizedBox(
             height: minSpacing,
           ));
 
           for (int j = 0; j < (children!.length / n).ceil(); j++) {
-            var rowChildren = [];
+            final rowChildren = [];
 
             for (int i = j * n; i < (j + 1) * n; i++) {
               if (i >= children!.length) break;
@@ -198,7 +208,7 @@ class ResponsiveGridList extends StatelessWidget {
             }
 
             rows.add(_ResponsiveGridListItem(
-              mainAxisAlignment: this.rowMainAxisAlignment,
+              mainAxisAlignment: rowMainAxisAlignment,
               itemWidth: itemWidth,
               spacing: spacing,
               squareCells: squareCells,
@@ -225,7 +235,7 @@ class _ResponsiveGridListItem extends StatelessWidget {
   final bool? squareCells;
   final MainAxisAlignment mainAxisAlignment;
 
-  _ResponsiveGridListItem(
+  const _ResponsiveGridListItem(
       {this.itemWidth,
       this.spacing,
       this.squareCells,
@@ -236,19 +246,19 @@ class _ResponsiveGridListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: this.mainAxisAlignment,
+      mainAxisAlignment: mainAxisAlignment,
       children: _buildChildren(),
     );
   }
 
   List<Widget> _buildChildren() {
-    var list = [];
+    final list = [];
 
     list.add(SizedBox(
       width: spacing,
     ));
 
-    children!.forEach((child) {
+    for (final child in children!) {
       list.add(SizedBox(
         width: itemWidth,
         height: squareCells! ? itemWidth : null,
@@ -257,7 +267,7 @@ class _ResponsiveGridListItem extends StatelessWidget {
       list.add(SizedBox(
         width: spacing,
       ));
-    });
+    }
 
     return list as List<Widget>;
   }

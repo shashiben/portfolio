@@ -17,18 +17,18 @@ class TreePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint _paint = Paint()
+    final Paint _paint = Paint()
       ..strokeWidth = veinsStrokeWidth
-      ..color = Color(0xFFB5B8BC)
+      ..color = const Color(0xFFB5B8BC)
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
-    var verticalLineStartingPoint = Offset(size.width * 0.5, size.height * 0.0);
-    var verticalLineEndPoint = Offset(size.width * 0.5, size.height);
+    final verticalLineStartingPoint = Offset(size.width * 0.5, size.height * 0.0);
+    final verticalLineEndPoint = Offset(size.width * 0.5, size.height);
 
-    var horizontalLineStartingPoint =
+    final horizontalLineStartingPoint =
         Offset(size.width * (0.5 - (stalk / 2)), size.height * 0.5);
-    var horizontalLineEndPoint =
+    final horizontalLineEndPoint =
         Offset(size.width * (0.5 + ((stalk / 2))), size.height * 0.5);
 
     //draws vertical line
@@ -40,17 +40,17 @@ class TreePainter extends CustomPainter {
       _paint,
     );
 
-    Paint _circlePaint = Paint()
+    final Paint _circlePaint = Paint()
       ..strokeWidth = jointsStrokeWidth
-      ..color = Color(0xFFB5B8BC)
+      ..color = const Color(0xFFB5B8BC)
       ..style = PaintingStyle.fill
       ..strokeCap = StrokeCap.round;
 
-    Offset center = Offset(size.width / 2, size.height / 2);
+    final Offset center = Offset(size.width / 2, size.height / 2);
 
     canvas.drawCircle(center, outerJointRadius, _circlePaint);
 
-    _circlePaint..color = Color(0xFF303E48);
+    _circlePaint.color = const Color(0xFF303E48);
     canvas.drawCircle(center, innerJointRadius, _circlePaint);
   }
 

@@ -30,7 +30,7 @@ class MainViewModel extends BaseViewModel {
   final List<Widget> views = <Widget>[
     HomeView(),
     AboutView(),
-    ProjectView(),
+    const ProjectView(),
     ExperienceView(),
     ContactView(),
   ];
@@ -75,7 +75,7 @@ class MainViewModel extends BaseViewModel {
       if (isMobile) {
         changeMenuForMobile(controller, slideController, menuTextController);
       }
-      isIndex3 = (index == 3);
+      isIndex3 = index == 3;
       notifyListeners();
     }
   }

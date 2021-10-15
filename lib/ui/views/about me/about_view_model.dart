@@ -1,8 +1,9 @@
-import 'package:portfolio/core/utils/bootstrap/bootstrap_util.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../../core/utils/bootstrap/bootstrap_util.dart';
+
 class AboutViewModel extends BaseViewModel {
-  init() {
+  void init() {
     bootstrapGridParameters(gutterSize: 30);
   }
 }

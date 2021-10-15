@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/configs.dart';
-import 'package:portfolio/core/utils/ScreenUiHelper.dart';
-import 'package:portfolio/core/utils/bootstrap/bootstrap_util.dart';
-import 'package:portfolio/ui/views/about%20me/about_view_model.dart';
-import 'package:portfolio/ui/widgets/divider_widget.dart';
-import 'package:portfolio/ui/widgets/eductaion_timeline_widget.dart';
-import 'package:portfolio/ui/widgets/featured_skill_widget.dart';
-import 'package:portfolio/ui/widgets/skill_widget.dart';
-import 'package:portfolio/ui/widgets/timeline_widget.dart';
+
+import '../../../app/configs.dart';
+import '../../../core/utils/ScreenUiHelper.dart';
+import '../../../core/utils/bootstrap/bootstrap_util.dart';
+import '../../widgets/divider_widget.dart';
+import '../../widgets/eductaion_timeline_widget.dart';
+import '../../widgets/featured_skill_widget.dart';
+import '../../widgets/skill_widget.dart';
+import '../../widgets/timeline_widget.dart';
+import 'about_view_model.dart';
 
 class AboutViewResponsive extends StatelessWidget {
   final ScreenUiHelper? uiHelpers;
@@ -22,26 +23,28 @@ class AboutViewResponsive extends StatelessWidget {
         body: SingleChildScrollView(
           child: BootstrapContainer(
             padding: const EdgeInsets.only(top: 20.0),
+            fluid: true,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  "Wow, a whole page about my journey!",
+                  'Wow, a whole page about my journey!',
                   style: uiHelpers!.headline,
                 ),
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               BootstrapRow(
+                height: uiHelpers!.height,
                 children: [
                   BootstrapCol(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Me,talking about myself",
+                          'Me,talking about myself',
                           style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
-                        Container(
+                        SizedBox(
                           width: 80,
                           child: DividerWidget(
                             width: 80,
@@ -50,14 +53,14 @@ class AboutViewResponsive extends StatelessWidget {
                         ),
                         uiHelpers!.verticalSpaceLow,
                         Text(PersonalDetails.intro,
-                            style: uiHelpers!.body!
-                                .copyWith(color: uiHelpers!.textSecondaryColor)),
+                            style: uiHelpers!.body!.copyWith(
+                                color: uiHelpers!.textSecondaryColor)),
                         uiHelpers!.verticalSpaceMedium,
                         Text(
-                          "Technical Skills",
+                          'Technical Skills',
                           style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
-                        Container(
+                        SizedBox(
                           width: 70,
                           child: DividerWidget(
                             width: 70,
@@ -65,13 +68,13 @@ class AboutViewResponsive extends StatelessWidget {
                           ),
                         ),
                         uiHelpers!.verticalSpaceLow,
-                        SkillWidget(),
+                        const SkillWidget(),
                         uiHelpers!.verticalSpaceMedium,
                         Text(
-                          "Featured Skills",
+                          'Featured Skills',
                           style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
-                        Container(
+                        SizedBox(
                           width: 75,
                           child: DividerWidget(
                             width: 75,
@@ -79,10 +82,10 @@ class AboutViewResponsive extends StatelessWidget {
                           ),
                         ),
                         uiHelpers!.verticalSpaceLow,
-                        FeaturedSkillWidget(),
+                        const FeaturedSkillWidget(),
                       ],
                     ),
-                    sizes: "col-12 col-md-6 col-sm-12",
+                    sizes: 'col-12 col-md-6 col-sm-12',
                   ),
                   BootstrapCol(
                     child: Column(
@@ -90,17 +93,17 @@ class AboutViewResponsive extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Education",
+                          'Education',
                           style: uiHelpers!.title!.copyWith(fontSize: 24),
                         ),
-                        Container(
+                        SizedBox(
                           width: 70,
                           child: DividerWidget(
                             width: 70,
                             dividerColor: uiHelpers!.primaryColor,
                           ),
                         ),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         Timeline(
                             indicatorSize: 16,
                             indicatorColor: uiHelpers!.primaryColor,
@@ -108,7 +111,7 @@ class AboutViewResponsive extends StatelessWidget {
                             shrinkWrap: true,
                             itemGap: 25,
                             lineGap: 0,
-                            children: [
+                            children: const [
                               EducationDetailsTimelineWidget(
                                   name: EducationDetails.universityName,
                                   stream: EducationDetails.universityStream,
@@ -130,13 +133,11 @@ class AboutViewResponsive extends StatelessWidget {
                             ])
                       ],
                     ),
-                    sizes: "col-12 col-md-6 col-sm-12",
+                    sizes: 'col-12 col-md-6 col-sm-12',
                   )
                 ],
-                height: uiHelpers!.height,
               )
             ],
-            fluid: true,
           ),
         ));
   }
