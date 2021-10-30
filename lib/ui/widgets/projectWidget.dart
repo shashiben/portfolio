@@ -26,7 +26,7 @@ class ProjectWidget extends StatelessWidget {
         child: Container(
           height: 250,
           margin: EdgeInsets.only(
-              bottom: 15, right: uiHelpers.width! > 768 ? 15 : 0),
+              bottom: 15, right: uiHelpers.width > 768 ? 15 : 0),
           child: Neumorphic(
             style: NeumorphicStyle(
                 shape: NeumorphicShape.convex,
@@ -54,30 +54,39 @@ class ProjectWidget extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (project.websiteLink == null) const SizedBox() else IconButton(
-                                  icon: Icon(
-                                    ProjectIcons.websiteIcon,
-                                    color: uiHelpers.primaryColor,
-                                  ),
-                                  onPressed: () => _urlLauncherService
-                                      .launchUrl(project.websiteLink!),
-                                ),
-                          if (project.githubLink == null) const SizedBox() else IconButton(
-                                  icon: Icon(
-                                    ProjectIcons.githubIcon,
-                                    color: uiHelpers.primaryColor,
-                                  ),
-                                  onPressed: () => _urlLauncherService
-                                      .launchUrl(project.githubLink!),
-                                ),
-                          if (project.playstoreLink == null) const SizedBox() else IconButton(
-                                  icon: Icon(
-                                    ProjectIcons.playstoreIcon,
-                                    color: uiHelpers.primaryColor,
-                                  ),
-                                  onPressed: () => _urlLauncherService
-                                      .launchUrl(project.playstoreLink!),
-                                ),
+                          if (project.websiteLink == null)
+                            const SizedBox()
+                          else
+                            IconButton(
+                              icon: Icon(
+                                ProjectIcons.websiteIcon,
+                                color: uiHelpers.primaryColor,
+                              ),
+                              onPressed: () => _urlLauncherService
+                                  .launchUrl(project.websiteLink!),
+                            ),
+                          if (project.githubLink == null)
+                            const SizedBox()
+                          else
+                            IconButton(
+                              icon: Icon(
+                                ProjectIcons.githubIcon,
+                                color: uiHelpers.primaryColor,
+                              ),
+                              onPressed: () => _urlLauncherService
+                                  .launchUrl(project.githubLink!),
+                            ),
+                          if (project.playstoreLink == null)
+                            const SizedBox()
+                          else
+                            IconButton(
+                              icon: Icon(
+                                ProjectIcons.playstoreIcon,
+                                color: uiHelpers.primaryColor,
+                              ),
+                              onPressed: () => _urlLauncherService
+                                  .launchUrl(project.playstoreLink!),
+                            ),
                         ],
                       ),
                     ],

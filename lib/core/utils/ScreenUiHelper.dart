@@ -6,8 +6,8 @@ import '../../app/configs.dart';
 import 'scaling.dart';
 
 class ScreenUiHelper {
-  double? width;
-  double? height;
+  late double width;
+  late double height;
 
   late double blockSizeHorizontal;
   late double blockSizeVertical;
@@ -46,22 +46,22 @@ class ScreenUiHelper {
   ScreenUiHelper.fromContext(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
 
-    surfaceColor = NeumorphicTheme.of(context)!.isUsingDark
+    surfaceColor = (NeumorphicTheme.of(context)?.isUsingDark ?? false)
         ? darkColor.surfaceColor
         : lightColor.surfaceColor;
-    backgroundColor = NeumorphicTheme.of(context)!.isUsingDark
+    backgroundColor = (NeumorphicTheme.of(context)?.isUsingDark ?? false)
         ? darkColor.backgroundColor
         : lightColor.backgroundColor;
-    primaryColor = NeumorphicTheme.of(context)!.isUsingDark
+    primaryColor = (NeumorphicTheme.of(context)?.isUsingDark ?? false)
         ? darkColor.primaryColor
         : lightColor.primaryColor;
-    textPrimaryColor = NeumorphicTheme.of(context)!.isUsingDark
+    textPrimaryColor = (NeumorphicTheme.of(context)?.isUsingDark ?? false)
         ? darkColor.textPrimaryColor
         : lightColor.textPrimaryColor;
-    textSecondaryColor = NeumorphicTheme.of(context)!.isUsingDark
+    textSecondaryColor = (NeumorphicTheme.of(context)?.isUsingDark ?? false)
         ? darkColor.textSecondaryColor
         : lightColor.textSecondaryColor;
-    dividerColor = NeumorphicTheme.of(context)!.isUsingDark
+    dividerColor = (NeumorphicTheme.of(context)?.isUsingDark ?? false)
         ? darkColor.dividerColor
         : lightColor.dividerColor;
 

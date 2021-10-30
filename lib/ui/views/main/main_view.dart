@@ -100,7 +100,7 @@ class MainView extends HookWidget {
                         children: <Widget>[
                           Container(
                             color: uiHelpers.surfaceColor,
-                            width: uiHelpers.width! * 0.14,
+                            width: uiHelpers.width * 0.14,
                             child: Column(
                               children: [
                                 Padding(
@@ -226,7 +226,7 @@ class MainView extends HookWidget {
                         child: SlideTransition(
                             position: offset,
                             child: Row(children: [
-                              Container(width: uiHelpers.width! * 0.14),
+                              Container(width: uiHelpers.width * 0.14),
                               Expanded(
                                 child: Container(
                                   height: uiHelpers.height,

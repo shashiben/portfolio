@@ -79,7 +79,7 @@ class HomeDesktopView extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: uiHelpers!.width! * 0.05,
+                  height: uiHelpers!.width * 0.05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,7 +90,7 @@ class HomeDesktopView extends StatelessWidget {
                           .map((e) => Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8),
-                                width: uiHelpers!.width! * 0.28,
+                                width: uiHelpers!.width * 0.28,
                                 child: Neumorphic(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 15, vertical: 10),
@@ -132,7 +132,7 @@ class HomeDesktopView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: uiHelpers!.width! * 0.3,
+                          width: uiHelpers!.width * 0.3,
                           child: Text(
                             PersonalDetails.shortIntro,
                             style: uiHelpers!.body!.copyWith(

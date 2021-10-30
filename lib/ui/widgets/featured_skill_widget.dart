@@ -16,7 +16,7 @@ class FeaturedSkillWidget extends StatelessWidget {
         itemCount: PersonalDetails.featuredSkills.length,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) => SizedBox(
-              width: uiHelpers.width! * 0.8,
+              width: uiHelpers.width * 0.8,
               child: LinearPercentIndicator(
                 progressColor: uiHelpers.primaryColor,
                 title: PersonalDetails.featuredSkills[index].name,

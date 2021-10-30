@@ -121,7 +121,7 @@ class ExperienceMobileView extends StatelessWidget {
                                     style: uiHelpers!.title,
                                   ),
                                   SizedBox(
-                                    width: uiHelpers!.width! * 0.16,
+                                    width: uiHelpers!.width* 0.16,
                                     child: Divider(
                                       color: uiHelpers!.dividerColor,
                                       thickness: 2.5,

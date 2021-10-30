@@ -25,7 +25,7 @@ class ProjectResponsiveView extends StatelessWidget {
               uiHelpers!.verticalSpaceHigh,
               Text('Some Things I’ve Built', style: uiHelpers!.headline),
               SizedBox(
-                width: uiHelpers!.width! * 0.25,
+                width: uiHelpers!.width * 0.25,
                 child: Divider(
                   color: uiHelpers!.dividerColor,
                   thickness: 2.5,
@@ -33,7 +33,7 @@ class ProjectResponsiveView extends StatelessWidget {
               ),
               uiHelpers!.verticalSpaceHigh,
               NeumorphicToggle(
-                width: uiHelpers!.width! * 1.2,
+                width: uiHelpers!.width * 1.2,
                 movingCurve: Curves.linearToEaseOut,
                 style: NeumorphicToggleStyle(
                     backgroundColor: uiHelpers!.surfaceColor),

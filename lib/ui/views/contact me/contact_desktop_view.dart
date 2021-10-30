@@ -114,7 +114,7 @@ class ContactDesktopView extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 25),
-                      width: uiHelpers!.width! * 0.6,
+                      width: uiHelpers!.width* 0.6,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -128,7 +128,7 @@ class ContactDesktopView extends StatelessWidget {
                           Row(
                             children: [
                               SizedBox(
-                                width: uiHelpers!.width! * 0.3,
+                                width: uiHelpers!.width* 0.3,
                                 child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
