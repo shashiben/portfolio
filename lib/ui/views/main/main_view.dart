@@ -265,7 +265,7 @@ class MainView extends HookWidget {
                                             child: FlickerTextAnimation(
                                               text: 'Menu',
                                               controller: menuTextController,
-                                              textStyle: uiHelpers.headline!
+                                              textStyle: uiHelpers.headline
                                                   .copyWith(fontSize: 50),
                                             ),
                                           ),

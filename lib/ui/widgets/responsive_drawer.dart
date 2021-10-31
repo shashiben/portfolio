@@ -158,91 +158,59 @@ class _NavBarItemState extends State<NavBarItem>
         key: buttonKey,
         color: Colors.transparent,
         child: DrawerHoverEffect(
-          mobileMaxWidth: 800,
-          onChanged: (value) {
-            if (value) {
-              _iconAnimationController.forward();
-            } else {
-              _iconAnimationController.reverse();
-            }
-          },
-          buttonKey: buttonKey,
-          children: widget.children,
-          child: (widget.children.isEmpty ||
-                  MediaQuery.of(context).size.width > 800)
-              ? InkWell(
-                  splashColor: Colors.white60,
-                  onTap: () {
-                    widget.onTap();
-                  },
-                  child: Container(
-                    height: 60.0,
-                    alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.symmetric(horizontal: 24.0),
-                    child: DrawerText(
-                      isHovered: isHovered,
-                      child: Row(
-                        children: [
-                          Text(
-                            widget.text,
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: isHovered
-                                  ? selectedTextColor
-                                  : unselectedTextColor,
-                            ),
-                          ),
-                          if (widget.children.isNotEmpty)
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 5.0,
-                                ),
-                                child: RotationTransition(
-                                  turns: _iconAnimation,
-                                  child: Icon(
-                                    Icons.expand_more,
-                                    color: isHovered
-                                        ? selectedTextColor
-                                        : unselectedTextColor,
-                                  ),
-                                ))
-                        ],
-                      ),
+            mobileMaxWidth: 800,
+            onChanged: (value) {
+              if (value) {
+                _iconAnimationController.forward();
+              } else {
+                _iconAnimationController.reverse();
+              }
+            },
+            buttonKey: buttonKey,
+            children: widget.children,
+            child: (widget.children.isEmpty &&
+                    MediaQuery.of(context).size.width > 800)
+                ? InkWell(
+                    splashColor: Colors.white60,
+                    onTap: () {
+                      widget.onTap();
+                    },
+                    child: childText())
+                : childText()),
+      ),
+    );
+  }
+
+  Widget childText() {
+    return Container(
+      height: 60.0,
+      alignment: Alignment.centerLeft,
+      margin: EdgeInsets.symmetric(horizontal: 24.0),
+      child: DrawerText(
+        isHovered: isHovered,
+        child: Row(
+          children: [
+            Text(
+              "${widget.text}",
+              style: TextStyle(
+                fontSize: 16.0,
+                color: isHovered ? selectedTextColor : unselectedTextColor,
+              ),
+            ),
+            if (widget.children.isNotEmpty)
+              Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5.0,
+                  ),
+                  child: RotationTransition(
+                    turns: _iconAnimation,
+                    child: Icon(
+                      Icons.expand_more,
+                      color:
+                          isHovered ? selectedTextColor : unselectedTextColor,
                     ),
-                  ),
-                )
-              : Container(
-                  height: 60.0,
-                  alignment: Alignment.centerLeft,
-                  margin: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        widget.text,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          color: isHovered
-                              ? selectedTextColor
-                              : unselectedTextColor,
-                        ),
-                      ),
-                      if (widget.children.isNotEmpty)
-                        Padding(
-                            padding: const EdgeInsets.only(
-                              left: 5.0,
-                            ),
-                            child: RotationTransition(
-                              turns: _iconAnimation,
-                              child: Icon(
-                                Icons.expand_more,
-                                color: isHovered
-                                    ? selectedTextColor
-                                    : unselectedTextColor,
-                              ),
-                            ))
-                    ],
-                  ),
-                ),
+                  ))
+          ],
         ),
       ),
     );

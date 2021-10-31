@@ -33,8 +33,8 @@ mixin darkColor {
   static const surfaceColor = Color(0xFF1a163c);
 
   //**Text Colors
-  static const Color textPrimaryColor = Color(0xFFCCD6F6);
-  static const Color textSecondaryColor = Colors.white30;
+  static const Color textPrimaryColor = Colors.white;
+  static const Color textSecondaryColor = Color(0xFF8d8d8f);
 
   static const Color dividerColor = Colors.white60;
 }

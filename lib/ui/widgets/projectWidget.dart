@@ -99,8 +99,7 @@ class ProjectWidget extends StatelessWidget {
                   uiHelpers.verticalSpaceLow,
                   Text(
                     project.description,
-                    style:
-                        uiHelpers.body!.copyWith(fontWeight: FontWeight.w300),
+                    style: uiHelpers.body.copyWith(fontWeight: FontWeight.w300),
                   ),
                   const Spacer(),
                   Wrap(
@@ -111,7 +110,7 @@ class ProjectWidget extends StatelessWidget {
                               .copyWith(right: 16),
                           child: Text(
                             project.tools[i],
-                            style: uiHelpers.body!.copyWith(
+                            style: uiHelpers.body.copyWith(
                                 fontWeight: FontWeight.w400,
                                 color: uiHelpers.textSecondaryColor),
                           ),

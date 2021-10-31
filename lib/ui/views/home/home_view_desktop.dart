@@ -135,7 +135,7 @@ class HomeDesktopView extends StatelessWidget {
                           width: uiHelpers!.width * 0.3,
                           child: Text(
                             PersonalDetails.shortIntro,
-                            style: uiHelpers!.body!.copyWith(
+                            style: uiHelpers!.body.copyWith(
                                 fontWeight: FontWeight.w400,
                                 height: 2,
                                 color: uiHelpers!.textPrimaryColor),

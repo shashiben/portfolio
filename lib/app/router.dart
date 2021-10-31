@@ -5,6 +5,13 @@ import 'package:portfolio/ui/views/main%20page/main_page.dart';
 final router = GoRouter(
   routes: [
     GoRoute(
+      path: '/',
+      redirect: (state) => '/home',
+      pageBuilder: (context, state) {
+        return MaterialPage(child: MainPage(view: 'home'));
+      },
+    ),
+    GoRoute(
       path: '/:view',
       pageBuilder: (context, state) {
         return MaterialPage(

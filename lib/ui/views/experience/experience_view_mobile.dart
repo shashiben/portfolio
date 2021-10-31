@@ -67,21 +67,22 @@ class ExperienceMobileView extends StatelessWidget {
                                     text: TextSpan(
                                         text: PersonalDetails
                                             .experienceList[i].title,
-                                        style: uiHelpers!.title!.copyWith(
+                                        style: uiHelpers!.title.copyWith(
                                             color: uiHelpers!.textPrimaryColor),
                                         children: [
                                           TextSpan(
                                             text:
                                                 '  @${PersonalDetails.experienceList[i].position}',
-                                            style: uiHelpers!.body!.copyWith(
+                                            style: uiHelpers!.body.copyWith(
                                                 color: uiHelpers!.primaryColor),
                                           )
                                         ]),
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    PersonalDetails.experienceList[i].timePeriod,
-                                    style: uiHelpers!.body!.copyWith(
+                                    PersonalDetails
+                                        .experienceList[i].timePeriod,
+                                    style: uiHelpers!.body.copyWith(
                                         color: uiHelpers!.textSecondaryColor),
                                   ),
                                   uiHelpers!.verticalSpaceLow,
@@ -121,7 +122,7 @@ class ExperienceMobileView extends StatelessWidget {
                                     style: uiHelpers!.title,
                                   ),
                                   SizedBox(
-                                    width: uiHelpers!.width* 0.16,
+                                    width: uiHelpers!.width * 0.16,
                                     child: Divider(
                                       color: uiHelpers!.dividerColor,
                                       thickness: 2.5,

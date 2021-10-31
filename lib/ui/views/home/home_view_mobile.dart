@@ -22,7 +22,8 @@ class HomeMobileView extends StatelessWidget {
           width: uiHelpers!.width,
           height: uiHelpers!.height,
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,7 +90,7 @@ class HomeMobileView extends StatelessWidget {
                           ),
                           Text(
                             PersonalDetails.skillDisplayList[index].title!,
-                            style: uiHelpers!.title!.copyWith(
+                            style: uiHelpers!.title.copyWith(
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontFamily: SystemProperties.fontName),

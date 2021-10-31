@@ -26,12 +26,12 @@ class EducationDetailsTimelineWidget extends StatelessWidget {
           children: [
             Text(
               year,
-              style: uiHelper.body!
+              style: uiHelper.body
                   .copyWith(fontSize: 12, fontWeight: FontWeight.w200),
             ),
             Text(
               stream,
-              style: uiHelper.title!.copyWith(
+              style: uiHelper.title.copyWith(
                   fontSize: 20,
                   fontFamily: SystemProperties.fontName,
                   fontWeight: FontWeight.bold),
@@ -41,18 +41,18 @@ class EducationDetailsTimelineWidget extends StatelessWidget {
             ),
             Text(
               name,
-              style: uiHelper.title!.copyWith(fontSize: 16),
+              style: uiHelper.title.copyWith(fontSize: 16),
             ),
             const SizedBox(height: 4),
             RichText(
               text: TextSpan(
                   text: 'Percentage: ',
-                  style: uiHelper.title!
+                  style: uiHelper.title
                       .copyWith(fontSize: 14, fontWeight: FontWeight.w300),
                   children: [
                     TextSpan(
                         text: '$percentage',
-                        style: uiHelper.title!.copyWith(
+                        style: uiHelper.title.copyWith(
                             fontSize: 14,
                             color: uiHelper.primaryColor,
                             fontWeight: FontWeight.bold))

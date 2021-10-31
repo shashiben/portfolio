@@ -42,7 +42,7 @@ class AboutViewResponsive extends StatelessWidget {
                       children: [
                         Text(
                           'Me,talking about myself',
-                          style: uiHelpers!.title!.copyWith(fontSize: 24),
+                          style: uiHelpers!.title.copyWith(fontSize: 24),
                         ),
                         SizedBox(
                           width: 80,
@@ -53,12 +53,12 @@ class AboutViewResponsive extends StatelessWidget {
                         ),
                         uiHelpers!.verticalSpaceLow,
                         Text(PersonalDetails.intro,
-                            style: uiHelpers!.body!.copyWith(
+                            style: uiHelpers!.body.copyWith(
                                 color: uiHelpers!.textSecondaryColor)),
                         uiHelpers!.verticalSpaceMedium,
                         Text(
                           'Technical Skills',
-                          style: uiHelpers!.title!.copyWith(fontSize: 24),
+                          style: uiHelpers!.title.copyWith(fontSize: 24),
                         ),
                         SizedBox(
                           width: 70,
@@ -72,7 +72,7 @@ class AboutViewResponsive extends StatelessWidget {
                         uiHelpers!.verticalSpaceMedium,
                         Text(
                           'Featured Skills',
-                          style: uiHelpers!.title!.copyWith(fontSize: 24),
+                          style: uiHelpers!.title.copyWith(fontSize: 24),
                         ),
                         SizedBox(
                           width: 75,
@@ -94,7 +94,7 @@ class AboutViewResponsive extends StatelessWidget {
                       children: [
                         Text(
                           'Education',
-                          style: uiHelpers!.title!.copyWith(fontSize: 24),
+                          style: uiHelpers!.title.copyWith(fontSize: 24),
                         ),
                         SizedBox(
                           width: 70,

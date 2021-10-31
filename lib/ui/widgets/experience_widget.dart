@@ -47,7 +47,7 @@ class ExperienceTree extends StatelessWidget {
                   uiHelper.primaryColor!.withOpacity(0.1),
             ),
             child: Text(
-              headTitle!,
+              headTitle ?? "",
               style: headTitleStyle ??
                   Theme.of(context)
                       .textTheme
@@ -71,7 +71,7 @@ class ExperienceTree extends StatelessWidget {
                   uiHelper.primaryColor!.withOpacity(0.1),
             ),
             child: Text(
-              tailTitle!,
+              tailTitle??"",
               style: tailTitleStyle ??
                   Theme.of(context)
                       .textTheme

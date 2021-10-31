@@ -14,10 +14,10 @@ class ScreenUiHelper {
 
   ScalingHelper? scalingHelper;
 
-  TextStyle? headline;
-  TextStyle? title;
-  TextStyle? body;
-  TextStyle? buttonStyle;
+  late TextStyle headline;
+  late TextStyle title;
+  late TextStyle body;
+  late TextStyle? buttonStyle;
 
   double? headlineSize;
   double? titleSize;
@@ -73,20 +73,17 @@ class ScreenUiHelper {
     scalingHelper = ScalingHelper(width: screenWidth);
 
     headlineSize = getDeviceType(mediaQuery.size) == DeviceScreenType.desktop
-        ? 24
+        ? 43
         : getDeviceType(mediaQuery.size) == DeviceScreenType.tablet
-            ? 24
-            : 20;
-    titleSize = getDeviceType(mediaQuery.size) == DeviceScreenType.desktop
-        ? 20
-        : getDeviceType(mediaQuery.size) == DeviceScreenType.tablet
-            ? 18
-            : 16;
+            ? 34
+            : screenWidth * 0.08;
+    titleSize =
+        getDeviceType(mediaQuery.size) == DeviceScreenType.desktop ? 20 : 18;
     bodySize = getDeviceType(mediaQuery.size) == DeviceScreenType.desktop
-        ? 14
+        ? 18
         : getDeviceType(mediaQuery.size) == DeviceScreenType.tablet
-            ? 14
-            : 12;
+            ? 16
+            : 14;
 
     headline = TextStyle(
         fontWeight: FontWeight.bold,

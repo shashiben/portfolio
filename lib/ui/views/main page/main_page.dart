@@ -5,7 +5,7 @@ import 'package:portfolio/app/router.dart';
 import 'package:portfolio/ui/views/about%20me/about_view.dart';
 import 'package:portfolio/ui/views/contact%20me/contact_view.dart';
 import 'package:portfolio/ui/views/experience/experience_view.dart';
-import 'package:portfolio/ui/views/home/home_view.dart';
+import 'package:portfolio/ui/views/home/responsive_home.dart';
 import 'package:portfolio/ui/views/projects/project_view.dart';
 import 'package:portfolio/ui/widgets/drawe_text.dart';
 
@@ -15,7 +15,7 @@ class MainPage extends HookWidget {
   final String view;
 
   final Map<String, Widget> views = {
-    "home": HomeView(),
+    "home": ResponsiveHomeView(),
     "about-shashi": AboutView(),
     "contact": ContactView(),
     "my-projects": ProjectView(),
@@ -53,6 +53,7 @@ class MainPage extends HookWidget {
             children: [
               ListTile(
                 title: HoverWidget(
+                  animationDuration: Duration(milliseconds: 400),
                   child: Text(
                     'All',
                     style: TextStyle(color: Colors.white),
@@ -63,6 +64,7 @@ class MainPage extends HookWidget {
               ),
               ListTile(
                 title: HoverWidget(
+                  animationDuration: Duration(milliseconds: 400),
                   child: Text(
                     'Apps',
                     style: TextStyle(color: Colors.white),
@@ -73,6 +75,7 @@ class MainPage extends HookWidget {
               ),
               ListTile(
                 title: HoverWidget(
+                  animationDuration: Duration(milliseconds: 400),
                   child: Text(
                     'Website',
                     style: TextStyle(color: Colors.white),
@@ -83,6 +86,7 @@ class MainPage extends HookWidget {
               ),
               ListTile(
                 title: HoverWidget(
+                  animationDuration: Duration(milliseconds: 400),
                   child: Text(
                     'Others',
                     style: TextStyle(color: Colors.white),

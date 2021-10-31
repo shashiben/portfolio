@@ -197,7 +197,7 @@ class _LinearPercentIndicatorState extends State<LinearPercentIndicator>
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  widget.title!,
+                  widget.title ?? "",
                   style: uiHelper.title,
                 ),
               ),

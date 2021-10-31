@@ -5,8 +5,13 @@ class DrawerText extends StatelessWidget {
   final Widget child;
   final bool isHovered;
   final double width;
+  final Duration animationDuration;
   const DrawerText(
-      {Key? key, required this.child, required this.isHovered, this.width = 30})
+      {Key? key,
+      required this.child,
+      required this.isHovered,
+      this.width = 30,
+      this.animationDuration = const Duration(milliseconds: 600)})
       : super(key: key);
 
   @override
@@ -18,7 +23,7 @@ class DrawerText extends StatelessWidget {
         children: [
           child,
           AnimatedContainer(
-            duration: Duration(milliseconds: 600),
+            duration: animationDuration,
             margin: EdgeInsets.only(top: 5),
             height: 3,
             width: isHovered ? width : 0,
@@ -38,7 +43,12 @@ class DrawerText extends StatelessWidget {
 class HoverWidget extends HookWidget {
   final Widget child;
   final double width;
-  const HoverWidget({Key? key, required this.child, this.width = 30})
+  final Duration animationDuration;
+  const HoverWidget(
+      {Key? key,
+      required this.child,
+      this.width = 30,
+      this.animationDuration = const Duration(milliseconds: 600)})
       : super(key: key);
 
   @override
@@ -46,6 +56,7 @@ class HoverWidget extends HookWidget {
     final boolValue = useState(false);
     return MouseRegion(
       child: DrawerText(
+        animationDuration: animationDuration,
         child: child,
         isHovered: boolValue.value,
         width: width,

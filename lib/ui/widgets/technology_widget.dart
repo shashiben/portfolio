@@ -20,7 +20,7 @@ class TechnologyWidget extends StatelessWidget {
           ),
           Text(
             technologies!.name,
-            style: uiHelper.title!
+            style: uiHelper.title
                 .copyWith(color: uiHelper.textPrimaryColor, fontSize: 16),
           )
         ],
