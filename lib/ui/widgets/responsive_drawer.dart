@@ -4,7 +4,7 @@ import 'package:portfolio/ui/widgets/drawe_text.dart';
 import 'package:portfolio/ui/widgets/drawer_hover_effect.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-double collapsableHeight = 0.0;
+bool showMobileMenu = false;
 const Color selectedTextColor = Color(0xFFffffff);
 const Color unselectedTextColor = Color(0xafffffff);
 
@@ -50,19 +50,19 @@ class _ResponsiveDrawerState extends State<ResponsiveDrawer> {
             child: widget.child,
             color: Colors.white,
           ),
-          AnimatedContainer(
-            margin: EdgeInsets.only(top: 80.0),
-            duration: Duration(milliseconds: 375),
-            curve: Curves.ease,
-            height: (width < widget.mobileMaxWidth) ? collapsableHeight : 0.0,
-            width: double.infinity,
-            color: widget.backgroundColor ?? Color(0xff121212),
-            child: SingleChildScrollView(
-              child: Column(
-                children: widget.items,
+          if (showMobileMenu)
+            AnimatedContainer(
+              margin: EdgeInsets.only(top: 80.0),
+              duration: Duration(milliseconds: 375),
+              curve: Curves.ease,
+              width: double.infinity,
+              color: widget.backgroundColor ?? Color(0xff121212),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: widget.items,
+                ),
               ),
             ),
-          ),
           Container(
             color: widget.backgroundColor ?? Color(0xff121212),
             height: 80.0,
@@ -74,27 +74,25 @@ class _ResponsiveDrawerState extends State<ResponsiveDrawer> {
                   child: widget.leading,
                   onTap: widget.onLeadingTap ?? () {},
                 ),
-                LayoutBuilder(builder: (context, constraints) {
-                  if (width < widget.mobileMaxWidth) {
-                    return NavBarButton(
-                      onPressed: () {
-                        if (collapsableHeight == 0.0) {
-                          setState(() {
-                            collapsableHeight = 240.0;
-                          });
-                        } else if (collapsableHeight == 240.0) {
-                          setState(() {
-                            collapsableHeight = 0.0;
-                          });
-                        }
-                      },
-                    );
-                  } else {
-                    return Row(
-                      children: widget.items,
-                    );
-                  }
-                })
+                LayoutBuilder(
+                    builder: (context, constraints) =>
+                        (width < widget.mobileMaxWidth)
+                            ? NavBarButton(
+                                onPressed: () {
+                                  if (!showMobileMenu) {
+                                    setState(() {
+                                      showMobileMenu = true;
+                                    });
+                                  } else if (showMobileMenu) {
+                                    setState(() {
+                                      showMobileMenu = false;
+                                    });
+                                  }
+                                },
+                              )
+                            : Row(
+                                children: widget.items,
+                              ))
               ],
             ),
           ),

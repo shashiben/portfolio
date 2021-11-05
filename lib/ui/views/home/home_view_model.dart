@@ -15,6 +15,7 @@ class HomeViewModel extends BaseViewModel {
     'Designer': 'assets/images/design.png',
     'AI Enthusiast': 'assets/images/ml.png'
   };
+
   void changeShortIntroToCompleted() {
     isShortIntroCompleted = true;
     notifyListeners();

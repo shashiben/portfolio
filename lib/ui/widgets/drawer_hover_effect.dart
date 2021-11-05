@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/utils/ScreenUiHelper.dart';
+import 'package:portfolio/ui/widgets/Drawer%20Widgets/expansion_tile_modified.dart';
 
 class DrawerHoverEffect extends StatefulWidget {
   final Widget child;
@@ -28,7 +29,7 @@ class _DrawerHoverEffectState extends State<DrawerHoverEffect> {
   late OverlayState overlayState;
   late OverlayEntry _overlayEntry;
   late Offset buttonPosition;
-  late Size buttonSize;
+  Size buttonSize = Size(0, 0);
   bool isOpened = false;
   late StreamSubscription _listenHoverChanges;
 
@@ -123,7 +124,12 @@ class _DrawerHoverEffectState extends State<DrawerHoverEffect> {
                 },
                 child: widget.child,
               )
-            : ExpansionTile(
+            : XpansionTile(
+                childrenPadding: const EdgeInsets.only(left: 50),
+                borderColor: Colors.transparent,
+                tilePadding: EdgeInsets.zero,
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                trailing: SizedBox(),
                 title: widget.child,
                 children: widget.children,
               );

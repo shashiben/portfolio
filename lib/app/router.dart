@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/ui/views/main%20page/main_page.dart';
 
 final router = GoRouter(
+  urlPathStrategy: UrlPathStrategy.path,
   routes: [
     GoRoute(
       path: '/',
