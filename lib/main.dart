@@ -1,19 +1,18 @@
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'app/app.locator.dart';
-import 'app/router.dart';
+import 'package:flutter/material.dart';
+import 'package:portfolio/modules/home%20module/screens/home_view.dart';
 
 Future main() async {
-  setupLocator();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: "Shashi Kumar",
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: HomeView(),
     );
   }
 }
