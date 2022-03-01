@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_next/flutter_next.dart';
-import 'package:portfolio/app/key_configs.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+import '../../../app/key_configs.dart';
+
+class ProjectsView extends StatelessWidget {
+  const ProjectsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return NextContainer(
       padding: const EdgeInsets.symmetric(vertical: 60),
-      key: KeyConfigs.homeKey,
+      key: KeyConfigs.projectKey,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: const [Text("Home")],
+      children: const [Text("Projects")],
     );
   }
 }

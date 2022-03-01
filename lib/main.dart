@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/modules/home%20module/screens/home_view.dart';
+
+import 'app/router_configs.dart';
 
 Future main() async {
   runApp(const MyApp());
@@ -10,9 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
       debugShowCheckedModeBanner: false,
-      home: HomeView(),
     );
   }
 }
