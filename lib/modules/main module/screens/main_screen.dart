@@ -17,9 +17,14 @@ class MainScreen extends StatelessWidget {
       appBar: PreferredSize(
         child: Container(
           width: double.infinity,
-          decoration: const BoxDecoration(color: Color(0xFF1f1b3d)),
+          decoration: const BoxDecoration(
+            color: Color(0xFF212234),
+          ),
           child: NextContainer(
-            decoration: const BoxDecoration(color: Color(0xFF1f1b3d)),
+            fluid: true,
+            decoration: const BoxDecoration(
+              color: Color(0xFF212234),
+            ),
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(

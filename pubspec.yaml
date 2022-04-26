@@ -5,12 +5,14 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.12.0 <3.0.0"
 dependencies:
+  animated_text_kit: ^4.2.1
   blobs: ^2.0.0
   cupertino_icons: ^1.0.3
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.0
   flutter_next: ^0.1.0
+  flutter_svg: ^1.0.3
   font_awesome_flutter: ^9.1.0
   get_it: ^7.2.0
   go_router: null

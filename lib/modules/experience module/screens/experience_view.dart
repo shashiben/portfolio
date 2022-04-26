@@ -9,6 +9,7 @@ class ExperienceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NextContainer(
+      fluid: true,
       padding: const EdgeInsets.symmetric(vertical: 60),
       key: KeyConfigs.experienceKey,
       mainAxisAlignment: MainAxisAlignment.center,
