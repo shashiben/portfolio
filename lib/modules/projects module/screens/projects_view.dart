@@ -9,7 +9,6 @@ class ProjectsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NextContainer(
-      fluid: true,
       padding: const EdgeInsets.symmetric(vertical: 60),
       key: KeyConfigs.projectKey,
       mainAxisAlignment: MainAxisAlignment.center,

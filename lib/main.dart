@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/gen/fonts.gen.dart';
 
 import 'app/router_configs.dart';
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(fontFamily: FontFamily.opensans),
       routeInformationParser: router.routeInformationParser,
       routerDelegate: router.routerDelegate,
       debugShowCheckedModeBanner: false,

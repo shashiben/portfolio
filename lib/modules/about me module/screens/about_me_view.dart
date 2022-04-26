@@ -10,7 +10,6 @@ class AboutMeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NextContainer(
-      fluid: true,
       padding: const EdgeInsets.symmetric(vertical: 60),
       key: KeyConfigs.aboutKey,
       mainAxisAlignment: MainAxisAlignment.center,

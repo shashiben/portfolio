@@ -7,6 +7,7 @@ environment:
 dependencies:
   animated_text_kit: ^4.2.1
   blobs: ^2.0.0
+  carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.3
   flutter:
     sdk: flutter
@@ -35,9 +36,23 @@ flutter:
     - assets/images/
     - assets/icons/
   fonts:
-    - family: Lora
+    - family: Opensans
       fonts:
-        - asset: assets/fonts/Lora.ttf
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/Montserrat.ttf
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 100
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 200
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 500
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 800
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+          weight: 900

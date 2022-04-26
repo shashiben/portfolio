@@ -9,11 +9,32 @@ class ContactView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NextContainer(
-      fluid: true,
       padding: const EdgeInsets.symmetric(vertical: 60),
       key: KeyConfigs.contactKey,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [Text("Contact")],
+      children: [
+        NextRow(
+          children: [
+            NextCol(
+              child: Column(
+                children: [
+                  Text(
+                    'Contact',
+                    style: context.textThemeHeadline3,
+                  ),
+                ],
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              sizes: 'col-12 col-md-6 col-sm-12 col-xxl-6 col-xl-6 col-lg-6',
+            ),
+            NextCol(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              sizes: 'col-12 col-md-6 col-sm-12 col-xxl-6 col-xl-6 col-lg-6',
+            )
+          ],
+        )
+      ],
     );
   }
 }

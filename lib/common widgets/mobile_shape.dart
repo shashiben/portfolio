@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class MobilePhone extends StatelessWidget {
   final double? width, height;
   final Widget? child;
+
   final Size? volumeButton, powerButton;
   final double mobileBorderWidth, mobileBorderRadius;
   final ButtonPosition volumeUp, volumneDown, powerBtn;
@@ -27,7 +28,8 @@ class MobilePhone extends StatelessWidget {
     Size volumeBtnSize = volumeButton ?? const Size(5, 35);
     Size powerBtnSize = powerButton ?? const Size(5, 35);
 
-    return SizedBox(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 600),
       height: mobileHeight,
       width: mobileWidth + 5,
       child: Stack(

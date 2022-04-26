@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/modules/about%20me%20module/screens/about_me_view.dart';
 import 'package:portfolio/modules/contact%20module/screens/contact_view.dart';
 import 'package:portfolio/modules/experience%20module/screens/experience_view.dart';
+import 'package:portfolio/modules/footer%20module/views/footer_view.dart';
 import 'package:portfolio/modules/home%20module/screens/home_view.dart';
 import 'package:portfolio/modules/projects%20module/screens/projects_view.dart';
 
@@ -21,7 +22,6 @@ class MainScreen extends StatelessWidget {
             color: Color(0xFF212234),
           ),
           child: NextContainer(
-            fluid: true,
             decoration: const BoxDecoration(
               color: Color(0xFF212234),
             ),
@@ -87,7 +87,8 @@ class MainScreen extends StatelessWidget {
           AboutMeView(),
           ProjectsView(),
           ExperienceView(),
-          ContactView()
+          ContactView(),
+          FooterView()
         ]),
       ),
     );

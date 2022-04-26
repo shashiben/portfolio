@@ -7,7 +7,6 @@ class InvalidPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const NextContainer(
-      fluid: true,
       children: [],
     );
   }
