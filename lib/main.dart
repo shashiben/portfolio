@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/gen/fonts.gen.dart';
+import 'package:portfolio/modules/Home%20Page/screens/home.screen.dart';
 
-import 'app/router_configs.dart';
-
-Future main() async {
+Future<void> main() async {
   runApp(const MyApp());
 }
 
@@ -12,11 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(fontFamily: FontFamily.opensans),
-      routeInformationParser: router.routeInformationParser,
-      routerDelegate: router.routerDelegate,
-      debugShowCheckedModeBanner: false,
+    return const MaterialApp(
+      title: 'Portfolio',
+      home: HomeScreen(),
     );
   }
 }

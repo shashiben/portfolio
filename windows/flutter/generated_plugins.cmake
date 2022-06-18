@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  url_launcher_windows
+  audioplayers_windows
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
