@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/modules/Show%20Case/components/app_dev.intro.component.dart';
+import 'package:portfolio/app/constants/colors.dart';
+import 'package:portfolio/widgets/logo.dart';
+
+import '../../../widgets/components/footer.dart';
 
 class ShowCaseScreen extends StatelessWidget {
   const ShowCaseScreen({Key? key}) : super(key: key);
@@ -7,8 +10,18 @@ class ShowCaseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        children: const [AppDevIntroComponent()],
+      appBar: AppBar(
+        title: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: ['Home', 'About me', "Projects", "Experience", 'Contact']
+                .map((e) => TextButton(onPressed: () {}, child: Text(e)))
+                .toList()),
+        leadingWidth: 400,
+        leading: const LogoComponent(),
+      ),
+      backgroundColor: ColorConfigs.backgroundColor,
+      body: Column(
+        children: const [FooterWidget()],
       ),
     );
   }

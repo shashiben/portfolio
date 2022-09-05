@@ -9,11 +9,11 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
         child: NextNavBar(
           header: Assets.images.skLogo.image(),
           backgroundColor: Colors.deepPurpleAccent,
         ),
-        preferredSize: const Size(double.infinity, 60),
       ),
     );
   }

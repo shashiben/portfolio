@@ -35,13 +35,13 @@ class MobilePhone extends StatelessWidget {
         children: [
           Center(
             child: Container(
-              child: child,
               height: mobileHeight,
               width: mobileWidth,
               decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(width: mobileBorderWidth),
                   borderRadius: BorderRadius.circular(mobileBorderRadius)),
+              child: child,
             ),
           ),
           Positioned(
@@ -92,6 +92,13 @@ class MobilePhone extends StatelessWidget {
               left: 0,
               child: Center(
                 child: Container(
+                  width: 100,
+                  height: 15,
+                  decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20))),
                   child: Center(
                       child: Container(
                     width: 6,
@@ -106,13 +113,6 @@ class MobilePhone extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: Colors.grey),
                   )),
-                  width: 100,
-                  height: 15,
-                  decoration: const BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20))),
                 ),
               ))
         ],
