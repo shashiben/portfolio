@@ -58,6 +58,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/kotlin.png
   AssetGenImage get kotlin => const AssetGenImage('assets/icons/kotlin.png');
 
+  /// File path: assets/icons/menu.svg
+  String get menu => 'assets/icons/menu.svg';
+
   /// File path: assets/icons/mongo.png
   AssetGenImage get mongo => const AssetGenImage('assets/icons/mongo.png');
 

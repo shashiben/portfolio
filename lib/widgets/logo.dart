@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/constants/colors.dart';
 import 'package:portfolio/gen/assets.gen.dart';
 import 'package:flutter_next/flutter_next.dart';
 
@@ -9,17 +10,14 @@ class LogoComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Assets.images.s.image(),
+        Assets.images.s.image(color: ColorConfigs.iconColor),
         const SizedBox(
           width: 6,
         ),
         Text.rich(TextSpan(children: [
           const TextSpan(
               text: 'Shashi ',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-              )),
+              style: TextStyle(fontSize: 14, color: ColorConfigs.iconColor)),
           TextSpan(
               text: 'Kumar',
               style: TextStyle(
