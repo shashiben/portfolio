@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/app/constants/colors.dart';
 import 'package:portfolio/gen/assets.gen.dart';
+import 'package:portfolio/modules/Contact%20Page/contact.screen.dart';
+import 'package:portfolio/modules/Feature%20Section/feature.section.dart';
 import 'package:portfolio/modules/Home%20Page/screens/home.screen.dart';
 import 'package:portfolio/widgets/logo.dart';
 import 'package:flutter_next/flutter_next.dart';
@@ -42,7 +44,12 @@ class ShowCaseScreen extends StatelessWidget {
       backgroundColor: ColorConfigs.backgroundColor,
       body: SingleChildScrollView(
         child: Column(
-          children: const [HomeScreen(), FooterWidget()],
+          children: const [
+            HomeScreen(),
+            FeatureSection(),
+            ContactScreen(),
+            FooterWidget()
+          ],
         ),
       ),
     );

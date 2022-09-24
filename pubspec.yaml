@@ -13,7 +13,9 @@ dependencies:
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
-  flutter_next: ^0.1.1
+  flutter_next:
+    git:
+      url: https://github.com/shashiben/flutter_next.git
   flutter_svg: ^1.1.4
   font_awesome_flutter: ^10.1.0
   google_fonts: ^3.0.1

@@ -205,9 +205,11 @@ packages:
   flutter_next:
     dependency: "direct main"
     description:
-      name: flutter_next
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "53a4466522821d7b360cc33ea29fc03c674d85dc"
+      url: "https://github.com/shashiben/flutter_next.git"
+    source: git
     version: "0.1.1"
   flutter_svg:
     dependency: "direct main"
