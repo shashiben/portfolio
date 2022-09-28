@@ -1,6 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../core/models/feature-item.model.dart';
+import '../../../core/models/feature-item.model.dart';
 
 List<FeatureModel> featuresList = [
   FeatureModel(

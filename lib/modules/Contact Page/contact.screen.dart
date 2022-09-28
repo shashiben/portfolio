@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_next/flutter_next.dart';
-import 'package:flutter_next/utils/shadows/next_shadow.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/widgets/components/custom_textfield.widget.dart';
+
+import '../../widgets/contact_list_tile.widget.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({Key? key}) : super(key: key);
@@ -16,60 +18,93 @@ class ContactScreen extends StatelessWidget {
             sizes: 'col-12 col-md-6',
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text("CONTACT ME"),
-                Text("Let's talk about project/oppurtunity"),
-                
+              children: [
+                Text(
+                  "CONTACT ME💬",
+                  style: GoogleFonts.breeSerif(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const Text("Let's talk about project/oppurtunity"),
+                const SizedBox(
+                  height: 30,
+                ),
+                const ContactListTile(
+                    title: 'Location:',
+                    subtitle: 'Kurnool,Andhra Pradesh,518001',
+                    leadingIcon: FontAwesomeIcons.locationArrow),
+                const ContactListTile(
+                    title: 'Email:',
+                    subtitle: 'kumarshashi5294@gmail.com',
+                    leadingIcon: Icons.email_outlined),
+                const ContactListTile(
+                    title: 'Call:',
+                    subtitle: '+91-797217156',
+                    leadingIcon: Icons.mobile_friendly_rounded)
               ],
             ),
           ),
           NextCol(
               sizes: 'col-12 col-md-6',
-              child: Center(
-                child: Container(
-                  width: 420,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 35,
-                    vertical: 25,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Send me a message",
+                    style: GoogleFonts.breeSerif(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                    boxShadow: NextShadow.shadow400(),
+                  const SizedBox(
+                    height: 30,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      const Text("Send me a message"),
-                      CustomTextField(
-                        title: "Name",
-                        controller: TextEditingController(),
+                      Expanded(
+                        child: CustomTextField(
+                            keyboardType: TextInputType.name,
+                            controller: TextEditingController(),
+                            title: 'Your name'),
                       ),
-                      CustomTextField(
-                        title: "Email",
-                        controller: TextEditingController(),
+                      const SizedBox(
+                        width: 20,
                       ),
-                      CustomTextField(
-                        title: "Subject",
-                        controller: TextEditingController(),
-                      ),
-                      CustomTextField(
-                        title: "Message",
-                        controller: TextEditingController(),
-                        maxLines: 5,
-                      ),
-                      ElevatedButton.icon(
-                        icon: const Icon(FontAwesomeIcons.share),
-                        onPressed: () {},
-                        label: const Text(
-                          "Send",
-                        ),
+                      Expanded(
+                        child: CustomTextField(
+                            keyboardType: TextInputType.emailAddress,
+                            controller: TextEditingController(),
+                            title: 'Your Email'),
                       )
                     ],
                   ),
-                ),
+                  CustomTextField(
+                    keyboardType: TextInputType.text,
+                    controller: TextEditingController(),
+                    title: 'Subject',
+                  ),
+                  CustomTextField(
+                      keyboardType: TextInputType.multiline,
+                      controller: TextEditingController(),
+                      title: 'Message',
+                      maxLines: 4),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  ElevatedButton.icon(
+                    icon: const Icon(FontAwesomeIcons.share),
+                    onPressed: () {},
+                    label: const Text(
+                      "Send",
+                    ),
+                  )
+                ],
               ))
-        ])
+        ]),
+        const SizedBox(
+          height: 60,
+        )
       ],
     );
   }

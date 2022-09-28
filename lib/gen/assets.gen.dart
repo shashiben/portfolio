@@ -89,9 +89,6 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/android.png
-  AssetGenImage get android => const AssetGenImage('assets/images/android.png');
-
   /// File path: assets/images/avatar.png
   AssetGenImage get avatar => const AssetGenImage('assets/images/avatar.png');
 
@@ -103,14 +100,15 @@ class $AssetsImagesGen {
   AssetGenImage get business =>
       const AssetGenImage('assets/images/business.png');
 
+  $AssetsImagesCompanyGen get company => const $AssetsImagesCompanyGen();
+
   /// File path: assets/images/design.png
   AssetGenImage get design => const AssetGenImage('assets/images/design.png');
 
-  /// File path: assets/images/ml.png
-  AssetGenImage get ml => const AssetGenImage('assets/images/ml.png');
-
   /// File path: assets/images/pattern.png
   AssetGenImage get pattern => const AssetGenImage('assets/images/pattern.png');
+
+  $AssetsImagesProjectsGen get projects => const $AssetsImagesProjectsGen();
 
   /// File path: assets/images/s.png
   AssetGenImage get s => const AssetGenImage('assets/images/s.png');
@@ -118,8 +116,49 @@ class $AssetsImagesGen {
   /// File path: assets/images/sk_logo.png
   AssetGenImage get skLogo => const AssetGenImage('assets/images/sk_logo.png');
 
-  /// File path: assets/images/web.png
-  AssetGenImage get web => const AssetGenImage('assets/images/web.png');
+  $AssetsImagesSkillGen get skill => const $AssetsImagesSkillGen();
+}
+
+class $AssetsImagesCompanyGen {
+  const $AssetsImagesCompanyGen();
+
+  /// File path: assets/images/company/naaniz.png
+  AssetGenImage get naaniz =>
+      const AssetGenImage('assets/images/company/naaniz.png');
+
+  /// File path: assets/images/company/webknot.png
+  AssetGenImage get webknot =>
+      const AssetGenImage('assets/images/company/webknot.png');
+}
+
+class $AssetsImagesProjectsGen {
+  const $AssetsImagesProjectsGen();
+
+  /// File path: assets/images/projects/Flutter Next.png
+  AssetGenImage get flutterNext =>
+      const AssetGenImage('assets/images/projects/Flutter Next.png');
+}
+
+class $AssetsImagesSkillGen {
+  const $AssetsImagesSkillGen();
+
+  /// File path: assets/images/skill/android.png
+  AssetGenImage get android =>
+      const AssetGenImage('assets/images/skill/android.png');
+
+  /// File path: assets/images/skill/backend.png
+  AssetGenImage get backend =>
+      const AssetGenImage('assets/images/skill/backend.png');
+
+  /// File path: assets/images/skill/luffy.png
+  AssetGenImage get luffy =>
+      const AssetGenImage('assets/images/skill/luffy.png');
+
+  /// File path: assets/images/skill/ml.png
+  AssetGenImage get ml => const AssetGenImage('assets/images/skill/ml.png');
+
+  /// File path: assets/images/skill/web.png
+  AssetGenImage get web => const AssetGenImage('assets/images/skill/web.png');
 }
 
 class Assets {

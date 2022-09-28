@@ -4,11 +4,13 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final int? maxLines;
   final String title;
+  final TextInputType? keyboardType;
   const CustomTextField(
       {Key? key,
       required this.controller,
       this.maxLines = 1,
-      required this.title})
+      required this.title,
+      this.keyboardType})
       : super(key: key);
 
   @override
@@ -17,6 +19,7 @@ class CustomTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
+          keyboardType: keyboardType,
           decoration: InputDecoration(
             labelText: title,
             alignLabelWithHint: true,

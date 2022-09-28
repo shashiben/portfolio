@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   animated_text_kit: ^4.2.2
+  carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.5
   flutter:
     sdk: flutter
@@ -20,7 +21,8 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   google_fonts: ^3.0.1
   logger: ^1.1.0
-  stacked: ^2.3.15+1
+  scrollable_positioned_list: ^0.3.4
+  stacked: ^3.0.0
   stacked_services: ^0.9.5
 
 dev_dependencies:
@@ -28,10 +30,13 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  stacked_generator: ^0.7.15
+  stacked_generator: ^0.8.0+1
 
 flutter:
   uses-material-design: true
   assets:
     - assets/icons/
     - assets/images/
+    - assets/images/company/
+    - assets/images/projects/
+    - assets/images/skill/

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_next/flutter_next.dart';
 import 'package:flutter_next/utils/shadows/next_shadow.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/constants/colors.dart';
 import 'package:portfolio/app/constants/strings.dart';
+import 'package:portfolio/widgets/custom_text.widget.dart';
 import 'package:portfolio/widgets/omnitrix.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Hey!',
+                  'Hey!👋 ',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.w300,
@@ -32,21 +34,18 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 2,
                 ),
-                const Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                          text: "Shashi",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ],
-                    style: TextStyle(
-                      color: Colors.black,
+                CustomText(
+                  text: "This is [b'Shashi]",
+                  textMap: {
+                    "b": GoogleFonts.breeSerif(
+                      fontWeight: FontWeight.w500,
                       fontSize: 32,
-                      fontWeight: FontWeight.w300,
                     ),
-                    text: "This is ",
+                  },
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 32,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
                 const SizedBox(
@@ -79,11 +78,9 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          NextCol(
+          const NextCol(
             sizes: 'col-12 col-md-6',
-            child: Column(
-              children: const [OmnitrixWidget(children: [])],
-            ),
+            child: OmnitrixWidget(),
           ),
         ],
       ),

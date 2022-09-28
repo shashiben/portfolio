@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/constants/colors.dart';
-import 'package:portfolio/modules/Show%20Case/screens/show_case.screen.dart';
+import 'package:portfolio/modules/Show%20Case/show_case.screen.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -14,7 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Portfolio',
+      navigatorKey: StackedService.navigatorKey,
       theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(4),
+              borderSide: const BorderSide(color: Color(0xFFEEEEEE))),
+        ),
         dividerTheme: const DividerThemeData(
           color: Color(0xFF3F3E45),
         ),
@@ -25,7 +32,7 @@ class MyApp extends StatelessWidget {
             ),
         scaffoldBackgroundColor: ColorConfigs.backgroundColor,
         backgroundColor: ColorConfigs.backgroundColor,
-        fontFamily: GoogleFonts.poppins().fontFamily,
+        fontFamily: GoogleFonts.montserrat().fontFamily,
         iconTheme: const IconThemeData(color: ColorConfigs.iconColor),
         appBarTheme: const AppBarTheme(
           backgroundColor: ColorConfigs.backgroundColor,
@@ -43,7 +50,8 @@ class MyApp extends StatelessWidget {
               animationDuration: const Duration(milliseconds: 800),
               shadowColor: MaterialStateProperty.all(Colors.black),
               shape: MaterialStateProperty.resolveWith((states) {
-                if (states.contains(MaterialState.hovered)) {
+                if (states.contains(MaterialState.hovered) ||
+                    states.contains(MaterialState.focused)) {
                   return const RoundedRectangleBorder();
                 }
                 return const RoundedRectangleBorder(
