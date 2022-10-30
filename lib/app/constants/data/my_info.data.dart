@@ -17,6 +17,7 @@ mixin MYInfo {
 
   static const String educationDetails =
       'I graduated from Sri Venkateswara University, Tirupati with a degree in Computer Science & Engineering.';
-
+  static String aboutBodyText1 =
+      "I‘m a Full Stack Developer with over ${DateTime.now().year - 2021} years experience conceptualizing and crafting digital products, helping businesses and non-profits expand their capacity for impact 🚀";
   static const String workDetails = '';
 }

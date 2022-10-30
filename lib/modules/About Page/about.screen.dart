@@ -39,11 +39,11 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(
                 height: 15,
               ),
-              const Text(MYInfo.workDetails),
+              const Text(MYInfo.educationDetails),
               const SizedBox(
                 height: 15,
               ),
-              const Text(MYInfo.educationDetails),
+              Text(MYInfo.aboutBodyText1),
               const SizedBox(
                 height: 25,
               ),

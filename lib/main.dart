@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/constants/colors.dart';
-import 'package:portfolio/modules/Show%20Case/show_case.screen.dart';
-import 'package:stacked_services/stacked_services.dart';
+import 'package:portfolio/app/router/auto_router.dart';
 
 Future<void> main() async {
   runApp(const MyApp());
@@ -13,9 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    AppRouter appRouter = AppRouter();
+
+    return MaterialApp.router(
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
       title: 'Portfolio',
-      navigatorKey: StackedService.navigatorKey,
       theme: ThemeData(
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
@@ -62,8 +64,8 @@ class MyApp extends StatelessWidget {
               }),
               padding: MaterialStateProperty.all(
                 const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 15,
+                  horizontal: 25,
+                  vertical: 20,
                 ),
               ),
               backgroundColor: MaterialStateProperty.all(
@@ -72,7 +74,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const ShowCaseScreen(),
     );
   }
 }

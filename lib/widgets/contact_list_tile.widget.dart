@@ -24,7 +24,7 @@ class ContactListTile extends StatelessWidget {
               decoration: BoxDecoration(
                   color: isHovered
                       ? context.primaryColor
-                      : context.primaryColor.withOpacity(0.2),
+                      : context.primaryColor.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(5)),
               padding: const EdgeInsets.all(8),
               child: Icon(

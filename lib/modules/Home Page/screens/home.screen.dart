@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_next/flutter_next.dart';
 import 'package:flutter_next/utils/shadows/next_shadow.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:portfolio/app/constants/colors.dart';
 import 'package:portfolio/app/constants/strings.dart';
 import 'package:portfolio/widgets/custom_text.widget.dart';
 import 'package:portfolio/widgets/omnitrix.dart';
@@ -38,9 +37,13 @@ class HomeScreen extends StatelessWidget {
                   text: "This is [b'Shashi]",
                   textMap: {
                     "b": GoogleFonts.breeSerif(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 32,
-                    ),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 32,
+                        foreground: Paint()
+                          ..shader = const LinearGradient(
+                            colors: [Color(0xFF00dd9b), Color(0xFF905bec)],
+                          ).createShader(
+                              const Rect.fromLTWH(0.0, 0.0, 30, 30))),
                   },
                   style: const TextStyle(
                     color: Colors.black,
@@ -54,8 +57,7 @@ class HomeScreen extends StatelessWidget {
                 const Text(
                   StringConstants.shortDesc,
                   style: TextStyle(
-                    wordSpacing: 1,
-                    color: ColorConfigs.textSecondaryColor,
+                    height: 1.5,
                   ),
                 ),
                 const SizedBox(

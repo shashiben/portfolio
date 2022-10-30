@@ -8,7 +8,7 @@ import 'package:portfolio/modules/Feature%20Section/feature.section.dart';
 import 'package:portfolio/modules/Projects%20Page/projects.screen.dart';
 import '../../widgets/components/footer.dart';
 
-class ShowCaseViewModel extends BaseViewModel {
+class DashboardViewModel extends BaseViewModel {
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
       ItemPositionsListener.create();
