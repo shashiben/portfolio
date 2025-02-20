@@ -4,7 +4,10 @@
         {
             "name": "Debug",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                " --wasm"
+            ]
         },
         {
             "name": "Profile",
