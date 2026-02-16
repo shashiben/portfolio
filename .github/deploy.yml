@@ -1,0 +1,31 @@
+name: Deploy Flutter Web to GitHub Pages Repo
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Portfolio Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.1'
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build Flutter Web
+        run: flutter build web --release --wasm
+
+      - name: Deploy to shashiben.github.io
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GH_PAGES_TOKEN }}
+          external_repository: shashiben/shashiben.github.io
+          publish_dir: ./build/web
+          publish_branch: master
