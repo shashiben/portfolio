@@ -11,6 +11,9 @@ analyzer:
     dead_code: warning
     avoid_print: warning
 
+formatter:
+  page_width: 120
+
 linter:
   rules:
     always_declare_return_types: true

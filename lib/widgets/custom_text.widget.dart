@@ -18,8 +18,7 @@ class CustomText extends StatelessWidget {
       text.split(' ').forEach((element) {
         if (element.startsWith('[') && element.endsWith(']')) {
           String key = element[1];
-          String text =
-              element.substring(3, element.length - 1).replaceAll('%20', ' ');
+          String text = element.substring(3, element.length - 1).replaceAll('%20', ' ');
           result.add(
             TextSpan(
               text: '$text ',

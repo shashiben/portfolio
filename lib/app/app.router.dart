@@ -5,30 +5,21 @@ import 'package:go_router/go_router.dart';
 
 import 'deferred_loader.dart';
 
-import 'package:portfolio/ui/views/about_us_screen/about_us_screen.dart'
-    deferred as about_module;
-import 'package:portfolio/ui/views/blogs_screen/blogs_screen.dart'
-    deferred as blogs_module;
-import 'package:portfolio/ui/views/certificates_screen/certificates_screen.dart'
-    deferred as certificates_module;
-import 'package:portfolio/ui/views/awards_screen/awards_screen.dart'
-    deferred as awards_module;
-import 'package:portfolio/ui/views/contact_us_screen/contact_us_screen.dart'
-    deferred as contact_module;
+import 'package:portfolio/ui/views/about_us_screen/about_us_screen.dart' deferred as about_module;
+import 'package:portfolio/ui/views/blogs_screen/blogs_screen.dart' deferred as blogs_module;
+import 'package:portfolio/ui/views/certificates_screen/certificates_screen.dart' deferred as certificates_module;
+import 'package:portfolio/ui/views/awards_screen/awards_screen.dart' deferred as awards_module;
+import 'package:portfolio/ui/views/contact_us_screen/contact_us_screen.dart' deferred as contact_module;
 import 'package:portfolio/ui/views/dashboard_screen/dashboard_screen.dart';
-import 'package:portfolio/ui/views/experience_screen/experience_screen.dart'
-    deferred as experience_module;
-import 'package:portfolio/ui/views/home_screen/home_screen.dart'
-    deferred as home_module;
-import 'package:portfolio/ui/views/projects_screen/projects_screen.dart'
-    deferred as projects_module;
+import 'package:portfolio/ui/views/experience_screen/experience_screen.dart' deferred as experience_module;
+import 'package:portfolio/ui/views/home_screen/home_screen.dart' deferred as home_module;
+import 'package:portfolio/ui/views/projects_screen/projects_screen.dart' deferred as projects_module;
 
 CustomTransitionPage<void> _fadePage(GoRouterState state, Widget child) {
   return CustomTransitionPage<void>(
     key: state.pageKey,
     child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-        FadeTransition(
+    transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
       opacity: CurveTween(curve: Curves.easeInOut).animate(animation),
       child: child,
     ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rive/rive.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
@@ -9,11 +8,6 @@ import 'core/services/theme_service.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
-  try {
-    await RiveNative.init();
-  } on Object catch (_) {
-    assert(true);
-  }
   runApp(const MyApp());
 }
 

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stacked/stacked.dart';
 
 import '../../../app/app.router.dart';
 import '../../../app/constants/data/my_info.data.dart';
+import '../../../app/constants/data/skill.data.dart';
 import '../../../app/constants/route_constants.dart';
-import '../../../gen/assets.gen.dart';
 import '../../../app/theme/app_theme_colors.dart';
 import '../../../app/tokens/tokens.dart';
 import '../../../widgets/omnitrix.dart';
 
 part 'home_screen.viewmodel.dart';
+
+bool _isNetworkUrl(String url) => url.startsWith('http://') || url.startsWith('https://');
 
 class HomeScreen extends StackedView<HomeScreenViewModel> {
   const HomeScreen({super.key});
@@ -35,8 +38,7 @@ class HomeScreen extends StackedView<HomeScreenViewModel> {
   }
 
   @override
-  HomeScreenViewModel viewModelBuilder(BuildContext context) =>
-      HomeScreenViewModel();
+  HomeScreenViewModel viewModelBuilder(BuildContext context) => HomeScreenViewModel();
 }
 
 class _HeroSection extends StatelessWidget {
@@ -76,10 +78,7 @@ class _HeroSection extends StatelessWidget {
                       children: [
                         Text(
                           'Building products\nthat scale.',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge
-                              ?.copyWith(
+                          style: Theme.of(context).textTheme.displayLarge?.copyWith(
                                 color: c.textPrimary,
                                 fontSize: isWide ? 52 : 36,
                                 height: 1.08,
@@ -90,25 +89,22 @@ class _HeroSection extends StatelessWidget {
                         const SizedBox(height: SpacingTokens.md),
                         Text(
                           'Full-stack development. Mobile & web. Delivering impact through clean code and thoughtful design.',
-                          style:
-                              Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    color: c.textSecondary,
-                                    height: 1.5,
-                                    fontSize: isWide ? 18 : 16,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                color: c.textSecondary,
+                                height: 1.5,
+                                fontSize: isWide ? 18 : 16,
+                              ),
                         ),
                         const SizedBox(height: SpacingTokens.xxxl),
                         Row(
                           children: [
                             FilledButton(
-                              onPressed: () =>
-                                  router.go(RouteConstants.contact),
+                              onPressed: () => router.go(RouteConstants.contact),
                               child: const Text('Get in touch'),
                             ),
                             const SizedBox(width: SpacingTokens.md),
                             OutlinedButton(
-                              onPressed: () =>
-                                  router.go(RouteConstants.projects),
+                              onPressed: () => router.go(RouteConstants.projects),
                               child: const Text('View projects'),
                             ),
                           ],
@@ -144,19 +140,7 @@ class _TechStackSection extends StatefulWidget {
   State<_TechStackSection> createState() => _TechStackSectionState();
 }
 
-class _TechStackSectionState extends State<_TechStackSection>
-    with SingleTickerProviderStateMixin {
-  static final _techItems = [
-    (icon: Assets.icons.flutter, label: 'Flutter'),
-    (icon: Assets.icons.python, label: 'Python'),
-    (icon: Assets.icons.react, label: 'React'),
-    (icon: Assets.icons.kotlin, label: 'Kotlin'),
-    (icon: Assets.icons.mongo, label: 'MongoDB'),
-    (icon: Assets.icons.firebase, label: 'Firebase'),
-    (icon: Assets.icons.git, label: 'Git'),
-    (icon: Assets.icons.django, label: 'Django'),
-  ];
-
+class _TechStackSectionState extends State<_TechStackSection> with SingleTickerProviderStateMixin {
   late AnimationController _marqueeController;
 
   @override
@@ -178,12 +162,9 @@ class _TechStackSectionState extends State<_TechStackSection>
   Widget build(BuildContext context) {
     final c = context.appColors;
     final isWide = MediaQuery.sizeOf(context).width >= 800;
-    final spacing = isWide
-        ? SpacingTokens.marqueeSpacingWide
-        : SpacingTokens.marqueeSpacing;
+    final spacing = isWide ? SpacingTokens.marqueeSpacingWide : SpacingTokens.marqueeSpacing;
     final chipWidth = SpacingTokens.marqueeChipWidth;
-    final contentWidth =
-        _techItems.length * chipWidth + (_techItems.length - 1) * spacing;
+    final contentWidth = skillList.length * chipWidth + (skillList.length - 1) * spacing;
 
     return Container(
       width: double.infinity,
@@ -228,20 +209,19 @@ class _TechStackSectionState extends State<_TechStackSection>
                 child: AnimatedBuilder(
                   animation: _marqueeController,
                   builder: (context, child) {
-                    final offset =
-                        _marqueeController.value * (contentWidth + spacing);
+                    final offset = _marqueeController.value * (contentWidth + spacing);
                     return Transform.translate(
                       offset: Offset(-offset, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           for (var i = 0; i < 4; i++)
-                            ..._techItems.map(
-                              (item) => Padding(
+                            ...skillList.map(
+                              (skill) => Padding(
                                 padding: EdgeInsets.only(right: spacing),
                                 child: _TechChip(
-                                  icon: item.icon,
-                                  label: item.label,
+                                  image: skill.image,
+                                  label: skill.title,
                                 ),
                               ),
                             ),
@@ -261,11 +241,11 @@ class _TechStackSectionState extends State<_TechStackSection>
 
 class _TechChip extends StatefulWidget {
   const _TechChip({
-    required this.icon,
+    required this.image,
     required this.label,
   });
 
-  final AssetGenImage icon;
+  final String image;
   final String label;
 
   @override
@@ -301,17 +281,29 @@ class _TechChipState extends State<_TechChip> {
   @override
   Widget build(BuildContext context) {
     final c = context.appColors;
-    final image = Image.asset(
-      widget.icon.path,
-      width: 22,
-      height: 22,
-      fit: BoxFit.contain,
-      errorBuilder: (_, __, ___) => Icon(
-        Icons.code_rounded,
-        size: 22,
-        color: c.textTertiary,
-      ),
-    );
+    final image = _isNetworkUrl(widget.image)
+        ? SvgPicture.network(
+            widget.image,
+            width: 22,
+            height: 22,
+            fit: BoxFit.contain,
+            placeholderBuilder: (_) => Icon(
+              Icons.code_rounded,
+              size: 22,
+              color: c.textTertiary,
+            ),
+          )
+        : Image.asset(
+            widget.image,
+            width: 22,
+            height: 22,
+            fit: BoxFit.contain,
+            errorBuilder: (_, __, ___) => Icon(
+              Icons.code_rounded,
+              size: 22,
+              color: c.textTertiary,
+            ),
+          );
 
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
@@ -367,18 +359,15 @@ class _PillarSection extends StatelessWidget {
   static const List<_PillarData> _pillars = [
     _PillarData(
       title: 'Full-stack by design',
-      body:
-          'Build, ship, and iterate with full control—from backend APIs to polished UIs.',
+      body: 'Build, ship, and iterate with full control—from backend APIs to polished UIs.',
     ),
     _PillarData(
       title: 'Mobile & Web',
-      body:
-          'Flutter and modern web tech across platforms. One codebase, consistent quality.',
+      body: 'Flutter and modern web tech across platforms. One codebase, consistent quality.',
     ),
     _PillarData(
       title: 'Human at the core',
-      body:
-          'Collaborative development with clear communication and production-ready delivery.',
+      body: 'Collaborative development with clear communication and production-ready delivery.',
     ),
   ];
 
@@ -416,8 +405,7 @@ class _PillarSection extends StatelessWidget {
                       .map(
                         (p) => Expanded(
                           child: Padding(
-                            padding:
-                                const EdgeInsets.only(right: SpacingTokens.xxl),
+                            padding: const EdgeInsets.only(right: SpacingTokens.xxl),
                             child: _PillarCard(title: p.title, body: p.body),
                           ),
                         ),
@@ -428,8 +416,7 @@ class _PillarSection extends StatelessWidget {
                   children: _pillars
                       .map(
                         (p) => Padding(
-                          padding: const EdgeInsets.only(
-                              bottom: SpacingTokens.gapLg),
+                          padding: const EdgeInsets.only(bottom: SpacingTokens.gapLg),
                           child: _PillarCard(title: p.title, body: p.body),
                         ),
                       )

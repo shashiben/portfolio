@@ -47,9 +47,7 @@ class CertificatesScreen extends StackedView<CertificatesScreenViewModel> {
                 padding: const EdgeInsets.only(bottom: SpacingTokens.md),
                 child: _CertificateCard(
                   item: cert,
-                  onOpen: cert.url != null
-                      ? () => locator.get<UrlLauncherService>().open(cert.url!)
-                      : null,
+                  onOpen: cert.url != null ? () => locator.get<UrlLauncherService>().open(cert.url!) : null,
                 ),
               ),
             ),
@@ -61,8 +59,7 @@ class CertificatesScreen extends StackedView<CertificatesScreenViewModel> {
   }
 
   @override
-  CertificatesScreenViewModel viewModelBuilder(BuildContext context) =>
-      CertificatesScreenViewModel();
+  CertificatesScreenViewModel viewModelBuilder(BuildContext context) => CertificatesScreenViewModel();
 }
 
 class _CertificateCard extends StatelessWidget {

@@ -14,26 +14,22 @@ final List<CertificateItem> certificateList = [
   const CertificateItem(
     name: 'Convolutional Neural Networks',
     issuer: 'Coursera',
-    url:
-        'https://www.coursera.org/account/accomplishments/certificate/4M6JSMCDDYAM',
+    url: 'https://www.coursera.org/account/accomplishments/certificate/4M6JSMCDDYAM',
   ),
   const CertificateItem(
     name: 'Basic Image Classification with TensorFlow',
     issuer: 'Coursera',
-    url:
-        'https://www.coursera.org/account/accomplishments/certificate/89AY29KQPR7W',
+    url: 'https://www.coursera.org/account/accomplishments/certificate/89AY29KQPR7W',
   ),
   const CertificateItem(
     name: 'Image Data Augmentation with Keras',
     issuer: 'Coursera',
-    url:
-        'https://www.coursera.org/account/accomplishments/certificate/VRLJ7VJP6A3P',
+    url: 'https://www.coursera.org/account/accomplishments/certificate/VRLJ7VJP6A3P',
   ),
   const CertificateItem(
     name: 'Custom Prediction Routine on Google AI Platform',
     issuer: 'Coursera',
-    url:
-        'https://www.coursera.org/account/accomplishments/certificate/7BZL6GYCQABH',
+    url: 'https://www.coursera.org/account/accomplishments/certificate/7BZL6GYCQABH',
   ),
   const CertificateItem(
     name: 'The Essential Android O Developer Course (Java)',

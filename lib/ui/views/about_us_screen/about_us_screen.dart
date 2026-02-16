@@ -56,9 +56,7 @@ class AboutUsScreen extends StackedView<AboutUsScreenViewModel> {
             ...educationList.asMap().entries.map(
                   (entry) => Padding(
                     padding: EdgeInsets.only(
-                      bottom: entry.key < educationList.length - 1
-                          ? SpacingTokens.md
-                          : 0,
+                      bottom: entry.key < educationList.length - 1 ? SpacingTokens.md : 0,
                     ),
                     child: _EducationCard(entry: entry.value),
                   ),
@@ -76,8 +74,7 @@ class AboutUsScreen extends StackedView<AboutUsScreenViewModel> {
             const SizedBox(height: SpacingTokens.xxl),
             SectionHeader(
               title: 'Awards',
-              subtitle:
-                  '${awardList.length} recognition${awardList.length == 1 ? '' : 's'}.',
+              subtitle: '${awardList.length} recognition${awardList.length == 1 ? '' : 's'}.',
             ),
             const SizedBox(height: 12),
             OutlinedButton(
@@ -102,8 +99,7 @@ class AboutUsScreen extends StackedView<AboutUsScreenViewModel> {
   }
 
   @override
-  AboutUsScreenViewModel viewModelBuilder(BuildContext context) =>
-      AboutUsScreenViewModel();
+  AboutUsScreenViewModel viewModelBuilder(BuildContext context) => AboutUsScreenViewModel();
 }
 
 class _AboutProfileSection extends StatefulWidget {
@@ -114,8 +110,7 @@ class _AboutProfileSection extends StatefulWidget {
   State<_AboutProfileSection> createState() => _AboutProfileSectionState();
 }
 
-class _AboutProfileSectionState extends State<_AboutProfileSection>
-    with SingleTickerProviderStateMixin {
+class _AboutProfileSectionState extends State<_AboutProfileSection> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacity;
 
@@ -155,6 +150,7 @@ class _AboutProfileSectionState extends State<_AboutProfileSection>
                 Assets.images.avatar.path,
                 width: 88,
                 height: 88,
+                alignment: Alignment.topCenter,
                 fit: BoxFit.cover,
               ),
             ),
@@ -183,9 +179,7 @@ class _AboutProfileSectionState extends State<_AboutProfileSection>
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: ['Flutter', 'UI', 'Motion', 'Web + Mobile']
-                      .map((t) => _Chip(label: t))
-                      .toList(),
+                  children: ['Flutter', 'UI', 'Motion', 'Web + Mobile'].map((t) => _Chip(label: t)).toList(),
                 ),
               ],
             ),
@@ -201,8 +195,7 @@ class _AboutParagraph extends StatefulWidget {
   State<_AboutParagraph> createState() => _AboutParagraphState();
 }
 
-class _AboutParagraphState extends State<_AboutParagraph>
-    with SingleTickerProviderStateMixin {
+class _AboutParagraphState extends State<_AboutParagraph> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacity;
 
@@ -268,8 +261,7 @@ class _AboutDetailsSection extends StatefulWidget {
   State<_AboutDetailsSection> createState() => _AboutDetailsSectionState();
 }
 
-class _AboutDetailsSectionState extends State<_AboutDetailsSection>
-    with SingleTickerProviderStateMixin {
+class _AboutDetailsSectionState extends State<_AboutDetailsSection> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacity;
 
@@ -425,13 +417,9 @@ class _EducationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.appColors;
     return MouseRegion(
-      cursor: entry.url != null
-          ? SystemMouseCursors.click
-          : SystemMouseCursors.basic,
+      cursor: entry.url != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
-        onTap: entry.url != null
-            ? () => locator.get<UrlLauncherService>().open(entry.url!)
-            : null,
+        onTap: entry.url != null ? () => locator.get<UrlLauncherService>().open(entry.url!) : null,
         child: Container(
           padding: const EdgeInsets.all(SpacingTokens.lg),
           decoration: BoxDecoration(
@@ -460,29 +448,24 @@ class _EducationCard extends StatelessWidget {
                       children: [
                         Text(
                           entry.institution,
-                          style:
-                              Theme.of(context).textTheme.titleMedium?.copyWith(
-                                    color: c.textPrimary,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                color: c.textPrimary,
+                                fontWeight: FontWeight.w600,
+                              ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           entry.degree,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: c.textSecondary,
-                                  ),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: c.textSecondary,
+                              ),
                         ),
                         const SizedBox(height: 8),
                         Row(
                           children: [
                             Text(
                               entry.period,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall
-                                  ?.copyWith(
+                              style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                     color: c.textTertiary,
                                     letterSpacing: 0.2,
                                   ),
@@ -490,17 +473,11 @@ class _EducationCard extends StatelessWidget {
                             if (entry.score != null) ...[
                               Text(
                                 ' · ',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(color: c.textTertiary),
+                                style: Theme.of(context).textTheme.labelSmall?.copyWith(color: c.textTertiary),
                               ),
                               Text(
                                 entry.score!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
+                                style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                       color: c.accent,
                                       fontWeight: FontWeight.w600,
                                     ),

@@ -50,8 +50,7 @@ class ProjectsScreen extends StackedView<ProjectsScreenViewModel> {
                           project: projectsList[i],
                           index: i,
                         ),
-                        if (i < projectsList.length - 1)
-                          const SizedBox(height: SpacingTokens.lg),
+                        if (i < projectsList.length - 1) const SizedBox(height: SpacingTokens.lg),
                       ],
                     ],
                   );
@@ -80,8 +79,7 @@ class ProjectsScreen extends StackedView<ProjectsScreenViewModel> {
   }
 
   @override
-  ProjectsScreenViewModel viewModelBuilder(BuildContext context) =>
-      ProjectsScreenViewModel();
+  ProjectsScreenViewModel viewModelBuilder(BuildContext context) => ProjectsScreenViewModel();
 }
 
 class _ProjectCard extends StatefulWidget {
@@ -108,9 +106,7 @@ class _ProjectCardState extends State<_ProjectCard> {
       onExit: (_) => setState(() => _hovered = false),
       cursor: hasLink ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
-        onTap: hasLink
-            ? () => urlLauncher.open(project.demoUrl ?? project.githubUrl!)
-            : null,
+        onTap: hasLink ? () => urlLauncher.open(project.demoUrl ?? project.githubUrl!) : null,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 220),
           curve: Curves.easeOut,
@@ -123,9 +119,7 @@ class _ProjectCardState extends State<_ProjectCard> {
             ),
             boxShadow: [
               BoxShadow(
-                color: _hovered
-                    ? c.accent.withAlpha(18)
-                    : Colors.black.withAlpha(8),
+                color: _hovered ? c.accent.withAlpha(18) : Colors.black.withAlpha(8),
                 blurRadius: _hovered ? 24 : 10,
                 offset: Offset(0, _hovered ? 8 : 2),
               ),
@@ -255,9 +249,7 @@ class _ProjectCardState extends State<_ProjectCard> {
                       Wrap(
                         spacing: 6,
                         runSpacing: 6,
-                        children: project.technologies
-                            .map((t) => _TechTag(label: t))
-                            .toList(),
+                        children: project.technologies.map((t) => _TechTag(label: t)).toList(),
                       ),
                     ],
                   ],

@@ -30,8 +30,7 @@ class _DeferredLoaderState extends State<DeferredLoader> {
     return FutureBuilder<void>(
       future: _loadFuture,
       builder: (context, snapshot) {
-        final loaded = snapshot.connectionState == ConnectionState.done &&
-            !snapshot.hasError;
+        final loaded = snapshot.connectionState == ConnectionState.done && !snapshot.hasError;
         final content = loaded
             ? widget.builder(context)
             : (widget.loading ??

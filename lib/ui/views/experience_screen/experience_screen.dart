@@ -50,8 +50,7 @@ class ExperienceScreen extends StackedView<ExperienceScreenViewModel> {
   }
 
   @override
-  ExperienceScreenViewModel viewModelBuilder(BuildContext context) =>
-      ExperienceScreenViewModel();
+  ExperienceScreenViewModel viewModelBuilder(BuildContext context) => ExperienceScreenViewModel();
 }
 
 class _TimelineEntry extends StatelessWidget {
@@ -151,10 +150,7 @@ class _ExperienceCardState extends State<_ExperienceCard> {
   bool _hovered = false;
 
   static String _cleanPoint(String raw) {
-    return raw
-        .replaceAll(RegExp(r"\[b'[^']*']"), '')
-        .replaceAll('%20', ' ')
-        .trim();
+    return raw.replaceAll(RegExp(r"\[b'[^']*']"), '').replaceAll('%20', ' ').trim();
   }
 
   @override
@@ -182,8 +178,7 @@ class _ExperienceCardState extends State<_ExperienceCard> {
           ),
           boxShadow: [
             BoxShadow(
-              color:
-                  _hovered ? c.accent.withAlpha(12) : Colors.black.withAlpha(5),
+              color: _hovered ? c.accent.withAlpha(12) : Colors.black.withAlpha(5),
               blurRadius: _hovered ? 20 : 8,
               offset: Offset(0, _hovered ? 4 : 1),
             ),
@@ -238,12 +233,11 @@ class _ExperienceCardState extends State<_ExperienceCard> {
                     children: [
                       Text(
                         company.name,
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: c.textPrimary,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: -0.2,
-                                ),
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                              color: c.textPrimary,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: -0.2,
+                            ),
                       ),
                       const SizedBox(height: 4),
                       Container(
@@ -252,20 +246,16 @@ class _ExperienceCardState extends State<_ExperienceCard> {
                           vertical: 3,
                         ),
                         decoration: BoxDecoration(
-                          color:
-                              widget.isCurrent ? c.accent.withAlpha(12) : c.bg2,
+                          color: widget.isCurrent ? c.accent.withAlpha(12) : c.bg2,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
                           company.period,
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: widget.isCurrent
-                                        ? c.accent
-                                        : c.textTertiary,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.2,
-                                  ),
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                color: widget.isCurrent ? c.accent : c.textTertiary,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 0.2,
+                              ),
                         ),
                       ),
                     ],
@@ -298,12 +288,11 @@ class _ExperienceCardState extends State<_ExperienceCard> {
                         const SizedBox(width: 6),
                         Text(
                           'Current',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: c.success,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 0.3,
-                                  ),
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                color: c.success,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 0.3,
+                              ),
                         ),
                       ],
                     ),
@@ -332,8 +321,7 @@ class _ExperienceCardState extends State<_ExperienceCard> {
                             height: 5,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color:
-                                  widget.isCurrent ? c.accent : c.textTertiary,
+                              color: widget.isCurrent ? c.accent : c.textTertiary,
                             ),
                           ),
                         ),
@@ -341,10 +329,7 @@ class _ExperienceCardState extends State<_ExperienceCard> {
                         Expanded(
                           child: Text(
                             _cleanPoint(entry.value),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
-                                ?.copyWith(
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   color: c.textSecondary,
                                   height: 1.55,
                                 ),
@@ -378,10 +363,7 @@ class _SubTimeline extends StatelessWidget {
   final bool isCurrent;
 
   static String _cleanPoint(String raw) {
-    return raw
-        .replaceAll(RegExp(r"\[b'[^']*']"), '')
-        .replaceAll('%20', ' ')
-        .trim();
+    return raw.replaceAll(RegExp(r"\[b'[^']*']"), '').replaceAll('%20', ' ').trim();
   }
 
   @override
@@ -438,16 +420,12 @@ class _SubTimeline extends StatelessWidget {
                             if (subEntries[i].title != null)
                               Text(
                                 subEntries[i].title!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall
-                                    ?.copyWith(
+                                style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                       color: c.textPrimary,
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
-                            if (subEntries[i].title != null)
-                              const SizedBox(width: 8),
+                            if (subEntries[i].title != null) const SizedBox(width: 8),
                             Container(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 8,
@@ -459,10 +437,7 @@ class _SubTimeline extends StatelessWidget {
                               ),
                               child: Text(
                                 subEntries[i].period,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelSmall
-                                    ?.copyWith(
+                                style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                       color: c.textTertiary,
                                       fontSize: 11,
                                     ),
@@ -492,10 +467,7 @@ class _SubTimeline extends StatelessWidget {
                                     Expanded(
                                       child: Text(
                                         _cleanPoint(p),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodySmall
-                                            ?.copyWith(
+                                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                               color: c.textSecondary,
                                               height: 1.5,
                                             ),
@@ -528,18 +500,14 @@ class _SubTimeline extends StatelessWidget {
                                         ),
                                         decoration: BoxDecoration(
                                           color: c.accent.withAlpha(25),
-                                          borderRadius:
-                                              BorderRadius.circular(16),
+                                          borderRadius: BorderRadius.circular(16),
                                           border: Border.all(
                                             color: c.accent.withAlpha(80),
                                           ),
                                         ),
                                         child: Text(
                                           award.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelSmall
-                                              ?.copyWith(
+                                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                                 color: c.accent,
                                                 fontWeight: FontWeight.w500,
                                               ),

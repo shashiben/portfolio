@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dart_rss/domain/rss_feed.dart';
@@ -82,13 +83,13 @@ Future<void> main() async {
     'blogs.data.dart',
   );
 
-  print('Fetching from Medium...');
+  log('Fetching from Medium...');
   final response = await http.get(Uri.parse(_feedUrl)).timeout(
         const Duration(seconds: 15),
       );
 
   if (response.statusCode != 200) {
-    print('Failed to fetch: ${response.statusCode}');
+    log('Failed to fetch: ${response.statusCode}');
     exit(1);
   }
 
@@ -110,8 +111,7 @@ Future<void> main() async {
     buffer.writeln('  BlogItem(');
     buffer.writeln("    title: '${_escape(title)}',");
     buffer.writeln("    excerpt: '${_escape(excerpt)}',");
-    buffer.writeln(
-        "    url: ${link.isNotEmpty ? "'${_escape(link)}'" : 'null'},");
+    buffer.writeln("    url: ${link.isNotEmpty ? "'${_escape(link)}'" : 'null'},");
     buffer.writeln("    date: ${date.isNotEmpty ? "'$date'" : 'null'},");
     buffer.writeln('  ),');
   }
@@ -119,5 +119,5 @@ Future<void> main() async {
   buffer.writeln('];');
 
   await File(outputPath).writeAsString(buffer.toString());
-  print('Updated $outputPath with ${feed.items.length} articles.');
+  log('Updated $outputPath with ${feed.items.length} articles.');
 }

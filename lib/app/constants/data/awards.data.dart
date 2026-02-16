@@ -38,32 +38,28 @@ final List<AwardItem> awardList = [
     name: 'MVP OCT 2022',
     issuer: 'Webknot Technologies',
     year: 'Oct 2022',
-    description:
-        'Received MVP for excellent contribution towards the project U-Space.',
+    description: 'Received MVP for excellent contribution towards the project U-Space.',
   ),
   const AwardItem(
     id: 'spot_award_jan_2023',
     name: 'Spot Award Jan 2023',
     issuer: 'Webknot Technologies',
     year: 'Jan 2023',
-    description:
-        'Received Spot award for performance in the project Quadraverse.',
+    description: 'Received Spot award for performance in the project Quadraverse.',
   ),
   const AwardItem(
     id: 'spot_award_sep_2023',
     name: 'Spot Award September 2023',
     issuer: 'Betsol & Avaya',
     year: 'Sep 2023',
-    description:
-        'Received for exceptional performance with Betsol & Avaya Client.',
+    description: 'Received for exceptional performance with Betsol & Avaya Client.',
   ),
   const AwardItem(
     id: 'spot_award_betsol_apr_2024',
     name: 'Spot Award from Betsol',
     issuer: 'Betsol',
     year: 'Apr 2024',
-    description:
-        'Received for exceptional performance for Avaya CCaaS SDK development.',
+    description: 'Received for exceptional performance for Avaya CCaaS SDK development.',
   ),
   const AwardItem(
     id: 'spot_award_sep_2024',

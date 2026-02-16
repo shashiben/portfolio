@@ -34,6 +34,5 @@ class DashboardScreen extends StackedView<DashboardScreenViewModel> {
   }
 
   @override
-  DashboardScreenViewModel viewModelBuilder(BuildContext context) =>
-      DashboardScreenViewModel();
+  DashboardScreenViewModel viewModelBuilder(BuildContext context) => DashboardScreenViewModel();
 }

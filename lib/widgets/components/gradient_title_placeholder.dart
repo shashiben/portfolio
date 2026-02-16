@@ -21,8 +21,7 @@ class GradientTitlePlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.appColors;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final radius =
-        borderRadius ?? const BorderRadius.vertical(top: Radius.circular(15));
+    final radius = borderRadius ?? const BorderRadius.vertical(top: Radius.circular(15));
 
     final gradientColors = isDark
         ? [
@@ -40,9 +39,8 @@ class GradientTitlePlaceholder extends StatelessWidget {
             c.bg2,
           ];
 
-    final textShaderColors = isDark
-        ? [c.textPrimary, c.textPrimary.withAlpha(230)]
-        : [c.textPrimary, c.textPrimary.withAlpha(240)];
+    final textShaderColors =
+        isDark ? [c.textPrimary, c.textPrimary.withAlpha(230)] : [c.textPrimary, c.textPrimary.withAlpha(240)];
 
     return ClipRRect(
       borderRadius: radius,

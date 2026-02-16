@@ -40,8 +40,7 @@ List<Project> projectsList = [
   ),
   Project(
     name: 'Motion Detection Using OpenCv',
-    description:
-        'Detects motion of an object or a person and draws bounding box over it.',
+    description: 'Detects motion of an object or a person and draws bounding box over it.',
     technologies: ['Python', 'OpenCv'],
     githubUrl: 'https://github.com/shashiben/Motion-Detection-with-Opencv',
   ),
@@ -69,8 +68,7 @@ List<Project> projectsList = [
   ),
   Project(
     name: 'Portfolio',
-    description:
-        'Created portfolio using flutter. Supports for mac os, windows, linux, web, ios, android.',
+    description: 'Created portfolio using flutter. Supports for mac os, windows, linux, web, ios, android.',
     technologies: ['Flutter'],
     demoUrl: 'https://shashiben.github.io',
     githubUrl: 'https://github.com/shashiben/portfolio',

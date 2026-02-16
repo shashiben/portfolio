@@ -28,8 +28,7 @@ class AwardsScreen extends StackedView<AwardsScreenViewModel> {
   }
 
   @override
-  AwardsScreenViewModel viewModelBuilder(BuildContext context) =>
-      AwardsScreenViewModel();
+  AwardsScreenViewModel viewModelBuilder(BuildContext context) => AwardsScreenViewModel();
 }
 
 class _AwardsContent extends StatefulWidget {
@@ -94,9 +93,7 @@ class _AwardsContentState extends State<_AwardsContent> {
                 padding: const EdgeInsets.only(bottom: SpacingTokens.md),
                 child: _AwardCard(
                   item: award,
-                  onOpen: award.url != null
-                      ? () => locator.get<UrlLauncherService>().open(award.url!)
-                      : null,
+                  onOpen: award.url != null ? () => locator.get<UrlLauncherService>().open(award.url!) : null,
                   isHighlighted: award.id == widget.highlightId,
                 ),
               ),
@@ -181,8 +178,7 @@ class _AwardCard extends StatelessWidget {
                         ),
                   ),
                 ],
-                if (item.description != null &&
-                    item.description!.isNotEmpty) ...[
+                if (item.description != null && item.description!.isNotEmpty) ...[
                   const SizedBox(height: 6),
                   Text(
                     item.description!,

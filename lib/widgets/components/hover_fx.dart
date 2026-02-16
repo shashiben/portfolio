@@ -41,8 +41,7 @@ class _HoverFxState extends State<HoverFx> with SingleTickerProviderStateMixin {
 
   late final AnimationController _c;
 
-  late Animation<Offset> _offsetAnim =
-      const AlwaysStoppedAnimation(Offset.zero);
+  late Animation<Offset> _offsetAnim = const AlwaysStoppedAnimation(Offset.zero);
   late Animation<double> _scaleAnim = const AlwaysStoppedAnimation(1.0);
 
   Offset _offset = Offset.zero;
@@ -93,19 +92,15 @@ class _HoverFxState extends State<HoverFx> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final enabled =
-        widget.enabled && (widget.onTap != null || widget.hoverOnly);
+    final enabled = widget.enabled && (widget.onTap != null || widget.hoverOnly);
     final hovered = enabled && _supportsHover && _hovered;
     final pressed = enabled && _pressed;
 
-    final targetScale =
-        pressed ? widget.pressScale : (hovered ? widget.hoverScale : 1.0);
+    final targetScale = pressed ? widget.pressScale : (hovered ? widget.hoverScale : 1.0);
     final targetOffset = hovered ? widget.hoverOffset : Offset.zero;
 
     return MouseRegion(
-      cursor: widget.onTap != null
-          ? (widget.mouseCursor ?? SystemMouseCursors.click)
-          : MouseCursor.defer,
+      cursor: widget.onTap != null ? (widget.mouseCursor ?? SystemMouseCursors.click) : MouseCursor.defer,
       onEnter: (_) {
         setState(() => _hovered = true);
         _animateTo(offset: targetOffset, scale: targetScale);

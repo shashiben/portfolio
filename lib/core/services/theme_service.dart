@@ -51,9 +51,7 @@ class ThemeService extends ChangeNotifier {
   }
 
   void toggleTheme() {
-    _themeMode = _themeMode == AppThemeMode.light
-        ? AppThemeMode.dark
-        : AppThemeMode.light;
+    _themeMode = _themeMode == AppThemeMode.light ? AppThemeMode.dark : AppThemeMode.light;
     _save();
     notifyListeners();
   }

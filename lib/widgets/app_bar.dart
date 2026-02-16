@@ -74,9 +74,7 @@ class AppBarWidget extends StatelessWidget {
           const Spacer(),
           IconButton(
             icon: Icon(
-              themeService.themeMode == AppThemeMode.dark
-                  ? Icons.light_mode_rounded
-                  : Icons.dark_mode_rounded,
+              themeService.themeMode == AppThemeMode.dark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
               color: c.textSecondary,
             ),
             onPressed: () => themeService.toggleTheme(),
@@ -118,9 +116,7 @@ class AppBarWidget extends StatelessWidget {
                 title: Text(
                   item.label,
                   style: TextStyle(
-                    color: _isSelected(currentPath, item.path)
-                        ? c.accent
-                        : c.textPrimary,
+                    color: _isSelected(currentPath, item.path) ? c.accent : c.textPrimary,
                   ),
                 ),
                 onTap: () {

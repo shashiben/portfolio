@@ -47,9 +47,7 @@ class BlogsScreen extends StackedView<BlogsScreenViewModel> {
                 padding: const EdgeInsets.only(bottom: SpacingTokens.md),
                 child: _BlogCard(
                   item: blog,
-                  onOpen: blog.url != null
-                      ? () => locator.get<UrlLauncherService>().open(blog.url!)
-                      : null,
+                  onOpen: blog.url != null ? () => locator.get<UrlLauncherService>().open(blog.url!) : null,
                 ),
               ),
             ),
@@ -61,8 +59,7 @@ class BlogsScreen extends StackedView<BlogsScreenViewModel> {
   }
 
   @override
-  BlogsScreenViewModel viewModelBuilder(BuildContext context) =>
-      BlogsScreenViewModel();
+  BlogsScreenViewModel viewModelBuilder(BuildContext context) => BlogsScreenViewModel();
 }
 
 class _BlogCard extends StatelessWidget {

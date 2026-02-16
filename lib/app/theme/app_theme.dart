@@ -58,8 +58,7 @@ abstract final class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: ColorTokens.lightTextSecondary,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
       extensions: [AppThemeColors.light()],
@@ -115,8 +114,7 @@ abstract final class AppTheme {
         style: TextButton.styleFrom(
           foregroundColor: ColorTokens.darkTextSecondary,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
       extensions: [AppThemeColors.dark()],

@@ -14,8 +14,7 @@ class $AssetsIconsGen {
   AssetGenImage get django => const AssetGenImage('assets/icons/django.png');
 
   /// File path: assets/icons/firebase.png
-  AssetGenImage get firebase =>
-      const AssetGenImage('assets/icons/firebase.png');
+  AssetGenImage get firebase => const AssetGenImage('assets/icons/firebase.png');
 
   /// File path: assets/icons/flutter.png
   AssetGenImage get flutter => const AssetGenImage('assets/icons/flutter.png');
@@ -51,28 +50,23 @@ class $AssetsImagesCompanyGen {
   const $AssetsImagesCompanyGen();
 
   /// File path: assets/images/company/naaniz.png
-  AssetGenImage get naaniz =>
-      const AssetGenImage('assets/images/company/naaniz.png');
+  AssetGenImage get naaniz => const AssetGenImage('assets/images/company/naaniz.png');
 
   /// File path: assets/images/company/webknot.png
-  AssetGenImage get webknot =>
-      const AssetGenImage('assets/images/company/webknot.png');
+  AssetGenImage get webknot => const AssetGenImage('assets/images/company/webknot.png');
 }
 
 class $AssetsImagesSkillGen {
   const $AssetsImagesSkillGen();
 
   /// File path: assets/images/skill/android.png
-  AssetGenImage get android =>
-      const AssetGenImage('assets/images/skill/android.png');
+  AssetGenImage get android => const AssetGenImage('assets/images/skill/android.png');
 
   /// File path: assets/images/skill/backend.png
-  AssetGenImage get backend =>
-      const AssetGenImage('assets/images/skill/backend.png');
+  AssetGenImage get backend => const AssetGenImage('assets/images/skill/backend.png');
 
   /// File path: assets/images/skill/luffy.png
-  AssetGenImage get luffy =>
-      const AssetGenImage('assets/images/skill/luffy.png');
+  AssetGenImage get luffy => const AssetGenImage('assets/images/skill/luffy.png');
 
   /// File path: assets/images/skill/ml.png
   AssetGenImage get ml => const AssetGenImage('assets/images/skill/ml.png');

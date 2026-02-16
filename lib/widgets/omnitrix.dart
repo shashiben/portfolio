@@ -1,9 +1,14 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:dev_utils/screen_utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../app/constants/data/skill.data.dart';
 import '../app/tokens/tokens.dart';
 import 'painters/triangle.painter.dart';
+
+bool _isNetworkUrl(String url) => url.startsWith('http://') || url.startsWith('https://');
 
 class OmnitrixWidget extends StatefulWidget {
   final double? size;
@@ -16,8 +21,7 @@ class OmnitrixWidget extends StatefulWidget {
   State<OmnitrixWidget> createState() => _OmnitrixWidgetState();
 }
 
-class _OmnitrixWidgetState extends State<OmnitrixWidget>
-    with TickerProviderStateMixin {
+class _OmnitrixWidgetState extends State<OmnitrixWidget> with TickerProviderStateMixin {
   late AnimationController scaleController;
   late AnimationController fadeController;
   int index = 0;
@@ -35,8 +39,7 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
       reverseDuration: const Duration(milliseconds: 800),
     )..addStatusListener((status) {
         setState(() {
-          isPageScrolling.value = status == AnimationStatus.forward ||
-              status == AnimationStatus.reverse;
+          isPageScrolling.value = status == AnimationStatus.forward || status == AnimationStatus.reverse;
         });
       });
     rotationController = AnimationController(
@@ -106,9 +109,7 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
         final maxH = constraints.maxHeight;
         double size = widget.size ?? _baseSize;
         if (widget.size == null && (maxW.isFinite || maxH.isFinite)) {
-          final limit = maxW.isFinite && maxH.isFinite
-              ? (maxW < maxH ? maxW : maxH)
-              : (maxW.isFinite ? maxW : maxH);
+          final limit = maxW.isFinite && maxH.isFinite ? (maxW < maxH ? maxW : maxH) : (maxW.isFinite ? maxW : maxH);
           size = limit.isFinite ? limit.clamp(_minSize, _maxSize) : _baseSize;
         } else if (widget.size != null) {
           size = size.clamp(_minSize, _maxSize);
@@ -138,8 +139,7 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                       children: [
                         ValueListenableBuilder(
                           valueListenable: isPageScrolling,
-                          builder: (context, bool isAnimating, child) =>
-                              CustomPaint(
+                          builder: (context, bool isAnimating, child) => CustomPaint(
                             size: Size(radius, radius),
                             painter: _OuterRingPainter(
                               ringColor: const Color(0xFF363636),
@@ -176,34 +176,30 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                       width: innerSize,
                       height: innerSize,
                       child: Container(
-                        padding: EdgeInsets.all(
-                            SpacingTokens.omnitrixInnerPadding * scale),
+                        padding: EdgeInsets.all(SpacingTokens.omnitrixInnerPadding * scale),
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.black,
                         ),
                         child: Container(
-                          padding: EdgeInsets.all(
-                              SpacingTokens.omnitrixRingPadding * scale),
+                          padding: EdgeInsets.all(SpacingTokens.omnitrixRingPadding * scale),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.white,
                           ),
                           child: Container(
-                            padding: EdgeInsets.all(
-                                SpacingTokens.omnitrixRingPadding * scale),
+                            padding: EdgeInsets.all(SpacingTokens.omnitrixRingPadding * scale),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.black,
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                  SpacingTokens.omnitrixBorderRadius * scale),
+                              borderRadius: BorderRadius.circular(SpacingTokens.omnitrixBorderRadius * scale),
                               child: Stack(
                                 children: [
                                   Container(
                                     decoration: const BoxDecoration(
-                                      color: Colors.green,
+                                      color: const Color(0xFF363636),
                                     ),
                                     child: ClipPath(
                                       clipper: DiamondClipper(),
@@ -211,8 +207,7 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                                         color: Colors.black,
                                         child: GestureDetector(
                                           onHorizontalDragEnd: (details) {
-                                            final v =
-                                                details.primaryVelocity ?? 0;
+                                            final v = details.primaryVelocity ?? 0;
                                             if (v < -100) {
                                               _goToNext();
                                             } else if (v > 100) {
@@ -220,41 +215,42 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                                             }
                                           },
                                           child: PageView.builder(
-                                            physics:
-                                                const NeverScrollableScrollPhysics(),
+                                            physics: const NeverScrollableScrollPhysics(),
                                             itemCount: skillList.length,
                                             controller: pageController,
                                             scrollBehavior: AppScrollBehavior(),
-                                            itemBuilder: (context, index) =>
-                                                Container(
+                                            itemBuilder: (context, index) => Container(
                                               color: Colors.grey,
                                               child: Container(
                                                 color: Colors.black,
-                                                padding: EdgeInsets.all(
-                                                    SpacingTokens
-                                                            .omnitrixContentPadding *
-                                                        scale),
+                                                padding: EdgeInsets.all(SpacingTokens.omnitrixContentPadding * scale),
                                                 child: ClipPath(
                                                   clipper: DiamondClipper(),
                                                   child: FadeTransition(
-                                                    opacity: Tween(
-                                                            begin: 1.0,
-                                                            end: 0.0)
-                                                        .animate(
-                                                            fadeController),
+                                                    opacity: Tween(begin: 1.0, end: 0.0).animate(fadeController),
                                                     child: Container(
-                                                      decoration:
-                                                          const BoxDecoration(
+                                                      decoration: const BoxDecoration(
                                                         color: Colors.green,
                                                       ),
                                                       child: Center(
-                                                        child: Image.asset(
-                                                          skillList[index]
-                                                              .image,
-                                                          fit: BoxFit.contain,
-                                                          height: innerSize / 2,
-                                                          width: innerSize / 2,
-                                                        ),
+                                                        child: _isNetworkUrl(skillList[index].image)
+                                                            ? SvgPicture.network(
+                                                                skillList[index].image,
+                                                                fit: BoxFit.contain,
+                                                                height: 50,
+                                                                width: 50,
+                                                                placeholderBuilder: (_) => Icon(
+                                                                  Icons.code,
+                                                                  size: innerSize / 2,
+                                                                  color: Colors.white70,
+                                                                ),
+                                                              )
+                                                            : Image.asset(
+                                                                skillList[index].image,
+                                                                fit: BoxFit.contain,
+                                                                height: innerSize / 2,
+                                                                width: innerSize / 2,
+                                                              ),
                                                       ),
                                                     ),
                                                   ),
@@ -268,23 +264,18 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                                   ),
                                   Positioned(
                                     child: SizedBox(
-                                      width: SpacingTokens.omnitrixOverlaySize *
-                                          scale,
-                                      height:
-                                          SpacingTokens.omnitrixOverlaySize *
-                                              scale,
+                                      width: SpacingTokens.omnitrixOverlaySize * scale,
+                                      height: SpacingTokens.omnitrixOverlaySize * scale,
                                       child: Row(
                                         children: [
                                           Expanded(
                                             child: ScaleTransition(
                                               alignment: Alignment.centerLeft,
-                                              scale: Tween(begin: 0.0, end: 1.0)
-                                                  .animate(scaleController),
+                                              scale: Tween(begin: 0.0, end: 1.0).animate(scaleController),
                                               child: ClipPath(
                                                 clipper: TriangleClipperr(),
                                                 child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Colors.black,
                                                   ),
                                                   child: const Center(),
@@ -295,15 +286,13 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                                           Expanded(
                                             child: ScaleTransition(
                                               alignment: Alignment.centerRight,
-                                              scale: Tween(begin: 0.0, end: 1.0)
-                                                  .animate(scaleController),
+                                              scale: Tween(begin: 0.0, end: 1.0).animate(scaleController),
                                               child: ClipPath(
                                                 clipper: TriangleClipperr(
                                                   type: TriangleType.right,
                                                 ),
                                                 child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Colors.black,
                                                   ),
                                                   child: const Center(),
@@ -317,25 +306,20 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                                   ),
                                   Positioned(
                                     child: SizedBox(
-                                      width: SpacingTokens.omnitrixOverlaySize *
-                                          scale,
-                                      height:
-                                          SpacingTokens.omnitrixOverlaySize *
-                                              scale,
+                                      width: SpacingTokens.omnitrixOverlaySize * scale,
+                                      height: SpacingTokens.omnitrixOverlaySize * scale,
                                       child: Column(
                                         children: [
                                           Expanded(
                                             child: ScaleTransition(
                                               alignment: Alignment.topCenter,
-                                              scale: Tween(begin: 0.0, end: 1.0)
-                                                  .animate(scaleController),
+                                              scale: Tween(begin: 0.0, end: 1.0).animate(scaleController),
                                               child: ClipPath(
                                                 clipper: TriangleClipperr(
                                                   type: TriangleType.top,
                                                 ),
                                                 child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Colors.white,
                                                   ),
                                                   child: const Center(),
@@ -346,15 +330,13 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget>
                                           Expanded(
                                             child: ScaleTransition(
                                               alignment: Alignment.bottomCenter,
-                                              scale: Tween(begin: 0.0, end: 1.0)
-                                                  .animate(scaleController),
+                                              scale: Tween(begin: 0.0, end: 1.0).animate(scaleController),
                                               child: ClipPath(
                                                 clipper: TriangleClipperr(
                                                   type: TriangleType.bottom,
                                                 ),
                                                 child: Container(
-                                                  decoration:
-                                                      const BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     color: Colors.white,
                                                   ),
                                                   child: const Center(),
@@ -450,12 +432,9 @@ class _OuterRingPainter extends CustomPainter {
       );
     }
 
-    final outerPath = Path()
-      ..addOval(Rect.fromCircle(center: center, radius: outerRadius));
-    final innerPath = Path()
-      ..addOval(Rect.fromCircle(center: center, radius: innerRadius));
-    final ringPath =
-        Path.combine(PathOperation.difference, outerPath, innerPath);
+    final outerPath = Path()..addOval(Rect.fromCircle(center: center, radius: outerRadius));
+    final innerPath = Path()..addOval(Rect.fromCircle(center: center, radius: innerRadius));
+    final ringPath = Path.combine(PathOperation.difference, outerPath, innerPath);
 
     canvas.drawPath(
       ringPath,
@@ -474,9 +453,7 @@ class _OuterRingPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _OuterRingPainter oldDelegate) =>
-      oldDelegate.ringColor != ringColor ||
-      oldDelegate.innerRadius != innerRadius ||
-      oldDelegate.glow != glow;
+      oldDelegate.ringColor != ringColor || oldDelegate.innerRadius != innerRadius || oldDelegate.glow != glow;
 }
 
 class DiamondClipper extends CustomClipper<Path> {

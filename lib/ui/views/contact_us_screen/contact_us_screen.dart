@@ -115,8 +115,7 @@ class ContactUsScreen extends StackedView<ContactUsScreenViewModel> {
             ),
             const SizedBox(height: 4),
             GestureDetector(
-              onTap: () => urlLauncher.open(
-                  'tel:${MYInfo.phone.replaceAll(RegExp(r'[\s\-]'), '')}'),
+              onTap: () => urlLauncher.open('tel:${MYInfo.phone.replaceAll(RegExp(r'[\s\-]'), '')}'),
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: Text(
@@ -137,8 +136,7 @@ class ContactUsScreen extends StackedView<ContactUsScreenViewModel> {
   }
 
   @override
-  ContactUsScreenViewModel viewModelBuilder(BuildContext context) =>
-      ContactUsScreenViewModel();
+  ContactUsScreenViewModel viewModelBuilder(BuildContext context) => ContactUsScreenViewModel();
 }
 
 class _LinkChip extends StatelessWidget {

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shashiben.github.io/portfolio/sitemap.xml
+Sitemap: https://shashiben.me/sitemap.xml
