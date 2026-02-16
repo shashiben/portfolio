@@ -1,32 +1,58 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:stacked_services/stacked_services.dart';
-import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter/material.dart';
+import 'package:rive/rive.dart';
 
-import 'app/locator.dart';
-import 'app/theme.dart';
-import 'ui/views/main/main_view.dart';
+import 'app/app.locator.dart';
+import 'app/app.router.dart';
+import 'app/theme/app_theme.dart';
+import 'core/services/theme_service.dart';
 
-Future main() async {
-  setPathUrlStrategy();
-  await setupLocator();
-  runApp(MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
+  try {
+    await RiveNative.init();
+  } on Object catch (_) {
+    assert(true);
+  }
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late final ThemeService _themeService;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeService = locator.get<ThemeService>();
+    _themeService.addListener(_onThemeChanged);
+  }
+
+  @override
+  void dispose() {
+    _themeService.removeListener(_onThemeChanged);
+    super.dispose();
+  }
+
+  void _onThemeChanged() => setState(() {});
+
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
-      navigatorKey: StackedService.navigatorKey,
-      title: 'Shashi Kumar',
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
+      title: 'Portfolio',
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: _themeService.flutterThemeMode,
       debugShowCheckedModeBanner: false,
-      home: const MainView(),
-      themeMode: ((defaultTargetPlatform == TargetPlatform.iOS) ||
-              (defaultTargetPlatform == TargetPlatform.android))
-          ? ThemeMode.dark
-          : ThemeMode.light,
-      theme: neumorphicLightTheme,
-      darkTheme: neumorphicDarkTheme,
     );
   }
 }

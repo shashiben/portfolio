@@ -1,0 +1,49 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+
+  errors:
+    missing_required_param: error
+    missing_return: error
+    dead_code: warning
+    avoid_print: warning
+
+linter:
+  rules:
+    always_declare_return_types: true
+    annotate_overrides: true
+    avoid_catching_errors: true
+    avoid_empty_else: true
+    avoid_redundant_argument_values: false
+    avoid_relative_lib_imports: true
+    avoid_setters_without_getters: false
+    avoid_unnecessary_containers: true
+    avoid_void_async: true
+    camel_case_extensions: true
+    camel_case_types: true
+    constant_identifier_names: true
+    curly_braces_in_flow_control_structures: true
+    leading_newlines_in_multiline_strings: true
+    library_names: true
+    library_prefixes: true
+    non_constant_identifier_names: true
+    prefer_const_constructors: false
+    prefer_final_fields: true
+    prefer_final_in_for_each: true
+    prefer_relative_imports: true
+    prefer_single_quotes: true
+    slash_for_doc_comments: true
+    unnecessary_brace_in_string_interps: true
+    use_function_type_syntax_for_parameters: true
+
+    # Relax purely stylistic rules to get a clean `flutter analyze`:
+    avoid_catches_without_on_clauses: false
+    cascade_invocations: false
+    prefer_const_declarations: false
+    prefer_expression_function_bodies: false
+    require_trailing_commas: false
+    library_private_types_in_public_api: false
+
