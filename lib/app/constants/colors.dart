@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
 
 class ColorConfigs {
-  static const Color primaryColor = Colors.black;
-  static const Color backgroundColor = Color(0xffFEFEFF);
-  static const Color textSecondaryColor = Color(0xFF656270);
-  static const Color secondaryBgColor = Color(0xFFF9F9F9);
-  static const Color iconColor = Colors.black;
-  static const Color btnColor = Colors.black;
+  static const Color primaryColor = AppColors.bg0;
+  static const Color backgroundColor = AppColors.bg0;
+  static const Color textSecondaryColor = AppColors.textSecondary;
+  static const Color secondaryBgColor = AppColors.bg1;
+  static const Color iconColor = AppColors.textPrimary;
+  static const Color btnColor = AppColors.accentBlue;
 }

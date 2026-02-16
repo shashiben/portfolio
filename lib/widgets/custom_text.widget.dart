@@ -5,11 +5,11 @@ class CustomText extends StatelessWidget {
   final String text;
   final TextStyle? style;
   const CustomText({
-    Key? key,
+    super.key,
     this.textMap = const {},
     required this.text,
     this.style,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +19,20 @@ class CustomText extends StatelessWidget {
         if (element.startsWith('[') && element.endsWith(']')) {
           String key = element[1];
           String text =
-              element.substring(3, element.length - 1).replaceAll("%20", " ");
-          result.add(TextSpan(
-            text: "$text ",
-            style: textMap[key] ?? style,
-          ));
+              element.substring(3, element.length - 1).replaceAll('%20', ' ');
+          result.add(
+            TextSpan(
+              text: '$text ',
+              style: textMap[key] ?? style,
+            ),
+          );
         } else {
-          result.add(TextSpan(
-            text: "$element ",
-            style: style,
-          ));
+          result.add(
+            TextSpan(
+              text: '$element ',
+              style: style,
+            ),
+          );
         }
       });
       return result;

@@ -43,11 +43,11 @@ class DirectionalSwipeViewModel extends BaseViewModel {
 
 class DirectionalSwipeDetector extends StackedView<DirectionalSwipeViewModel> {
   const DirectionalSwipeDetector({
-    Key? key,
+    super.key,
     required this.child,
     this.threshold = 50,
     required this.onSwipe,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final double threshold;
@@ -58,22 +58,23 @@ class DirectionalSwipeDetector extends StackedView<DirectionalSwipeViewModel> {
     BuildContext context,
     DirectionalSwipeViewModel viewModel,
     Widget? child,
-  ) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onPanStart: (details) => viewModel.startSwipe(details.localPosition),
-      onPanUpdate: (details) {
-        final direction = viewModel.updateSwipe(details.localPosition, threshold);
-        if (direction != null) {
-          onSwipe?.call(direction);
-        }
-      },
-      onPanCancel: () => viewModel.resetSwipe(),
-      onPanEnd: (details) => viewModel.resetSwipe(),
-      child: this.child,
-    );
-  }
+  ) =>
+      GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onPanStart: (details) => viewModel.startSwipe(details.localPosition),
+        onPanUpdate: (details) {
+          final direction =
+              viewModel.updateSwipe(details.localPosition, threshold);
+          if (direction != null) {
+            onSwipe?.call(direction);
+          }
+        },
+        onPanCancel: () => viewModel.resetSwipe(),
+        onPanEnd: (details) => viewModel.resetSwipe(),
+        child: this.child,
+      );
 
   @override
-  DirectionalSwipeViewModel viewModelBuilder(BuildContext context) => DirectionalSwipeViewModel();
+  DirectionalSwipeViewModel viewModelBuilder(BuildContext context) =>
+      DirectionalSwipeViewModel();
 }

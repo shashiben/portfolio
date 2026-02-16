@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/models/project.model.dart';
+
+import '../core/models/project.model.dart';
+import 'components/gradient_title_placeholder.dart';
 
 class ProjectItem extends StatefulWidget {
   final Project project;
   const ProjectItem({
-    Key? key,
+    super.key,
     required this.project,
-  }) : super(key: key);
+  });
 
   @override
   State<ProjectItem> createState() => _ProjectItemState();
@@ -14,17 +16,17 @@ class ProjectItem extends StatefulWidget {
 
 class _ProjectItemState extends State<ProjectItem> {
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: Stack(
-        children: [
-          Image.asset(
-            widget.project.image,
-            height: 250,
-          )
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => SizedBox(
+        height: 250,
+        child: widget.project.image != null && widget.project.image!.isNotEmpty
+            ? Image.asset(
+                widget.project.image!,
+                height: 250,
+                fit: BoxFit.cover,
+              )
+            : GradientTitlePlaceholder(
+                title: widget.project.name,
+                aspectRatio: 16 / 9,
+              ),
+      );
 }

@@ -7,33 +7,30 @@ class NextNavBar extends StatelessWidget {
   final EdgeInsets padding;
 
   const NextNavBar({
-    Key? key,
+    super.key,
     this.backgroundColor,
     this.header,
     this.padding = const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
     this.backgroundDecoration,
-  })  : assert(
+  }) : assert(
           backgroundColor == null || backgroundDecoration == null,
           'Cannot provide both a color and a decoration\n'
           'To provide both, use "decoration: BoxDecoration(color: color)".',
-        ),
-        super(key: key);
+        );
 
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        double maxWidth = constraints.maxWidth;
-        return Container(
-          width: maxWidth,
-          padding: padding,
-          decoration: backgroundDecoration,
-          color: backgroundColor,
-          child: Row(
-            children: [header ?? const SizedBox()],
-          ),
-        );
-      },
-    );
-  }
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) {
+          double maxWidth = constraints.maxWidth;
+          return Container(
+            width: maxWidth,
+            padding: padding,
+            decoration: backgroundDecoration,
+            color: backgroundColor,
+            child: Row(
+              children: [header ?? const SizedBox()],
+            ),
+          );
+        },
+      );
 }

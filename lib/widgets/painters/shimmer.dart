@@ -144,9 +144,10 @@ class _Shimmer extends SingleChildRenderObjectWidget {
 
   @override
   void updateRenderObject(BuildContext context, _ShimmerFilter shimmer) {
-    shimmer.percent = percent;
-    shimmer.gradient = gradient;
-    shimmer.direction = direction;
+    shimmer
+      ..percent = percent
+      ..gradient = gradient
+      ..direction = direction;
   }
 }
 

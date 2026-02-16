@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FullscreenKeyboardListener extends StatefulWidget {
-  const FullscreenKeyboardListener(
-      {Key? key,
-      required this.child,
-      this.onKeyDown,
-      this.onKeyUp,
-      this.onKeyRepeat})
-      : super(key: key);
+  const FullscreenKeyboardListener({
+    super.key,
+    required this.child,
+    this.onKeyDown,
+    this.onKeyUp,
+    this.onKeyRepeat,
+  });
   final Widget child;
   final bool Function(KeyDownEvent event)? onKeyDown;
   final bool Function(KeyUpEvent event)? onKeyUp;

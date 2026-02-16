@@ -1,4 +1,4 @@
 class StringConstants {
   static const String shortDesc =
-      'Experienced full stack developer who care deeply about building interfaces that are usable and pleasant for the most number of people. Skilled with working as a team and incorporating input into projects. Strong eye for detail and tenacity to never quit on something until it is absolutely perfect.';
+      'I\'m Shashi Kumar, a full stack developer specializing in Flutter applications that work across all platforms and browsers. I care deeply about building interfaces that are usable and pleasant for the most number of people possible. My motto: always build pixel-perfect, high-performant applications that deliver a rich user experience.';
 }

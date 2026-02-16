@@ -7,7 +7,7 @@ class MobilePhone extends StatelessWidget {
   final double mobileBorderWidth, mobileBorderRadius;
   final ButtonPosition volumeUp, volumneDown, powerBtn;
   const MobilePhone({
-    Key? key,
+    super.key,
     this.width,
     this.child,
     this.height,
@@ -18,7 +18,7 @@ class MobilePhone extends StatelessWidget {
     this.volumeUp = (const ButtonPosition(top: 45, left: 0)),
     this.volumneDown = (const ButtonPosition(top: 85, left: 0)),
     this.powerBtn = (const ButtonPosition(top: 60, right: 0)),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,83 +38,100 @@ class MobilePhone extends StatelessWidget {
               height: mobileHeight,
               width: mobileWidth,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(width: mobileBorderWidth),
-                  borderRadius: BorderRadius.circular(mobileBorderRadius)),
+                color: Colors.white,
+                border: Border.all(width: mobileBorderWidth),
+                borderRadius: BorderRadius.circular(mobileBorderRadius),
+              ),
               child: child,
             ),
           ),
           Positioned(
-              right: volumeUp.right,
-              bottom: volumeUp.bottom,
-              left: volumeUp.left,
-              top: volumeUp.top,
-              child: Container(
-                width: volumeBtnSize.width,
-                height: volumeBtnSize.height,
-                decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20))),
-              )),
+            right: volumeUp.right,
+            bottom: volumeUp.bottom,
+            left: volumeUp.left,
+            top: volumeUp.top,
+            child: Container(
+              width: volumeBtnSize.width,
+              height: volumeBtnSize.height,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+              ),
+            ),
+          ),
           Positioned(
-              right: volumneDown.right,
-              bottom: volumneDown.bottom,
-              left: volumneDown.left,
-              top: volumneDown.top,
-              child: Container(
-                width: volumeBtnSize.width,
-                height: volumeBtnSize.height,
-                decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        bottomLeft: Radius.circular(20))),
-              )),
+            right: volumneDown.right,
+            bottom: volumneDown.bottom,
+            left: volumneDown.left,
+            top: volumneDown.top,
+            child: Container(
+              width: volumeBtnSize.width,
+              height: volumeBtnSize.height,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+              ),
+            ),
+          ),
           Positioned(
-              right: powerBtn.right,
-              bottom: powerBtn.bottom,
-              left: powerBtn.left,
-              top: powerBtn.top,
-              child: Container(
-                width: powerBtnSize.width,
-                height: powerBtnSize.height,
-                decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(20),
-                        topRight: Radius.circular(20))),
-              )),
+            right: powerBtn.right,
+            bottom: powerBtn.bottom,
+            left: powerBtn.left,
+            top: powerBtn.top,
+            child: Container(
+              width: powerBtnSize.width,
+              height: powerBtnSize.height,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+            ),
+          ),
           Positioned(
-              top: 0,
-              right: 0,
-              left: 0,
-              child: Center(
-                child: Container(
-                  width: 100,
-                  height: 15,
-                  decoration: const BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20))),
-                  child: Center(
-                      child: Container(
+            top: 0,
+            right: 0,
+            left: 0,
+            child: Center(
+              child: Container(
+                width: 100,
+                height: 15,
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20),
+                  ),
+                ),
+                child: Center(
+                  child: Container(
                     width: 6,
                     height: 6,
                     decoration: const BoxDecoration(
-                        gradient: RadialGradient(colors: [
+                      gradient: RadialGradient(
+                        colors: [
                           Colors.black87,
                           Colors.black,
                           Colors.grey,
-                          Colors.white
-                        ]),
-                        shape: BoxShape.circle,
-                        color: Colors.grey),
-                  )),
+                          Colors.white,
+                        ],
+                      ),
+                      shape: BoxShape.circle,
+                      color: Colors.grey,
+                    ),
+                  ),
                 ),
-              ))
+              ),
+            ),
+          ),
         ],
       ),
     );
