@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -5,141 +7,59 @@ import '../app/app.locator.dart';
 import '../app/app.router.dart';
 import '../app/constants/data/my_info.data.dart';
 import '../app/constants/route_constants.dart';
+import '../app/theme/app_motion.dart';
 import '../app/theme/app_theme_colors.dart';
-import '../core/services/theme_service.dart';
-import 'components/hover_fx.dart';
+import '../core/services/url_launcher_service.dart';
+import 'fx/fx.dart';
+
+void _transformTo(String path) => transformController.play(atPeak: () => router.go(path));
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({super.key});
 
   static const List<_NavItem> _navItems = [
     _NavItem(path: RouteConstants.home, label: 'Home'),
-    _NavItem(path: RouteConstants.about, label: 'About'),
-    _NavItem(path: RouteConstants.experience, label: 'Experience'),
-    _NavItem(path: RouteConstants.projects, label: 'Projects'),
+    _NavItem(path: RouteConstants.journey, label: 'Journey'),
+    _NavItem(path: RouteConstants.work, label: 'Work'),
     _NavItem(path: RouteConstants.contact, label: 'Contact'),
   ];
 
   @override
   Widget build(BuildContext context) {
     final c = context.appColors;
+    final width = MediaQuery.sizeOf(context).width;
+    final isWide = width >= 800;
     final currentPath = GoRouterState.of(context).uri.path;
-    final isWide = MediaQuery.sizeOf(context).width >= 800;
-    final themeService = locator.get<ThemeService>();
+    final selected = _navItems.indexWhere((item) => currentPath.startsWith(item.path));
 
     return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: isWide ? 32 : 24,
-        vertical: 16,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: isWide ? 32 : 16, vertical: 12),
       decoration: BoxDecoration(
-        color: c.bg1,
-        border: Border(
-          bottom: BorderSide(color: c.line),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(10),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        color: c.bg0.withValues(alpha: 0.72),
+        border: Border(bottom: BorderSide(color: c.accent.withValues(alpha: 0.18))),
       ),
       child: Row(
         children: [
-          HoverFx(
-            onTap: () => router.go(RouteConstants.home),
-            child: Text(
-              MYInfo.name,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: c.textPrimary,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.3,
-                  ),
-            ),
-          ),
-          const SizedBox(width: 32),
-          if (isWide) ...[
-            ..._navItems.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: _NavLink(
-                  path: item.path,
-                  label: item.label,
-                  isSelected: _isSelected(currentPath, item.path),
-                ),
+          GestureDetector(
+            onTap: () => _transformTo(RouteConstants.home),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: ScrambleText(
+                MYInfo.name,
+                style: Theme.of(context).textTheme.titleLarge
+                    ?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
               ),
             ),
-          ],
+          ),
           const Spacer(),
-          IconButton(
-            icon: Icon(
-              themeService.themeMode == AppThemeMode.dark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-              color: c.textSecondary,
-            ),
-            onPressed: () => themeService.toggleTheme(),
+          if (isWide) _NavLinks(items: _navItems, selected: selected),
+          const Spacer(),
+          if (width >= 520) ...[const _StatusLabel(), const SizedBox(width: 16)],
+          MagneticButton(
+            onTap: () => locator.get<UrlLauncherService>().open(MYInfo.resumeLink),
+            child: isWide ? const _ResumeChip() : Icon(Icons.description_outlined, color: c.accent),
           ),
-          if (!isWide)
-            IconButton(
-              icon: Icon(Icons.menu_rounded, color: c.textPrimary),
-              onPressed: () => _showMobileNav(context, currentPath),
-            )
-          else
-            FilledButton(
-              onPressed: () => router.go(RouteConstants.contact),
-              child: const Text('Get in touch'),
-            ),
         ],
-      ),
-    );
-  }
-
-  static bool _isSelected(String current, String path) {
-    if (path == RouteConstants.home) return current == RouteConstants.home;
-    return current.startsWith(path);
-  }
-
-  static void _showMobileNav(BuildContext context, String currentPath) {
-    final c = context.appColors;
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: c.bg1,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (ctx) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ..._navItems.map(
-              (item) => ListTile(
-                title: Text(
-                  item.label,
-                  style: TextStyle(
-                    color: _isSelected(currentPath, item.path) ? c.accent : c.textPrimary,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(ctx);
-                  router.go(item.path);
-                },
-              ),
-            ),
-            ListTile(
-              title: Text(
-                'Get in touch',
-                style: TextStyle(
-                  color: c.accent,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              onTap: () {
-                Navigator.pop(ctx);
-                router.go(RouteConstants.contact);
-              },
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -151,31 +71,159 @@ class _NavItem {
   final String label;
 }
 
-class _NavLink extends StatelessWidget {
-  const _NavLink({
-    required this.path,
-    required this.label,
-    required this.isSelected,
-  });
+class _NavLinks extends StatelessWidget {
+  const _NavLinks({required this.items, required this.selected});
 
-  final String path;
-  final String label;
-  final bool isSelected;
+  static const double _slot = 96;
+  static const double _bar = 28;
+
+  final List<_NavItem> items;
+  final int selected;
 
   @override
   Widget build(BuildContext context) {
     final c = context.appColors;
-    return HoverFx(
-      onTap: () => router.go(path),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-        child: Text(
-          label,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: isSelected ? c.textPrimary : c.textSecondary,
-                fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
+    final duration = AppMotion.reduceMotion(context) ? Duration.zero : AppMotion.medium;
+    return SizedBox(
+      width: _slot * items.length,
+      height: 40,
+      child: Stack(
+        children: [
+          Row(
+            children: [
+              for (var i = 0; i < items.length; i++)
+                SizedBox(
+                  width: _slot,
+                  child: _NavLink(item: items[i], isSelected: i == selected),
+                ),
+            ],
+          ),
+          AnimatedPositioned(
+            duration: duration,
+            curve: AppMotion.easeOut,
+            left: (selected < 0 ? 0 : selected) * _slot + (_slot - _bar) / 2,
+            bottom: 2,
+            child: AnimatedOpacity(
+              duration: duration,
+              opacity: selected < 0 ? 0 : 1,
+              child: Container(
+                width: _bar,
+                height: 2,
+                decoration: BoxDecoration(
+                  color: c.accent,
+                  boxShadow: [BoxShadow(color: c.accent.withValues(alpha: 0.6), blurRadius: 6)],
+                ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NavLink extends StatefulWidget {
+  const _NavLink({required this.item, required this.isSelected});
+
+  final _NavItem item;
+  final bool isSelected;
+
+  @override
+  State<_NavLink> createState() => _NavLinkState();
+}
+
+class _NavLinkState extends State<_NavLink> {
+  bool _hover = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.appColors;
+    final bright = widget.isSelected || _hover;
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hover = true),
+      onExit: (_) => setState(() => _hover = false),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: widget.isSelected ? null : () => _transformTo(widget.item.path),
+        child: Center(
+          child: Text(
+            widget.item.label,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              color: widget.isSelected ? c.accent : (bright ? c.textPrimary : c.textSecondary),
+              fontWeight: widget.isSelected ? FontWeight.w600 : FontWeight.w500,
+            ),
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class _StatusLabel extends StatefulWidget {
+  const _StatusLabel();
+
+  @override
+  State<_StatusLabel> createState() => _StatusLabelState();
+}
+
+class _StatusLabelState extends State<_StatusLabel> {
+  Timer? _timer;
+  DateTime _now = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    // Align to the minute boundary, then tick once a minute.
+    _timer = Timer(Duration(seconds: 60 - _now.second), () {
+      _tick();
+      _timer = Timer.periodic(const Duration(minutes: 1), (_) => _tick());
+    });
+  }
+
+  void _tick() {
+    if (mounted) setState(() => _now = DateTime.now());
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.appColors;
+    final style = Theme.of(context).textTheme.labelSmall?.copyWith(letterSpacing: 1.2);
+    String two(int v) => v.toString().padLeft(2, '0');
+    return Text.rich(
+      TextSpan(
+        style: style?.copyWith(color: c.textSecondary),
+        children: [
+          TextSpan(text: '${two(_now.hour)}:${two(_now.minute)}'),
+          const TextSpan(text: '  //  '),
+          TextSpan(
+            text: 'SIGNAL OK',
+            style: TextStyle(color: c.accent),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ResumeChip extends StatelessWidget {
+  const _ResumeChip();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.appColors;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      decoration: BoxDecoration(border: Border.all(color: c.accent.withValues(alpha: 0.7))),
+      child: Text(
+        'RESUME',
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(color: c.accent, letterSpacing: 1.6),
       ),
     );
   }

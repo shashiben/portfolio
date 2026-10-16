@@ -1,10 +1,5 @@
 class ExperienceSubEntry {
-  const ExperienceSubEntry({
-    required this.period,
-    required this.points,
-    this.title,
-    this.awardIds = const [],
-  });
+  const ExperienceSubEntry({required this.period, required this.points, this.title, this.awardIds = const []});
 
   final String period;
   final List<String> points;

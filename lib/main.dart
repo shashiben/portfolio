@@ -1,40 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'app/theme/app_theme.dart';
-import 'core/services/theme_service.dart';
 
 Future<void> main() async {
+  usePathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  VisibilityDetectorController.instance.updateInterval = const Duration(milliseconds: 100);
   setupLocator();
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  late final ThemeService _themeService;
-
-  @override
-  void initState() {
-    super.initState();
-    _themeService = locator.get<ThemeService>();
-    _themeService.addListener(_onThemeChanged);
-  }
-
-  @override
-  void dispose() {
-    _themeService.removeListener(_onThemeChanged);
-    super.dispose();
-  }
-
-  void _onThemeChanged() => setState(() {});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       title: 'Portfolio',
       theme: AppTheme.light(),
       darkTheme: AppTheme.dark(),
-      themeMode: _themeService.flutterThemeMode,
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
     );
   }

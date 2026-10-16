@@ -5,21 +5,28 @@
             "name": "Debug",
             "request": "launch",
             "type": "dart",
-            "args": [
-                " --wasm"
+            "toolArgs": [
+                "--wasm",
+                "--web-port=5555"
             ]
         },
         {
             "name": "Profile",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "toolArgs": [
+                "--web-port=5555"
+            ]
         },
         {
             "name": "Release",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "toolArgs": [
+                "--web-port=5555"
+            ]
         }
     ]
 }

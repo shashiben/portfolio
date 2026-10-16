@@ -16,14 +16,7 @@ Future<void> main() async {
   final scriptDir = path.dirname(Platform.script.toFilePath());
   final projectRoot = path.dirname(scriptDir);
   final skillsPath = path.join(scriptDir, 'assets', 'skills.json');
-  final outputPath = path.join(
-    projectRoot,
-    'lib',
-    'app',
-    'constants',
-    'data',
-    'skill.data.dart',
-  );
+  final outputPath = path.join(projectRoot, 'lib', 'app', 'constants', 'data', 'skill.data.dart');
 
   final file = File(skillsPath);
   if (!await file.exists()) {

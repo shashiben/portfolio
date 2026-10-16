@@ -19,34 +19,34 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
   });
 
   factory AppThemeColors.light() => AppThemeColors._(
-        bg0: ColorTokens.lightBg0,
-        bg1: ColorTokens.lightBg1,
-        bg2: ColorTokens.lightBg2,
-        line: ColorTokens.lightLine,
-        textPrimary: ColorTokens.lightTextPrimary,
-        textSecondary: ColorTokens.lightTextSecondary,
-        textTertiary: ColorTokens.lightTextTertiary,
-        accent: ColorTokens.lightAccent,
-        accentPurple: ColorTokens.lightAccentPurple,
-        success: ColorTokens.lightSuccess,
-        warning: ColorTokens.lightWarning,
-        danger: ColorTokens.lightDanger,
-      );
+    bg0: ColorTokens.lightBg0,
+    bg1: ColorTokens.lightBg1,
+    bg2: ColorTokens.lightBg2,
+    line: ColorTokens.lightLine,
+    textPrimary: ColorTokens.lightTextPrimary,
+    textSecondary: ColorTokens.lightTextSecondary,
+    textTertiary: ColorTokens.lightTextTertiary,
+    accent: ColorTokens.lightAccent,
+    accentPurple: ColorTokens.lightAccentPurple,
+    success: ColorTokens.lightSuccess,
+    warning: ColorTokens.lightWarning,
+    danger: ColorTokens.lightDanger,
+  );
 
   factory AppThemeColors.dark() => AppThemeColors._(
-        bg0: ColorTokens.darkBg0,
-        bg1: ColorTokens.darkBg1,
-        bg2: ColorTokens.darkBg2,
-        line: ColorTokens.darkLine,
-        textPrimary: ColorTokens.darkTextPrimary,
-        textSecondary: ColorTokens.darkTextSecondary,
-        textTertiary: ColorTokens.darkTextTertiary,
-        accent: ColorTokens.darkAccent,
-        accentPurple: ColorTokens.darkAccentPurple,
-        success: ColorTokens.darkSuccess,
-        warning: ColorTokens.darkWarning,
-        danger: ColorTokens.darkDanger,
-      );
+    bg0: ColorTokens.darkBg0,
+    bg1: ColorTokens.darkBg1,
+    bg2: ColorTokens.darkBg2,
+    line: ColorTokens.darkLine,
+    textPrimary: ColorTokens.darkTextPrimary,
+    textSecondary: ColorTokens.darkTextSecondary,
+    textTertiary: ColorTokens.darkTextTertiary,
+    accent: ColorTokens.darkAccent,
+    accentPurple: ColorTokens.darkAccentPurple,
+    success: ColorTokens.darkSuccess,
+    warning: ColorTokens.darkWarning,
+    danger: ColorTokens.darkDanger,
+  );
 
   final Color bg0;
   final Color bg1;
@@ -75,21 +75,20 @@ class AppThemeColors extends ThemeExtension<AppThemeColors> {
     Color? success,
     Color? warning,
     Color? danger,
-  }) =>
-      AppThemeColors._(
-        bg0: bg0 ?? this.bg0,
-        bg1: bg1 ?? this.bg1,
-        bg2: bg2 ?? this.bg2,
-        line: line ?? this.line,
-        textPrimary: textPrimary ?? this.textPrimary,
-        textSecondary: textSecondary ?? this.textSecondary,
-        textTertiary: textTertiary ?? this.textTertiary,
-        accent: accent ?? this.accent,
-        accentPurple: accentPurple ?? this.accentPurple,
-        success: success ?? this.success,
-        warning: warning ?? this.warning,
-        danger: danger ?? this.danger,
-      );
+  }) => AppThemeColors._(
+    bg0: bg0 ?? this.bg0,
+    bg1: bg1 ?? this.bg1,
+    bg2: bg2 ?? this.bg2,
+    line: line ?? this.line,
+    textPrimary: textPrimary ?? this.textPrimary,
+    textSecondary: textSecondary ?? this.textSecondary,
+    textTertiary: textTertiary ?? this.textTertiary,
+    accent: accent ?? this.accent,
+    accentPurple: accentPurple ?? this.accentPurple,
+    success: success ?? this.success,
+    warning: warning ?? this.warning,
+    danger: danger ?? this.danger,
+  );
 
   @override
   AppThemeColors lerp(ThemeExtension<AppThemeColors>? other, double t) {

@@ -1,9 +1,5 @@
 class CertificateItem {
-  const CertificateItem({
-    required this.name,
-    this.issuer,
-    this.url,
-  });
+  const CertificateItem({required this.name, this.issuer, this.url});
 
   final String name;
   final String? issuer;
@@ -44,7 +40,6 @@ final List<CertificateItem> certificateList = [
   const CertificateItem(
     name: 'Cloud Computing',
     issuer: 'NPTEL',
-    url:
-        'https://archive.nptel.ac.in/content/noc/NOC20/SEM2/Ecertificates/106/noc20-cs65/Course/NPTEL20CS20S41850026095214.jpg',
+    url: 'https://archive.nptel.ac.in/content/noc/NOC20/SEM2/Ecertificates/106/noc20-cs65/Course/NPTEL20CS20S41850026095214.jpg',
   ),
 ];

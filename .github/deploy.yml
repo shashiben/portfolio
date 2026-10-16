@@ -14,13 +14,18 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.41.1'
+          flutter-version: '3.47.7'
 
       - name: Install Dependencies
         run: flutter pub get
 
       - name: Build Flutter Web
         run: flutter build web --release --wasm
+
+      # GitHub Pages has no SPA rewrite. Serving the app as 404.html keeps
+      # path URLs such as /experience working on refresh.
+      - name: Add path-URL fallback
+        run: cp build/web/index.html build/web/404.html
 
       - name: Deploy to shashiben.github.io
         uses: peaceiris/actions-gh-pages@v3

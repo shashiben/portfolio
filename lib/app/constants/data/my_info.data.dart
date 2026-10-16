@@ -1,6 +1,6 @@
 mixin MYInfo {
   static const String name = 'Shashi Kumar';
-  static const String designation = 'Full Stack Developer';
+  static const String designation = 'Creative Full-Stack Engineer';
   static const String currentCompany = 'Webknot Technologies Pvt Ltd.';
 
   static const String email = 'kumarshashi5294@gmail.com';
@@ -17,6 +17,6 @@ mixin MYInfo {
   static const String whatsappLink = 'https://wa.me/7997217156';
 
   static String aboutBodyText1 =
-      'I‘m a Full Stack Developer with over ${DateTime.now().year - 2021} years experience conceptualizing and crafting digital products, helping businesses and non-profits expand their capacity for impact 🚀';
+      'I‘m a Creative Full-Stack Engineer with over ${DateTime.now().year - 2021} years experience conceptualizing and crafting digital products, helping businesses and non-profits expand their capacity for impact 🚀';
   static const String workDetails = '';
 }

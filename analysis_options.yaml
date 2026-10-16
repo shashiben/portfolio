@@ -10,6 +10,10 @@ analyzer:
     missing_return: error
     dead_code: warning
     avoid_print: warning
+  exclude:
+    - build/**
+    - android/**
+    - web/**
 
 formatter:
   page_width: 120

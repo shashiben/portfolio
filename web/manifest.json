@@ -1,11 +1,11 @@
 {
-    "name": "Shashi Kumar — Flutter Developer",
+    "name": "Shashi Kumar — Creative Full-Stack Engineer",
     "short_name": "Shashi Kumar",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0C0C0F",
     "theme_color": "#0D9488",
-    "description": "Flutter developer portfolio. Projects, experience, certifications. Flutter, Dart, MERN, Python.",
+    "description": "Creative full-stack engineer portfolio. Projects, experience, certifications. Flutter, Dart, MERN, Python.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

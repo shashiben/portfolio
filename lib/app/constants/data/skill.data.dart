@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../core/models/skill.dart';
 
 final List<Skill> skillList = <Skill>[
@@ -67,16 +68,8 @@ final List<Skill> skillList = <Skill>[
     image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
     color: const Color(0xFF4285F4),
   ),
-  Skill(
-    title: 'Datadog',
-    image: 'https://cdn.simpleicons.org/datadog/632CA6',
-    color: const Color(0xFF4285F4),
-  ),
-  Skill(
-    title: 'Appium',
-    image: 'https://cdn.simpleicons.org/appium/0B4F6C',
-    color: const Color(0xFF4285F4),
-  ),
+  Skill(title: 'Datadog', image: 'https://cdn.simpleicons.org/datadog/632CA6', color: const Color(0xFF4285F4)),
+  Skill(title: 'Appium', image: 'https://cdn.simpleicons.org/appium/0B4F6C', color: const Color(0xFF4285F4)),
   Skill(
     title: 'Kafka',
     image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg',
@@ -92,11 +85,7 @@ final List<Skill> skillList = <Skill>[
     image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
     color: const Color(0xFF4285F4),
   ),
-  Skill(
-    title: 'JUnit',
-    image: 'https://cdn.simpleicons.org/junit5/25A162',
-    color: const Color(0xFF4285F4),
-  ),
+  Skill(title: 'JUnit', image: 'https://cdn.simpleicons.org/junit5/25A162', color: const Color(0xFF4285F4)),
   Skill(
     title: 'Swings',
     image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',

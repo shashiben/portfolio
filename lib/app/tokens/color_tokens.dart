@@ -1,29 +1,42 @@
 import 'package:flutter/material.dart';
 
 abstract final class ColorTokens {
-  static const Color lightBg0 = Color(0xFFFAFAFA);
-  static const Color lightBg1 = Color(0xFFFFFFFF);
-  static const Color lightBg2 = Color(0xFFF3F4F6);
-  static const Color lightLine = Color(0xFFE5E7EB);
-  static const Color lightTextPrimary = Color(0xFF111827);
-  static const Color lightTextSecondary = Color(0xFF6B7280);
-  static const Color lightTextTertiary = Color(0xFF9CA3AF);
-  static const Color lightAccent = Color(0xFF0D9488);
-  static const Color lightAccentPurple = Color(0xFF7C3AED);
-  static const Color lightSuccess = Color(0xFF059669);
-  static const Color lightWarning = Color(0xFFD97706);
-  static const Color lightDanger = Color(0xFFDC2626);
+  static const Color omniVoid = Color(0xFF050806);
+  static const Color omniPanel = Color(0xFF0B120D);
+  static const Color omniPanelLifted = Color(0xFF101A13);
+  static const Color omniLine = Color(0xFF1C2B1F);
+  static const Color omniGreen = Color(0xFF39FF14);
+  static const Color omniDeepGreen = Color(0xFF0F7A2A);
+  static const Color omniTextPrimary = Color(0xFFEAFBEA);
+  static const Color omniTextSecondary = Color(0xFF8FA893);
+  static const Color omniTextTertiary = Color(0xFF55695A);
+  static const Color omniAmber = Color(0xFFFFB020);
+  static const Color omniRed = Color(0xFFFF2E3A);
 
-  static const Color darkBg0 = Color(0xFF0C0C0F);
-  static const Color darkBg1 = Color(0xFF141419);
-  static const Color darkBg2 = Color(0xFF1E1E24);
-  static const Color darkLine = Color(0xFF2A2A36);
-  static const Color darkTextPrimary = Color(0xFFF2F2F5);
-  static const Color darkTextSecondary = Color(0xFFA0A0B0);
-  static const Color darkTextTertiary = Color(0xFF6B6B7A);
-  static const Color darkAccent = Color(0xFF5EEAD4);
-  static const Color darkAccentPurple = Color(0xFFA78BFA);
-  static const Color darkSuccess = Color(0xFF34D399);
-  static const Color darkWarning = Color(0xFFFBBF24);
-  static const Color darkDanger = Color(0xFFF87171);
+  // Light tokens intentionally mirror dark: the app is dark-only.
+  static const Color lightBg0 = omniVoid;
+  static const Color lightBg1 = omniPanel;
+  static const Color lightBg2 = omniPanelLifted;
+  static const Color lightLine = omniLine;
+  static const Color lightTextPrimary = omniTextPrimary;
+  static const Color lightTextSecondary = omniTextSecondary;
+  static const Color lightTextTertiary = omniTextTertiary;
+  static const Color lightAccent = omniGreen;
+  static const Color lightAccentPurple = omniDeepGreen;
+  static const Color lightSuccess = omniGreen;
+  static const Color lightWarning = omniAmber;
+  static const Color lightDanger = omniRed;
+
+  static const Color darkBg0 = omniVoid;
+  static const Color darkBg1 = omniPanel;
+  static const Color darkBg2 = omniPanelLifted;
+  static const Color darkLine = omniLine;
+  static const Color darkTextPrimary = omniTextPrimary;
+  static const Color darkTextSecondary = omniTextSecondary;
+  static const Color darkTextTertiary = omniTextTertiary;
+  static const Color darkAccent = omniGreen;
+  static const Color darkAccentPurple = omniDeepGreen;
+  static const Color darkSuccess = omniGreen;
+  static const Color darkWarning = omniAmber;
+  static const Color darkDanger = omniRed;
 }

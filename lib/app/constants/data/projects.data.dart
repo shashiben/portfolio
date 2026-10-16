@@ -3,8 +3,7 @@ import '../../../core/models/project.model.dart';
 List<Project> projectsList = [
   Project(
     name: 'Hostel Management',
-    description:
-        'Created a hostel management web app to track students where they are, and download data of attendance for each day.',
+    description: 'Created a hostel management web app to track students where they are, and download data of attendance for each day.',
     technologies: ['Redux', 'Node Js', 'Express Js', 'Mongo DB', 'React Js'],
     demoUrl: 'https://hostel-app-test.herokuapp.com/login',
     githubUrl: 'https://github.com/shashiben/Hostel-Management',
@@ -33,8 +32,7 @@ List<Project> projectsList = [
   ),
   Project(
     name: 'FReMP Stack',
-    description:
-        'Created a simple application to show how to perform crud operations using flask, react and mongo db and includes how to search by name.',
+    description: 'Created a simple application to show how to perform crud operations using flask, react and mongo db and includes how to search by name.',
     technologies: ['Flask', 'React', 'Mongo DB', 'Python'],
     githubUrl: 'https://github.com/shashiben/FReMP-Stack',
   ),
@@ -46,22 +44,19 @@ List<Project> projectsList = [
   ),
   Project(
     name: 'Alarm Manager',
-    description:
-        'An application to schedule alarms on multiple devices supports for both android and ios, built using mongo db and flutter.',
+    description: 'An application to schedule alarms on multiple devices supports for both android and ios, built using mongo db and flutter.',
     technologies: ['Flutter', 'Mongo DB', 'Node Js', 'Express Js'],
     githubUrl: 'https://github.com/shashiben/Flutter-Alarm',
   ),
   Project(
     name: 'Cache With Hive',
-    description:
-        'Application which shows how to cache rest api data, so that user can view data even though he is offline. Presently supports for web, android and ios.',
+    description: 'Application which shows how to cache rest api data, so that user can view data even though he is offline. Presently supports for web, android and ios.',
     technologies: ['Flutter', 'Hive'],
     githubUrl: 'https://github.com/shashiben/Flutter-anime',
   ),
   Project(
     name: 'College Fest App',
-    description:
-        'Created an app for college fest where users can register for events and get live notifications regarding events and has payment gateway integration.',
+    description: 'Created an app for college fest where users can register for events and get live notifications regarding events and has payment gateway integration.',
     technologies: ['Java', 'Firebase', 'Paytm'],
     githubUrl: 'https://github.com/shashiben/College-Fest-app',
     demoUrl: 'https://play.google.com/store/apps/details?id=com.cse.cynosure',

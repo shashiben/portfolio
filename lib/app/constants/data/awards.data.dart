@@ -1,12 +1,5 @@
 class AwardItem {
-  const AwardItem({
-    required this.id,
-    required this.name,
-    this.issuer,
-    this.year,
-    this.description,
-    this.url,
-  });
+  const AwardItem({required this.id, required this.name, this.issuer, this.year, this.description, this.url});
 
   final String id;
   final String name;
@@ -22,16 +15,14 @@ final List<AwardItem> awardList = [
     name: 'Most Valued Performer',
     issuer: 'Webknot Technologies',
     year: 'May 2021',
-    description:
-        'Certified as Most Valued Performer for excellent effort contributed to Hubble Project at Webknot Technologies Pvt Ltd, Bengaluru.',
+    description: 'Certified as Most Valued Performer for excellent effort contributed to Hubble Project at Webknot Technologies Pvt Ltd, Bengaluru.',
   ),
   const AwardItem(
     id: 'spot_award_oct_2021',
     name: 'Spot Award',
     issuer: 'Webknot Technologies',
     year: 'Oct 2021',
-    description:
-        'Awarded for exceptional performance in recognized times on multiple projects at Webknot Technologies Pvt Ltd, Bengaluru.',
+    description: 'Awarded for exceptional performance in recognized times on multiple projects at Webknot Technologies Pvt Ltd, Bengaluru.',
   ),
   const AwardItem(
     id: 'mvp_oct_2022',
@@ -61,11 +52,7 @@ final List<AwardItem> awardList = [
     year: 'Apr 2024',
     description: 'Received for exceptional performance for Avaya CCaaS SDK development.',
   ),
-  const AwardItem(
-    id: 'spot_award_sep_2024',
-    name: 'Spot Award September 2024',
-    year: 'Sep 2024',
-  ),
+  const AwardItem(id: 'spot_award_sep_2024', name: 'Spot Award September 2024', year: 'Sep 2024'),
 ];
 
 /// Lookup awards by ID for experience sub-entry linking.

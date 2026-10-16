@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DeferredLoader extends StatefulWidget {
-  const DeferredLoader({
-    super.key,
-    required this.loadLibrary,
-    required this.builder,
-    this.loading,
-  });
+  const DeferredLoader({super.key, required this.loadLibrary, required this.builder, this.loading});
 
   final Future<void> Function() loadLibrary;
   final WidgetBuilder builder;
@@ -34,21 +29,14 @@ class _DeferredLoaderState extends State<DeferredLoader> {
         final content = loaded
             ? widget.builder(context)
             : (widget.loading ??
-                const Center(
-                  child: SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  ),
-                ));
+                  const Center(
+                    child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2)),
+                  ));
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
           switchInCurve: Curves.easeInOut,
           switchOutCurve: Curves.easeInOut,
-          child: KeyedSubtree(
-            key: ValueKey(loaded),
-            child: content,
-          ),
+          child: KeyedSubtree(key: ValueKey(loaded), child: content),
         );
       },
     );

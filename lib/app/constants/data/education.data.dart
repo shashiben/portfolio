@@ -1,11 +1,5 @@
 class EducationEntry {
-  const EducationEntry({
-    required this.institution,
-    required this.degree,
-    required this.period,
-    this.score,
-    this.url,
-  });
+  const EducationEntry({required this.institution, required this.degree, required this.period, this.score, this.url});
 
   final String institution;
   final String degree;

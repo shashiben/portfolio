@@ -1,5 +1,7 @@
 abstract final class RouteConstants {
   static const String home = '/home';
+  static const String journey = '/journey';
+  static const String work = '/work';
   static const String about = '/about-me';
   static const String experience = '/experience';
   static const String projects = '/projects';

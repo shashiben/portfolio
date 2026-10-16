@@ -74,19 +74,10 @@ String _excerpt(RssItem item) {
 
 Future<void> main() async {
   final projectRoot = path.dirname(path.dirname(Platform.script.toFilePath()));
-  final outputPath = path.join(
-    projectRoot,
-    'lib',
-    'app',
-    'constants',
-    'data',
-    'blogs.data.dart',
-  );
+  final outputPath = path.join(projectRoot, 'lib', 'app', 'constants', 'data', 'blogs.data.dart');
 
   log('Fetching from Medium...');
-  final response = await http.get(Uri.parse(_feedUrl)).timeout(
-        const Duration(seconds: 15),
-      );
+  final response = await http.get(Uri.parse(_feedUrl)).timeout(const Duration(seconds: 15));
 
   if (response.statusCode != 200) {
     log('Failed to fetch: ${response.statusCode}');

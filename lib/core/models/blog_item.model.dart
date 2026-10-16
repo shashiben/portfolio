@@ -1,10 +1,5 @@
 class BlogItem {
-  const BlogItem({
-    required this.title,
-    required this.excerpt,
-    this.url,
-    this.date,
-  });
+  const BlogItem({required this.title, required this.excerpt, this.url, this.date});
 
   final String title;
   final String excerpt;
