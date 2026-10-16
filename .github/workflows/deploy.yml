@@ -1,36 +1,40 @@
-name: Deploy Flutter Web to GitHub Pages Repo
+name: Deploy to shashiben.github.io
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Portfolio Repo
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.47.7'
+          flutter-version: "3.47.7"
+          cache: true
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web
+      - name: Build web
         run: flutter build web --release --wasm
 
       # GitHub Pages has no SPA rewrite. Serving the app as 404.html keeps
-      # path URLs such as /experience working on refresh.
+      # path URLs such as /work working on refresh.
       - name: Add path-URL fallback
         run: cp build/web/index.html build/web/404.html
 
-      - name: Deploy to shashiben.github.io
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Publish
+        uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.GH_PAGES_TOKEN }}
           external_repository: shashiben/shashiben.github.io
-          publish_dir: ./build/web
           publish_branch: master
+          publish_dir: ./build/web
+          # Replace the site tree so stale JS chunks from older builds are gone.
+          force_orphan: true
+          cname: shashiben.me
