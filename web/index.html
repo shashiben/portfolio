@@ -6,7 +6,7 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="index, follow">
 
   <!-- Primary Meta Tags -->
@@ -100,6 +100,7 @@
     html, body {
       width: 100%;
       height: 100%;
+      height: 100dvh;
       overflow: hidden;
     }
 
@@ -124,23 +125,13 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      border: 3px solid rgba(57, 255, 20, 0.15);
+      border: 3px solid rgba(57, 255, 20, 0.18);
       border-top-color: #39FF14;
-      animation: ring-pulse 1.1s ease-in-out infinite;
-      box-shadow: 0 0 24px rgba(57, 255, 20, 0.25);
+      animation: ring-spin 0.9s linear infinite;
     }
 
-    @keyframes ring-pulse {
-      0%, 100% {
-        transform: scale(0.92);
-        opacity: 0.65;
-        box-shadow: 0 0 12px rgba(57, 255, 20, 0.2);
-      }
-      50% {
-        transform: scale(1);
-        opacity: 1;
-        box-shadow: 0 0 32px rgba(57, 255, 20, 0.45);
-      }
+    @keyframes ring-spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -149,11 +140,38 @@
     <div class="loader-ring" aria-hidden="true"></div>
   </div>
 
+  <script>
+    (function () {
+      var vv = window.visualViewport;
+      if (!vv) return;
+      var last = 0;
+      var timer = 0;
+      function apply() {
+        var h = Math.round(vv.height);
+        if (h === last) return;
+        last = h;
+        var px = h + 'px';
+        document.documentElement.style.height = px;
+        document.body.style.height = px;
+        window.dispatchEvent(new Event('resize'));
+      }
+      function sync() {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(apply, 80);
+      }
+      vv.addEventListener('resize', sync);
+      vv.addEventListener('scroll', sync);
+      apply();
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
   <script>
     window.addEventListener('flutter-first-frame', function () {
       var loading = document.getElementById('loading');
-      if (loading) loading.remove();
+      if (!loading) return;
+      loading.style.transition = 'opacity 180ms ease-out';
+      loading.style.opacity = '0';
+      setTimeout(function () { loading.remove(); }, 200);
     });
   </script>
 </body>

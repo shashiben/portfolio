@@ -5,7 +5,6 @@ import 'dart:ui' show PointMode;
 import 'package:flutter/widgets.dart';
 
 import '../../app/tokens/color_tokens.dart';
-
 import 'engine.dart';
 
 class DnaHelix extends StatefulWidget {

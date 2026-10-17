@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 
 import '../tokens/tokens.dart';
@@ -46,7 +47,7 @@ abstract final class AppTheme {
       ),
       dividerColor: ColorTokens.darkLine,
       cardColor: ColorTokens.darkBg1,
-      splashFactory: InkSparkle.splashFactory,
+      splashFactory: InkRipple.splashFactory,
       textSelectionTheme: TextSelectionThemeData(
         cursorColor: ColorTokens.darkAccent,
         selectionColor: ColorTokens.darkAccent.withValues(alpha: 0.3),

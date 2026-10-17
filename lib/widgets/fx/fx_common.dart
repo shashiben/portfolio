@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../app/theme/app_motion.dart';

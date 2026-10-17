@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'tokens/color_tokens.dart';
+
 class DeferredLoader extends StatefulWidget {
   const DeferredLoader({super.key, required this.loadLibrary, required this.builder, this.loading});
 
@@ -26,18 +28,10 @@ class _DeferredLoaderState extends State<DeferredLoader> {
       future: _loadFuture,
       builder: (context, snapshot) {
         final loaded = snapshot.connectionState == ConnectionState.done && !snapshot.hasError;
-        final content = loaded
-            ? widget.builder(context)
-            : (widget.loading ??
-                  const Center(
-                    child: SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2)),
-                  ));
-        return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          switchInCurve: Curves.easeInOut,
-          switchOutCurve: Curves.easeInOut,
-          child: KeyedSubtree(key: ValueKey(loaded), child: content),
-        );
+        if (!loaded) {
+          return widget.loading ?? const ColoredBox(color: ColorTokens.omniVoid, child: SizedBox.expand());
+        }
+        return widget.builder(context);
       },
     );
   }

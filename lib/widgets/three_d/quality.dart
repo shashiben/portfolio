@@ -44,7 +44,8 @@ class QualityGate extends ChangeNotifier {
     _reduceMotion = reduce;
 
     final wide = MediaQuery.sizeOf(context).width >= 900;
-    if (reduce) {
+    final compact = MediaQuery.sizeOf(context).shortestSide < 600;
+    if (reduce || compact || defaultTargetPlatform == TargetPlatform.iOS) {
       _tier = QualityTier.low;
     } else if (wide && _hasMouse()) {
       _tier = QualityTier.high;

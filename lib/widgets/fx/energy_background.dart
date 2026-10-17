@@ -1,7 +1,7 @@
 import 'dart:math' as math;
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_theme_colors.dart';
@@ -16,9 +16,10 @@ class EnergyBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final reduce = fxReduceMotion(context);
     final width = MediaQuery.sizeOf(context).width;
+    final frozen = reduce || width < 800 || defaultTargetPlatform == TargetPlatform.iOS;
     return _EnergyBackground(
-      reduceMotion: reduce,
-      particleCount: reduce ? 0 : (width < 800 ? 12 : 40),
+      reduceMotion: frozen,
+      particleCount: frozen ? 0 : 40,
       accent: context.appColors.accent,
       line: context.appColors.line,
       child: child,

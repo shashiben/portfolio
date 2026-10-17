@@ -31,8 +31,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   http: ^1.6.0
+  import_sorter: ^4.6.0
   path: ^1.9.1
   stacked_generator: ^2.0.4
+
+import_sorter:
+  emojis: false
+  comments: false
 
 dependency_overrides:
   build: ^5.0.0

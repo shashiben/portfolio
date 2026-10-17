@@ -10,10 +10,10 @@ mixin MYInfo {
   static const String twitter = 'https://twitter.com/Shashi35744438';
   static const String facebook = 'https://www.facebook.com/shashiben7997';
   static const String instagram = 'https://www.instagram.com/shashikumar7997/';
-  static const String medium = 'https://medium.com/@ben75930';
+  static const String medium = 'https://shashiben.medium.com';
   static const String telegram = 'https://t.me/shashiben';
   static const String stackOverflow = 'https://stackoverflow.com/users/12164724/shashi-msp';
-  static const String resumeLink = 'https://drive.google.com/file/d/1zgGpQfz1sgvG-8eiCDXzmBIu59mJ7Jho/view?usp=sharing';
+  static const String resumeLink = 'https://drive.google.com/file/d/18xLgMH6hoSq1uNKKJWJV84MoQ69HShkL/view?usp=sharing';
   static const String whatsappLink = 'https://wa.me/7997217156';
 
   static String aboutBodyText1 =

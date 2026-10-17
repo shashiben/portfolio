@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 
-import '../../../widgets/app_bar.dart';
+import '../../../widgets/chrome/app_bar.dart';
+import '../../../widgets/chrome/boot_overlay.dart';
 import '../../../widgets/fx/fx.dart';
-import '../../../widgets/omnitrix.dart';
+import '../../../widgets/omnitrix/omnitrix.dart';
 import '../../../widgets/three_d/three_d.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -25,6 +27,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final pad = MediaQuery.viewPaddingOf(context);
+    final compact = MediaQuery.sizeOf(context).shortestSide < 600;
     return Scaffold(
       body: OmniCursor(
         child: Stack(
@@ -37,8 +41,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 Expanded(child: widget.navigationShell),
               ],
             ),
-            const Positioned(bottom: 16, right: 16, child: OmnitrixDock()),
+            Positioned(right: 16 + pad.right, bottom: (compact ? 28 : 16) + pad.bottom, child: const OmnitrixDock()),
             const Positioned.fill(child: IgnorePointer(child: TransformFlash())),
+            const Positioned.fill(child: OmniBootOverlay()),
           ],
         ),
       ),

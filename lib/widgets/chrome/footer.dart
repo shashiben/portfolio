@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../app/app.locator.dart';
-import '../app/constants/data/my_info.data.dart';
-import '../app/theme/app_theme_colors.dart';
-import '../core/services/url_launcher_service.dart';
-import 'fx/fx.dart';
+import '../../app/app.locator.dart';
+import '../../app/constants/data/my_info.data.dart';
+import '../../app/theme/app_theme_colors.dart';
+import '../../core/services/url_launcher_service.dart';
+import '../fx/fx.dart';
 
 class SiteFooter extends StatelessWidget {
   const SiteFooter({super.key});
 
-  static const List<(String, String)> _links = [
-    ('GitHub', MYInfo.github),
-    ('LinkedIn', MYInfo.linkedIn),
-    ('Medium', MYInfo.medium),
-    ('StackOverflow', MYInfo.stackOverflow),
-    ('Instagram', MYInfo.instagram),
-    ('Twitter', MYInfo.twitter),
-    ('Telegram', MYInfo.telegram),
-    ('WhatsApp', MYInfo.whatsappLink),
-    ('Email', 'mailto:${MYInfo.email}'),
+  static const List<(FaIconData, String, String)> _links = [
+    (FontAwesomeIcons.github, 'GitHub', MYInfo.github),
+    (FontAwesomeIcons.linkedin, 'LinkedIn', MYInfo.linkedIn),
+    (FontAwesomeIcons.medium, 'Medium', MYInfo.medium),
+    (FontAwesomeIcons.stackOverflow, 'Stack Overflow', MYInfo.stackOverflow),
+    (FontAwesomeIcons.instagram, 'Instagram', MYInfo.instagram),
+    (FontAwesomeIcons.xTwitter, 'Twitter', MYInfo.twitter),
+    (FontAwesomeIcons.telegram, 'Telegram', MYInfo.telegram),
+    (FontAwesomeIcons.whatsapp, 'WhatsApp', MYInfo.whatsappLink),
+    (FontAwesomeIcons.envelope, 'Email', 'mailto:${MYInfo.email}'),
   ];
 
   static Path _energyLine(Size s) => Path()
@@ -60,11 +62,17 @@ class SiteFooter extends StatelessWidget {
             spacing: 4,
             runSpacing: 4,
             children: [
-              for (final (label, url) in _links)
-                TextButton(
+              for (final (icon, label, url) in _links)
+                IconButton(
+                  tooltip: label,
                   onPressed: () => urlLauncher.open(url),
-                  style: TextButton.styleFrom(foregroundColor: c.textSecondary),
-                  child: Text(label, style: mono.copyWith(fontSize: 13)),
+                  icon: FaIcon(icon, size: 16),
+                  style: ButtonStyle(
+                    foregroundColor: WidgetStateProperty.resolveWith((states) {
+                      if (states.contains(WidgetState.hovered)) return c.accent;
+                      return c.textSecondary;
+                    }),
+                  ),
                 ),
             ],
           ),

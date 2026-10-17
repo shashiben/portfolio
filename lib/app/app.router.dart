@@ -1,15 +1,15 @@
 // ignore_for_file: prefer_relative_imports
 
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 
+import 'package:portfolio/ui/views/contact/contact_us_screen.dart' deferred as contact_module;
+import 'package:portfolio/ui/views/dashboard/dashboard_screen.dart';
+import 'package:portfolio/ui/views/home/home_screen.dart' deferred as home_module;
+import 'package:portfolio/ui/views/journey/journey_screen.dart' deferred as journey_module;
+import 'package:portfolio/ui/views/work/work_screen.dart' deferred as work_module;
 import 'deferred_loader.dart';
-
-import 'package:portfolio/ui/views/contact_us_screen/contact_us_screen.dart' deferred as contact_module;
-import 'package:portfolio/ui/views/dashboard_screen/dashboard_screen.dart';
-import 'package:portfolio/ui/views/home_screen/home_screen.dart' deferred as home_module;
-import 'package:portfolio/ui/views/journey_screen/journey_screen.dart' deferred as journey_module;
-import 'package:portfolio/ui/views/work_screen/work_screen.dart' deferred as work_module;
 
 CustomTransitionPage<void> _fadePage(GoRouterState state, Widget child) {
   return CustomTransitionPage<void>(

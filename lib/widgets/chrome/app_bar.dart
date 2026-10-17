@@ -1,16 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 
-import '../app/app.locator.dart';
-import '../app/app.router.dart';
-import '../app/constants/data/my_info.data.dart';
-import '../app/constants/route_constants.dart';
-import '../app/theme/app_motion.dart';
-import '../app/theme/app_theme_colors.dart';
-import '../core/services/url_launcher_service.dart';
-import 'fx/fx.dart';
+import '../../app/app.locator.dart';
+import '../../app/app.router.dart';
+import '../../app/constants/data/my_info.data.dart';
+import '../../app/constants/route_constants.dart';
+import '../../app/theme/app_motion.dart';
+import '../../app/theme/app_theme_colors.dart';
+import '../../core/services/url_launcher_service.dart';
+import '../fx/fx.dart';
 
 void _transformTo(String path) => transformController.play(atPeak: () => router.go(path));
 
@@ -32,8 +33,9 @@ class AppBarWidget extends StatelessWidget {
     final currentPath = GoRouterState.of(context).uri.path;
     final selected = _navItems.indexWhere((item) => currentPath.startsWith(item.path));
 
+    final top = MediaQuery.viewPaddingOf(context).top;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: isWide ? 32 : 16, vertical: 12),
+      padding: EdgeInsets.fromLTRB(isWide ? 32 : 16, 12 + top, isWide ? 32 : 16, 12),
       decoration: BoxDecoration(
         color: c.bg0.withValues(alpha: 0.72),
         border: Border(bottom: BorderSide(color: c.accent.withValues(alpha: 0.18))),
