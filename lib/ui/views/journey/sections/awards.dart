@@ -9,32 +9,43 @@ class _AwardChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = context.appColors;
     final theme = Theme.of(context).textTheme;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      decoration: BoxDecoration(
-        color: c.accent.withValues(alpha: 0.08),
-        border: Border.all(color: c.accent.withValues(alpha: 0.5)),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'ACHIEVEMENT UNLOCKED',
-            style: theme.labelSmall?.copyWith(
-              color: c.accent,
-              fontSize: 9,
-              letterSpacing: 1.6,
-              fontWeight: FontWeight.w700,
+    final award = this.award;
+    return DetailTrigger(
+      kicker: 'Award',
+      title: award.name,
+      description: award.description,
+      facts: [
+        if (award.issuer != null) DetailFact('Issuer', award.issuer!),
+        if (award.year != null) DetailFact('Year', award.year!),
+      ],
+      links: [if (award.url != null) DetailLink('Credential', award.url!)],
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: c.accent.withValues(alpha: 0.08),
+          border: Border.all(color: c.accent.withValues(alpha: 0.5)),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'ACHIEVEMENT UNLOCKED',
+              style: theme.labelSmall?.copyWith(
+                color: c.accent,
+                fontSize: 9,
+                letterSpacing: 1.6,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ),
-          const SizedBox(height: 2),
-          Text(
-            award.name,
-            style: theme.labelMedium?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
-          ),
-        ],
+            const SizedBox(height: 2),
+            Text(
+              award.name,
+              style: theme.labelMedium?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
     );
   }

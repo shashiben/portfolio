@@ -22,32 +22,36 @@ class _CertificateStrip extends StatelessWidget {
                 return SizedBox(
                   width: 220,
                   height: 150,
-                  child: TiltCard(
-                    onTap: url == null ? null : () => locator.get<UrlLauncherService>().open(url),
-                    child: HudFrame(
-                      padding: const EdgeInsets.all(18),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            (cert.issuer ?? 'CERT').toUpperCase(),
-                            style: theme.labelSmall?.copyWith(color: c.accent, letterSpacing: 1.6),
-                          ),
-                          const SizedBox(height: 10),
-                          Expanded(
-                            child: Text(
-                              cert.name,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: theme.titleSmall?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          if (url != null)
+                  child: DetailTrigger(
+                    kicker: 'Certificate',
+                    title: cert.name,
+                    facts: [if (cert.issuer != null) DetailFact('Issuer', cert.issuer!)],
+                    links: [if (url != null) DetailLink('Credential', url)],
+                    child: TiltCard(
+                      child: HudFrame(
+                        padding: const EdgeInsets.all(18),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             Text(
-                              'VIEW ↗',
+                              (cert.issuer ?? 'CERT').toUpperCase(),
+                              style: theme.labelSmall?.copyWith(color: c.accent, letterSpacing: 1.6),
+                            ),
+                            const SizedBox(height: 10),
+                            Expanded(
+                              child: Text(
+                                cert.name,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.titleSmall?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            Text(
+                              'DETAILS',
                               style: theme.labelSmall?.copyWith(color: c.textTertiary, letterSpacing: 1.4),
                             ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

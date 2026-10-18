@@ -1,10 +1,9 @@
 part of '../work_screen.dart';
 
 class _BlogRow extends StatefulWidget {
-  const _BlogRow({required this.blog, required this.onOpen});
+  const _BlogRow({required this.blog});
 
   final BlogItem blog;
-  final ValueChanged<String> onOpen;
 
   @override
   State<_BlogRow> createState() => _BlogRowState();
@@ -69,17 +68,17 @@ class _BlogRowState extends State<_BlogRow> {
       ),
     );
 
-    if (tappable) {
-      row = Semantics(
-        button: true,
-        child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => widget.onOpen(url), child: row),
-      );
-    }
-    return MouseRegion(
-      cursor: tappable ? SystemMouseCursors.click : MouseCursor.defer,
-      onEnter: (_) => setState(() => _hover = true),
-      onExit: (_) => setState(() => _hover = false),
-      child: row,
+    return DetailTrigger(
+      kicker: 'Writing',
+      title: blog.title,
+      description: blog.excerpt,
+      facts: [if (blog.date != null) DetailFact('Date', blog.date!)],
+      links: [if (tappable) DetailLink('Read', url)],
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _hover = true),
+        onExit: (_) => setState(() => _hover = false),
+        child: row,
+      ),
     );
   }
 }

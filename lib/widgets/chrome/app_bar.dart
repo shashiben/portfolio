@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -13,7 +11,10 @@ import '../../app/theme/app_theme_colors.dart';
 import '../../core/services/url_launcher_service.dart';
 import '../fx/fx.dart';
 
-void _transformTo(String path) => transformController.play(atPeak: () => router.go(path));
+void _transformTo(String path) {
+  final cue = transformCue(path);
+  transformController.play(style: cue.style, label: cue.label, atPeak: () => router.go(path));
+}
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({super.key});
@@ -56,7 +57,6 @@ class AppBarWidget extends StatelessWidget {
           const Spacer(),
           if (isWide) _NavLinks(items: _navItems, selected: selected),
           const Spacer(),
-          if (width >= 520) ...[const _StatusLabel(), const SizedBox(width: 16)],
           MagneticButton(
             onTap: () => locator.get<UrlLauncherService>().open(MYInfo.resumeLink),
             child: isWide ? const _ResumeChip() : Icon(Icons.description_outlined, color: c.accent),
@@ -157,58 +157,6 @@ class _NavLinkState extends State<_NavLink> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _StatusLabel extends StatefulWidget {
-  const _StatusLabel();
-
-  @override
-  State<_StatusLabel> createState() => _StatusLabelState();
-}
-
-class _StatusLabelState extends State<_StatusLabel> {
-  Timer? _timer;
-  DateTime _now = DateTime.now();
-
-  @override
-  void initState() {
-    super.initState();
-    // Align to the minute boundary, then tick once a minute.
-    _timer = Timer(Duration(seconds: 60 - _now.second), () {
-      _tick();
-      _timer = Timer.periodic(const Duration(minutes: 1), (_) => _tick());
-    });
-  }
-
-  void _tick() {
-    if (mounted) setState(() => _now = DateTime.now());
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.appColors;
-    final style = Theme.of(context).textTheme.labelSmall?.copyWith(letterSpacing: 1.2);
-    String two(int v) => v.toString().padLeft(2, '0');
-    return Text.rich(
-      TextSpan(
-        style: style?.copyWith(color: c.textSecondary),
-        children: [
-          TextSpan(text: '${two(_now.hour)}:${two(_now.minute)}'),
-          const TextSpan(text: '  //  '),
-          TextSpan(
-            text: 'SIGNAL OK',
-            style: TextStyle(color: c.accent),
-          ),
-        ],
       ),
     );
   }

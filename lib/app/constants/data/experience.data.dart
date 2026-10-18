@@ -63,15 +63,6 @@ List<Company> experienceList = [
     period: 'Nov 2025 - Present',
     isCurrent: true,
     points: [],
-    subEntries: [
-      ExperienceSubEntry(
-        period: 'Nov 2025 - Present',
-        title: 'Senior Flutter Developer',
-        points: [
-          'Building flutter web app which is multi-platform, so need to support web, android, iOS',
-          'Worked on migrating flutter version from 3.16.* to 3.38.*',
-        ],
-      ),
-    ],
+    subEntries: [ExperienceSubEntry(period: 'Nov 2025 - Present', title: 'Senior Flutter Developer', points: [])],
   ),
 ];

@@ -1,7 +1,9 @@
 part of '../contact_us_screen.dart';
 
 class _SocialOrbit extends StatefulWidget {
-  const _SocialOrbit();
+  const _SocialOrbit({required this.onOpen});
+
+  final ValueChanged<String> onOpen;
 
   @override
   State<_SocialOrbit> createState() => _SocialOrbitState();
@@ -57,7 +59,6 @@ class _SocialOrbitState extends State<_SocialOrbit> with TickerProviderStateMixi
   @override
   Widget build(BuildContext context) {
     final c = context.appColors;
-    final urlLauncher = locator<UrlLauncherService>();
     return SizedBox.square(
       dimension: _size,
       child: RepaintBoundary(
@@ -88,7 +89,7 @@ class _SocialOrbitState extends State<_SocialOrbit> with TickerProviderStateMixi
                         onEnter: (_) => setState(() => _hovered = i),
                         onExit: (_) => setState(() => _hovered = null),
                         child: GestureDetector(
-                          onTap: () => urlLauncher.open(_nodes[i].$3),
+                          onTap: () => widget.onOpen(_nodes[i].$3),
                           child: AnimatedScale(
                             scale: _hovered == i ? 1.2 : 1,
                             duration: const Duration(milliseconds: 160),
@@ -104,11 +105,7 @@ class _SocialOrbitState extends State<_SocialOrbit> with TickerProviderStateMixi
                                   width: _hovered == i ? 1.5 : 1,
                                 ),
                               ),
-                              child: FaIcon(
-                                _nodes[i].$1,
-                                size: 16,
-                                color: _hovered == i ? c.accent : c.textSecondary,
-                              ),
+                              child: FaIcon(_nodes[i].$1, size: 16, color: _hovered == i ? c.accent : c.textSecondary),
                             ),
                           ),
                         ),

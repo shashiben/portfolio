@@ -1,7 +1,24 @@
 part of '../home_screen.dart';
 
-class _Hero extends StatelessWidget {
-  const _Hero();
+class _Hero extends StatefulWidget {
+  const _Hero({required this.onContact, required this.onWork, this.parallax});
+
+  final VoidCallback onContact;
+  final VoidCallback onWork;
+  final ValueListenable<double>? parallax;
+
+  @override
+  State<_Hero> createState() => _HeroState();
+}
+
+class _HeroState extends State<_Hero> {
+  final ValueNotifier<double> _spin = ValueNotifier<double>(0);
+
+  @override
+  void dispose() {
+    _spin.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +54,8 @@ class _Hero extends StatelessWidget {
           spacing: 16,
           runSpacing: 16,
           children: [
-            _ActionButton(label: 'Get in touch', filled: true, onTap: () => _transformTo(RouteConstants.contact)),
-            _ActionButton(label: 'View work', onTap: () => _transformTo(RouteConstants.work)),
+            _ActionButton(label: 'Get in touch', filled: true, onTap: widget.onContact),
+            _ActionButton(label: 'View work', onTap: widget.onWork),
           ],
         ),
       ],
@@ -47,19 +64,32 @@ class _Hero extends StatelessWidget {
     final width = MediaQuery.sizeOf(context).width;
     final coreSize = wide ? 340.0 : math.min(340.0, width - 48);
     final dialSize = coreSize * 0.86;
-    final device = SizedBox.square(
+    final dial = SizedBox.square(
       dimension: coreSize,
       child: Stack(
         alignment: Alignment.center,
         clipBehavior: Clip.hardEdge,
         children: [
           IgnorePointer(
-            child: ClipOval(child: OmnitrixCore3D(size: dialSize)),
+            child: ClipOval(
+              child: OmnitrixCore3D(size: dialSize, spin: _spin),
+            ),
           ),
-          OmnitrixWidget(size: dialSize),
+          OmnitrixWidget(size: dialSize, spin: _spin),
         ],
       ),
     );
+    final parallax = widget.parallax;
+    final device = parallax == null
+        ? dial
+        : ListenableBuilder(
+            listenable: parallax,
+            builder: (context, child) {
+              final shift = _parallaxOf(context, parallax.value);
+              return Transform.translate(offset: Offset(0, shift), child: child);
+            },
+            child: dial,
+          );
 
     return Padding(
       padding: EdgeInsets.only(top: wide ? 96 : 48),

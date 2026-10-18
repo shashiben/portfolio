@@ -4,9 +4,26 @@ import 'dart:math' as math;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../app/constants/route_constants.dart';
 import '../../app/theme/app_motion.dart';
 import '../../app/tokens/color_tokens.dart';
 import 'fx_common.dart';
+
+enum TransformStyle { omni, helix, hex }
+
+class TransformCue {
+  const TransformCue(this.style, this.label);
+
+  final TransformStyle style;
+  final String label;
+}
+
+TransformCue transformCue(String path) {
+  if (path.startsWith(RouteConstants.journey)) return const TransformCue(TransformStyle.helix, 'JOURNEY');
+  if (path.startsWith(RouteConstants.work)) return const TransformCue(TransformStyle.hex, 'WORK');
+  if (path.startsWith(RouteConstants.contact)) return const TransformCue(TransformStyle.omni, 'CONTACT');
+  return const TransformCue(TransformStyle.omni, 'HOME');
+}
 
 /// Drives the full-screen transform flash. Use the global [transformController].
 class TransformController extends ChangeNotifier {
@@ -15,6 +32,8 @@ class TransformController extends ChangeNotifier {
   VoidCallback? _atPeak;
   bool _peaked = false;
   double _progress = 0;
+  TransformStyle style = TransformStyle.omni;
+  String label = '';
 
   bool get playing => _completer != null;
 
@@ -24,7 +43,7 @@ class TransformController extends ChangeNotifier {
   bool get _reduceMotion => SchedulerBinding.instance.platformDispatcher.accessibilityFeatures.disableAnimations;
 
   /// Runs the flash. Calls [atPeak] at the midpoint so the router can swap pages.
-  Future<void> play({VoidCallback? atPeak}) {
+  Future<void> play({VoidCallback? atPeak, TransformStyle style = TransformStyle.omni, String label = ''}) {
     if (_reduceMotion) {
       atPeak?.call();
       return Future<void>.value();
@@ -33,6 +52,8 @@ class TransformController extends ChangeNotifier {
       atPeak?.call();
       return _completer!.future;
     }
+    this.style = style;
+    this.label = label;
     _completer = Completer<void>();
     _atPeak = atPeak;
     _peaked = false;
@@ -123,13 +144,18 @@ class _FlashPainter extends CustomPainter {
     final center = size.center(Offset.zero);
     final maxR = math.sqrt(size.width * size.width + size.height * size.height) / 2;
     final e = AppMotion.easeOut.transform(p);
+    final style = controller.style;
 
     _wash.color = _void.withValues(alpha: o * 0.7);
     canvas.drawRect(Offset.zero & size, _wash);
 
-    _disc.color = _green.withValues(alpha: o * 0.12);
-    for (var i = 1; i <= _discs; i++) {
-      canvas.drawCircle(center, maxR * (0.15 + 0.85 * e) * i / _discs, _disc);
+    if (style == TransformStyle.hex) {
+      _drawHex(canvas, center, maxR * (0.2 + 0.85 * e), o);
+    } else if (style != TransformStyle.helix) {
+      _disc.color = _green.withValues(alpha: o * 0.12);
+      for (var i = 1; i <= _discs; i++) {
+        canvas.drawCircle(center, maxR * (0.15 + 0.85 * e) * i / _discs, _disc);
+      }
     }
 
     final ringR = maxR * e;
@@ -148,10 +174,14 @@ class _FlashPainter extends CustomPainter {
 
     _strand.color = _green.withValues(alpha: o * 0.8);
     _rung.color = _green.withValues(alpha: o * 0.35);
-    final amp = math.min(size.height * 0.06, 36.0);
+    final amp = math.min(
+      size.height * (style == TransformStyle.helix ? 0.1 : 0.06),
+      style == TransformStyle.helix ? 56.0 : 36.0,
+    );
     final freq = 2 * math.pi / math.max(size.width * 0.35, 160);
-    for (var h = 0; h < _helices; h++) {
-      final cy = size.height * (h + 1) / (_helices + 1);
+    final helixCount = style == TransformStyle.omni ? _helices : (style == TransformStyle.helix ? 5 : 1);
+    for (var h = 0; h < helixCount; h++) {
+      final cy = size.height * (h + 1) / (helixCount + 1);
       final phase = p * math.pi * 4 + h * 1.3;
       _a.reset();
       _b.reset();
@@ -176,6 +206,45 @@ class _FlashPainter extends CustomPainter {
       canvas.drawPath(_b, _strand);
       canvas.drawPath(_rungs, _rung);
     }
+
+    _paintLabel(canvas, center, p, o);
+  }
+
+  void _drawHex(Canvas canvas, Offset center, double radius, double opacity) {
+    _ring
+      ..strokeWidth = 1.4
+      ..color = _green.withValues(alpha: opacity * 0.7);
+    for (var i = 1; i <= 4; i++) {
+      final r = radius * i / 4;
+      final path = Path();
+      for (var k = 0; k < 6; k++) {
+        final a = -math.pi / 2 + k * math.pi / 3;
+        final pt = center + Offset(math.cos(a), math.sin(a)) * r;
+        k == 0 ? path.moveTo(pt.dx, pt.dy) : path.lineTo(pt.dx, pt.dy);
+      }
+      path.close();
+      canvas.drawPath(path, _ring);
+    }
+  }
+
+  void _paintLabel(Canvas canvas, Offset center, double p, double opacity) {
+    final text = controller.label;
+    if (text.isEmpty) return;
+    final band = 1 - ((p - 0.5).abs() / 0.16).clamp(0.0, 1.0);
+    if (band <= 0) return;
+    final painter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: TextStyle(
+          color: _green.withValues(alpha: opacity * band),
+          fontSize: 28,
+          letterSpacing: 8,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    painter.paint(canvas, center - Offset(painter.width / 2, painter.height / 2));
   }
 
   @override

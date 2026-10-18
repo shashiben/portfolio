@@ -41,6 +41,7 @@ class OmnitrixWidget extends StatefulWidget {
     this.mode = OmnitrixMode.hero,
     this.onSelect,
     this.onTransform,
+    this.spin,
   });
 
   final double? size;
@@ -52,6 +53,9 @@ class OmnitrixWidget extends StatefulWidget {
 
   /// When set, the parent owns the full-screen flash; the dial only plays its local slam.
   final ValueChanged<int>? onTransform;
+
+  /// Pulsed to 1 on slam so the 3D core can kick and burst. Parent owns it.
+  final ValueNotifier<double>? spin;
 
   @override
   State<OmnitrixWidget> createState() => _OmnitrixWidgetState();
@@ -67,10 +71,8 @@ const double _panelWidth = 180.0;
 const double _calloutHeight = 120.0;
 const double _dragStepPx = 36.0;
 const double _menuNode = 44.0;
-const double _menuSlot = 72.0;
 
 class _OmnitrixWidgetState extends State<OmnitrixWidget> with TickerProviderStateMixin {
-
   static final List<OmniDialItem> _skillItems = skillList
       .map((s) => OmniDialItem(label: s.title, image: s.image))
       .toList(growable: false);
@@ -201,6 +203,11 @@ class _OmnitrixWidgetState extends State<OmnitrixWidget> with TickerProviderStat
         await _shutter.animateTo(1, duration: const Duration(milliseconds: 140), curve: AppMotion.easeOut).orCancel;
         if (!mounted) return;
         _shock.forward(from: 0);
+        final spin = widget.spin;
+        if (spin != null) {
+          spin.value = 0;
+          spin.value = 1;
+        }
         _shutter.animateBack(0, duration: const Duration(milliseconds: 260), curve: AppMotion.easeOut);
       }
       widget.onTransform?.call(i);
@@ -348,6 +355,9 @@ class OmnitrixDock extends StatelessWidget {
   Widget build(BuildContext context) => OmnitrixWidget(
     mode: OmnitrixMode.dock,
     items: _items,
-    onTransform: (i) => transformController.play(atPeak: () => router.go(_routes[i])),
+    onTransform: (i) {
+      final cue = transformCue(_routes[i]);
+      transformController.play(style: cue.style, label: cue.label, atPeak: () => router.go(_routes[i]));
+    },
   );
 }

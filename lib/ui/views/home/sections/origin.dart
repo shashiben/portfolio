@@ -1,7 +1,9 @@
 part of '../home_screen.dart';
 
 class _Origin extends StatelessWidget {
-  const _Origin();
+  const _Origin({this.parallax});
+
+  final ValueListenable<double>? parallax;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,24 @@ class _Origin extends StatelessWidget {
       ],
     );
 
+    final listen = parallax;
+    final avatar = listen == null
+        ? _HexAvatar(size: wide ? 220 : 180)
+        : ListenableBuilder(
+            listenable: listen,
+            builder: (context, child) =>
+                Transform.translate(offset: Offset(0, _parallaxOf(context, listen.value) * 0.45), child: child),
+            child: _HexAvatar(size: wide ? 220 : 180),
+          );
+    final helix = listen == null
+        ? const IgnorePointer(child: DnaHelix(size: 140))
+        : ListenableBuilder(
+            listenable: listen,
+            builder: (context, child) =>
+                Transform.translate(offset: Offset(0, _parallaxOf(context, listen.value) * 0.7), child: child),
+            child: const IgnorePointer(child: DnaHelix(size: 140)),
+          );
+
     final text = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [bio, const SizedBox(height: 40), stats],
@@ -37,15 +57,15 @@ class _Origin extends StatelessWidget {
         if (wide)
           Row(
             children: [
-              const _HexAvatar(size: 220),
+              avatar,
               const SizedBox(width: 56),
               Expanded(child: text),
               const SizedBox(width: 32),
-              const IgnorePointer(child: DnaHelix(size: 140)),
+              helix,
             ],
           )
         else ...[
-          const Center(child: _HexAvatar(size: 180)),
+          Center(child: avatar),
           const SizedBox(height: 32),
           text,
         ],

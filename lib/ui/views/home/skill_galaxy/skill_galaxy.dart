@@ -13,6 +13,7 @@ import '../../../../app/theme/app_motion.dart';
 import '../../../../app/theme/app_theme_colors.dart';
 import '../../../../core/models/skill.dart';
 import '../../../../widgets/fx/fx.dart';
+import '../../../../widgets/three_d/engine.dart';
 
 part 'galaxy_stage.dart';
 part 'galaxy_painter.dart';
@@ -185,9 +186,8 @@ class _SkillGalaxyState extends State<SkillGalaxy> with SingleTickerProviderStat
         final (ty, tp) = _target(_selected.value);
         final dy = _wrapAngle(ty - _yaw);
         final dp = tp - _pitch;
-        final k = 1 - math.exp(-dt * 4.5);
-        _yaw += dy * k;
-        _pitch += dp * k;
+        _yaw = damp(_yaw, _yaw + dy, 4.5, dt);
+        _pitch = damp(_pitch, _pitch + dp, 4.5, dt);
         if (dy.abs() < 0.002 && dp.abs() < 0.002) _focusing = false;
       } else {
         _yaw += (_velocity + (_hovering ? 0 : _driftSpeed)) * dt;

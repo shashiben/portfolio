@@ -56,7 +56,10 @@ class _CompanyCard extends StatelessWidget {
             for (var i = 0; i < company.subEntries.length; i++)
               Padding(
                 padding: EdgeInsets.only(bottom: i == company.subEntries.length - 1 ? 0 : 24),
-                child: _RoleBlock(entry: company.subEntries[i]),
+                child: _RoleBlock(
+                  entry: company.subEntries[i],
+                  live: company.isCurrent && company.subEntries[i].period.contains('Present'),
+                ),
               )
           else
             _Bullets(points: company.points),
@@ -67,9 +70,10 @@ class _CompanyCard extends StatelessWidget {
 }
 
 class _RoleBlock extends StatelessWidget {
-  const _RoleBlock({required this.entry});
+  const _RoleBlock({required this.entry, this.live = false});
 
   final ExperienceSubEntry entry;
+  final bool live;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +105,7 @@ class _RoleBlock extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          _Bullets(points: entry.points),
+          if (live) _Forge(lines: entry.points) else _Bullets(points: entry.points),
           if (awards.isNotEmpty) ...[
             const SizedBox(height: 12),
             Wrap(
@@ -120,6 +124,205 @@ class _RoleBlock extends StatelessWidget {
       ),
     );
   }
+}
+
+class _Forge extends StatelessWidget {
+  const _Forge({required this.lines});
+
+  final List<String> lines;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.appColors;
+    final theme = Theme.of(context).textTheme;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+      decoration: BoxDecoration(
+        color: c.warning.withValues(alpha: 0.06),
+        border: Border.all(color: c.warning.withValues(alpha: 0.4)),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const _ForgePulse(),
+              const SizedBox(width: 8),
+              Text(
+                'FORGE',
+                style: theme.labelSmall?.copyWith(color: c.warning, letterSpacing: 2.2, fontWeight: FontWeight.w700),
+              ),
+              const Spacer(),
+              Text(
+                'WIP',
+                style: theme.labelSmall?.copyWith(color: c.warning, letterSpacing: 1.8, fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Cooking hard. This chapter is still on the bench.',
+            style: theme.bodyMedium?.copyWith(color: c.textPrimary, height: 1.45, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 12),
+          const _ForgeTrack(),
+          if (lines.isNotEmpty) const SizedBox(height: 14),
+          for (var i = 0; i < lines.length; i++)
+            Padding(
+              padding: EdgeInsets.only(bottom: i == lines.length - 1 ? 0 : 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '>',
+                    style: theme.bodyMedium?.copyWith(color: c.accent, height: 1.55, fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(lines[i], style: theme.bodyMedium?.copyWith(color: c.textSecondary, height: 1.55)),
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ForgePulse extends StatefulWidget {
+  const _ForgePulse();
+
+  @override
+  State<_ForgePulse> createState() => _ForgePulseState();
+}
+
+class _ForgePulseState extends State<_ForgePulse> with SingleTickerProviderStateMixin {
+  late final AnimationController _blink = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 900),
+    lowerBound: 0.35,
+    value: 1,
+  );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (AppMotion.reduceMotion(context)) {
+      _blink
+        ..stop()
+        ..value = 1;
+    } else if (!_blink.isAnimating) {
+      _blink.repeat(reverse: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _blink.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _blink,
+      child: Container(
+        width: 7,
+        height: 7,
+        decoration: BoxDecoration(shape: BoxShape.circle, color: context.appColors.warning),
+      ),
+    );
+  }
+}
+
+class _ForgeTrack extends StatefulWidget {
+  const _ForgeTrack();
+
+  @override
+  State<_ForgeTrack> createState() => _ForgeTrackState();
+}
+
+class _ForgeTrackState extends State<_ForgeTrack> with SingleTickerProviderStateMixin {
+  late final AnimationController _run = AnimationController(vsync: this, duration: const Duration(milliseconds: 2200));
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (AppMotion.reduceMotion(context)) {
+      _run.stop();
+    } else if (!_run.isAnimating) {
+      _run.repeat();
+    }
+  }
+
+  @override
+  void dispose() {
+    _run.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final c = context.appColors;
+    final reduced = AppMotion.reduceMotion(context);
+    return SizedBox(
+      height: 4,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _ForgePainter(progress: _run, reduced: reduced, track: c.line, head: c.warning, glow: c.accent),
+      ),
+    );
+  }
+}
+
+class _ForgePainter extends CustomPainter {
+  _ForgePainter({
+    required this.progress,
+    required this.reduced,
+    required this.track,
+    required this.head,
+    required this.glow,
+  }) : super(repaint: reduced ? null : progress);
+
+  final Animation<double> progress;
+  final bool reduced;
+  final Color track;
+  final Color head;
+  final Color glow;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    final bar = RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(2));
+    canvas.drawRRect(bar, Paint()..color = track);
+    canvas.save();
+    canvas.clipRRect(bar);
+    if (reduced) {
+      canvas.drawRect(Rect.fromLTWH(0, 0, size.width * 0.42, size.height), Paint()..color = head);
+    } else {
+      const spanFactor = 0.28;
+      final span = size.width * spanFactor;
+      final x = (size.width + span) * progress.value - span;
+      final rect = Rect.fromLTWH(x, 0, span, size.height);
+      canvas.drawRect(
+        rect,
+        Paint()
+          ..shader = LinearGradient(colors: [glow.withValues(alpha: 0), head, glow.withValues(alpha: 0.15)])
+              .createShader(rect),
+      );
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant _ForgePainter oldDelegate) =>
+      oldDelegate.reduced != reduced ||
+      oldDelegate.track != track ||
+      oldDelegate.head != head ||
+      oldDelegate.glow != glow;
 }
 
 class _Bullets extends StatelessWidget {

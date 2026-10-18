@@ -1,26 +1,43 @@
 part of '../home_screen.dart';
 
 class _SectionTitle extends StatelessWidget {
-  const _SectionTitle(this.text);
+  const _SectionTitle(this.text, {this.metric});
 
   final String text;
+  final int? metric;
 
   @override
   Widget build(BuildContext context) {
     final c = context.appColors;
+    final style = Theme.of(context).textTheme.headlineSmall
+        ?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600);
     return Padding(
       padding: const EdgeInsets.only(top: 96, bottom: 32),
       child: Row(
         children: [
           Container(width: 8, height: 8, color: c.accent),
           const SizedBox(width: 12),
-          ScrambleText(
-            text,
-            style: Theme.of(context).textTheme.headlineSmall
-                ?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
-          ),
+          ScrambleText(text, style: style),
+          if (metric != null) ...[
+            const SizedBox(width: 14),
+            CountUp(
+              value: metric!,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(color: c.accent),
+            ),
+          ],
           const SizedBox(width: 16),
-          Expanded(child: Container(height: 1, color: c.accent.withValues(alpha: 0.2))),
+          Expanded(
+            child: SizedBox(
+              height: 12,
+              child: LineDraw(
+                strokeWidth: 1,
+                duration: AppMotion.long,
+                pathBuilder: (size) => Path()
+                  ..moveTo(0, size.height / 2)
+                  ..lineTo(size.width, size.height / 2),
+              ),
+            ),
+          ),
         ],
       ),
     );

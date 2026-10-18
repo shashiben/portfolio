@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'dart:typed_data';
-import 'dart:ui' show PointMode;
+import 'dart:ui' show BlendMode, BlurStyle, MaskFilter, PointMode, VertexMode, Vertices;
 
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
@@ -79,7 +79,10 @@ class DepthBands {
     StrokeCap cap = StrokeCap.butt,
     this.bands = 6,
     double minAlpha = 0.15,
+    this.glowSigma = 5,
   }) : assert(mode != PointMode.polygon),
+       _strokeWidth = strokeWidth,
+       _cap = cap,
        _paints = List<Paint>.generate(
          bands,
          (b) => Paint()
@@ -93,8 +96,32 @@ class DepthBands {
 
   final PointMode mode;
   final int bands;
+  final double glowSigma;
+  final double _strokeWidth;
+  final StrokeCap _cap;
   final List<Paint> _paints;
   final Int32List _starts;
+  List<Paint>? _glowPaints;
+  bool _glow = false;
+
+  bool get glow => _glow;
+
+  set glow(bool value) {
+    if (value == _glow) return;
+    _glow = value;
+    if (value) {
+      _glowPaints ??= List<Paint>.generate(
+        bands,
+        (b) => Paint()
+          ..isAntiAlias = true
+          ..strokeWidth = _strokeWidth * 3
+          ..strokeCap = _cap
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, glowSigma)
+          ..color = _paints[b].color.withValues(alpha: (_paints[b].color.a * 0.55).clamp(0.0, 1.0)),
+        growable: false,
+      );
+    }
+  }
 
   int _items = 0;
   Int32List _order = Int32List(0);
@@ -163,7 +190,9 @@ class DepthBands {
           o += 2;
         }
       }
-      if (buf.isNotEmpty) canvas.drawRawPoints(mode, buf, _paints[b]);
+      if (buf.isEmpty) continue;
+      if (_glow) canvas.drawRawPoints(mode, buf, _glowPaints![b]);
+      canvas.drawRawPoints(mode, buf, _paints[b]);
     }
   }
 }
@@ -277,4 +306,63 @@ void putVec(Float32List buf, int vertex, double x, double y, double z) {
   buf[b] = x;
   buf[b + 1] = y;
   buf[b + 2] = z;
+}
+
+/// Frame-rate independent exponential smoothing. [rate] is in 1/seconds.
+double damp(double current, double target, double rate, double dt) {
+  final k = 1 - math.exp(-rate * dt);
+  return current + (target - current) * k;
+}
+
+/// Semi-implicit critically damped spring. Returns the next position and velocity.
+(double, double) springTo(double pos, double vel, double target, double omega, double dt) {
+  final accel = omega * omega * (target - pos) - 2 * omega * vel;
+  final nextVel = vel + accel * dt;
+  return (pos + nextVel * dt, nextVel);
+}
+
+/// Lambert shade (0..1) of model-space [normals] after the same rotation as [ScenePainter.projectLines].
+void lambertShade(Float32List normals, int count, Float32List out, double yaw, double pitch, {double roll = 0}) {
+  const lx = -0.35, ly = 0.72, lz = 0.6;
+  final len = math.sqrt(lx * lx + ly * ly + lz * lz);
+  final nxL = lx / len, nyL = ly / len, nzL = lz / len;
+  final cr = math.cos(roll), sr = math.sin(roll);
+  final cy = math.cos(yaw), sy = math.sin(yaw);
+  final cp = math.cos(pitch), sp = math.sin(pitch);
+  for (var i = 0; i < count; i++) {
+    final b = i * 3;
+    final x = normals[b], y = normals[b + 1], z = normals[b + 2];
+    final x0 = x * cr - y * sr;
+    final y0 = x * sr + y * cr;
+    final x1 = x0 * cy + z * sy;
+    final z1 = -x0 * sy + z * cy;
+    final y2 = y0 * cp - z1 * sp;
+    final z2 = y0 * sp + z1 * cp;
+    out[i] = (x1 * nxL + y2 * nyL + z2 * nzL).clamp(0.0, 1.0);
+  }
+}
+
+/// Translucent triangles. [indices] are triples into [xy] / [shade].
+void drawFaces(Canvas canvas, Float32List xy, Float32List shade, Int32List indices, Color color) {
+  final n = indices.length;
+  if (n < 3) return;
+  final positions = Float32List(n * 2);
+  final colors = Int32List(n);
+  final r = (color.r * 255).round();
+  final g = (color.g * 255).round();
+  final b = (color.b * 255).round();
+  final baseA = color.a;
+  for (var i = 0; i < n; i++) {
+    final vi = indices[i];
+    positions[i * 2] = xy[vi * 2];
+    positions[i * 2 + 1] = xy[vi * 2 + 1];
+    final s = shade[vi].clamp(0.0, 1.0);
+    final a = (baseA * (0.35 + 0.65 * s) * 255).round().clamp(0, 255);
+    colors[i] = (a << 24) | (r << 16) | (g << 8) | b;
+  }
+  canvas.drawVertices(
+    Vertices.raw(VertexMode.triangles, positions, colors: colors),
+    BlendMode.srcOver,
+    Paint()..color = const Color(0xFFFFFFFF),
+  );
 }

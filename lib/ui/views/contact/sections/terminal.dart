@@ -1,7 +1,9 @@
 part of '../contact_us_screen.dart';
 
 class _Terminal extends StatefulWidget {
-  const _Terminal();
+  const _Terminal({required this.onOpen});
+
+  final ValueChanged<String> onOpen;
 
   @override
   State<_Terminal> createState() => _TerminalState();
@@ -135,10 +137,7 @@ class _TerminalState extends State<_Terminal> with SingleTickerProviderStateMixi
                     runSpacing: 12,
                     children: [
                       _HudButton(label: _label, filled: true, onTap: _copy),
-                      _HudButton(
-                        label: 'OPEN MAIL',
-                        onTap: () => locator<UrlLauncherService>().open('mailto:${MYInfo.email}'),
-                      ),
+                      _HudButton(label: 'OPEN MAIL', onTap: () => widget.onOpen('mailto:${MYInfo.email}')),
                     ],
                   ),
                 ],

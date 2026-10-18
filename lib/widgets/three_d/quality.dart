@@ -66,7 +66,13 @@ class QualityGate extends ChangeNotifier {
     QualityTier.low => 0,
   };
 
-  bool get enableSpin => _tier != QualityTier.low && !_reduceMotion;
+  /// Idle rotation stays on at every tier. Low tier already drops point count,
+  /// glow, and fill. Only the accessibility reduce-motion setting freezes it.
+  bool get enableSpin => !_reduceMotion;
+
+  bool get enableGlow => _tier == QualityTier.high;
+
+  bool get enableFill => _tier != QualityTier.low;
 
   static bool _hasMouse() {
     if (RendererBinding.instance.mouseTracker.mouseIsConnected) return true;

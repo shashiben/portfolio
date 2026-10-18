@@ -1,11 +1,11 @@
 mixin MYInfo {
   static const String name = 'Shashi Kumar';
   static const String designation = 'Creative Full-Stack Engineer';
-  static const String currentCompany = 'Webknot Technologies Pvt Ltd.';
+  static const String currentCompany = 'Sharpsell Technologies Pvt Ltd.';
 
-  static const String email = 'kumarshashi5294@gmail.com';
+  static const String email = 'kumarshashi7997@gmail.com';
   static const String phone = '+91-7997217156';
-  static const String linkedIn = 'https://www.linkedin.com/in/shashi-kumar-58ab1b1a4/';
+  static const String linkedIn = 'https://www.linkedin.com/in/shashiben/';
   static const String github = 'https://github.com/shashiben';
   static const String twitter = 'https://twitter.com/Shashi35744438';
   static const String facebook = 'https://www.facebook.com/shashiben7997';

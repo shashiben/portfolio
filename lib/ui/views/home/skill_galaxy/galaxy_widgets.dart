@@ -89,48 +89,54 @@ class _ScanPanel extends StatelessWidget {
     final c = context.appColors;
     final text = Theme.of(context).textTheme;
     final counter = '${(index + 1).toString().padLeft(2, '0')} / ${total.toString().padLeft(2, '0')}';
-    return HudFrame(
-      padding: const EdgeInsets.all(20),
-      child: Row(
-        children: [
-          AnimatedSwitcher(
-            duration: AppMotion.short,
-            transitionBuilder: (child, anim) => ScaleTransition(
-              scale: Tween<double>(begin: 0.6, end: 1).animate(CurvedAnimation(parent: anim, curve: AppMotion.spring)),
-              child: FadeTransition(opacity: anim, child: child),
-            ),
-            child: Container(
-              key: ValueKey(index),
-              width: 68,
-              height: 68,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: c.bg2,
-                border: Border.all(color: c.accent, width: 1.5),
+    return ScanSweep(
+      replayToken: index,
+      child: HudFrame(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            AnimatedSwitcher(
+              duration: AppMotion.short,
+              transitionBuilder: (child, anim) => ScaleTransition(
+                scale: Tween<double>(
+                  begin: 0.6,
+                  end: 1,
+                ).animate(CurvedAnimation(parent: anim, curve: AppMotion.spring)),
+                child: FadeTransition(opacity: anim, child: child),
               ),
-              child: _SkillIcon(image: skill.image, size: 36),
-            ),
-          ),
-          const SizedBox(width: 18),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Scanning  $counter', style: text.labelSmall?.copyWith(color: c.accent, letterSpacing: 1.5)),
-                const SizedBox(height: 6),
-                ScrambleText(
-                  skill.title,
-                  key: ValueKey(index),
-                  reshuffleOnHover: false,
-                  style: text.headlineSmall?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
+              child: Container(
+                key: ValueKey(index),
+                width: 68,
+                height: 68,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: c.bg2,
+                  border: Border.all(color: c.accent, width: 1.5),
                 ),
-                const SizedBox(height: 4),
-                Text(group, style: text.bodyMedium?.copyWith(color: c.textSecondary)),
-              ],
+                child: _SkillIcon(image: skill.image, size: 36),
+              ),
             ),
-          ),
-        ],
+            const SizedBox(width: 18),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Scanning  $counter', style: text.labelSmall?.copyWith(color: c.accent, letterSpacing: 1.5)),
+                  const SizedBox(height: 6),
+                  ScrambleText(
+                    skill.title,
+                    key: ValueKey(index),
+                    reshuffleOnHover: false,
+                    style: text.headlineSmall?.copyWith(color: c.textPrimary, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(group, style: text.bodyMedium?.copyWith(color: c.textSecondary)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

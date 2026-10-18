@@ -29,8 +29,6 @@ class ContactUsScreen extends StackedView<ContactUsScreenViewModel> {
     final width = MediaQuery.sizeOf(context).width;
     final wide = width >= 800;
     final mono = GoogleFonts.jetBrainsMono();
-    final urlLauncher = locator<UrlLauncherService>();
-    final tel = 'tel:${MYInfo.phone.replaceAll(RegExp(r'[\s\-]'), '')}';
 
     return SingleChildScrollView(
       child: Column(
@@ -48,22 +46,30 @@ class ContactUsScreen extends StackedView<ContactUsScreenViewModel> {
                 ),
                 const SizedBox(height: 32),
                 if (wide)
-                  const Row(
+                  Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(child: Reveal(child: _Terminal())),
-                      SizedBox(width: 48),
-                      Reveal(delay: Duration(milliseconds: 150), child: _SocialOrbit()),
+                      Expanded(
+                        child: Reveal(child: _Terminal(onOpen: viewModel.open)),
+                      ),
+                      const SizedBox(width: 48),
+                      Reveal(
+                        delay: const Duration(milliseconds: 150),
+                        child: _SocialOrbit(onOpen: viewModel.open),
+                      ),
                     ],
                   )
                 else
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Reveal(child: _Terminal()),
-                      SizedBox(height: 40),
+                      Reveal(child: _Terminal(onOpen: viewModel.open)),
+                      const SizedBox(height: 40),
                       Center(
-                        child: Reveal(delay: Duration(milliseconds: 150), child: _SocialOrbit()),
+                        child: Reveal(
+                          delay: const Duration(milliseconds: 150),
+                          child: _SocialOrbit(onOpen: viewModel.open),
+                        ),
                       ),
                     ],
                   ),
@@ -73,7 +79,7 @@ class ContactUsScreen extends StackedView<ContactUsScreenViewModel> {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () => urlLauncher.open(tel),
+                    onTap: () => viewModel.open(viewModel.phoneLink),
                     child: Text(MYInfo.phone, style: mono.copyWith(color: c.textPrimary, fontSize: 16)),
                   ),
                 ),

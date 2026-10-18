@@ -137,14 +137,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  code_builder:
-    dependency: transitive
-    description:
-      name: code_builder
-      sha256: "811709c1badd02fc054039a13f66e0db1961865f9a314175f68c3eaeebec786f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.13.0"
   collection:
     dependency: transitive
     description:
@@ -293,22 +285,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "11.0.0"
-  freezed_annotation:
-    dependency: transitive
-    description:
-      name: freezed_annotation
-      sha256: "7294967ff0a6d98638e7acb774aac3af2550777accd8149c90af5b014e6d44d8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
-  get:
-    dependency: transitive
-    description:
-      name: get
-      sha256: "5ed34a7925b85336e15d472cc4cfe7d9ebf4ab8e8b9f688585bf6b50f4c3d79a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.7.3"
   get_it:
     dependency: "direct main"
     description:
@@ -477,14 +453,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      sha256: "2a0dc097e7b01d942475bdd552356db2d0f768b05540bd4b2b53f1840f2239a7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.8.0"
   logging:
     dependency: transitive
     description:
@@ -685,14 +653,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.6.0"
-  recase:
-    dependency: transitive
-    description:
-      name: recase
-      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   record_use:
     dependency: transitive
     description:
@@ -778,14 +738,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  source_gen:
-    dependency: transitive
-    description:
-      name: source_gen
-      sha256: "833ea7d15b5be79949d3d6c077da0267a0bd93c16897b36a771395a91e63086e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.3.1"
   source_span:
     dependency: transitive
     description:
@@ -810,22 +762,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.5.0"
-  stacked_generator:
-    dependency: "direct dev"
-    description:
-      name: stacked_generator
-      sha256: "6e267e40c85111dca881538ef0404be3c6bcdc51dd206f2a3361d9f62f90a706"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.4"
-  stacked_services:
-    dependency: "direct main"
-    description:
-      name: stacked_services
-      sha256: a70c5c86f89a9258139ff174bf045a527099ea8552f8497ebb0b755469841bb4
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.6.0"
   stacked_shared:
     dependency: transitive
     description:

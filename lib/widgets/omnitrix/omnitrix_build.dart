@@ -12,7 +12,6 @@ Path _verticalLead(Size s) => Path()
   ..moveTo(s.width * 0.2, s.height)
   ..lineTo(s.width * 0.8, s.height);
 
-
 extension _OmnitrixBuild on _OmnitrixWidgetState {
   Widget _buildDial(BuildContext context) {
     final items = _items;
@@ -313,66 +312,112 @@ extension _OmnitrixBuild on _OmnitrixWidgetState {
 
   Widget _radialMenu(List<OmniDialItem> items, double size) {
     final n = items.length;
-    final radius = size / 2 + 64;
-    final extent = radius + _menuSlot / 2;
-    final spread = n < 6 ? math.pi * 0.62 : 2 * math.pi * (n - 1) / n;
-    final labelStyle = Theme.of(context).textTheme.labelSmall
-        ?.copyWith(color: ColorTokens.omniTextPrimary, letterSpacing: 1);
+    final offsets = _menuOffsets(n, size);
+    final reach = offsets.fold<double>(size, (m, o) => math.max(m, o.distance)) + 96;
+    final labelStyle = Theme.of(context).textTheme.labelSmall?.copyWith(color: ColorTokens.omniTextPrimary);
 
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => _setOpen(false)),
-        ),
-        CompositedTransformFollower(
-          link: _link,
-          targetAnchor: Alignment.center,
-          followerAnchor: Alignment.center,
-          child: SizedBox.square(
-            dimension: extent * 2,
-            child: IgnorePointer(
-              ignoring: !_open,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  for (var i = 0; i < n; i++)
-                    _radialNode(
-                      items[i],
-                      i,
-                      extent,
-                      _fitRadialTarget(
-                        Offset.fromDirection(
-                          _facing - spread / 2 + (n == 1 ? spread / 2 : i * spread / (n - 1)),
-                          radius,
-                        ),
-                      ),
-                      labelStyle,
-                    ),
-                ],
+    return SizedBox.expand(
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => _setOpen(false)),
+          ),
+          CompositedTransformFollower(
+            link: _link,
+            targetAnchor: Alignment.center,
+            followerAnchor: Alignment.center,
+            child: SizedBox.square(
+              dimension: reach * 2,
+              child: IgnorePointer(
+                ignoring: !_open,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [for (var i = 0; i < n; i++) _radialNode(items[i], i, reach, offsets[i], labelStyle)],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Offset _fitRadialTarget(Offset target) {
+  /// Centers of the open fan, in the free space around the dial. Circles stay
+  /// a label-width apart so hits and text don't land on the next item.
+  List<Offset> _menuOffsets(int n, double dialSize) {
+    if (n == 0) return const [];
     final box = context.findRenderObject() as RenderBox?;
-    if (box == null || !box.hasSize) return target;
     final screen = MediaQuery.sizeOf(context);
+    final facing = box != null && box.hasSize ? _facing : -math.pi * 0.75;
+    if (n == 1) return [Offset.fromDirection(facing, dialSize / 2 + 96)];
+
     final pad = MediaQuery.viewPaddingOf(context);
-    const edge = 40.0;
-    final minX = pad.left + edge;
-    final minY = pad.top + edge;
-    final maxX = math.max(minX, screen.width - pad.right - edge);
-    final maxY = math.max(minY, screen.height - pad.bottom - edge);
-    final center = box.localToGlobal(box.size.center(Offset.zero));
-    final dest = center + target;
-    return Offset(dest.dx.clamp(minX, maxX), dest.dy.clamp(minY, maxY)) - center;
+    final center = box != null && box.hasSize
+        ? box.localToGlobal(box.size.center(Offset.zero))
+        : screen.center(Offset.zero);
+    const edge = 72.0;
+    final spaceL = math.max(0.0, center.dx - pad.left - edge);
+    final spaceR = math.max(0.0, screen.width - pad.right - edge - center.dx);
+    final spaceT = math.max(0.0, center.dy - pad.top - edge);
+    final spaceB = math.max(0.0, screen.height - pad.bottom - edge - center.dy);
+
+    double roomAlong(double angle) {
+      final u = Offset(math.cos(angle), math.sin(angle));
+      final dx = u.dx >= 0 ? spaceR : spaceL;
+      final dy = u.dy >= 0 ? spaceB : spaceT;
+      final ax = u.dx.abs() < 1e-4 ? double.infinity : dx / u.dx.abs();
+      final ay = u.dy.abs() < 1e-4 ? double.infinity : dy / u.dy.abs();
+      return math.min(ax, ay);
+    }
+
+    const minChord = _menuNode + 36;
+    final minRadius = dialSize / 2 + _menuNode / 2 + 28;
+    final prefer = math.min(dialSize / 2 + 128, math.max(minRadius, roomAlong(facing) - 8));
+
+    bool fits(double half, double radius) {
+      final step = 2 * half / (n - 1);
+      for (var i = 0; i < n; i++) {
+        if (roomAlong(facing - half + i * step) < radius) return false;
+      }
+      return 2 * radius * math.sin(step / 2) >= minChord - 0.5;
+    }
+
+    double halfFor(double radius) {
+      final s = (minChord / (2 * radius)).clamp(0.0, 0.95);
+      return (2 * math.asin(s)) * (n - 1) / 2;
+    }
+
+    var radius = prefer;
+    var half = math.min(1.15, math.max(halfFor(radius), 0.72));
+    if (!fits(half, radius)) {
+      var found = false;
+      for (var h = half; h >= 0.5; h -= 0.04) {
+        if (!fits(h, radius)) continue;
+        half = h;
+        found = true;
+        break;
+      }
+      if (!found) {
+        for (var r = prefer; r >= minRadius; r -= 6) {
+          final h = math.min(1.05, math.max(halfFor(r), 0.55));
+          if (!fits(h, r)) continue;
+          radius = r;
+          half = h;
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        radius = minRadius;
+        half = math.min(1.05, math.max(halfFor(minRadius), 0.55));
+      }
+    }
+
+    final step = 2 * half / (n - 1);
+    return [for (var i = 0; i < n; i++) Offset.fromDirection(facing - half + i * step, radius)];
   }
 
-  Widget _radialNode(OmniDialItem item, int i, double extent, Offset target, TextStyle? labelStyle) {
+  Widget _radialNode(OmniDialItem item, int i, double reach, Offset target, TextStyle? labelStyle) {
     final selected = i == _index;
     final image = item.image;
     final fg = selected ? Colors.black : ColorTokens.omniGreen;
@@ -381,15 +426,18 @@ extension _OmnitrixBuild on _OmnitrixWidgetState {
         : _isNetworkUrl(image)
         ? SvgPicture.network(image, width: 22, height: 22)
         : Image.asset(image, width: 22, height: 22);
+    final dir = target.distance < 1 ? Offset.fromDirection(_facing) : target / target.distance;
+    final out = dir * (_menuNode / 2 + 8);
 
     return Positioned(
-      left: extent - _menuSlot / 2,
-      top: extent - _menuNode / 2,
-      width: _menuSlot,
+      left: reach - _menuNode / 2,
+      top: reach - _menuNode / 2,
+      width: _menuNode,
+      height: _menuNode,
       child: AnimatedBuilder(
         animation: _menuT,
         builder: (context, child) => Transform.translate(
-          offset: _fitRadialTarget(target * _menuT.value),
+          offset: target * _menuT.value,
           child: Transform.scale(scale: 0.4 + 0.6 * _menuT.value, child: child),
         ),
         child: FadeTransition(
@@ -403,8 +451,9 @@ extension _OmnitrixBuild on _OmnitrixWidgetState {
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () => _selectFromMenu(i),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  alignment: Alignment.center,
                   children: [
                     Container(
                       width: _menuNode,
@@ -417,9 +466,22 @@ extension _OmnitrixBuild on _OmnitrixWidgetState {
                       ),
                       child: art,
                     ),
-                    const SizedBox(height: 4),
-                    ExcludeSemantics(
-                      child: Text(item.label, style: labelStyle, maxLines: 1, overflow: TextOverflow.ellipsis),
+                    Positioned(
+                      left: _menuNode / 2 + out.dx - 40,
+                      top: _menuNode / 2 + out.dy - 8,
+                      width: 80,
+                      height: 16,
+                      child: IgnorePointer(
+                        child: ExcludeSemantics(
+                          child: Text(
+                            item.label,
+                            textAlign: TextAlign.center,
+                            style: labelStyle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
